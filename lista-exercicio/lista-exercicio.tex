@@ -1,0 +1,193 @@
+% 2017-03-18 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+\documentclass[11pt]{examdesign}
+\usepackage{estilo-lista-exercicio}
+
+
+% ------------------------------------------------------------------------------------------------------------ %
+%                       Códigos fonte em ambiente verbatim ou listing
+% 
+% Ps: se não quiser inserir trechos de códigos, então comente o comando abaixo
+% ------------------------------------------------------------------------------------------------------------ %
+\IncludeFromFile{codigos/trechos.tex}
+
+% ------------------------------------------------------------------------------------------------------------ %
+%                       Folha com respostas
+% ------------------------------------------------------------------------------------------------------------ %
+% Comente a linha abaixo se não deseja gerar a folha com a resposta
+%\NoKey
+
+% ------------------------------------------------------------------------------------------------------------ %
+%                       Texto que aparecerá no início de cada seção
+% ------------------------------------------------------------------------------------------------------------ %
+% \SectionPrefix{Parte \arabic{sectionindex}. \space}
+
+% ------------------------------------------------------------------------------------------------------------ %
+%                       Dados do cabeçalho da lista de exercício
+% ------------------------------------------------------------------------------------------------------------ %
+\cabecalho{1}{10/03/2017}{STD29006 -- Sistemas Distribuídos}{Conceitos sobre Sistemas Distribuídos}{Emerson Ribeiro de Mello \hfill \url{http://docente.ifsc.edu.br/mello/std}}
+
+
+
+% ------------------------------------------------------------------------------------------------------------ %
+%                       Início do documento
+% ------------------------------------------------------------------------------------------------------------ %
+\begin{document}
+
+% Use esse ambiente se desejar colocar uma nota antes do início das questões
+\begin{exampreface}
+
+\begin{nota}
+Neste documento só tem um pequeno exemplo das funcionalidades da classe \texttt{examdesign}. Veja a documentação da classe para conhecer todas funcionalidades e configurações: \\\url{https://www.ctan.org/tex-archive/macros/latex/contrib/examdesign}
+\end{nota}
+
+\end{exampreface}
+
+
+
+% ------------------------------------------------------------------------------------------------------------ %
+%                       Questões discursivas
+% ------------------------------------------------------------------------------------------------------------ %
+\begin{shortanswer}[title={Questões discursivas},rearrange=no,resetcounter=no]
+% Se não quiser colocar título é só remover o comando title, como apresentado abaixo
+%\begin{shortanswer}[rearrange=yes,resetcounter=no]
+
+\begin{question}
+A transparência é uma das metas para construir um Sistema Distribuído. Quais são os tipos de transparência?
+
+	\begin{answer}
+	Os tipos são: acesso, localização, desempenho, mobilidade, replicação, concorrência e falhas.
+	\end{answer}
+\end{question}
+
+\begin{question}
+O agrupamento de máquinas (\textit{cluster}) é um tipo de sistemas de computação distribuídos. Quais são as principais características de um \textit{cluster}?
+
+	\begin{answer}
+	É formado por computadores semelhantes que geralmente possuem o mesmo sistema operacional e estão conectados por meio de uma rede local.
+	\end{answer}
+\end{question}
+
+\begin{question}
+O trecho abaixo é de uma implementação de \textit{sockets} na linguagem C. Explique o que acontece na linha 6.
+%
+% Inserindo trecho de código presente no arquivo codigos/trechos.tex
+\InsertChunk{cliente c - sockets}
+%
+\end{question}
+
+\end{shortanswer}
+% ------------------------------------------------------------------------------------------------------------ %
+
+% ------------------------------------------------------------------------------------------------------------ %
+%                       Questões verdade/falso
+% ------------------------------------------------------------------------------------------------------------ %
+\begin{truefalse}[title={Verdade/Falso}, resetcounter=yes]
+
+	\begin{question}
+		\answer{Falso} O \textit{cluster} mais potente atualmente está no Brasil.
+	\end{question}
+
+	\begin{question}
+		\answer{Verdade} Sistemas distribuídos podem possuir arquitetura centralizada, descentralizada ou híbrida.
+	\end{question}
+	
+\end{truefalse}
+% ------------------------------------------------------------------------------------------------------------ %
+
+\pagebreak
+
+% ------------------------------------------------------------------------------------------------------------ %
+%                       Questões para relacionar
+% ------------------------------------------------------------------------------------------------------------ %
+\begin{matching}[title={Características das transações}, resetcounter=yes]
+Relacione cada característica com sua descrição
+  \pair{Atômica}{A transação é indivisível}
+  \pair{Consistente}{Toda transação leva o sistema de um estado válido para um outro estado válido}
+  \pair{Isolada}{Transações concorrentes não gerem interferência entre si}
+  \pair{Durável}{Todas modificações feitas por uma transação são permanentes}
+
+\end{matching}
+% ------------------------------------------------------------------------------------------------------------ %
+
+
+
+
+% ------------------------------------------------------------------------------------------------------------ %
+%                       Questões de múltipla escolha
+% ------------------------------------------------------------------------------------------------------------ %
+\begin{multiplechoice}[title={Questões de múltipla escolha}, resetcounter=no]
+Marque a opção correta.
+
+\begin{question}
+O \textbf{socket} \ldots
+    \choice[!]{permite a comunicação entre processos}
+    \choice{já foi muito usado no passado, mas atualmente não é mais usado}
+    \choice{permite que a execução de \textit{threads}}
+    \choice{está na camada de aplicação}
+\end{question}
+
+\end{multiplechoice}
+% ------------------------------------------------------------------------------------------------------------ %
+
+
+% ------------------------------------------------------------------------------------------------------------ %
+% Mensagem no fim do caderno de questões e caderno de respostas
+% ------------------------------------------------------------------------------------------------------------ %
+\begin{examclosing}
+\vfill
+\begin{notap}
+Alguns exemplos extraídos e adaptados de:
+\begin{itemize}
+	\item Manual da classe examdesign
+\end{itemize}
+\end{notap}
+\end{examclosing}
+% fim do caderno das respostas
+\begin{keyclosing}
+\vfill
+\begin{notap}
+Alguns exemplos extraídos e adaptados de:
+\begin{itemize}
+	\item Manual da classe examdesign
+\end{itemize}
+\end{notap}
+\end{keyclosing}
+
+
+% ------------------------------------------------------------------------------------------------------------ %
+%                       Folha ideal para colocar material de ajuda
+% ------------------------------------------------------------------------------------------------------------ %
+\begin{endmatter}
+
+\centerline
+{\Large Material de apoio para realização dos exercícios}
+\bigskip
+\bigskip
+
+  \begin{center}
+  \begin{tabular}{lcl}
+    Constant & Symbol & Approximate Value \\ \hline
+    Speed of light in vacuum & $c$ & $3.00 \times 10^8$m/s \\
+    Permeability of vacuum & $\mu_0$ & $12.6 \times 10^{-7}$H/m \\
+    Permittivity of vacuum & $\epsilon_0$ & $8.85 \times 10^{-12}$F/m \\
+    Magnetic flux quantum & $\phi_0 = {h \over 2e}$ & $2.07 \times 10^{-15}$Wb \\
+    Electron mass & $m_e$ & $9.11 \times 10^{-31}$kg \\
+    Proton mass & $m_p$ & $1.673 \times 10^{-27}$kg \\
+    Neutron mass & $m_n$ & $1.675 \times 10^{-27}$kg \\
+    Proton-electron mass ratio & $m_p \over m_e$ & 1836
+  \end{tabular}
+  \end{center}
+\end{endmatter}
+% ------------------------------------------------------------------------------------------------------------ %
+
+
+
+
+
+
+
+
+
+
+
+ \end{document}

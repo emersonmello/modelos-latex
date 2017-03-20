@@ -1,0 +1,114 @@
+% 2017-03-10 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% \documentclass[handout,xcolor=pdftex,dvipsnames,table]{beamer}
+\documentclass{beamer}
+
+% usando tema IFSC-Leve
+\usetheme{ifsc-leve}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,brazil]{babel}
+
+% Metadados do PDF a ser gerado
+\hypersetup{pdfstartview={Fit},pdftitle={\@title},
+ 	pdfsubject={Engenharia de Telecomunicacoes - IFSC},pdfauthor={\@author}
+}
+
+
+% -------------------------------------------------%
+%              Título 
+% -------------------------------------------------%
+\title{Modelo de apresentação IFSC}
+\subtitle{Tema: Título Leve}
+\author{Prof. Emerson Ribeiro de Mello}
+\date{10 de março de 2017}
+\institute{Engenharia de Telecomunicações\\
+	Instituto Federal de Santa Catarina\\
+	campus São José\\
+	\url{mello@ifsc.edu.br}
+}
+% -------------------------------------------------%
+
+
+\begin{document}
+
+\begin{frame}[t]
+	\maketitle
+\end{frame}
+
+% Descomente as linhas abaixo se desejar colocar um sumário
+%\begin{frame}{Sumário}
+%	\tableofcontents
+%\end{frame}
+
+%------------------------------------------------------------------------------------%
+%                         Inicio do documento
+%------------------------------------------------------------------------------------%
+
+
+\section{Listas}
+
+\begin{frame}{Apenas começando}
+	\begin{enumerate}
+	% usando o comando espaço para aumentar a distância entre os itens
+		\espaco{1.5em}
+		\item Primeiro item
+		\begin{itemize}
+			\item Primeiro item
+			\item Segundo item
+		\end{itemize}
+		\item Segundo item
+		\item Terceiro item 
+		\begin{itemize}
+			\item Primeiro item
+			\item Segundo item
+		\end{itemize}
+	\end{enumerate}
+\end{frame}
+
+\subsection{Blocos}
+
+
+\begin{frame}{Blocos}
+	\begin{block}{Esse é um bloco}
+		Isso é um teste
+	\end{block}
+	\begin{block}{}
+	Bloco sem título	
+	\end{block}
+	\begin{alertblock}{Alerta}
+		Esse é um alerta
+	\end{alertblock}
+\end{frame}
+
+
+\begin{frame}[fragile]{Código em C e Java}
+
+\begin{itemize}
+		\item Comandos criados para as seguintes linguagens
+		\begin{itemize}
+			\item \texttt{ansic, java, shell, php, matlab, python, xml, sql}
+			\item \texttt{ansicp, javap, shellp, phpp, matlabp, pythonp, xmlp, sqlp}
+			\item Letra p no final indica que a fonte será \texttt{scriptsize}
+		\end{itemize}
+\end{itemize}
+
+% incluindo o código de um arquivo externo
+\includecode{ansic}{codigos/ola.c}	
+
+
+% escrevendo o código diretamente dentro do frame
+\javap
+\begin{lstlisting}
+public static voi main(String args[]){
+	System.out.println("Ola mundo");
+}
+\end{lstlisting}		
+\end{frame}
+
+
+
+
+
+
+\end{document}
