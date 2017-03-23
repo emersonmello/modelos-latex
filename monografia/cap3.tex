@@ -1,0 +1,138 @@
+% ----------------------------------------------------------------------- %
+% Arquivo: cap3.tex
+% ----------------------------------------------------------------------- %
+\chapter{Conceitos finais sobre o documento}
+\label{c_cap3}
+
+Neste capítulo, diferentemente do ocorreu na \autoref{s_c2_figuras} do \autoref{c_cap2}, será apresentado uma forma para inserir tabelas no documento. A \autoref{t_c3_etapas} é só um pequeno exemplo de tabela.
+
+\begin{table}[!htpb]
+\ABNTEXfontereduzida
+\centering
+\caption{Cronograma das atividades previstas}
+\label{t_c3_etapas}
+ \setlength{\tabcolsep}{3pt}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}\hline
+ & \multicolumn{12}{c|}{Semanas}\\ \cline{2-13}
+\raisebox{1.5ex}{Etapa} & 01 & 02 & 03 & 04 & 05 & 06 & 07 & 08 & 09 & 10 & 11 & 12 \\ \hline
+1 & $\surd$ & $\surd$ & $\surd$ & & & & & & & & & \\ \hline
+2 & & & & $\surd$ & $\surd$ & $\surd$ & $\surd$ & & & & & \\ \hline
+3 & & & & & & & & $\surd$ & $\surd$ & $\surd$ & & \\ \hline
+4 & & & & & & & & & & & $\surd$ & $\surd$ \\ \hline
+\end{tabular} 
+\end{table} 
+
+\index{tabelas}A \autoref{tab-nivinv} é um exemplo de tabela construída em \LaTeX.
+
+\begin{table}[htb]
+\ABNTEXfontereduzida
+\caption[Níveis de investigação]{Níveis de investigação.}
+\label{tab-nivinv}
+\begin{tabular}{p{2.6cm}|p{6.0cm}|p{2.25cm}|p{3.40cm}}
+  %\hline
+   \textbf{Nível de Investigação} & \textbf{Insumos}  & \textbf{Sistemas de Investigação}  & \textbf{Produtos}  \\
+    \hline
+    Meta-nível & Filosofia\index{filosofia} da Ciência  & Epistemologia &
+    Paradigma  \\
+    \hline
+    Nível do objeto & Paradigmas do metanível e evidências do nível inferior &
+    Ciência  & Teorias e modelos \\
+    \hline
+    Nível inferior & Modelos e métodos do nível do objeto e problemas do nível inferior & Prática & Solução de problemas  \\
+   % \hline
+\end{tabular}
+\legend{Fonte: \citeonline{van86}}
+\end{table}
+
+Já a \autoref{tabela-ibge} apresenta uma tabela criada conforme o padrão do \citeonline{ibge1993} requerido pelas normas da ABNT para documentos técnicos e acadêmicos.
+
+\begin{table}[htb]
+\IBGEtab{%
+  \caption{Um Exemplo de tabela alinhada que pode ser longa
+  ou curta, conforme padrão IBGE.}%
+  \label{tabela-ibge}
+}{%
+  \begin{tabular}{ccc}
+  \toprule
+   Nome & Nascimento & Documento \\
+  \midrule \midrule
+   Maria da Silva & 11/11/1111 & 111.111.111-11 \\
+  \midrule 
+   João Souza & 11/11/2111 & 211.111.111-11 \\
+  \midrule 
+   Laura Vicuña & 05/04/1891 & 3111.111.111-11 \\
+  \bottomrule
+\end{tabular}%
+}{%
+  \fonte{Produzido pelos autores.}%
+  \nota{Esta é uma nota, que diz que os dados são baseados na
+  regressão linear.}%
+  \nota[Anotações]{Uma anotação adicional, que pode ser seguida de várias
+  outras.}%
+  }
+\end{table}
+
+
+
+\section{Como usar referências bibliográficas}
+\label{s_c3_referencias}
+
+O uso de citações ao londo do texto é uma prática desejável. Por exemplo, em \cite{lamport94} é apresentado um documento sobre a preparação de textos usando \LaTeX. Já em \cite{goossens94} é apresentada uma lista de referências rápidas para realizar as mais simples tarefas em \LaTeX.
+
+É o caso em que você menciona \emph{explicitamente} o autor da referência na sentença, algo
+do tipo ``Fulano (1900)''. Neste caso o nome do autor é escrito
+normalmente. Para isso use o comando \verb+\citeonline+.
+
+A ironia será assim uma \ldots\ proposta  por \citeonline{lamport94}. Em \cite{exemplo} foi usado para ilustrar como uma \textit{URL} deve aparecer na seção das referências. Este documento segue as normas da \ac{ABNT} e para isso faz uso do pacote \ac{abnTeX}.
+
+
+% ---
+\section{Citações diretas}
+\label{sec-citacao}
+% ---
+
+\index{citações!diretas}Utilize o ambiente \texttt{citacao} para incluir
+citações diretas com mais de três linhas:
+
+\begin{citacao}
+As citações diretas, no texto, com mais de três linhas, devem ser
+destacadas com recuo de 4 cm da margem esquerda, com letra menor que a do texto
+utilizado e sem as aspas. No caso de documentos datilografados, deve-se
+observar apenas o recuo \cite[5.3]{NBR10520:2002}.
+\end{citacao}
+
+Use o ambiente assim:
+
+\begin{verbatim}
+\begin{citacao}
+As citações diretas, no texto, com mais de três linhas [...] deve-se observar
+apenas o recuo \cite[5.3]{NBR10520:2002}.
+\end{citacao}
+\end{verbatim}
+
+O ambiente \texttt{citacao} pode receber como parâmetro opcional um nome de
+idioma previamente carregado nas opções da classe. Nesse
+caso, o texto da citação é automaticamente escrito em itálico e a hifenização é
+ajustada para o idioma selecionado na opção do ambiente. Por exemplo:
+
+\begin{verbatim}
+\begin{citacao}[english]
+Text in English language in italic with correct hyphenation.
+\end{citacao}
+\end{verbatim}
+
+Tem como resultado:
+
+\begin{citacao}[english]
+Text in English language in italic with correct hyphenation.
+\end{citacao}
+
+\index{citações!simples}Citações simples, com até três linhas, devem ser
+incluídas com aspas. Observe que em \LaTeX as aspas iniciais são diferentes das
+finais: ``Amor é fogo que arde sem se ver''.
+
+
+
+
+
+
