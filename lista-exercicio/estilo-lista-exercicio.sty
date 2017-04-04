@@ -9,6 +9,7 @@
 \RequirePackage{upquote}
 \RequirePackage{boxedminipage,ae}
 \RequirePackage{fancyheadings}
+\RequirePackage{pgf}
 \RequirePackage{url,subfigure,graphicx,pgf,multirow,multicol,enumerate}
 \urlstyle{sf}
 
@@ -70,6 +71,16 @@
 \end{center}
 \end{keytop}}
 
+% ----------------------------------------------------
+% Declaração do caminho das imagens
+% ----------------------------------------------------
+% Logo
+\pgfdeclareimage[width=1cm]{logo}{imagem/logo-mono.png}
+% Info
+\pgfdeclareimage[width=.6cm]{nota}{imagem/nota.pdf}
+% Warning
+\pgfdeclareimage[width=.6cm]{atencao}{imagem/atencao.pdf}
+
 
 \newcommand{\lista}[5]{
 \noindent
@@ -77,7 +88,8 @@
 \fbox{
 \begin{minipage}{.97\textwidth}
 \begin{tabular}{ll}
- \multirow{2}{1cm}{\includegraphics[scale=0.15]{imagem/logo-mono.png}} & \multirow{2}{*}{#3} \\ 
+% \multirow{2}{1cm}{\includegraphics[scale=0.15]{imagem/logo-mono.png}} & \multirow{2}{*}{#3} \\ 
+ \multirow{2}{1cm}{\pgfuseimage{logo}} & \multirow{2}{*}{#3} \\ 
   &  \\
 \end{tabular}\hfill #2
   \begin{center}
@@ -109,7 +121,8 @@ Professor: #5
   \newenvironment{nota}
   {
     \begin{myboxenv}{
-        \includegraphics[scale=0.15]{imagem/nota.pdf}
+%        \includegraphics[scale=0.15]{imagem/nota.pdf}
+\pgfuseimage{nota}
         Nota}
    }
     {
@@ -129,7 +142,8 @@ Professor: #5
   \newenvironment{atencao}
   {
     \begin{myboxenv}{
-        \includegraphics[scale=0.15]{imagem/atencao.pdf}
+%        \includegraphics[scale=0.15]{imagem/atencao.pdf}
+\pgfuseimage{atencao}
         Atenção}
    }
     {

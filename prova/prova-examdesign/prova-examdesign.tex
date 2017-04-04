@@ -2,11 +2,20 @@
 \documentclass[11pt]{examdesign}
 \usepackage{estilo-prova-ed}
 
+% ----------------------------------------------------
+% Declaração do caminho das imagens
+% ----------------------------------------------------
+% Logo
+\pgfdeclareimage[width=.75cm]{logo}{imagem/logo-mono.png}
+% Info
+\pgfdeclareimage[width=.6cm]{nota}{imagem/nota.pdf}
+% Warning
+\pgfdeclareimage[width=.6cm]{atencao}{imagem/atencao.pdf}
 
 
 % ------------------------------------------------------------------------------------------------------------ %
 %                       Códigos fonte em ambiente verbatim ou listing
-% 
+%
 % Ps: se não quiser inserir trechos de códigos, então comente o comando abaixo
 % ------------------------------------------------------------------------------------------------------------ %
 \IncludeFromFile{codigos/trechos.tex}
@@ -21,7 +30,7 @@
 \NumberOfVersions{3}
 % Usar a mesma semente aleatória para sempre gerar sempre a mesma ordem de embaralhamento
 % Comente a linha abaixo para gerar sequências diferentes
-\setrandomseed{123456789} 
+\setrandomseed{123456789}
 
 % ------------------------------------------------------------------------------------------------------------ %
 %                       Folhas com as respostas
@@ -98,7 +107,7 @@ O trecho abaixo é de uma implementação de \textit{sockets} na linguagem C. Ex
 	\begin{question}
 		\answer{Verdade} Sistemas distribuídos podem possuir arquitetura centralizada, descentralizada ou híbrida.
 	\end{question}
-	
+
 \end{truefalse}
 % ------------------------------------------------------------------------------------------------------------ %
 
