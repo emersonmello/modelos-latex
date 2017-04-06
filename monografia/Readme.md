@@ -8,4 +8,4 @@ Foram acrescentadas algumas pequenas modificações no modelo da abnTeX que segu
 
 ## Captura de tela - Capa
 
-![Prova](screenshot-01.png)
+![capa](screenshot-01.png)

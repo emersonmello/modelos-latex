@@ -1,0 +1,224 @@
+%---------- ATENCAO -----------%
+% documento codificado em UTF-8
+% 2010-06-19 Emerson R. de Mello mello@ifsc.edu.br
+%---------- ATENCAO -----------%
+
+\ProvidesPackage{estilo-artigo}
+\RequirePackage[a4paper,inner=3cm,outer=2cm,vmargin=1.27cm]{geometry}
+\RequirePackage[utf8x]{inputenc}
+\RequirePackage[english,brazil]{babel}
+\RequirePackage{url,amsmath,graphicx}
+\RequirePackage{listings,color,indentfirst}
+\RequirePackage{upquote}
+\RequirePackage{setspace,caption}
+\RequirePackage[T1]{fontenc}
+
+\RequirePackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+% Redefinindo tamanho da fonte das section, subsection e subsubsection
+\newcommand{\diminuirTituloSecoes}{
+\usepackage{sectsty}
+\sectionfont{\normalsize}
+\subsectionfont{\normalsize}
+\subsubsectionfont{\normalsize}
+}
+
+
+
+
+
+% fonte
+\renewcommand{\rmdefault}{phv} % Arial
+\renewcommand{\sfdefault}{phv} % Arial
+
+% identacao do paragrafo
+\parindent 1.00cm
+
+% delimitador das legendas
+\DeclareCaptionLabelSeparator{colon}{ - }
+\DeclareCaptionJustification{raggedright}{\raggedright}
+
+% retirando a numeração das páginas
+\pagestyle{empty}
+
+% redefinindo ambiente abstract
+\renewenvironment{abstract}{%
+      \list{}{\advance\topsep by6pt\relax%\small
+      \leftmargin=0cm
+      \labelwidth=\z@
+      \listparindent=\z@
+      \itemindent\listparindent
+      \rightmargin\leftmargin}\item[\hskip\labelsep
+                                    \bfseries\itshape Abstract-]\itshape}%
+      {\endlist}
+
+% criando ambiente resumo
+\newenvironment{resumo}{%
+      \list{}{\advance\topsep by6pt\relax%\small
+      \leftmargin=0cm
+      \labelwidth=\z@
+      \listparindent=\z@
+      \itemindent\listparindent
+      \rightmargin\leftmargin}\item[\hskip\labelsep
+                                    \bfseries\itshape Resumo-]\itshape}%
+      {\endlist}
+
+
+% ------------------------------------------------ %
+% Palavras chaves
+% ------------------------------------------------ %
+
+\newenvironment{keywords}{
+       \list{}{\advance\topsep by0.35cm\relax\small
+       \leftmargin=0cm
+       \labelwidth=0.35cm
+       \listparindent=0.35cm
+       \itemindent\listparindent
+       \rightmargin\leftmargin}\item[\hskip\labelsep
+                                     \bfseries\itshape Keywords:]}
+     {\endlist}
+
+\newenvironment{palavraschave}{
+       \list{}{\advance\topsep by0.35cm\relax\small
+       \leftmargin=0cm
+       \labelwidth=0.35cm
+       \listparindent=0.35cm
+       \itemindent\listparindent
+       \rightmargin\leftmargin}\item[\hskip\labelsep
+                                     \bfseries\itshape Palavras-chave:]}
+     {\endlist}
+     
+     
+% -------------------------------------------------------------------------------------------------------------- %
+% Configurações para inserir código fonte de programas - pacote listings
+% -------------------------------------------------------------------------------------------------------------- %
+\renewcommand{\lstlistlistingname}{Lista de listagem de códigos}
+\renewcommand*\lstlistingname{Listagem}
+
+% Definindo cores
+\definecolor{hellgelb}{rgb}{1,1,0.9}
+\definecolor{colKeys}{rgb}{0,0,0}
+\definecolor{colIdentifier}{rgb}{0,0,0.9}
+\definecolor{colComments}{rgb}{.4,.4,.4}
+\definecolor{colString}{rgb}{0,0,0.6}
+
+\definecolor{colBack}{rgb}{1,1,.98}
+\definecolor{colKeys}{rgb}{0,0,0}
+\definecolor{colIdentifier}{rgb}{0,0,0.9}
+\definecolor{colComments}{rgb}{.4,.4,.4}
+\definecolor{colString}{rgb}{0,0,0.6}
+
+\lstset{ %
+  aboveskip=\bigskipamount,
+  backgroundcolor=\color{colBack},   % choose the background color; you must add \usepackage{color} or 
+  basicstyle=\ttfamily\footnotesize,       % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=t,                    % sets the caption-position to top
+  columns=flexible,
+  commentstyle=\color{colComments},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  linewidth=0.98\linewidth,
+  tab=$\to$,
+  float=tbph,
+  xleftmargin=10pt,
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+identifierstyle=\color{colIdentifier},
+  keywordstyle=\color{colKeys},       % keyword style
+  otherkeywords={*,...},            % if you want to add more keywords to the set
+  firstnumber=last,
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny,
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+%   stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{colString},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+% Permitindo caracteres acentuados dentro do ambiente lstlisting
+\lstset{%
+        inputencoding=utf8,
+        extendedchars=true,
+        literate=%
+        {é}{{\'{e}}}1
+        {è}{{\`{e}}}1
+        {ê}{{\^{e}}}1
+        {ë}{{\¨{e}}}1
+        {É}{{\'{E}}}1
+        {Ê}{{\^{E}}}1
+        {û}{{\^{u}}}1
+        {ù}{{\`{u}}}1
+        {â}{{\^{a}}}1
+        {à}{{\`{a}}}1
+        {á}{{\'{a}}}1
+        {ã}{{\~{a}}}1
+        {Á}{{\'{A}}}1
+        {Â}{{\^{A}}}1
+        {Ã}{{\~{A}}}1
+        {ç}{{\c{c}}}1
+        {Ç}{{\c{C}}}1
+        {õ}{{\~{o}}}1
+        {ó}{{\'{o}}}1
+        {ú}{{\'{u}}}1
+        {Ú}{{\'{U}}}1
+        {ô}{{\^{o}}}1
+        {Õ}{{\~{O}}}1
+        {Ó}{{\'{O}}}1
+        {Ô}{{\^{O}}}1
+        {î}{{\^{i}}}1
+        {Î}{{\^{I}}}1
+        {í}{{\'{i}}}1
+        {Í}{{\~{Í}}}1
+}
+
+% Criando comandos para algumas linguagens de programação
+\lstdefinestyle{shell}{language=csh}
+\lstdefinestyle{shellp}{language=csh,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{php}{language=php}
+\lstdefinestyle{phpp}{language=php,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{ansic}{language=c}
+\lstdefinestyle{ansicp}{language=c,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{java}{language=java}
+\lstdefinestyle{javap}{language=java,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{matlab}{language=matlab}
+\lstdefinestyle{matlabp}{language=matlab,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{python}{language=python}
+\lstdefinestyle{pythonp}{language=python,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{xml}{language=xml}
+\lstdefinestyle{xmlp}{language=xml,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{sql}{language=sql}
+\lstdefinestyle{sqlp}{language=sql,basicstyle=\ttfamily\scriptsize}
+
+\newcommand{\ansic}{\lstset{language=c}}
+\newcommand{\ansicp}{\lstset{language=c,basicstyle=\ttfamily\scriptsize}}
+\newcommand{\java}{\lstset{language=java}}
+\newcommand{\javap}{\lstset{language=java,basicstyle=\ttfamily\scriptsize}}
+\newcommand{\sql}{\lstset{language=sql}}
+\newcommand{\sqlp}{\lstset{language=sql,basicstyle=\ttfamily\scriptsize}}
+\newcommand{\xml}{\lstset{language=xml}}
+\newcommand{\xmlp}{\lstset{language=xml,basicstyle=\ttfamily\scriptsize}}
+\newcommand{\python}{\lstset{language=python}}
+\newcommand{\pythonp}{\lstset{language=python,basicstyle=\ttfamily\scriptsize}}
+\newcommand{\csh}{\lstset{language=csh}}
+\newcommand{\cshp}{\lstset{language=csh,basicstyle=\ttfamily\scriptsize}}
+
+\newcommand{\includecode}[4][c]{\lstinputlisting[caption=#3, label=#2,escapechar=, style=#1]{#4}}
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
