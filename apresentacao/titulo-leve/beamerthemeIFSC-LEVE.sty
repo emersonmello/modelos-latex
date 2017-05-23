@@ -103,6 +103,13 @@
  \setlength\itemsep{#1}
 } % ex: \espaco{1.5em}
 
+% Criando um slide com um espaçamento maior entre os items de todas as listas de itens:
+% https://tex.stackexchange.com/questions/16793/global-setting-of-spacing-between-items-in-itemize-environment-for-beamer
+\makeatletter
+\define@key{beamerframe}{wide}[10pt]{%
+  \def\beamer@cramped{\itemsep #1\topsep0.5pt\relax}}
+\makeatother
+
 
 % -------------------------------------------------------------------------------------------%
 
@@ -127,7 +134,7 @@
   basicstyle=\ttfamily\footnotesize,       % the size of the fonts that are used for the code
   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
   breaklines=true,                 % sets automatic line breaking
-  captionpos=b,                    % sets the caption-position to bottom
+  captionpos=n,                    % sets the caption-position to none
   columns=flexible,
   commentstyle=\color{colComments},    % comment style
   deletekeywords={...},            % if you want to delete keywords from the given language
@@ -192,35 +199,39 @@ identifierstyle=\color{colIdentifier},
         {Í}{{\~{Í}}}1
 }
 
-\lstdefinestyle{shell}{language=csh}
+\lstdefinestyle{shell}{language=csh,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{shellp}{language=csh,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{php}{language=php}
+\lstdefinestyle{php}{language=php,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{phpp}{language=php,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{ansic}{language=c}
+\lstdefinestyle{ansic}{language=c,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{ansicp}{language=c,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{java}{language=java}
+\lstdefinestyle{java}{language=java,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{javap}{language=java,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{matlab}{language=matlab}
+\lstdefinestyle{matlab}{language=matlab,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{matlabp}{language=matlab,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{python}{language=python}
+\lstdefinestyle{python}{language=python,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{pythonp}{language=python,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{xml}{language=xml}
+\lstdefinestyle{xml}{language=xml,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{xmlp}{language=xml,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{sql}{language=sql}
+\lstdefinestyle{sql}{language=sql,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{sqlp}{language=sql,basicstyle=\ttfamily\scriptsize}
 
-\newcommand{\ansic}{\lstset{language=c}}
-\newcommand{\ansicp}{\lstset{language=c,basicstyle=\ttfamily\scriptsize}}
-\newcommand{\java}{\lstset{language=java}}
-\newcommand{\javap}{\lstset{language=java,basicstyle=\ttfamily\scriptsize}}
-\newcommand{\sql}{\lstset{language=sql}}
-\newcommand{\sqlp}{\lstset{language=sql,basicstyle=\ttfamily\scriptsize}}
-\newcommand{\xml}{\lstset{language=xml}}
-\newcommand{\xmlp}{\lstset{language=xml,basicstyle=\ttfamily\scriptsize}}
-\newcommand{\python}{\lstset{language=python}}
-\newcommand{\pythonp}{\lstset{language=python,basicstyle=\ttfamily\scriptsize}}
-\newcommand{\csh}{\lstset{language=csh}}
-\newcommand{\cshp}{\lstset{language=csh,basicstyle=\ttfamily\scriptsize}}
+\newcommand{\ansic}{\lstset{style=ansic}}
+\newcommand{\ansicp}{\lstset{style=ansicp}}
+\newcommand{\java}{\lstset{style=java}}
+\newcommand{\javap}{\lstset{style=javap}}
+\newcommand{\sql}{\lstset{style=sql}}
+\newcommand{\sqlp}{\lstset{style=sqlp}}
+\newcommand{\xml}{\lstset{style=xml}}
+\newcommand{\xmlp}{\lstset{style=xmlp}}
+\newcommand{\python}{\lstset{style=python}}
+\newcommand{\pythonp}{\lstset{style=pythonp}}
+\newcommand{\csh}{\lstset{style=shell}}
+\newcommand{\cshp}{\lstset{style=shellp}}
+\newcommand{\shell}{\lstset{style=shell}}
+\newcommand{\shellp}{\lstset{style=shellp}}
+
+
 
 \newcommand{\includecode}[2]{\lstinputlisting[caption=,escapechar=,style=#1]{#2}}
 

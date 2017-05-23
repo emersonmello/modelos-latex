@@ -15,7 +15,7 @@
 \RequirePackage{pdflscape}
 \RequirePackage{pdfpages}
 \RequirePackage[xindy,toc,acronym]{glossaries}
-\RequirePackage{multirow}
+\RequirePackage{multirow,listings,color}
 
 % Para que as página das referências bibliográficas apareça no sumário
 \RequirePackage[nottoc,notlot,notlof]{tocbibind}
@@ -55,7 +55,137 @@
 \parskip   6pt
 % \flushbottom
 
+% -------------------------------------------------------------------------------------------------------------- %
+% Configurações para inserir código fonte de programas - pacote listings
+% -------------------------------------------------------------------------------------------------------------- %
+\renewcommand{\lstlistlistingname}{Lista de listagem de códigos}
+\renewcommand*\lstlistingname{Listagem}
 
+% Definindo cores
+\definecolor{hellgelb}{rgb}{1,1,0.9}
+\definecolor{colKeys}{rgb}{0,0,0}
+\definecolor{colIdentifier}{rgb}{0,0,0.9}
+\definecolor{colComments}{rgb}{.4,.4,.4}
+\definecolor{colString}{rgb}{0,0,0.6}
+
+\definecolor{colBack}{rgb}{1,1,.98}
+\definecolor{colKeys}{rgb}{0,0,0}
+\definecolor{colIdentifier}{rgb}{0,0,0.9}
+\definecolor{colComments}{rgb}{.4,.4,.4}
+\definecolor{colString}{rgb}{0,0,0.6}
+
+\lstset{ %
+  aboveskip=\bigskipamount,
+  backgroundcolor=\color{colBack},   % choose the background color; you must add \usepackage{color} or 
+  basicstyle=\ttfamily\footnotesize,       % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=t,                    % sets the caption-position to bottom
+  columns=flexible,
+  commentstyle=\color{colComments},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  linewidth=0.98\linewidth,
+  tab=$\to$,
+  float=tbph,
+  xleftmargin=10pt,
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+identifierstyle=\color{colIdentifier},
+  keywordstyle=\color{colKeys},       % keyword style
+  otherkeywords={*,...},            % if you want to add more keywords to the set
+  firstnumber=last,
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny,
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+%   stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{colString},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+% Permitindo caracteres acentuados dentro do ambiente lstlisting
+\lstset{%
+        inputencoding=utf8,
+        extendedchars=true,
+        literate=%
+        {é}{{\'{e}}}1
+        {è}{{\`{e}}}1
+        {ê}{{\^{e}}}1
+        {ë}{{\¨{e}}}1
+        {É}{{\'{E}}}1
+        {Ê}{{\^{E}}}1
+        {û}{{\^{u}}}1
+        {ù}{{\`{u}}}1
+        {â}{{\^{a}}}1
+        {à}{{\`{a}}}1
+        {á}{{\'{a}}}1
+        {ã}{{\~{a}}}1
+        {Á}{{\'{A}}}1
+        {Â}{{\^{A}}}1
+        {Ã}{{\~{A}}}1
+        {ç}{{\c{c}}}1
+        {Ç}{{\c{C}}}1
+        {õ}{{\~{o}}}1
+        {ó}{{\'{o}}}1
+        {ú}{{\'{u}}}1
+        {Ú}{{\'{U}}}1
+        {ô}{{\^{o}}}1
+        {Õ}{{\~{O}}}1
+        {Ó}{{\'{O}}}1
+        {Ô}{{\^{O}}}1
+        {î}{{\^{i}}}1
+        {Î}{{\^{I}}}1
+        {í}{{\'{i}}}1
+        {Í}{{\~{Í}}}1
+}
+
+% Criando comandos para algumas linguagens de programação
+\lstdefinestyle{shell}{language=csh,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{shellp}{language=csh,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{php}{language=php,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{phpp}{language=php,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{ansic}{language=c,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{ansicp}{language=c,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{java}{language=java,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{javap}{language=java,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{matlab}{language=matlab,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{matlabp}{language=matlab,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{python}{language=python,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{pythonp}{language=python,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{xml}{language=xml,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{xmlp}{language=xml,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{sql}{language=sql,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{sqlp}{language=sql,basicstyle=\ttfamily\scriptsize}
+
+\newcommand{\ansic}{\lstset{style=ansic}}
+\newcommand{\ansicp}{\lstset{style=ansicp}}
+\newcommand{\java}{\lstset{style=java}}
+\newcommand{\javap}{\lstset{style=javap}}
+\newcommand{\sql}{\lstset{style=sql}}
+\newcommand{\sqlp}{\lstset{style=sqlp}}
+\newcommand{\xml}{\lstset{style=xml}}
+\newcommand{\xmlp}{\lstset{style=xmlp}}
+\newcommand{\python}{\lstset{style=python}}
+\newcommand{\pythonp}{\lstset{style=pythonp}}
+\newcommand{\csh}{\lstset{style=shell}}
+\newcommand{\cshp}{\lstset{style=shellp}}
+\newcommand{\shell}{\lstset{style=shell}}
+\newcommand{\shellp}{\lstset{style=shellp}}
+
+% Incluindo códigos que estão em um arquivo externo
+%parâmetros: linguagem (shell, java, matlab, python, c, php), label, caption, arquivo
+
+%\includecode[shell]{l_olamundo}{Olá mundo em shell script}{codigos/ola.sh}
+
+\newcommand{\includecode}[4][c]{\lstinputlisting[caption=#3, label=#2,escapechar=, style=#1]{#4}}
+
+%---------------------------------------------------------------------------------------------------------------%
 
 
 

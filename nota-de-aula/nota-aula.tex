@@ -1,0 +1,165 @@
+% 2017-03-18 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+\documentclass[11pt]{article}
+\usepackage{../../latex-estilos/nota-de-aula/estilo-nota-aula}
+\usepackage{pdflscape}
+
+% ----------------------------------------------------
+% Declaração do caminho das imagens
+% ----------------------------------------------------
+% Logo
+\pgfdeclareimage[width=.75cm]{logo}{../../latex-estilos/nota-de-aula/imagem/logo-mono.png}
+% Info
+\pgfdeclareimage[width=.6cm]{nota}{../../latex-estilos/nota-de-aula/imagem/nota.pdf}
+% Warning
+\pgfdeclareimage[width=.6cm]{atencao}{../../latex-estilos/nota-de-aula/imagem/atencao.pdf}
+
+
+% ------------------------------------------------------------------------------------------------------------ %
+%                       Início do documento
+% ------------------------------------------------------------------------------------------------------------ %
+\begin{document}
+
+\cabecalho{9}{23/05/2017}{FIC -- Configuração de Redes de Computadores Linux}{Shell Script}{Emerson Ribeiro de Mello \hfill \url{http://docente.ifsc.edu.br/mello}}
+
+\shell
+
+\section{O interpretador de comandos}
+
+O \textit{shell} consiste em um interpretador de comandos presente em todos os sistemas operacionais variantes dos Unix, que inclui Linux, BSD e MacOS. No linux existem diversos tipos de \textit{shell}, sendo estes: \texttt{csh}, \texttt{bash}, \texttt{ksh} e \texttt{zsh}. 
+
+No interpretador de comandos é possível invocar comandos isolados ou ainda combinar diversos comandos. Por exemplo, o comando \texttt{ls -l} pode ser executado sozinho, porém seria difícil visualizar uma lista grande de arquivos. Assim, o comando \texttt{ls} poderia ser combinado com o comando \texttt{more} o que permite paginar a saída, tornando a leitura mais fácil. Essa combinação de comandos se dá através do uso do \textit{pipe}, representado pelo símbolo $|$. Exemplo: \texttt{ls -l | more}.
+
+\section{Programando em shell}
+
+Como dito, o \textit{shell} é um interpretador de comandos e temos a opção de entrar com uma seqüência de comandos sempre que desejarmos realizar uma tarefa ou podemos colocar tal sequência dentro um arquivo e chamar este arquivo sempre que necessário. E assim temos o \textit{shell script} ilustrado pela Listagem \ref{intro}.
+
+\includecode[shell]{intro}{Meu primeiro shell script}{codigos/intro.sh}
+
+\subsection{Alguns comandos interessantes para shell script}
+
+Abaixo um lista com os principais comandos que iremos utilizar em nossos scripts.
+
+\begin{itemize}
+	\item \textbf{echo} -- tem por objetivo imprimir mensagens no dispositivo de saída padrão, no caso o monitor. Abaixo algumas opções:
+	\begin{description}
+		\item[-e] Ativa a interpretação de caracteres de escape (\texttt{$\backslash$})
+		\begin{itemize}
+			\item $\backslash$\texttt{n -- nova linha}
+			\item $\backslash$\texttt{t -- tab}
+			\item $\backslash$\texttt{a alerta (beep)}
+		\end{itemize}
+		\item[-n] Exibe a mensagem sem pular linha
+	\end{description}
+	\item \textbf{read} -- Permite que o usuário forneça informações via teclado (é necessário pressionar \texttt{ENTER} para finalizar a leitura). Algumas opções:
+	\begin{description}
+		\item[-s] não exibe os caracteres que estão sendo fornecidos
+		\item[-t seg] aguarda N segundos para que o usuário entre com algum dado
+		\item[-n N] Após ler N caracteres o \texttt{read} é encerrado sem que precise pressionar \texttt{ENTER} 
+	\end{description}
+	\item \textbf{expr} -- para fazer cálculos, porém só faz operações com inteiros. Exemplo de uso: 
+	\begin{lstlisting}
+	# executando o expr em um terminal
+	expr 2 + 2
+	# executando o expr em um terminal e guardando o resultado na varial 'soma'
+	soma=`expr 2 + 2`
+\end{lstlisting}
+	\item \textbf{bc} -- trata-se de uma calculadora, ideal para quando necessitamos efetuar cálculos com números reais. Exemplo de uso: 
+	\begin{lstlisting}
+	# executando o bc em um terminal, combinado com o echo
+	echo "scale=2; 1/2" | bc
+
+	# armazendo o resultado da saida do bc na variavel 'resultado'
+	resultado=`echo "scale=2; 1/2" | bc`
+\end{lstlisting}
+
+\end{itemize}
+
+
+\subsection{Variáveis}
+
+Nas linguagens de programação as \textbf{variáveis} possuem uma função semelhante com as variáveis da matemática, ou seja, armazenam valores para que possam ser recuperados posteriormente. A Listagem \ref{variaveis} ilustra algumas formas para atribuir e obter valores em variáveis.
+
+\includecode[shell]{variaveis}{Exemplo de definição e uso de variáveis}{codigos/variaveis.sh}
+
+\includecode[shell]{nome}{Usando variáveis em conjunto com o comando read}{codigos/nome.sh}
+
+\newpage
+
+\subsubsection{Variáveis de ambiente}
+
+As \textit{variáveis de ambiente} são aquelas que afetam o comportamento do interpretador de comandos e do \textit{shell script}. É importante frisar que cada \texttt{processo} possui seu ambiente. Um \textit{script} só pode exportar tuas variáveis para os processos filhos. Um \textit{script} invocado através da linha de comando não pode exportar de volta uma variável para o ambiente da linha de comando.
+
+\begin{table}[!htpb]
+\begin{center}
+\begin{tabular}{|l|p{5cm}|l|p{5cm}|}\hline
+\textbf{Variável} & \textbf{Descrição}  & \textbf{Variável} & \textbf{Descrição} \\ \hline \hline 
+\$BASH & caminho do binário do bash & \$\$ & número do processo do shell\\ \hline
+\$HOME & diretório \textit{home} do usuário & \$HOSTNAME & nome da máquina\\ \hline
+\$PATH & caminho para os binários & \$SECONDS & número de segundos desde quando o script começou a ser executado\\ \hline
+
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\subsection{Estruturas de decisão}
+
+Antes de apresentar as estruturas de decisão, na tabela \ref{tabelaoperadores} são apresentados os operadores relacionais e lógicos que são de grande importância para tais estruturas.
+
+\begin{table}[!htpb]
+ \begin{center}
+% use packages: array
+\begin{tabular}{|c|c||c|c||c|c|} \hline
+\multicolumn{6}{|c|}{\textbf{Operadores lógicos e relacionais}} \\ \hline
+\multicolumn{2}{|c||}{\textbf{Numéricos}} & \multicolumn{2}{|c||}{\textbf{Cadeia de caracteres}} & \multicolumn{2}{|c|}{\textbf{Operadores lógicos}}\\ \hline \hline
+\texttt{-eq} & igual     & \texttt{=} & igual & \texttt{-a} & E lógico (AND) \\ \hline
+\texttt{-ne} & diferente & \texttt{!=} & diferente & \&\& & E lógico (AND)\\ \hline
+\texttt{-ge} & maior ou igual & \texttt{-n} & não é nula & \texttt{-o} & OU lógico (OR)\\ \hline
+\texttt{-le} & menor ou igual & \texttt{-z} & é nula & $\|$ & OU lógico (OR)\\ \hline
+\texttt{-gt} & maior &  & & \texttt{!} & negação \\ \hline
+\texttt{-lt} & menor &  &  & &\\ \hline
+ \end{tabular}
+ \end{center}
+\caption{Operadores relacionais e lógicos}
+\label{tabelaoperadores}
+\end{table}
+
+
+\subsubsection{Se\ldots então\ldots senão}
+
+\includecode[shell]{se}{Estrutura de decisão SE}{codigos/se.sh}
+
+\clearpage
+
+\includecode[shell]{se2}{Usando operador lógico E}{codigos/se2.sh}
+
+\subsubsection{Escolha\ldots caso\ldots}
+
+\includecode[shell]{caso}{Estrutura de decisão ESCOLHA}{codigos/caso.sh}
+
+\newpage
+
+\subsection{Estruturas de repetição}
+
+\subsubsection{Enquanto}
+
+\includecode[shell]{enquanto}{Estrutura de repetição ENQUANTO}{codigos/enquanto.sh}
+
+
+\subsubsection{Para}
+
+\includecode[shell]{para}{Estrutura de repetição PARA}{codigos/para.sh}
+
+
+\section{Exercícios}
+
+\begin{enumerate}
+	\item Desenvolva um algoritmo	que leia dois números inteiros e exiba a soma destes números.
+	\item Desenvolva um algoritmo que solicite ao usuário seu nome e exiba uma mensagem de boas vindas utilizando este nome.
+	\item Desenvolva um algoritmo que leia um número inteiro e determine se este é par ou ímpar.
+	\item Desenvolva um algoritmo que leia dois números inteiros e exiba qual deles é o maior 
+	\item Desenvolva um algoritmo que leia um número inteiro positivo e imprima a sequência de 0 até este número. 		\item Desenvolva um algoritmo que simule a autenticação de usuários. O usuário deve fornecer uma senha e se esta senha for igual a palavra \textbf{secreta} deverá exibir a mensagem ``Acesso autorizado'', caso contrário deverá exibir ``Acesso negado''. O algoritmo deverá solicitar a senha ao usuário até que este forneça a senha correta ou até que o número de tentativas permitidas seja alcançado. No caso, o número máximo de tentativas é $3$.
+\end{enumerate}
+
+
+ \end{document}

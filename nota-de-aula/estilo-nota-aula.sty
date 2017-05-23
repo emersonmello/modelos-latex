@@ -1,6 +1,6 @@
-\ProvidesPackage{estilo-lista-exercicio}
+\ProvidesPackage{estilo-nota-aula}
 
-\RequirePackage[a4paper,hmargin=2.3cm,vmargin=1cm]{geometry}
+\RequirePackage[a4paper,hmargin=2.3cm,vmargin=2cm]{geometry}
 \RequirePackage{amsmath}
 \RequirePackage{pifont}
 \RequirePackage[brazilian]{babel}
@@ -27,49 +27,30 @@
 % -------------------------------------------------------------------------------------------------------------- %
 
 
-% -------------------------------------------------------------------------------------------------------------- %
-% Configurações da classe examdesign
-% -------------------------------------------------------------------------------------------------------------- %
-\SectionFont{\large\sffamily}
-\SectionPrefix{Parte \arabic{sectionindex}. \space}
-\Fullpages
-\ContinuousNumbering
-\DefineAnswerWrapper{\begin{description}
-	\item[\textcolor{blue}{Resposta:}] 
-\end{description}}{}
-\NumberOfVersions{1}
-% Semente aleatória usada para gerar diferentes versões de uma prova
-\setrandomseed{123456789} 
-% -------------------------------------------------------------------------------------------------------------- %
+% Para permitir que as referências cruzadas sejam ponteiros
+\RequirePackage{hyperref}
+\hypersetup{colorlinks,
+	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
+	citecolor=black,  %%% cor do \cite
+	urlcolor=black,   %%% cor do \url e \href
+	%pdfpagemode,     %%%  None (default), UseThumbs, UseOutlines, FullScreen
+	pdfstartview=FitH, %%% FitB, FitH
+	bookmarksopen=false,
+	bookmarksopenlevel=1
+}
+
 
 
 % -------------------------------------------------------------------------------------------------------------- %
 % Comandos personalizados para o IFSC
 % -------------------------------------------------------------------------------------------------------------- %
-% nome do aluno
-\newcommand{\nomealuno}{
-\noindent Aluno: \rule{.8\linewidth}{.4pt}
-\bigskip}
 
-% Cabeçalho da lista
+% Cabeçalho da nota de aula
 %\cabecalho{numero}{data}{BCD29008 -- Disciplina}{Assunto}{Professor \hfill \url{email ou pagina da disciplina}}
 \newcommand{\cabecalho}[5]{
-\begin{examtop}
-\lista{#1}{#2}{#3}{#4}{#5}
+\aula{#1}{#2}{#3}{#4}{#5}
 \bigskip\bigskip
-%\nomealuno \hfill \fbox{\textsf{\Alph{version}}}
-\end{examtop}
-
-% Cabeçalho da folha de resposta
-\begin{keytop}
-\lista{#1}{#2}{#3}{#4}{#5}
-
-\begin{center}
-{\huge Folha de respostas
-%\fbox{\textsf{\Alph{version}}} \hfill
 }
-\end{center}
-\end{keytop}}
 
 % ----------------------------------------------------
 % Declaração do caminho das imagens
@@ -82,18 +63,17 @@
 \pgfdeclareimage[width=.6cm]{atencao}{imagem/atencao.pdf}
 
 
-\newcommand{\lista}[5]{
+\newcommand{\aula}[5]{
 \noindent
 \begin{center}
 \fbox{
 \begin{minipage}{.97\textwidth}
 \begin{tabular}{ll}
-% \multirow{2}{1cm}{\includegraphics[scale=0.15]{imagem/logo-mono.png}} & \multirow{2}{*}{#3} \\ 
  \multirow{2}{1cm}{\pgfuseimage{logo}} & \multirow{2}{*}{#3} \\ 
   &  \\
 \end{tabular}\hfill #2
   \begin{center}
-    {\Large \textbf{Lista #1:} #4} \\[3mm]
+    {\Large \textbf{Aula #1:} #4} \\[3mm]
   \end{center}
 Professor: #5
 \end{minipage}}
@@ -281,6 +261,7 @@ identifierstyle=\color{colIdentifier},
 %\includecode[shell]{l_olamundo}{Olá mundo em shell script}{codigos/ola.sh}
 
 \newcommand{\includecode}[4][c]{\lstinputlisting[caption=#3, label=#2,escapechar=, style=#1]{#4}}
+
 %---------------------------------------------------------------------------------------------------------------%
 
 
