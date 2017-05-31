@@ -46,9 +46,22 @@
 % -------------------------------------------------------------------------------------------------------------- %
 
 % Cabeçalho da nota de aula
-%\cabecalho{numero}{data}{BCD29008 -- Disciplina}{Assunto}{Professor \hfill \url{email ou pagina da disciplina}}
-\newcommand{\cabecalho}[5]{
-\aula{#1}{#2}{#3}{#4}{#5}
+%\cabecalho{Aula}{numero}{data}{BCD29008 -- Disciplina}{Assunto}{Professor \hfill \url{email ou pagina da disciplina}}
+\newcommand{\cabecalho}[6]{
+\noindent
+\begin{center}
+\fbox{
+\begin{minipage}{.97\textwidth}
+\begin{tabular}{ll}
+ \multirow{2}{1cm}{\pgfuseimage{logo}} & \multirow{2}{*}{#4} \\ 
+  &  \\
+\end{tabular}\hfill #3
+  \begin{center}
+    {\Large \textbf{#1 #2:} #5} \\[3mm]
+  \end{center}
+Professor: #6
+\end{minipage}}
+\end{center}
 \bigskip\bigskip
 }
 
@@ -61,24 +74,6 @@
 \pgfdeclareimage[width=.6cm]{nota}{imagem/nota.pdf}
 % Warning
 \pgfdeclareimage[width=.6cm]{atencao}{imagem/atencao.pdf}
-
-
-\newcommand{\aula}[5]{
-\noindent
-\begin{center}
-\fbox{
-\begin{minipage}{.97\textwidth}
-\begin{tabular}{ll}
- \multirow{2}{1cm}{\pgfuseimage{logo}} & \multirow{2}{*}{#3} \\ 
-  &  \\
-\end{tabular}\hfill #2
-  \begin{center}
-    {\Large \textbf{Aula #1:} #4} \\[3mm]
-  \end{center}
-Professor: #5
-\end{minipage}}
-\end{center}
-}
 
 % Criando ambientes nota e atencao
 %  Retirado do aula-01.tex ``Programando em Python``, Gustavo Sverzut Barbieri
