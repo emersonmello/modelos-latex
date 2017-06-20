@@ -16,6 +16,7 @@ Esse repositório possui modelos de documentos que uso no Instituto Federal de S
   - [Modelo de notas de aula](nota-de-aula) baseado na classe `article`. 
 - **Prova**
   - [Modelo que faz uso da classe `examdesign`](prova/prova-examdesign) com pequenos ajustes para gerar N versões de uma mesma prova, podendo também gerar a folha de resposta para cada versão.
+  - [Modelo que faz uso da classe `exam`](prova/prova-exam). 
 - **Relatório**
   - [Modelo que faz uso da classe `report`](relatorio/report) e tem um exemplo de como construir glossário e lista de siglas com o pacote `glossary`.
 

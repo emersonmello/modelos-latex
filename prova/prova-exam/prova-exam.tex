@@ -1,0 +1,111 @@
+\documentclass[12pt,addpoints]{exam}
+\usepackage{estilo-prova-exam}
+
+% -------------------------------------------------------------------------------------------------------------- %
+% Descomente a linha abaixo se quiser usar um formato diferente para apresentação do enunciado da questão
+%\formatoquestao
+% -------------------------------------------------------------------------------------------------------------- %
+
+
+
+% -------------------------------------------------------------------------------------------------------------- %
+% Descomente o comando \printanswers a seguir para gerar o gabarito com soluções
+% -------------------------------------------------------------------------------------------------------------- %
+% \printanswers
+
+ % As respostas podem aparecer dentro de uma caixa ou com o fundo preenchido. Escolha uma das opções abaixo
+\shadedsolutions
+\definecolor{SolutionColor}{rgb}{0.85,0.9,1}
+%\framedsolutions
+% -------------------------------------------------------------------------------------------------------------- %
+
+
+\begin{document}
+
+
+\cabecalho{1}{20/06/2017}{Nome da Disciplina}{Emerson Ribeiro de Mello}
+
+\begin{questions}
+
+\fullwidth{\Large \textbf{Questões discursivas}}
+
+\question[10]
+Qual a cor do céu?
+
+\begin{solutionorlines}[2cm]
+Geralmente é azul.
+\end{solutionorlines}
+
+
+\question[10]
+Calcule $\displaystyle\int_0^1 x \, dx$.
+
+\begin{solutionorbox}[2cm]
+$\displaystyle\tfrac{x^2}{2}\Big|^1_0 = \tfrac{1^2}{2} - \tfrac{0^2}{2} = \tfrac{1}{2}$
+\end{solutionorbox}
+
+\question[10]
+Quantos meses possuem no máximo 30 dias?
+\begin{solutionorlines}[2cm]
+Somente 4. São eles: abril, junho, setembro e novembro.
+\end{solutionorlines}
+
+
+\question[10]  Sobre o sistema operacional Linux  \begin{parts}    \part    Liste três aplicativos utilitários que vem por padrão
+	\begin{solutionorlines}[1cm]
+	ls, cd e mv.
+	\end{solutionorlines}    \part
+	Liste o nome de três distribuições
+	\begin{solutionorlines}[1cm]
+	Debian, Redhat e Ubuntu. 
+	\end{solutionorlines}  \end{parts}
+
+
+\question[20]
+O sistema operacional Linux foi criado por \fillin[Linus Torvalds][3.5cm].
+
+% Quebra de página
+\clearpage
+
+\fullwidth{\Large \textbf{Questões de múltipla escolha}}
+
+\question[10]
+Quais dos meses abaixo pode ter um número de dias diferente em anos bissextos?
+\begin{choices}
+	\choice Janeiro
+	\correctchoice Fevereiro
+	\choice Abril
+	\choice Junho
+\end{choices}
+
+\question[10]
+Marque todas as opções abaixo que são nomes de sistemas operacionais:
+\begin{checkboxes}
+	\correctchoice Linux
+	\correctchoice Windows
+	\choice LibreOffice
+	\choice Bloco de notas
+\end{checkboxes}
+
+
+\fullwidth{\Large \textbf{Verdadeiro ou Falso}}
+
+\question[10] \tf[V] O FreeBSD é um sistema operacional.
+\question[10] \tf[F] O OpenBSD é baseado no sistema operacional Linux.
+
+
+
+
+\end{questions}
+
+
+
+% Tabela com notas
+\vfill
+\rule{10cm}{1px}
+
+\vspace{0.5cm}
+\gradetable[h]
+
+
+\end{document}
