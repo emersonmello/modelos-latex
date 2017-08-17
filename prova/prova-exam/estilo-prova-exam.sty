@@ -27,7 +27,9 @@
 
 \newcommand{\formatoquestao}{\qformat{\textbf{Questão \thequestion:}\hfill[\pointsofquestion{\arabic{question}} \points]}}
 
-\newcommand{\tf}[1][{}]{%  \fillin[#1][0.25in]%}
+\newcommand{\tf}[1][{}]{%
+  \fillin[#1][0.25in]%
+}
 
 \marginpointname{ \points}
 \setlength\linefillheight{.6cm} %distância entre linhas
@@ -123,7 +125,7 @@
   basicstyle=\ttfamily\footnotesize,       % the size of the fonts that are used for the code
   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
   breaklines=true,                 % sets automatic line breaking
-  captionpos=t,                    % sets the caption-position to bottom
+  captionpos=n,                    % sets the caption-position to bottom
   columns=flexible,
   commentstyle=\color{colComments},    % comment style
   deletekeywords={...},            % if you want to delete keywords from the given language
@@ -226,6 +228,6 @@ identifierstyle=\color{colIdentifier},
 
 %\includecode[shell]{l_olamundo}{Olá mundo em shell script}{codigos/ola.sh}
 
-\newcommand{\includecode}[4][c]{\lstinputlisting[caption=#3, label=#2,escapechar=, style=#1]{#4}}
+\newcommand{\includecode}[4][c]{\lstinputlisting[captionpos=t,caption=#3, label=#2,escapechar=, style=#1]{#4}}
 
 %---------------------------------------------------------------------------------------------------------------%
