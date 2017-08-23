@@ -5,17 +5,18 @@
 % ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
 % Apresentacao
 %
-% Adaptado por Emerson Ribeiro de Mello (2015-10-15)
+% Adaptado por Emerson Ribeiro de Mello (2017-08-23)
+% baseado no modelo "Template para elaboração de trabalho acadêmico - versão setembro/2016" fornecido pela Biblioteca do IFSC - http://www.ifsc.edu.br/menu-colecao-abnt (acessado em 2017-08-23)
 % ------------------------------------------------------------------------
 % ------------------------------------------------------------------------
 \documentclass[
 	% -- opções da classe memoir --
-	12pt,				% tamanho da fonte
+	10pt,				% tamanho da fonte
 	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
 	twoside,			% para impressão em verso e anverso. Oposto a oneside
 	a4paper,			% tamanho do papel. 
 	% -- opções da classe abntex2 --
-	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
 	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
 	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
 	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
@@ -39,7 +40,7 @@
 \titulo{Modelo de Trabalho Acadêmico com \abnTeX}
 \autor{Nome do Aluno}
 \local{São José - SC}
-\data{outubro/2015}
+\data{agosto/2017}
 \orientador{Professor Orientador da Silva}
 \coorientador{Professor Coorientador da Silva}
 \instituicao{%
@@ -52,9 +53,9 @@
 
 % O preambulo deve conter o tipo do trabalho, o objetivo, 
 % o nome da instituição e a área de concentração 
-\preambulo{Monografia apresentada à Coordenação de Engenharia de Telecomunicações do Instituto Federal de Santa Catarina para a obtenção do diploma Bacharel em Engenharia de Telecomunicações.}
+\preambulo{Trabalho de conclusão de curso apresentado à Coordenadoria do Curso de Engenharia de Telecomunicações do campus São José do Instituto Federal de Santa Catarina para a obtenção do diploma de Engenheiro de Telecomunicações.}
 %---------------------------------------------------------------------%
-
+\textoaprovacao{Este trabalho foi julgado adequado para obtenção do título de Engenheiro de Telecomunicações, pelo Instituto Federal de Educação, Ciência e Tecnologia de Santa Catarina, e aprovado na sua forma final pela comissão avaliadora abaixo indicada.}
 
 
 
@@ -147,36 +148,33 @@
 \begin{folhadeaprovacao}
 
   \begin{center}
-    {\ABNTEXchapterfont\large\imprimirautor}
+    {\ABNTEXchapterfont\large\MakeUppercase{\imprimirautor}}
 
     \vspace*{\fill}\vspace*{\fill}
     \begin{center}
-      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+      \ABNTEXchapterfont\bfseries\Large\MakeUppercase{\imprimirtitulo}
     \end{center}
     \vspace*{\fill}
     
-    \hspace{.45\textwidth}
-    \begin{minipage}{.5\textwidth}
-        \imprimirpreambulo
-    \end{minipage}%
+    \imprimirtextoaprovacao
+     
+    \vspace*{1cm}
+    
+	\imprimirlocal, 15 de outubro de 2015:
+
     \vspace*{\fill}
+
    \end{center}
         
-   Trabalho aprovado. \imprimirlocal, 15 de outubro de 2015:
 
-   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
-   \assinatura{\textbf{Professor} \\ Convidado 1}
-   \assinatura{\textbf{Professor} \\ Convidado 2}
-   %\assinatura{\textbf{Professor} \\ Convidado 3}
+
+   \assinatura{\textbf{\imprimirorientador, Dr.} \\ Orientador\\Instituto Federal de Santa Catarina} 
+   \assinatura{\textbf{Professor, Dr.} \\ Instituto X }
+   \assinatura{\textbf{Professor} \\ Instituto Y}
+   \assinatura{\textbf{Professor} \\ Instituto Z}
    %\assinatura{\textbf{Professor} \\ Convidado 4}
       
-   \begin{center}
-    \vspace*{0.5cm}
-    {\large\imprimirlocal}
-    \par
-    {\large\imprimirdata}
-    \vspace*{1cm}
-  \end{center}
+    \vspace*{1cm}  
   
 \end{folhadeaprovacao}
 % ---
@@ -186,10 +184,11 @@
 %---------------------------------------------------------------------%
 \begin{dedicatoria}
    \vspace*{\fill}
-   \centering
+   \begin{flushright}
    \noindent
    \textit{ Este trabalho é dedicado às crianças adultas que,\\
-   quando pequenas, sonharam em se tornar cientistas.} \vspace*{\fill}
+   quando pequenas, sonharam em se tornar cientistas.}\vspace*{2cm}
+   \end{flushright}
 \end{dedicatoria}
 % ---
 
@@ -273,10 +272,16 @@ contribuirão para a evolução do \abnTeX.
 \pdfbookmark[0]{\listtablename}{lot}
 \listoftables*
 \cleardoublepage
-\newlistof{lstlistoflistings}{lol}{\lstlistlistingname}
+
+% ---
+% inserir lista de listings
+% ---
 \pdfbookmark[0]{\lstlistlistingname}{lol}
-\lstlistoflistings*
+\begin{KeepFromToc}
+\lstlistoflistings
+\end{KeepFromToc}
 \cleardoublepage
+% ---
 
 % inserir lista de abreviaturas e siglas
 \pdfbookmark[0]{Lista de abreviaturas e siglas}{loa}

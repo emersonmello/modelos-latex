@@ -1,3 +1,4 @@
+% !TEX root = monografia.tex
 \ProvidesPackage{estilo-monografia-ifsc}
 
 %---------------------------------------------------------------------%
@@ -42,6 +43,89 @@
 		Citado #1 vezes nas páginas #2.%
 	\fi}%
 % ---
+
+% -------------------------------------------------------------------------------------------------------------- %
+% Personalização do modelo da abnTeX2 para se adequar com o modelo do IFSC
+% 2017-08-23 - Segue o modelo do IFSC publicado em setembro de 2016
+% -------------------------------------------------------------------------------------------------------------- %
+
+
+% alterando a capa
+\renewcommand{\imprimircapa}{%
+  \begin{capa}%
+    \center
+    \ABNTEXchapterfont\Large INSTITUTO FEDERAL DE SANTA CATARINA
+    
+    \vspace*{1cm}
+    
+    {\ABNTEXchapterfont\large\MakeUppercase{\imprimirautor}}
+
+    \vfill
+    \begin{center}
+    \ABNTEXchapterfont\bfseries\LARGE\imprimirtitulo
+    \end{center}
+    \vfill
+    
+    \large\imprimirlocal
+
+    \large\imprimirdata
+    
+    \vspace*{1cm}
+  \end{capa}
+}
+
+% folha de rosto 
+
+\makeatletter
+
+\renewcommand{\folhaderostocontent}{
+\begin{center}
+\vspace*{3cm}
+\begin{center}
+\ABNTEXchapterfont\bfseries\Large\MakeUppercase{\imprimirtitulo}
+\end{center}
+
+\vspace*{\fill}
+
+\abntex@ifnotempty{\imprimirpreambulo}{%
+  \hspace{.45\textwidth}
+  \begin{minipage}{.5\textwidth}
+  \SingleSpacing
+  \imprimirpreambulo
+
+   \vspace*{.3cm}
+
+  \imprimirorientadorRotulo~\imprimirorientador\par
+  
+	\vspace*{.3cm}
+  
+  \abntex@ifnotempty{\imprimircoorientador}{%
+  \imprimircoorientadorRotulo~\imprimircoorientador%
+}%
+  
+  \end{minipage}%
+  \vspace*{\fill}
+}%
+
+\vspace*{2cm}
+
+\imprimirlocal
+
+\par
+
+\imprimirdata
+\vspace*{\fill}
+\end{center}
+}
+
+\makeatother
+
+% comando para imprimir texto de aprovação
+\providecommand{\imprimirtextoaprovacao}{}
+\newcommand{\textoaprovacao}[1]{\renewcommand{\imprimirtextoaprovacao}{\begin{center}#1\end{center}
+}} 
+% -------------------------------------------------------------------------------------------------------------- %
+
 
 
 % ---
@@ -88,8 +172,30 @@
 % -------------------------------------------------------------------------------------------------------------- %
 % Configurações para inserir código fonte de programas - pacote listings
 % -------------------------------------------------------------------------------------------------------------- %
-\renewcommand{\lstlistlistingname}{Lista de listagem de códigos}
-\renewcommand*\lstlistingname{Listagem}
+
+% Altera o nome padrão do rótulo usado no comando \autoref{}
+\renewcommand{\lstlistingname}{Código}
+
+% Altera o rótulo a ser usando no elemento pré-textual "Lista de código"
+\renewcommand{\lstlistlistingname}{Lista de códigos}
+
+%% Configura a ``Lista de Códigos'' conforme as regras da ABNT (para abnTeX2)
+\begingroup\makeatletter
+\let\newcounter\@gobble\let\setcounter\@gobbletwo
+  \globaldefs\@ne \let\c@loldepth\@ne
+  \newlistof{listings}{lol}{\lstlistlistingname}
+  \newlistentry{lstlisting}{lol}{0}
+\endgroup
+
+\renewcommand{\cftlstlistingaftersnum}{\hfill--\hfill}
+
+\let\oldlstlistoflistings\lstlistoflistings
+\renewcommand{\lstlistoflistings}{%
+   \begingroup%
+   \let\oldnumberline\numberline%
+   \renewcommand{\numberline}{\lstlistingname\space\oldnumberline}%
+   \oldlstlistoflistings%
+   \endgroup}
 
 % Definindo cores
 \definecolor{hellgelb}{rgb}{1,1,0.9}

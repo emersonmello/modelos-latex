@@ -11,7 +11,7 @@ Esse repositório possui modelos de documentos LaTeX que uso nas minhas aulas no
 - **Lista de exercício**
   - [Modelo que faz uso da classe `examdesign`](lista-exercicio) com pequenos ajustes para uma simples lista de exercício. Também permite gerar folha de resposta.
 - **Monografia**
-  - [Modelo de monografia](monografia) baseado no documento de exemplo do projeto [abnTeX2](https://github.com/abntex/abntex2) para trabalhos acadêmicos.
+  - [Modelo de monografia do IFSC - 2016](monografia) segue o modelo oficial de trabalho acadêmico publicado pela Biblioteca do IFSC em setembro de 2016.
 - **Notas de aula**
   - [Modelo de notas de aula](nota-de-aula) baseado na classe `article`. 
 - **Prova**

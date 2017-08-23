@@ -1,8 +1,8 @@
-# Modelo de Trabalho Acadêmico com abnTeX
+# Modelo do IFSC para Trabalho Acadêmico
 
 
 
-Foram acrescentadas algumas pequenas modificações no modelo da abnTeX que segue as normas da ABNT para trabalho acadêmico.
+Esse modelo de monografia atualizado em 2017 segue o [modelo oficial de trabalho acadêmico publicado pela Biblioteca do IFSC em setembro de 2016](http://www.ifsc.edu.br/menu-colecao-abnt).
 
 
 
