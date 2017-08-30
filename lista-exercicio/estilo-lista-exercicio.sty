@@ -10,7 +10,7 @@
 \RequirePackage{boxedminipage,ae}
 \RequirePackage{fancyheadings}
 \RequirePackage{pgf}
-\RequirePackage{url,subfigure,graphicx,pgf,multirow,multicol,enumerate}
+\RequirePackage{url,subcaption,graphicx,pgf,multirow,multicol,enumerate}
 \urlstyle{sf}
 
 \RequirePackage{listings,color,indentfirst}
@@ -51,6 +51,7 @@
 \noindent Aluno: \rule{.8\linewidth}{.4pt}
 \bigskip}
 
+
 % Cabeçalho da lista
 %\cabecalho{numero}{data}{BCD29008 -- Disciplina}{Assunto}{Professor \hfill \url{email ou pagina da disciplina}}
 \newcommand{\cabecalho}[5]{
@@ -63,13 +64,31 @@
 % Cabeçalho da folha de resposta
 \begin{keytop}
 \lista{#1}{#2}{#3}{#4}{#5}
-
 \begin{center}
 {\huge Folha de respostas
 %\fbox{\textsf{\Alph{version}}} \hfill
 }
 \end{center}
 \end{keytop}}
+
+\newcommand{\cabecalhogenerico}[6]{
+\begin{examtop}
+\titulogenerico{#1}{#2}{#3}{#4}{#5}{#6}
+\bigskip\bigskip
+%\nomealuno \hfill \fbox{\textsf{\Alph{version}}}
+\end{examtop}
+
+% Cabeçalho da folha de resposta
+\begin{keytop}
+\titulogenerico{#1}{#2}{#3}{#4}{#5}{#6}
+\begin{center}
+{\huge Folha de respostas
+%\fbox{\textsf{\Alph{version}}} \hfill
+}
+\end{center}
+\end{keytop}}
+
+
 
 % ----------------------------------------------------
 % Declaração do caminho das imagens
@@ -96,6 +115,24 @@
     {\Large \textbf{Lista #1:} #4} \\[3mm]
   \end{center}
 Professor: #5
+\end{minipage}}
+\end{center}
+}
+
+\newcommand{\titulogenerico}[6]{
+\noindent
+\begin{center}
+\fbox{
+\begin{minipage}{.97\textwidth}
+\begin{tabular}{ll}
+% \multirow{2}{1cm}{\includegraphics[scale=0.15]{imagem/logo-mono.png}} & \multirow{2}{*}{#3} \\ 
+ \multirow{2}{1cm}{\pgfuseimage{logo}} & \multirow{2}{*}{#4} \\ 
+  &  \\
+\end{tabular}\hfill #3
+  \begin{center}
+    {\Large \textbf{#1 #2:} #5} \\[3mm]
+  \end{center}
+Professor: #6
 \end{minipage}}
 \end{center}
 }
@@ -150,13 +187,29 @@ Professor: #5
     \end{myboxenv}
  }
 % -------------------------------------------------------------------------------------------------------------- %
+% Para permitir que as referências cruzadas sejam ponteiros
+\RequirePackage{hyperref}
+\hypersetup{colorlinks,
+	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
+	citecolor=black,  %%% cor do \cite
+	urlcolor=black,   %%% cor do \url e \href
+	%pdfpagemode,     %%%  None (default), UseThumbs, UseOutlines, FullScreen
+	pdfstartview=FitH, %%% FitB, FitH
+	bookmarksopen=false,
+	bookmarksopenlevel=1
+}
 
 
 % -------------------------------------------------------------------------------------------------------------- %
 % Configurações para inserir código fonte de programas - pacote listings
 % -------------------------------------------------------------------------------------------------------------- %
-\renewcommand{\lstlistlistingname}{Lista de listagem de códigos}
-\renewcommand*\lstlistingname{Listagem}
+% Altera o nome padrão do rótulo usado no comando \autoref{}
+\renewcommand{\lstlistingname}{Código}
+
+% Altera o rótulo a ser usando no elemento pré-textual "Lista de código"
+\renewcommand{\lstlistlistingname}{Lista de códigos}
+
+
 
 % Definindo cores
 \definecolor{hellgelb}{rgb}{1,1,0.9}
@@ -181,7 +234,7 @@ Professor: #5
   columns=flexible,
   commentstyle=\color{colComments},    % comment style
   deletekeywords={...},            % if you want to delete keywords from the given language
-  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+ escapechar={@*},          % if you want to add LaTeX within your code
   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
   linewidth=0.98\linewidth,
   tab=$\to$,
@@ -191,7 +244,7 @@ Professor: #5
   keepspaces=true,                % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
 identifierstyle=\color{colIdentifier},
   keywordstyle=\color{colKeys},       % keyword style
-  otherkeywords={*,...},            % if you want to add more keywords to the set
+%  otherkeywords={*,...},            % if you want to add more keywords to the set
   firstnumber=last,
   numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
   numbersep=5pt,                   % how far the line-numbers are from the code
@@ -280,7 +333,7 @@ identifierstyle=\color{colIdentifier},
 
 %\includecode[shell]{l_olamundo}{Olá mundo em shell script}{codigos/ola.sh}
 
-\newcommand{\includecode}[4][c]{\lstinputlisting[captionpos=t,caption=#3, label=#2,escapechar=, style=#1]{#4}}
+\newcommand{\includecode}[4][c]{\lstinputlisting[captionpos=t,caption=#3, label=#2,escapechar={@*}, style=#1]{#4}}
 %---------------------------------------------------------------------------------------------------------------%
 
 

@@ -220,7 +220,7 @@
   columns=flexible,
   commentstyle=\color{colComments},    % comment style
   deletekeywords={...},            % if you want to delete keywords from the given language
-  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  escapechar={@*},          % if you want to add LaTeX within your code
   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
   linewidth=0.98\linewidth,
   tab=$\to$,
@@ -230,7 +230,7 @@
   keepspaces=true,                % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
 identifierstyle=\color{colIdentifier},
   keywordstyle=\color{colKeys},       % keyword style
-  otherkeywords={*,...},            % if you want to add more keywords to the set
+%  otherkeywords={*,...},            % if you want to add more keywords to the set
   firstnumber=last,
   numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
   numbersep=5pt,                   % how far the line-numbers are from the code
@@ -319,7 +319,7 @@ identifierstyle=\color{colIdentifier},
 
 %\includecode[shell]{l_olamundo}{Olá mundo em shell script}{codigos/ola.sh}
 
-\newcommand{\includecode}[4][c]{\lstinputlisting[captionpos=t,caption=#3, label=#2,escapechar=, style=#1]{#4}}
+\newcommand{\includecode}[4][c]{\lstinputlisting[captionpos=t,caption=#3, label=#2,escapechar={@*}, style=#1]{#4}}
 
 
 %---------------------------------------------------------------------------------------------------------------%
