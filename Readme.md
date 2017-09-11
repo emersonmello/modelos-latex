@@ -1,3 +1,5 @@
+[![GitHub license](https://img.shields.io/badge/license-CC0-blue.svg)](https://raw.githubusercontent.com/emersonmello/modelos-latex/master/LICENSE)
+
 # Modelos de documentos em LaTeX para docentes e discentes
 
 Esse repositório possui modelos de documentos LaTeX que uso nas minhas aulas no Instituto Federal de Santa Catarina (IFSC).
