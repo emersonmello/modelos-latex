@@ -64,29 +64,13 @@
 \noindent Aluno: \rule{.6\linewidth}{.4pt} Matrícula: \rule{.19\linewidth}{.4pt}
 \bigskip}
 
-% -------------------------------------------------------------------------------------------------------------- %
-% Configurações do cabeçalho e rodapé
-% -------------------------------------------------------------------------------------------------------------- %
-\newcommand{\cabecalho}[4]{
+\newcommand{\listasemnomealuno}[5]{
 \pagestyle{headandfoot}
-
-% Cabeçalho
-% altura extra para a 1a. página e para as demais páginas
-\extraheadheight[1.5in]{0cm}
-
-%\firstpageheader{}{
-%\lista{#1}{#2}{#3}{#4}{#5}
-%\bigskip
-%\nomealuno
-%}{}
-
 % Rodapé
 \footrule
 \firstpagefooter{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny}}{}{Pág. \thepage\ de \numpages}
 \runningfooter{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny}}{}{Pág. \thepage\ de \numpages}
-}
 
-\newcommand{\listasemnomealuno}[5]{
 \extraheadheight[1in]{0cm}
 \firstpageheader{}{
 \noindent
@@ -107,6 +91,12 @@
 }
 
 \newcommand{\listacomnomealuno}[5]{
+\pagestyle{headandfoot}
+% Rodapé
+\footrule
+\firstpagefooter{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny}}{}{Pág. \thepage\ de \numpages}
+\runningfooter{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny}}{}{Pág. \thepage\ de \numpages}
+
 \extraheadheight[1.5in]{0cm}
 \firstpageheader{}{
 \noindent
