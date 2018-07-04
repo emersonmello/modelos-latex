@@ -8,6 +8,7 @@ Modelos de documentos LaTeX que uso nas minhas aulas no Instituto Federal de San
 
 - **Apresentação**
   - [Tema *Título Leve*](apresentacao/titulo-leve) faz uso da classe `beamer`.
+  - [Tema *IFSCyan*](apresentacao/ifscyan) faz uso da classe `beamer` e tem como base o tema [Focus](https://github.com/elauksap/focus-beamertheme).
 - **Artigos**
   - [Modelo de artigo científico](artigo/modelo-ifsc-proppi) baseado no modelo da Pró-Reitoria de Pesquisa, Pós-graduação e Inovação (PROPPI) do IFSC.
 - **Lista de exercício**

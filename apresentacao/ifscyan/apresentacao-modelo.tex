@@ -1,0 +1,187 @@
+% !TEX pdfSinglePage
+\documentclass{beamer}
+\usetheme{ifscyan}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english,brazil]{babel}
+
+% Metadados do PDF a ser gerado
+\hypersetup{pdfstartview={Fit},pdftitle={\@title},
+ 	pdfsubject={Engenharia de Telecomunicacoes - IFSC},pdfauthor={\@author}
+}
+
+
+
+
+% Fazendo com que a lista de item se espalhe para ocupar toda a 
+% altura do slide
+\let\olditem\item
+\renewcommand{\item}{%
+\olditem\vspace{\fill}}     
+
+
+% -------------------------------------------------%
+%              Título 
+% -------------------------------------------------%
+\title{IFSCyan \\ Um outro tema para o IFSC}
+\subtitle{Tema para \LaTeX Beamer}
+\author{Prof. Emerson Ribeiro de Mello}
+\titlegraphic{\includegraphics[scale=.5]{figs/ifsclogo.png}}
+\institute{
+\url{mello@ifsc.edu.br}}
+\date{04/07/2018}
+% -------------------------------------------------%
+
+
+\begin{document}
+
+\begin{frame}
+	\maketitle
+\end{frame}
+
+
+\section{Listas}
+
+\begin{frame}{Apenas começando}
+	\begin{enumerate}
+		\item Primeiro item
+		\begin{itemize}
+			\item Primeiro item
+			\item Segundo item
+		\end{itemize}
+		\item Segundo item
+		\item Terceiro item 
+		\begin{itemize}
+			\item Primeiro item
+			\item Segundo item
+		\end{itemize}
+	\end{enumerate}
+\end{frame}
+
+    \begin{frame}{Listas em colunas}
+        \begin{columns}[t, onlytextwidth]
+            \column{0.33\textwidth}
+                Items:
+                \begin{itemize}
+                    \item Item 1
+                    \begin{itemize}
+                        \item Subitem 1.1
+                        \item Subitem 1.2
+                    \end{itemize}
+                    \item Item 2
+                    \item Item 3
+                \end{itemize}
+            
+            \column{0.33\textwidth}
+                Enumerations:
+                \begin{enumerate}
+                    \item First
+                    \item Second
+                    \begin{enumerate}
+                        \item Sub-first
+                        \item Sub-second
+                    \end{enumerate}
+                    \item Third
+                \end{enumerate}
+            
+            \column{0.33\textwidth}
+                Descriptions:
+                \begin{description}
+                    \item[First] Yes.
+                    \item[Second] No.
+                \end{description}
+        \end{columns}
+    \end{frame}
+
+
+\section{Blocos}
+
+
+\begin{frame}{Blocos}
+	\begin{block}{Esse é um bloco}
+		Isso é um teste
+	\end{block}
+	\begin{block}{}
+	Bloco sem título	
+	\end{block}
+	\begin{alertblock}{Alerta}
+		Esse é um alerta
+	\end{alertblock}
+	\begin{exampleblock}{Bloco para exemplo}
+            Exemplo de \textcolor{example}{cor}.
+        \end{exampleblock}
+\end{frame}
+
+
+\begin{frame}[fragile]{Código em C e Java}
+
+\begin{itemize}
+		\item Comandos criados para as seguintes linguagens
+		\begin{itemize}
+			\item \texttt{ansic, java, shell, php, matlab, python, xml, sql}
+			\item \texttt{ansicp, javap, shellp, phpp, matlabp, pythonp, xmlp, sqlp}
+			\item Letra p no final indica que a fonte será \texttt{scriptsize}
+		\end{itemize}
+\end{itemize}
+
+% incluindo o código de um arquivo externo
+\includecode{ansic}{codigos/ola.c}	
+
+
+% escrevendo o código diretamente dentro do frame
+\javap
+\begin{lstlisting}
+public static voi main(String args[]){
+	System.out.println("Ola mundo");
+}
+\end{lstlisting}		
+\end{frame}
+
+\section{Tipos de frames}
+
+\begin{frame}{Simple frame}
+Um frame simples
+\end{frame}
+
+\begin{frame}[plain]{Plain frame}
+   Esse frame está com o tipo \textbf{plain} e sem rodapé
+\end{frame}
+    
+\begin{frame}[t]
+Esse frame não tem título e está com o conteúdo alinhado ao topo
+\end{frame}
+    
+\begin{frame}[noframenumbering]{Frame sem rodapé}
+ Esse frame não tem rodapé e está citando o trabalho \cite{knuth74}.
+\end{frame}
+    
+    \begin{frame}{Fonte}
+        Os pacotes \texttt{inputenc} e \texttt{FiraSans}\footnote{\url{https://fonts.google.com/specimen/Fira+Sans}}\textsuperscript{,}\footnote{\url{http://mozilla.github.io/Fira/}} são usados para definir as fontes
+        \vfill
+        Esse tema permite os estilo \emph{enfatizado}, \alert{alerta}, \textbf{negrito}, \textcolor{example}{cor de exemplo}, \dots
+        \vfill
+        \texttt{FiraSans} também provê suporte para símbolos matemáticos:
+        \begin{equation*}
+            e^{i\pi} + 1 = 0.
+        \end{equation*}
+    \end{frame}
+
+
+    \begin{frame}[focus]
+        Obrigado!
+    \end{frame}
+    
+    \appendix
+    \begin{frame}{Referências}
+        \nocite{*}
+        \bibliography{demo_bibliography}
+        \bibliographystyle{plain}
+    \end{frame}
+    
+    \begin{frame}{Slide de backup}
+        \usebeamercolor[fg]{normal text}
+        Slides de backup são úteis para incluir materiais adicionais, necessários somente para ajudar a responder possíveis perguntas da plateia
+        \vfill
+        O pacote \texttt{appendixnumberbeamer} é usado para não numerar os slides de backup
+    \end{frame}
+\end{document}
