@@ -1,6 +1,6 @@
 % IFSC presentation theme
 % 2017-03-11 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
-\ProvidesPackage{beamerthemeIFSC-LEVE}[2017]
+\ProvidesPackage{beamerthemeIFSC-LEVE2018}[2018]
 
 
 % -------------------------------------------------------------------------------------------%
@@ -20,7 +20,7 @@
 %                          Configurações do tema
 % -------------------------------------------------------------------------------------------%
 % footer
-\pgfdeclareimage[width=\paperwidth]{footer}{figs/rodape}
+\pgfdeclareimage[width=\paperwidth]{footer}{figs/rodape-2018}
 
 % colours
 \definecolor{kugreen}{RGB}{50,93,61}
@@ -31,30 +31,34 @@
 \definecolor{AlBody}{RGB}{213,24,0}
 \definecolor{ExTitle}{RGB}{201, 217, 217}
 
-\usecolortheme[named=kugreen]{structure}
-\setbeamercolor{block title}{fg = white, bg = kugreen}
-\setbeamercolor{block body}{bg = kugreen!15!white}
-\setbeamercolor{block title alerted}{bg = AlTitle}
-\setbeamercolor{block body alerted}{bg = AlBody!5!white}
-\setbeamercolor{block title example}{bg = ExTitle}
-\setbeamercolor{block body example}{bg = ExTitle!15!white}
-\setbeamertemplate{blocks}[rounded]
+%\usecolortheme[named=kugreen]{structure}
+%\setbeamercolor{block title}{fg = white, bg = kugreen}
+%\setbeamercolor{block body}{bg = kugreen!15!white}
+%\setbeamercolor{block title alerted}{bg = AlTitle}
+%\setbeamercolor{block body alerted}{bg = AlBody!5!white}
+%\setbeamercolor{block title example}{bg = ExTitle}
+%\setbeamercolor{block body example}{bg = ExTitle!15!white}
+%\setbeamertemplate{blocks}[rounded]
 
 
 % colours IFSC 2018
-%\definecolor{ifsc2018}{RGB}{13,79,77}
-%\definecolor{ifsc2018azulfundo}{RGB}{15,95,92}
-%\definecolor{ifsc2018fundoclaro}{RGB}{238,241,236}
-%\definecolor{ifsc2018verdeconfirma}{RGB}{47,158,64}
-%\setbeamercolor{background canvas}{bg=ifsc2018fundoclaro}
-%\setbeamercolor{block title}{fg = white, bg = ifsc2018}
-%\setbeamercolor{block body}{bg = ifsc2018!15!ifsc2018fundoclaro}
+
+\definecolor{ifsc2018}{RGB}{13,79,77}
+\definecolor{ifsc2018azulfundo}{RGB}{15,95,92}
+\definecolor{ifsc2018fundoclaro}{RGB}{238,241,236}
+\definecolor{ifsc2018verdeconfirma}{RGB}{47,158,64}
+
+\usecolortheme[named=ifsc2018]{structure}
+\setbeamercolor{background canvas}{bg=ifsc2018fundoclaro}
+\setbeamercolor{block title}{fg = white, bg = ifsc2018}
+\setbeamercolor{block body}{bg = ifsc2018!15!ifsc2018fundoclaro}
+\setbeamertemplate{blocks}[rounded]
 
 
 \setbeamersize{text margin left=5pt,text margin right=5pt}
 
 \setbeamertemplate{navigation symbols}{}
-\addtobeamertemplate{frametitle}{}{\color{kugreen}
+\addtobeamertemplate{frametitle}{}{\color{ifsc2018}
 \pgfline{\pgfpoint{1mm}{-2mm}}{\pgfpoint{10.8cm}{-2mm}}}
 \setbeamerfont{title}{series=\bfseries}
 \useinnertheme{rectangles}
@@ -64,7 +68,7 @@
 	\raisebox{-3mm}[0pt][0pt]{%
 	\begin{pgfpicture}{0mm}{0mm}{0mm}{0mm}
 		\pgfsetlinewidth{1mm}
-		\color{kugreen}
+		\color{ifsc2018}
 		\pgfline{\pgfpoint{1.2mm}{-2mm}}{\pgfpoint{10cm}{-2mm}}
 	\end{pgfpicture}}
 }
