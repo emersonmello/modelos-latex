@@ -1,45 +1,60 @@
 % !TEX pdfSinglePage
 \documentclass{beamer}
-\usetheme{ifscyan}
 
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[english,brazil]{babel}
+
+% usando tema IFSC-Leve
+\usepackage{beamerthemeIFSC-LEVE2018}
+
+%\pgfdeclareimage[width=\paperwidth]{footer}{../../latex-estilos/apresentacao/titulo-leve/figs/rodape-2018}
+%\pgfdeclareimage[width=.25\paperwidth]{ifsclogo}{../../latex-estilos/apresentacao/titulo-leve/figs/ifsclogo.png}
 
 % Metadados do PDF a ser gerado
 \hypersetup{pdfstartview={Fit},pdftitle={\@title},
  	pdfsubject={Engenharia de Telecomunicacoes - IFSC},pdfauthor={\@author}
 }
-\pgfdeclareimage[width=.25\paperwidth]{ifsclogo}{figs/ifsclogo.png}
 
-
-
-
+%%%
+%%%
 % Fazendo com que a lista de item se espalhe para ocupar toda a 
 % altura do slide
 \let\olditem\item
 \renewcommand{\item}{%
 \olditem\vspace{\fill}}     
+%%%
+%%%
+%%%
+
 
 
 % -------------------------------------------------%
 %              Título 
 % -------------------------------------------------%
-\title{IFSCyan \\ Um outro tema para o IFSC}
-\subtitle{Tema para \LaTeX Beamer}
-\author{Prof. Emerson Ribeiro de Mello}
+\title{Modelo de apresentação IFSC}
+\subtitle{Tema: Título Leve}
 \titlegraphic{\pgfuseimage{ifsclogo}}
-\institute{
-\url{mello@ifsc.edu.br}}
-\date{04/07/2018}
+\author{Prof. Emerson Ribeiro de Mello}
+\date{10 de março de 2017}
+\institute{\url{mello@ifsc.edu.br}}
 % -------------------------------------------------%
 
 
 \begin{document}
 
-\begin{frame}
+\setbeamertemplate{footline}{} 
+\begin{frame}[t]
 	\maketitle
 \end{frame}
-
+\setbeamertemplate{footline}{
+	\pgfuseimage{footer}%
+  \usebeamercolor[fg]{framenumber}
+  \pgftext[at=\pgfpoint{-35pt}{5pt},center,bottom]{\insertframenumber/\inserttotalframenumber}
+}
+%--------------------------------------------------------------------------------%
+%                         Inicio do documento
+%--------------------------------------------------------------------------------%
 
 \section{Listas}
 
@@ -185,4 +200,8 @@ Esse frame não tem título e está com o conteúdo alinhado ao topo
         \vfill
         O pacote \texttt{appendixnumberbeamer} é usado para não numerar os slides de backup
     \end{frame}
+\end{document}
+
+
+
 \end{document}

@@ -45,7 +45,10 @@
         % If not title page.
         \ifnum\c@framenumber>0
             \begin{tikzpicture}
-                \node [inner sep=0pt, anchor=east] (0,0) {\includegraphics[width=\paperwidth]{figs/rodape.png}};
+                \node [inner sep=0pt, anchor=east] (0,0) {
+%                \includegraphics[width=\paperwidth]{figs/rodape.png}
+			\pgfuseimage{footerifsc}
+                };
                 \usebeamerfont{footer}
                 \usebeamercolor[fg]{framenumber}
                 \node [inner sep=0pt, anchor=east] at (-5ex,-0.5ex) {\insertframenumber{} / \inserttotalframenumber};
