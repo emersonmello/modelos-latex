@@ -5,7 +5,9 @@
 \ProvidesPackage{beamerthemeifscyan}[2018/07/04 - IFSCyan Beamer theme]
 
 \mode<presentation>
-
+% ----------------------------------------------------------------------------%
+%                          Pacotes
+% ----------------------------------------------------------------------------%
 \RequirePackage{pgf}
 \RequirePackage{graphicx}
 \RequirePackage{listings,color,upquote}
@@ -16,61 +18,218 @@
 \urlstyle{sf}
 
 \RequirePackage[T1]{fontenc}
-\RequirePackage{FiraSans}
+% \RequirePackage{FiraSans}
+\usepackage[sfdefault]{roboto}
 \RequirePackage{tikz}
 \RequirePackage{etoolbox} % \BeforeBeginEnvironment
 \RequirePackage{appendixnumberbeamer} % Don't number appendix frames.
 
+% ----------------------------------------------------------------------------%
+%                           CORES
+% ----------------------------------------------------------------------------%
+\definecolor{main}{RGB}{13,79,77}
+\definecolor{background}{RGB}{238,241,236}
 
-\DeclareOptionBeamer{numbering}{
-    \PassOptionsToPackage{numbering=#1}{beamerouterthemefocus}
-}
-\ProcessOptionsBeamer
+\usecolortheme[named=main]{structure}
 
-\usecolortheme{ifscyan}
-\usefonttheme{ifscyan}
-\useinnertheme{ifscyan}
-\useoutertheme{ifscyan}
+\definecolor{alert}{RGB}{180, 0, 0}
+\definecolor{example}{RGB}{0, 110, 0}
 
+
+\setbeamercolor{frametitle}{fg=background, bg=main}
+\setbeamercolor{framenumber}{fg=background, bg=main}
+
+\setbeamercolor{normal text}{fg=black, bg=background}
+\setbeamercolor{alerted text}{fg=alert}
+\setbeamercolor{example text}{fg=example}
+
+\setbeamercolor{block title}{bg=main!80!background, fg=background}
+\setbeamercolor{block body}{bg=main!10!background, fg=main}
+
+\setbeamercolor{block title alerted}{bg=alert, fg=background}
+\setbeamercolor{block body alerted}{bg=alert!10!background, fg=main}
+
+\setbeamercolor{block title example}{bg=example, fg=background}
+\setbeamercolor{block body example}{bg=example!10!background, fg=main}
+
+\setbeamercolor{itemize item}{fg=main}
+\setbeamercolor{itemize subitem}{fg=main}
+
+\setbeamercolor{enumerate item}{fg=main!70!black}
+\setbeamercolor{enumerate subitem}{fg=main!70!black}
+
+\setbeamercolor{description item}{fg=main!70!black}
+\setbeamercolor{description subitem}{fg=main!70!black}
+
+\setbeamercolor{section in toc}{fg=main}
+\setbeamercolor{subsection in toc}{fg=main}
+\setbeamercolor{section number projected}{bg=main}
+\setbeamercolor{subsection number projected}{bg=main}
+
+\setbeamercolor{bibliography item}{fg=main}
+\setbeamercolor{bibliography entry author}{fg=main!70!black}
+\setbeamercolor{bibliography entry title}{fg=main}
+\setbeamercolor{bibliography entry location}{fg=main}
+\setbeamercolor{bibliography entry note}{fg=main}
+
+% ----------------------------------------------------------------------------%
+
+
+\setbeamerfont{title}{size=\huge, series=\bfseries}
+\setbeamerfont{subtitle}{size=\Large, parent=structure}
+\setbeamerfont{author}{size=\Large}
+
+\setbeamerfont{institute}{size=\large}
+\setbeamerfont{date}{size=\large, shape=\scshape}
+
+\setbeamerfont{sectiontitle}{size=\huge, series=\bfseries}
+\setbeamerfont{frametitle}{size=\large}
+
+\setbeamerfont{footer}{size=\normalsize}
+
+\setbeamerfont{focusframe}{size=\huge, shape=\scshape}
+
+\setbeamerfont{bibliography item}{size=\small, shape=\scshape}
+\setbeamerfont{bibliography entry author}{size=\small, shape=\scshape}
+\setbeamerfont{bibliography entry title}{size=\small, series=\bfseries}
+\setbeamerfont{bibliography entry location}{size=\small, shape=\normalfont}
+\setbeamerfont{bibliography entry note}{size=\small, shape=\normalfont}
+
+% ----------------------------------------------------------------------------%
+
+% ----------------------------------------------------------------------------%
+%                          Configurações do tema
+% ----------------------------------------------------------------------------%
+\setbeamersize{text margin left=5pt,text margin right=5pt}
 \setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{blocks}[default]
+\setbeamertemplate{headline}[text line]{}
 
-\setbeamertemplate{section in toc}[square]
-\setbeamertemplate{subsection in toc}[square]
+\useinnertheme{rectangles}
 
-\setbeamertemplate{itemize items}[square]
-\setbeamertemplate{itemize subitem}[triangle]
 
-% Set margins.
-%\setbeamersize{text margin left=5pt,text margin right=5pt}
-\setbeamersize{text margin left=0.75cm, text margin right=0.75cm}
-\setlength{\leftmargini}{0.75cm}
-%\leftmarginii=0.75\leftmargini\relax
+\pgfdeclareimage[width=.25\paperwidth]{ifsclogo}{figs/ifsclogo}
 
-%------------------------------------------------------------------------------%
-%------------------------------------------------------------------------------%
-%------------------------------------------------------------------------------%
-%------------------------------------------------------------------------------%
-%                          Comandos pessoais
-%------------------------------------------------------------------------------%
-%------------------------------------------------------------------------------%
-%------------------------------------------------------------------------------%
-%------------------------------------------------------------------------------%
+% footer
+\pgfdeclareimage[width=\paperwidth]{footer}{figs/rodape-2018}
 
-% Esse comando deve ser usado dentro do ambiente itemize para aumentar o espaço 
-% entre os items
+\setbeamertemplate{footline}{
+	\pgfuseimage{footer}%
+  \usebeamercolor[fg]{framenumber}
+  \pgftext[at=\pgfpoint{-35pt}{5pt},center,bottom]{\insertframenumber/\inserttotalframenumber}
+}
+
+% Title page.
+\defbeamertemplate*{title page}{focus}[1][]
+{
+    \begin{tikzpicture}[overlay, remember picture]
+        \fill[color=main] (current page.north west) rectangle ([shift = {(0, -0.45\paperheight)}] current page.north east);
+    \end{tikzpicture}
+    
+    \vspace{-1.65\baselineskip}
+    \begin{minipage}[b][0.35\paperheight]{\textwidth}
+        \vspace{\baselineskip}
+        \usebeamerfont{title}
+        \usebeamercolor[fg]{frametitle}
+        \inserttitle
+    \end{minipage}
+    
+    \begin{minipage}[t][0.1\paperheight]{\textwidth}
+        \usebeamerfont{subtitle}
+        \usebeamercolor[fg]{frametitle}
+        \insertsubtitle
+    \end{minipage}
+    
+    % Set the title graphic in a zero-height box, so that
+    % the position of other elements is not affected.
+    \vbox to 0pt {
+        \raggedleft
+        \inserttitlegraphic
+    }
+    
+    \begin{minipage}[t]{\textwidth}
+        \usebeamerfont{author}
+        \insertauthor
+    \end{minipage}
+    
+    \vspace*{\baselineskip}
+    \begin{minipage}[t]{\textwidth}
+        \usebeamerfont{institute}
+        \insertinstitute
+    \end{minipage}
+    
+    \vspace*{\baselineskip}
+    \begin{minipage}[t]{\textwidth}
+        \usebeamerfont{date}{\insertdate}
+    \end{minipage}
+    
+    \vspace*{5\baselineskip}
+    
+    \addtocounter{framenumber}{-1}
+}
+
+
+
+% Section page.
+\defbeamertemplate*{section page}{focus}{
+    \begin{tikzpicture}[overlay, remember picture]
+        \fill[color=main] (current page.north west) rectangle ([shift = {(0, -0.45\paperheight)}] current page.north east);
+    \end{tikzpicture}
+    
+    \vspace{-2\baselineskip}
+    \begin{minipage}[b][0.45\paperheight]{\textwidth}
+        \usebeamerfont{sectiontitle}
+        \usebeamercolor[fg]{frametitle}
+        \let\hyperlink\@secondoftwo\insertsection
+    \end{minipage}
+    
+    \begin{minipage}[t][0.55\paperheight]{\textwidth}
+    \end{minipage}
+}
+\setbeamertemplate{section page}[focus]
+
+\AtBeginSection{
+    \begin{frame}[plain, noframenumbering]{}
+        \sectionpage
+    \end{frame}
+}
+
+
+% ------------------------------------------------------------------------------------%
+
+
+
+% ------------------------------------------------------------------------------------%%                          Comandos pessoais
+% ------------------------------------------------------------------------------------%
+% Esse comando deve ser usado dentro do ambiente itemize para aumentar o espaço entre os items
 \newcommand{\espaco}[1]{
  \setlength\itemsep{#1}
 } % ex: \espaco{1.5em}
 
-%-----------------------------------------------------------------------------%
+% Criando um slide com um espaçamento maior entre os items de todas as listas de itens:
+% https://tex.stackexchange.com/questions/16793/global-setting-of-spacing-between-items-in-itemize-environment-for-beamer
+\makeatletter
+\define@key{beamerframe}{wide}[10pt]{%
+  \def\beamer@cramped{\itemsep #1\topsep0.5pt\relax}}
+\makeatother
+
+
+%-----------------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------------%
 %                          Opções para o pacote listings 
-%-----------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------%
 % Altera o nome padrão do rótulo usado no comando \autoref{}
 \renewcommand{\lstlistingname}{Código}
 
 % Altera o rótulo a ser usando no elemento pré-textual "Lista de código"
 \renewcommand{\lstlistlistingname}{Lista de códigos}
+
+
+\definecolor{hellgelb}{rgb}{1,1,0.9}
+\definecolor{colKeys}{rgb}{0,0,0}
+\definecolor{colIdentifier}{rgb}{0,0,0.9}
+\definecolor{colComments}{rgb}{.4,.4,.4}
+\definecolor{colString}{rgb}{0,0,0.6}
 
 \definecolor{colBack}{rgb}{1,1,0.9}
 \definecolor{colKeys}{rgb}{0,0,0}
@@ -113,9 +272,7 @@ identifierstyle=\color{colIdentifier},
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
-%-----------------------------------------------------------------------------%
 % Permitindo caracteres acentuados dentro do ambiente lstlisting
-%-----------------------------------------------------------------------------%
 \lstset{%
         inputencoding=utf8,
         extendedchars=true,
@@ -187,7 +344,6 @@ identifierstyle=\color{colIdentifier},
 
 \newcommand{\includecode}[2]{\lstinputlisting[caption=,escapechar={@*},style=#1]{#2}}
 
-%-----------------------------------------------------------------------------%
-
+%-----------------------------------------------------------------------------------%
 
 \mode<all>

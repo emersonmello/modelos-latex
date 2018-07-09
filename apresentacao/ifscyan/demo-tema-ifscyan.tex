@@ -5,8 +5,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[english,brazil]{babel}
 
-% usando tema IFSC-Leve
-\usepackage{beamerthemeIFSC-LEVE2018}
+% usando tema IFSCyan
+\usetheme{ifscyan}
 
 %\pgfdeclareimage[width=\paperwidth]{footer}{../../latex-estilos/apresentacao/titulo-leve/figs/rodape-2018}
 %\pgfdeclareimage[width=.25\paperwidth]{ifsclogo}{../../latex-estilos/apresentacao/titulo-leve/figs/ifsclogo.png}
@@ -32,12 +32,13 @@
 % -------------------------------------------------%
 %              Título 
 % -------------------------------------------------%
-\title{Modelo de apresentação IFSC}
-\subtitle{Tema: Título Leve}
-\titlegraphic{\pgfuseimage{ifsclogo}}
+\title{IFSCyan \\ Um outro tema para o IFSC}
+\subtitle{Tema para \LaTeX Beamer}
 \author{Prof. Emerson Ribeiro de Mello}
-\date{10 de março de 2017}
-\institute{\url{mello@ifsc.edu.br}}
+\titlegraphic{\pgfuseimage{ifsclogo}}
+\institute{
+\url{mello@ifsc.edu.br}}
+\date{04/07/2018}
 % -------------------------------------------------%
 
 
@@ -153,40 +154,6 @@ public static voi main(String args[]){
 \end{lstlisting}		
 \end{frame}
 
-\section{Tipos de frames}
-
-\begin{frame}{Simple frame}
-Um frame simples
-\end{frame}
-
-\begin{frame}[plain]{Plain frame}
-   Esse frame está com o tipo \textbf{plain} e sem rodapé
-\end{frame}
-    
-\begin{frame}[t]
-Esse frame não tem título e está com o conteúdo alinhado ao topo
-\end{frame}
-    
-\begin{frame}[noframenumbering]{Frame sem rodapé}
- Esse frame não tem rodapé e está citando o trabalho \cite{knuth74}.
-\end{frame}
-    
-    \begin{frame}{Fonte}
-        Os pacotes \texttt{inputenc} e \texttt{FiraSans}\footnote{\url{https://fonts.google.com/specimen/Fira+Sans}}\textsuperscript{,}\footnote{\url{http://mozilla.github.io/Fira/}} são usados para definir as fontes
-        \vfill
-        Esse tema permite os estilo \emph{enfatizado}, \alert{alerta}, \textbf{negrito}, \textcolor{example}{cor de exemplo}, \dots
-        \vfill
-        \texttt{FiraSans} também provê suporte para símbolos matemáticos:
-        \begin{equation*}
-            e^{i\pi} + 1 = 0.
-        \end{equation*}
-    \end{frame}
-
-
-    \begin{frame}[focus]
-        Obrigado!
-    \end{frame}
-    
     \appendix
     \begin{frame}{Referências}
         \nocite{*}
