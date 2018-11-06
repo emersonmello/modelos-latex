@@ -19,6 +19,31 @@
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set Helvetica Font in Text and Math in LaTeX %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[scaled=1]{helvet}
+\usepackage[helvet]{sfmath}
+\everymath={\sf}
+\usepackage[T1]{fontenc}
+
+
+% Para permitir que as referências cruzadas sejam ponteiros
+\RequirePackage{hyperref}
+\hypersetup{colorlinks,
+	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
+	citecolor=black,  %%% cor do \cite
+	urlcolor=black,   %%% cor do \url e \href
+	%pdfpagemode,     %%%  None (default), UseThumbs, UseOutlines, FullScreen
+	pdfstartview=FitH, %%% FitB, FitH
+	bookmarksopen=false,
+	bookmarksopenlevel=1
+}
+
+
+
+
 % -------------------------------------------------------------------------------------------------------------- %
 % Configurações da classe exam
 % -------------------------------------------------------------------------------------------------------------- %
