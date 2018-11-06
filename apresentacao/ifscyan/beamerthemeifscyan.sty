@@ -47,7 +47,7 @@
 \setbeamercolor{block body}{bg=main!10!background, fg=main}
 
 \setbeamercolor{block title alerted}{bg=alert, fg=background}
-\setbeamercolor{block body alerted}{bg=alert!10!background, fg=main}
+\setbeamercolor{block body alerted}{bg=alert!10!background, fg=black}
 
 \setbeamercolor{block title example}{bg=example, fg=background}
 \setbeamercolor{block body example}{bg=example!10!background, fg=main}
@@ -209,7 +209,7 @@
 % https://tex.stackexchange.com/questions/16793/global-setting-of-spacing-between-items-in-itemize-environment-for-beamer
 \makeatletter
 \define@key{beamerframe}{wide}[10pt]{%
-  \def\beamer@cramped{\itemsep #1\topsep0.5pt\relax}}
+  \def\beamer@cramped{\itemsep #1\topsep0.5pt\relax}}  
 \makeatother
 
 
@@ -231,21 +231,36 @@
 \definecolor{colComments}{rgb}{.4,.4,.4}
 \definecolor{colString}{rgb}{0,0,0.6}
 
+
+\definecolor{deepblue}{rgb}{0,0,0.8}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
 \definecolor{colBack}{rgb}{1,1,0.9}
-\definecolor{colKeys}{rgb}{0,0,0}
+\definecolor{colKeys}{rgb}{108,48,130}%{0,0,0}
 \definecolor{colIdentifier}{rgb}{0,0,0.9}
-\definecolor{colComments}{rgb}{.4,.4,.4}
-\definecolor{colString}{rgb}{0,0,0.6}
+\definecolor{colComments}{rgb}{0,0.6,0}%{.4,.4,.4}
+\definecolor{colString}{rgb}{0.6,0,0}
+
+
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
 
 \lstset{ %
   aboveskip=\bigskipamount,
   backgroundcolor=\color{colBack},   % choose the background color; you must add \usepackage{color} or 
   basicstyle=\ttfamily\footnotesize,       % the size of the fonts that are used for the code
+  keywordstyle=\color{deepblue},
+  stringstyle=\color{javared},
+  commentstyle=\color{javagreen},
+  morecomment=[s][\color{javadocblue}]{/**}{*/},
   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
   breaklines=true,                 % sets automatic line breaking
   captionpos=n,                    % sets the caption-position to none
   columns=flexible,
-  commentstyle=\color{colComments},    % comment style
+%  commentstyle=\color{colComments},    % comment style
   deletekeywords={...},            % if you want to delete keywords from the given language
   escapechar={@*},          % if you want to add LaTeX within your code
   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
@@ -255,8 +270,8 @@
   xleftmargin=10pt,
   frame=single,	                   % adds a frame around the code
   keepspaces=true,                % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-identifierstyle=\color{colIdentifier},
-  keywordstyle=\color{colKeys},       % keyword style
+%identifierstyle=\color{colIdentifier},
+%  keywordstyle=\color{deepblue},       % keyword style
 %  otherkeywords={*,...},            % if you want to add more keywords to the set
   firstnumber=last,
   numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
@@ -267,7 +282,7 @@ identifierstyle=\color{colIdentifier},
   showstringspaces=false,          % underline spaces within strings only
   showtabs=false,                  % show tabs within strings adding particular underscores
 %   stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle=\color{colString},     % string literal style
+%  stringstyle=\color{colString},     % string literal style
   tabsize=2,	                   % sets default tabsize to 2 spaces
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
