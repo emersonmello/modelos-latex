@@ -8,7 +8,7 @@
 \RequirePackage{ae,aecompl} 
 \RequirePackage{upquote}
 \RequirePackage{boxedminipage,ae}
-\RequirePackage{fancyheadings}
+\RequirePackage{fancyhdr}
 \RequirePackage{pgf}
 \RequirePackage{url,subcaption,graphicx,pgf,multirow,multicol,enumerate}
 \urlstyle{sf}
@@ -16,10 +16,22 @@
 \RequirePackage{listings,color,indentfirst}
 % para resolver o problema dos apóstrofos e crases no listings
 \RequirePackage{upquote}
-% -------------------------------------------------------------------------------------------------------------- %
+% 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set Helvetica Font in Text and Math in LaTeX %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[scaled=1]{helvet}
+\usepackage[helvet]{sfmath}
+\everymath={\sf}
+\usepackage[T1]{fontenc}
+
+
+%-------------------------------------------------------------------------- %
 % Configurações do cabeçalho e rodapé
-% -------------------------------------------------------------------------------------------------------------- %
-\pagestyle{fancy}
+%-------------------------------------------------------------------------- %\pagestyle{fancy}
 \fancyhf{}
 \fancyfoot[R]{\thepage}
 \fancyfoot[L]{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny} }
