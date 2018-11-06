@@ -1,14 +1,12 @@
-%!TEX TS-program = arara
-% arara: pdflatex
-% arara: bibtex
-% arara: makeglossaries
-% arara: pdflatex
-% arara: pdflatex
-% arara: clean: { files: [ relatorio-report.aux, relatorio-report.bbl, relatorio-report.bcf, relatorio-report.cod ] }
-% arara: clean: { files: [ relatorio-report.blg, relatorio-report.lof, relatorio-report.lot, relatorio-report.out ] }
-% arara: clean: { files: [ relatorio-report.toc, relatorio-report.log, relatorio-report.glo, relatorio-report.glg ] } 
-% arara: clean: { files: [ relatorio-report.gls, relatorio-report.glsdefs, relatorio-report.acr, relatorio-report.acn ] } 
-% arara: clean: { files: [ relatorio-report.alg, relatorio-report.log, relatorio-report.xdy, glossario.aux ] } 
+% ------------------------------------------------------------------------------------
+% Instruções de compilação para gerar glossário
+% ------------------------------------------------------------------------------------
+% pdflatex
+% bibtex
+% makeglossaries
+% pdflatex
+% pdflatex
+% ------------------------------------------------------------------------------------
 
 % ------------------------------------------------------------------------------------
 % 2017-04-13 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
@@ -18,11 +16,6 @@
 \usepackage{estilo-relatorio-report}
 \usepackage[alf]{abntex2cite}	% Citações padrão ABNT
 
-
-% para permitir que caracteres acentuados no PDF sejam copiados
-%\usepackage[T1]{fontenc} 
-% para deixar uma fonte mais agradável, porém conflita com o pacote acima
-\usepackage{ae} 
 
 % Esse pacote só foi usado para gerar blocos de textos "lorem ipsum" para preencher o exemplo.
 \usepackage{lipsum}
@@ -46,8 +39,6 @@
 % ------------------------------------------------------------------------------------
 
 
-
-
 \makeglossaries
 
 \begin{document}
@@ -58,13 +49,14 @@
 \include{glossario}
 \pagestyle{empty}
 
+
 % ------------------------------------------------------------------------------------
 % Capa
 % ------------------------------------------------------------------------------------
 \begin{center}
 
 % Logotipo do órgão
-\includegraphics[scale=1.1]{figuras/ifsc-logo-v}
+\includegraphics[scale=.7]{figuras/ifsc-logo-v}
 \vspace{8cm}
 
 % Título
@@ -92,6 +84,7 @@
 \noindent
       \begin{tabular}{|c|c|p{12cm}|} \hline
          \textbf{Data} & \textbf{Versão} & \textbf{Descrição} \\ \hline \hline
+         06/11/2018 & 1.1 & Remoção das instruções para o Arara e uso da família de fontes Helvetica \\ \hline
          13/04/2017 & 1.0 & Versão inicial \\ \hline
       \end{tabular}
 

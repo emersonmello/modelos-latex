@@ -9,19 +9,35 @@
 \RequirePackage[table]{xcolor}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english,brazil]{babel}
-\RequirePackage{url,graphicx,amsmath}
+\RequirePackage{graphicx,amsmath}
 \RequirePackage{array,mdwlist,enumerate,enumitem,longtable,booktabs}
 \RequirePackage{fancyhdr,lastpage}% para deixar paginas em landscape
 \RequirePackage{pdflscape}
 \RequirePackage{pdfpages}
 \RequirePackage[xindy,toc,acronym]{glossaries}
-\RequirePackage{multirow,listings,color,subcaption}
 
 % Para que as página das referências bibliográficas apareça no sumário
 \RequirePackage[nottoc,notlot,notlof]{tocbibind}
 
 % Recuo para o primeiro prágrafo
 % \RequirePackage{indentfirst}
+
+\RequirePackage{url,subcaption,graphicx,pgf,multirow,multicol,enumerate}
+\urlstyle{sf}
+
+\RequirePackage{listings,color,indentfirst}
+% para resolver o problema dos apóstrofos e crases no listings
+\RequirePackage{upquote}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set Helvetica Font in Text and Math in LaTeX %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[scaled=1]{helvet}
+\usepackage[helvet]{sfmath}
+\everymath={\sf}
+\usepackage[T1]{fontenc}
 
 % Para permitir que as referências cruzadas sejam ponteiros
 \RequirePackage{hyperref}
