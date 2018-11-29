@@ -1,0 +1,145 @@
+% ------------------------------------------------------------------------------------
+% 2018-11-29 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% ------------------------------------------------------------------------------------
+\documentclass[11pt]{article}
+\usepackage[a4paper,hmargin=2.2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{estilo-relatorio-article}
+\usepackage[alf]{abntex2cite} % Citações padrão ABNT
+
+% Esse pacote só foi usado para gerar blocos de textos "lorem ipsum" para preencher o exemplo.
+\usepackage{lipsum}
+
+
+\begin{document}
+% ------------------------------------------------------------------------------------
+% Capa
+% ------------------------------------------------------------------------------------
+\pagestyle{empty}	
+\begin{titlepage}
+\begin{center}
+% Logotipo do IFSC
+\includegraphics[scale=.5]{figuras/ifsc-logo-v}
+\vspace{4cm}
+
+\rule{\linewidth}{0.5pt} \\[6pt] 
+
+% Título
+{\huge \bfseries Laboratório 01}
+
+% Subtítulo
+{\large  Método construtor e modificadores de acesso}\\
+
+\rule{\linewidth}{2pt}  \\[10pt]
+\vspace{1cm}
+\end{center}
+
+\begin{minipage}{.9\linewidth}
+
+% Nome do curso, disciplina e professor.
+\begin{minipage}{0.15\textwidth}
+\begin{flushleft} \large
+\textbf{Curso:}\\
+\textbf{Disciplina:}\\
+\textbf{Professor:}
+\end{flushleft}
+\end{minipage}~
+\begin{minipage}{0.9\textwidth}
+\begin{flushleft} \large
+Engenharia de Telecomunicações\\
+POO29004 -- Programação Orientada a Objetos\\
+Emerson Ribeiro de Mello
+\end{flushleft}
+\end{minipage}
+\end{minipage}
+\vspace{3cm}
+
+% Nome dos alunos
+\begin{minipage}{.9\linewidth}
+\begin{flushright}
+\textbf{Alunos}\\
+Nome do primeiro aluno\\
+Nome do segundo aluno
+\end{flushright}
+\end{minipage}
+\vfill
+
+
+% Coloque aqui a data
+\begin{center}
+28 de novembro de 2018
+\end{center}
+
+\end{titlepage}
+\pagestyle{plain}
+% ------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+% ------------------------------------------------------------------------------------
+% Início da parte textual
+% ------------------------------------------------------------------------------------
+
+\section{Introdução}
+\label{sec:introducao}
+
+\lipsum[1]
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.3\linewidth]{figuras/latex-logo}
+    \caption{Logo do \LaTeX}
+    \label{fig:logolatex}
+\end{figure}
+
+Na introdução é apresentada a organização do documento e uma breve descrição de como o mesmo foi construído.   Esse é um modelo em \LaTeX \cite{lamport94} e o estilo das referências bibliográficas segue as normas da ABNT, implementadas pelo pacote abnTeX2. A \autoref{fig:logolatex} apresentada o logo do \LaTeX. O restante do documento está organizado da seguinte forma. Na \autoref{sec:construtorjava} é apresentado o código de como fazer um método construtor em Java. Na \autoref{sec:construtorpython} é apresentado como fazer um método construtor em Python.
+
+\subsection{Método construtor em Java}
+\label{sec:construtorjava}
+
+\java
+
+\begin{lstlisting}
+public class Carro{
+    private String modelo = "Fusca";
+    private int velocidade = 0;
+    
+    public Carro(String mo, int ve){
+        modelo = mo;
+        velocidade = ve;
+    }
+}
+\end{lstlisting}
+
+
+\subsection{Método construtor em Python}
+\label{sec:construtorpython}
+
+\python
+
+\begin{lstlisting}
+class Carro:
+    def __init__(self, modelo='Fusca', velocidade=0):
+        self.modelo = modelo
+        self.velocidade = velocidade
+\end{lstlisting}
+
+
+
+
+
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{referencias}
+
+
+
+
+
+\end{document}
+

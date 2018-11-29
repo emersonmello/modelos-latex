@@ -18,10 +18,12 @@ Modelos de documentos LaTeX que uso nas minhas aulas no Instituto Federal de San
   - [Modelo de monografia do IFSC - 2016](monografia) segue o modelo oficial de trabalho acadêmico publicado pela Biblioteca do IFSC em setembro de 2016.
 - **Notas de aula**
   - [Modelo de notas de aula](nota-de-aula) baseado na classe `article`. 
+  - [Modelo de relatório para trabalho de disciplina](relatorio/homework). Esse modelo pode ser usado por alunos em seus trabalhos de disciplina. 
 - **Prova**
   - [Modelo que faz uso da classe `examdesign`](prova/prova-examdesign) com pequenos ajustes para gerar N versões de uma mesma prova, podendo também gerar a folha de resposta para cada versão.
   - [Modelo que faz uso da classe `exam`](prova/prova-exam). Também permite gerar folha de resposta.
 - **Relatório**
   - [Modelo que faz uso da classe `article`](relatorio/article) e tem um exemplo de um simples relatório.
   - [Modelo que faz uso da classe `report`](relatorio/report) e tem um exemplo de como construir glossário e lista de siglas com o pacote `glossary`.
+  - [Modelo de relatório para trabalho de disciplina](relatorio/homework). Esse modelo pode ser usado por alunos em seus trabalhos de disciplina. 
 
