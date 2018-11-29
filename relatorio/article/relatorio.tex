@@ -1,0 +1,149 @@
+% ------------------------------------------------------------------------------------
+% 2018-11-29 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% ------------------------------------------------------------------------------------
+\documentclass[11pt]{article}
+\usepackage[a4paper,hmargin=2.2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{estilo-relatorio-article}
+\usepackage[alf]{abntex2cite} % Citações padrão ABNT
+
+% Esse pacote só foi usado para gerar blocos de textos "lorem ipsum" para preencher o exemplo.
+\usepackage{lipsum}
+
+\begin{document}
+
+
+% ------------------------------------------------------------------------------------
+% Capa
+% ------------------------------------------------------------------------------------
+\pagestyle{empty}
+\begin{center}
+
+% Logotipo do órgão
+\includegraphics[scale=.7]{figuras/ifsc-logo-v}
+\vspace{7.5cm}
+
+% Título
+{\huge \bfseries Relatório de Análise de Requisitos}
+
+\vspace{.5cm}
+
+% Subtítulo
+{\large \bfseries Um modelo \LaTeX que faz uso da classe \texttt{article}}
+
+\vfill
+\end{center}
+
+% Autor(es)
+{\noindent \large \bfseries 
+Emerson Ribeiro de Mello 
+\\ Segundo Autor do Trabalho
+}
+
+% Data que o relatório foi gerado
+\begin{flushright}
+29 de novembro de 2018
+\end{flushright}
+
+\clearpage
+\pagestyle{plain}
+% ------------------------------------------------------------------------------------
+
+
+% ------------------------------------------------------------------------------------
+% Adicionando sumário
+% ------------------------------------------------------------------------------------
+\tableofcontents
+\clearpage
+
+
+
+
+% ------------------------------------------------------------------------------------
+% Início da parte textual
+% ------------------------------------------------------------------------------------
+
+\section{Introdução}
+\label{sec:introducao}
+
+Na introdução é apresentada a organização do documento e uma breve descrição de como o mesmo foi construído.   Esse é um modelo em \LaTeX \cite{lamport94} e o estilo das referências bibliográficas segue as normas da ABNT, implementadas pelo pacote abnTeX2. A \autoref{fig:logolatex} apresentada o logo do \LaTeX.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\linewidth]{figuras/latex-logo}
+    \caption{Logo do \LaTeX}
+    \label{fig:logolatex}
+\end{figure}
+
+\lipsum[1]
+
+O restante do documento está organizado da seguinte forma. Na \autoref{sec:escopo} é apresentado o escopo do projeto. Na \autoref{sec:requisitos} são listados os requisitos do sistema.
+
+\subsection{Escopo do projeto}
+\label{sec:escopo}
+
+Indica o propósito do sistema a ser desenvolvido. Por exemplo, descreve a necessidade que foi apresentada pela área requisitante. \lipsum[2]
+
+
+\section{Requisitos do sistema}
+\label{sec:requisitos}
+
+Nessa seção deve ser apresentada a lista de pessoas que participaram do levantamento de requisitos. Pode-se basear nos livro de \cite{bezerra02}.
+
+\lipsum[2]
+
+
+\subsection{Requisitos funcionais}
+\label{sec:reqfuncionais}
+
+\begin{enumerate}
+	\item O sistema deve permitir que alunos visualizem as notas obtidas
+	\item O sistema deve permitir que os alunos façam matrícula nas disciplinas do semestre letivo
+	\item O sistema deve permitir que os alunos possam obter seus históricos escolares
+\end{enumerate}
+
+\subsection{Requisitos não funcionais}
+\label{sec:reqnaofuncionais}
+
+\begin{enumerate}
+	\item A interface do usuário deve ser simplificada e evitar múltiplos cliques (passos) para chegar em qualquer funcionalidade
+	\item Fazer uso de protocolos criptográficos para troca de mensagens
+	\item O sistema deverá ser desenvolvido em uma linguagem para web e que não dependa de plugins para o navegador
+	\item O banco de dados precisar ser o MySQL
+\end{enumerate}
+
+\subsection{Regras de negócio}
+\label{sec:regrasdenegocio}
+
+\begin{enumerate}
+	\item \textbf{Número máximo de matrículas por semestre letivo}
+	\begin{itemize}
+		\item Em um semestre letivo um aluno não poderá se matricular em um número de disciplinas cujo o soma de créditos ultrapasse 18.
+	\end{itemize}
+	\item \textbf{Número máximo de alunos por turma}
+	\begin{itemize}
+		\item Uma oferta de disciplina não pode ter mais de 40 vagas para matrícula.
+	\end{itemize}
+	\item \textbf{Validação de créditos}
+	\begin{itemize}
+		\item Um aluno só poderá solicitar validação de uma disciplina caso nunca tenha se matriculado na mesma.
+	\end{itemize}
+\end{enumerate}
+
+
+
+
+
+
+
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{referencias}
+
+
+
+
+
+\end{document}
+

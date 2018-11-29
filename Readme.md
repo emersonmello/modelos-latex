@@ -22,5 +22,6 @@ Modelos de documentos LaTeX que uso nas minhas aulas no Instituto Federal de San
   - [Modelo que faz uso da classe `examdesign`](prova/prova-examdesign) com pequenos ajustes para gerar N versões de uma mesma prova, podendo também gerar a folha de resposta para cada versão.
   - [Modelo que faz uso da classe `exam`](prova/prova-exam). Também permite gerar folha de resposta.
 - **Relatório**
+  - [Modelo que faz uso da classe `article`](relatorio/article) e tem um exemplo de um simples relatório.
   - [Modelo que faz uso da classe `report`](relatorio/report) e tem um exemplo de como construir glossário e lista de siglas com o pacote `glossary`.
 
