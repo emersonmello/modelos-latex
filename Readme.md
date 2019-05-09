@@ -2,10 +2,12 @@
 
 # Modelos de documentos em LaTeX para docentes e discentes
 
-Modelos de documentos LaTeX que uso nas minhas aulas no Instituto Federal de Santa Catarina (IFSC).
+Modelos de documentos LaTeX que uso em minhas aulas ou em outras atividades no Instituto Federal de Santa Catarina (IFSC).
 
 
 
+- **ATA de reunião**
+  - [Modelo de ATA de reunião informal](ata-reunioes) baseado no artigo *Minutes in Less That Hours: Using LaTeX Resources* de Jimm Hefferon.
 - **Apresentação**
   - [Tema *Título Leve*](apresentacao/titulo-leve) faz uso da classe `beamer`.
   - [Tema *IFSCyan*](apresentacao/ifscyan) faz uso da classe `beamer` e tem como base o tema [Focus](https://github.com/elauksap/focus-beamertheme).
