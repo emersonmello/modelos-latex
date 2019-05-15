@@ -1,0 +1,173 @@
+% 2019-05-15 Emerson Ribeiro de Mello - mello@ifsc.edu.br
+
+\documentclass[11pt,twoside,a4paper]{inifsc}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{url,graphicx,pgf}
+\urlstyle{sf}
+
+%-----------------------------------------------------------
+% Informações que aparecerão no cabeçalho
+%-----------------------------------------------------------
+% Logo
+\pgfdeclareimage[width=5.5cm]{logo}{imagens/ifsc-h-sje.png}
+
+\instituicao{Ministério da Educação\\
+Secretaria de Educação Profissional e Tecnológica\\
+Instituto Federal de Santa Catarina\\
+Campus São José}
+
+
+
+
+%-----------------------------------------------------------
+% Início do documento
+%-----------------------------------------------------------
+\begin{document}
+
+%-----------------------------------------------------------
+% Comandos opcionais
+%-----------------------------------------------------------
+% Esse comando é opcional. Pode comentá-lo
+\disposicao{Dispõe de como poderia ser um modelo em \LaTeX~ para escrita de regulamentos e normativas no Instituto Federal de Santa Catarina.}
+    
+% Esse comando é opcional. Pode comentá-lo
+\assinatura{Emerson Ribeiro de Mello}{Primeiro autor do modelo}
+
+% Esse comando é opcional. Pode comentá-lo
+\aprovado{Aprovado na reunião do órgão sem representação em 15 de maio de 2019.}
+%-----------------------------------------------------------
+
+
+%-----------------------------------------------------------
+% Início da normativa. Deve-se colocar o título da normativa
+% como parâmetro do ambiente normativa
+%-----------------------------------------------------------
+\begin{normativa}{Modelo \LaTeX~para Regulamentos e Instruções Normativas}
+
+%-----------------------------------------------------------
+%  o agrupamento de artigos poderá constituir Seção; o de Seções, o Capítulo.
+%-----------------------------------------------------------
+\chapter{Disposições preliminares}
+
+\begin{artigo}
+    \item A elaboração, a redação, a alteração e a consolidação das leis obedecerão ao disposto na lei complementar Nº 95, de 26 de fevereiro de 1998\footnote{\url{http://www.planalto.gov.br/ccivil_03/leis/lcp/lcp95.htm}}.
+
+    \paragrafounico{As disposições desta Lei Complementar aplicam-se, ainda, às medidas provisórias e demais atos normativos referidos no art. 59 da Constituição Federal, bem como, no que couber, aos decretos e aos demais atos de regulamentação expedidos por órgãos do Poder Executivo.}    
+\end{artigo}
+
+
+
+\chapter{Das Técnicas de Elaboração e Redação}
+
+
+\section{Da Articulação e da Redação das Leis}
+
+
+\begin{artigo}
+    \item \label{art:observancia}
+    Os textos legais serão articulados com observância dos seguintes princípios:
+    \begin{inciso}
+        \item \label{inc:formatoartigo}
+         a unidade básica de articulação será o artigo, indicado pela abreviatura "Art.", seguida de numeração ordinal até o nono e cardinal a partir deste;
+        \item \textcolor{red}{os artigos desdobrar-se-ão em parágrafos ou em incisos; os parágrafos em incisos, os incisos em alíneas e as alíneas em itens};
+        \item os parágrafos serão representados pelo sinal gráfico §, seguido de numeração ordinal até o nono e cardinal a partir deste, utilizando-se, quando existente apenas um, a expressão ``parágrafo único'' por extenso;
+        \item os incisos serão representados por algarismos romanos, as alíneas por letras minúsculas e os itens por algarismos arábicos;
+        \item o agrupamento de artigos poderá constituir Subseções; o de Subseções, a Seção; o de Seções, o Capítulo; o de Capítulos, o Título; o de Títulos, o Livro e o de Livros, a Parte;
+    \end{inciso}
+
+    \item As disposições normativas serão redigidas com clareza, precisão e ordem lógica, observadas, para esse propósito, as seguintes normas: 
+    \begin{inciso}
+        \item para a obtenção de clareza:
+        \begin{inciso}
+            \item usar as palavras e as expressões em seu sentido comum, salvo quando a norma versar sobre assunto técnico, hipótese em que se empregará a nomenclatura própria da área em que se esteja legislando;
+            \item usar frases curtas e concisas;
+            \item construir as orações na ordem direta, evitando preciosismo, neologismo e adjetivações dispensáveis;
+        \end{inciso}
+        \item para a obtenção de precisão:
+        \begin{inciso}
+            \item evitar o emprego de expressão ou palavra que confira duplo sentido ao texto;
+            \item grafar por extenso quaisquer referências a números e percentuais, exceto data, número de lei e nos casos em que houver prejuízo para a compreensão do texto; 
+            \begin{inciso}
+                \item Só para mostrar como seria o último nível de hierarquia
+            \end{inciso}
+        \end{inciso}
+        \item para a obtenção de ordem lógica:
+        \begin{inciso}
+            \item reunir sob as categorias de agregação - subseção, seção, capítulo, título e livro - apenas as disposições relacionadas com o objeto da lei;
+            \item restringir o conteúdo de cada artigo da lei a um único assunto ou princípio;
+            \item expressar por meio dos parágrafos os aspectos complementares à norma enunciada no caput do artigo e as exceções à regra por este estabelecida;
+            \item promover as discriminações e enumerações por meio dos incisos, alíneas e itens.
+        \end{inciso}
+    \end{inciso}
+\end{artigo}
+
+
+
+\chapter{Dos ambientes desse modelo}
+
+\section{Dos desdobramentos}
+
+\begin{artigo}
+    \item O ambiente \textbf{artigo} só possui um nível de profundidade e dentro desse ambiente pode-se colocar o ambiente \textbf{parágrafo} ou o ambiente \textbf{inciso} ou o comando \textbf{paragrafounico}.
+    \item \label{art:comparagrafoaserref}
+    O ambiente \textbf{parágrafo} tem quatro níveis de profundidade
+    \begin{paragrafo}
+        \item \label{par:nivelparagrafo}
+        o primeiro nível é para representar o parágrafo
+        \begin{paragrafo}
+            \item \label{inc:segnivelparagrafo}
+             o segundo nível é para representar o inciso
+            \begin{paragrafo}
+                \item \label{ali:ternivelparagrafo}
+                o terceiro nível é para representar a alínea
+                \begin{paragrafo}
+                    \item o quarto nível é para representar o item
+                \end{paragrafo}
+            \end{paragrafo}
+        \end{paragrafo}
+    \end{paragrafo}
+
+    \item O ambiente \textbf{inciso} tem três níveis de profundidade
+    \begin{inciso}
+        \item o primeiro nível é para representar o inciso
+        \begin{inciso}
+            \item o segundo nível é para representar a alínea
+            \begin{inciso}
+                \item o terceiro nível é para representar o item
+            \end{inciso}
+        \end{inciso}
+    \end{inciso}
+    \item Esse artigo possui somente um parágrafo
+    \paragrafounico{Esse é o único parágrafo do artigo.}
+\end{artigo}
+
+
+
+\section{Das referências cruzadas}
+
+\begin{artigo}
+    \item Deverá ter um \texttt{label} definido Todo artigo, parágrafo, inciso, alínea ou item que precisar ser referenciado.
+    \begin{paragrafo}
+        \item Aqui tem-se um exemplo de referência ao \ref{art:observancia}.
+        \item Aqui tem-se um exemplo de referência ao \ref{art:comparagrafoaserref}, \ref{par:nivelparagrafo}.
+        \item Aqui tem-se um exemplo de referência na ordem decrescente ao \ref{art:comparagrafoaserref}, \ref{par:nivelparagrafo}, \ref{inc:segnivelparagrafo}, \ref{ali:ternivelparagrafo} do Modelo de Regimento.
+        \item Aqui tem-se um exemplo de referência na ordem crescente a alínea \ref{ali:ternivelparagrafo} do inciso \ref{inc:segnivelparagrafo} do \ref{par:nivelparagrafo} do \ref{art:comparagrafoaserref} do Modelo de Regimento.
+    \end{paragrafo}
+\end{artigo}
+
+
+\section{Das limitações conhecidas}
+
+\begin{artigo}
+    \item De acordo com o inciso \ref{inc:formatoartigo} do \ref{art:observancia}, os artigos devem ter a numeração ordinal até o nono e cardinal a parte deste, porém esse modelo ainda não está respeitando isso.
+    \paragrafounico{É possível que os pacotes \texttt{moreenum} e \texttt{fmtcount} possuam facilidades para permitir isso por meio de contadores personalizados.}
+    \item De acordo com o inciso V do art. 10 da lei complementar nº 95 de 26 de fevereiro de 1998, o agrupamento de artigos poderá constituir Subseções; o de Subseções, a Seção; o de Seções, o Capítulo; o de Capítulos, o Título; o de Títulos, o Livro e o de Livros, a Parte;
+    \paragrafounico{Esse modelo só redefiniu a apresentação das divisões \texttt{chapter} e \texttt{section}.}
+    
+\end{artigo}
+
+    
+\end{normativa}
+\end{document}

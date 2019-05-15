@@ -6,11 +6,11 @@ Modelos de documentos LaTeX que uso em minhas aulas ou em outras atividades no I
 
 
 
-- **ATA de reunião**
-  - [Modelo de ATA de reunião informal](ata-reunioes) baseado no artigo *Minutes in Less That Hours: Using LaTeX Resources* de Jimm Hefferon.
-- **Apresentação**
-  - [Tema *Título Leve*](apresentacao/titulo-leve) faz uso da classe `beamer`.
-  - [Tema *IFSCyan*](apresentacao/ifscyan) faz uso da classe `beamer` e tem como base o tema [Focus](https://github.com/elauksap/focus-beamertheme).
+## Modelos para área acadêmica
+
+-   **Apresentação**
+    - [Tema *Título Leve*](apresentacao/titulo-leve) faz uso da classe `beamer`.
+    - [Tema *IFSCyan*](apresentacao/ifscyan) faz uso da classe `beamer` e tem como base o tema [Focus](https://github.com/elauksap/focus-beamertheme).
 - **Artigos**
   - [Modelo de artigo científico](artigo/modelo-ifsc-proppi) baseado no modelo da Pró-Reitoria de Pesquisa, Pós-graduação e Inovação (PROPPI) do IFSC.
 - **Lista de exercício**
@@ -29,3 +29,11 @@ Modelos de documentos LaTeX que uso em minhas aulas ou em outras atividades no I
   - [Modelo que faz uso da classe `report`](relatorio/report) e tem um exemplo de como construir glossário e lista de siglas com o pacote `glossary`.
   - [Modelo de relatório para trabalho de disciplina](relatorio/homework). Esse modelo pode ser usado por alunos em seus trabalhos de disciplina. 
 
+
+
+## Modelos para a área administrativa
+
+- **ATA de reunião**
+  - [Modelo de ATA de reunião informal](ata-reunioes) baseado no artigo *Minutes in Less That Hours: Using LaTeX Resources* de Jimm Hefferon.
+- **Instrução normativa**
+    - [Modelo para gerar documentos](instrucao-normativa) que requer a organização do texto em artigos, parágrafos, incisos e alíneas, como  instruções normativa, regulamentos e resoluções.
