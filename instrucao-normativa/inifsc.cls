@@ -73,7 +73,7 @@
 \RequirePackage[utf8]{inputenc}
 
 \RequirePackage{enumitem}
-\RequirePackage{fmtcount,moreenum}
+\RequirePackage{moreenum}
 
 % Novas listas enumerate para artigo, paragrafo, inciso e alinea
 
@@ -137,13 +137,20 @@
 \makeevenfoot{plain}{}{\thepage}{}
 \makeoddfoot{plain}{}{\thepage}{}
 
-\makeoddhead{plain}{\pgfuseimage{logo}}{}{\textsc{\scriptsize{\show@instituicao}}}
-\makeevenhead{plain}{\pgfuseimage{logo}}{}{\textsc{\scriptsize{\show@instituicao}}}
-\makeheadrule{plain}{\textwidth}{\normalrulethickness}
+% Usando um logo que ocupa o cabeçalho todo
+\makeoddhead{plain}{}{\pgfuseimage{logo}}{}
+\makeevenhead{plain}{}{\pgfuseimage{logo}}{}
+\makeoddhead{headings}{}{\pgfuseimage{logo}}{}
+\makeevenhead{headings}{}{\pgfuseimage{logo}}{}
 
-\makeoddhead{headings}{\pgfuseimage{logo}}{}{\textsc{\scriptsize{\show@instituicao}}}
-\makeevenhead{headings}{\pgfuseimage{logo}}{}{\textsc{\scriptsize{\show@instituicao}}}
-\makeheadrule{headings}{\textwidth}{\normalrulethickness}
+% Para usar um logo na esquerda e o texto de instituição na direita
+% \makeoddhead{plain}{\pgfuseimage{logo}}{}{\textsc{\scriptsize{\show@instituicao}}}
+% \makeevenhead{plain}{\pgfuseimage{logo}}{}{\textsc{\scriptsize{\show@instituicao}}}
+% \makeheadrule{plain}{\textwidth}{\normalrulethickness}
+% \makeoddhead{headings}{\pgfuseimage{logo}}{}{\textsc{\scriptsize{\show@instituicao}}}
+% \makeevenhead{headings}{\pgfuseimage{logo}}{}{\textsc{\scriptsize{\show@instituicao}}}
+% \makeheadrule{headings}{\textwidth}{\normalrulethickness}
+
 \makeevenfoot{headings}{}{\thepage}{}
 \makeoddfoot{headings}{}{\thepage}{}
 

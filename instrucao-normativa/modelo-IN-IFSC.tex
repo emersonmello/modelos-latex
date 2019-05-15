@@ -11,15 +11,12 @@
 % Informações que aparecerão no cabeçalho
 %-----------------------------------------------------------
 % Logo
-\pgfdeclareimage[width=5.5cm]{logo}{imagens/ifsc-h-sje.png}
+% \pgfdeclareimage[width=5.5cm]{logo}{imagens/ifsc-h-sje.png}
+\pgfdeclareimage[width=1.27\linewidth]{logo}{imagens/ifsc-header.png}
 
-\instituicao{Ministério da Educação\\
-Secretaria de Educação Profissional e Tecnológica\\
-Instituto Federal de Santa Catarina\\
-Campus São José}
-
-
-
+% \instituicao{Ministério da Educação\\
+% Secretaria de Educação Profissional e Tecnológica\\
+% Instituto Federal de Santa Catarina\\ Campus São José}
 
 %-----------------------------------------------------------
 % Início do documento
@@ -30,7 +27,7 @@ Campus São José}
 % Comandos opcionais
 %-----------------------------------------------------------
 % Esse comando é opcional. Pode comentá-lo
-\disposicao{Dispõe de como poderia ser um modelo em \LaTeX~ para escrita de regulamentos e normativas no Instituto Federal de Santa Catarina.}
+\disposicao{Dispõe de como poderia ser um modelo em \LaTeX~para escrita de regulamentos e normativas no Instituto Federal de Santa Catarina.}
     
 % Esse comando é opcional. Pode comentá-lo
 \assinatura{Emerson Ribeiro de Mello}{Primeiro autor do modelo}
@@ -66,10 +63,10 @@ Campus São José}
 
 
 \begin{artigo}
-    \item \label{art:observancia}
+    \item\label{art:observancia}
     Os textos legais serão articulados com observância dos seguintes princípios:
     \begin{inciso}
-        \item \label{inc:formatoartigo}
+        \item\label{inc:formatoartigo}
          a unidade básica de articulação será o artigo, indicado pela abreviatura "Art.", seguida de numeração ordinal até o nono e cardinal a partir deste;
         \item \textcolor{red}{os artigos desdobrar-se-ão em parágrafos ou em incisos; os parágrafos em incisos, os incisos em alíneas e as alíneas em itens};
         \item os parágrafos serão representados pelo sinal gráfico §, seguido de numeração ordinal até o nono e cardinal a partir deste, utilizando-se, quando existente apenas um, a expressão ``parágrafo único'' por extenso;
@@ -95,7 +92,7 @@ Campus São José}
         \end{inciso}
         \item para a obtenção de ordem lógica:
         \begin{inciso}
-            \item reunir sob as categorias de agregação - subseção, seção, capítulo, título e livro - apenas as disposições relacionadas com o objeto da lei;
+            \item reunir sob as categorias de agregação -- subseção, seção, capítulo, título e livro -- apenas as disposições relacionadas com o objeto da lei;
             \item restringir o conteúdo de cada artigo da lei a um único assunto ou princípio;
             \item expressar por meio dos parágrafos os aspectos complementares à norma enunciada no caput do artigo e as exceções à regra por este estabelecida;
             \item promover as discriminações e enumerações por meio dos incisos, alíneas e itens.
@@ -111,16 +108,16 @@ Campus São José}
 
 \begin{artigo}
     \item O ambiente \textbf{artigo} só possui um nível de profundidade e dentro desse ambiente pode-se colocar o ambiente \textbf{parágrafo} ou o ambiente \textbf{inciso} ou o comando \textbf{paragrafounico}.
-    \item \label{art:comparagrafoaserref}
+    \item\label{art:comparagrafoaserref}
     O ambiente \textbf{parágrafo} tem quatro níveis de profundidade
     \begin{paragrafo}
-        \item \label{par:nivelparagrafo}
+        \item\label{par:nivelparagrafo}
         o primeiro nível é para representar o parágrafo
         \begin{paragrafo}
-            \item \label{inc:segnivelparagrafo}
+            \item\label{inc:segnivelparagrafo}
              o segundo nível é para representar o inciso
             \begin{paragrafo}
-                \item \label{ali:ternivelparagrafo}
+                \item\label{ali:ternivelparagrafo}
                 o terceiro nível é para representar a alínea
                 \begin{paragrafo}
                     \item o quarto nível é para representar o item
@@ -150,10 +147,10 @@ Campus São José}
 \begin{artigo}
     \item Deverá ter um \texttt{label} definido Todo artigo, parágrafo, inciso, alínea ou item que precisar ser referenciado.
     \begin{paragrafo}
-        \item Aqui tem-se um exemplo de referência ao \ref{art:observancia}.
-        \item Aqui tem-se um exemplo de referência ao \ref{art:comparagrafoaserref}, \ref{par:nivelparagrafo}.
-        \item Aqui tem-se um exemplo de referência na ordem decrescente ao \ref{art:comparagrafoaserref}, \ref{par:nivelparagrafo}, \ref{inc:segnivelparagrafo}, \ref{ali:ternivelparagrafo} do Modelo de Regimento.
-        \item Aqui tem-se um exemplo de referência na ordem crescente a alínea \ref{ali:ternivelparagrafo} do inciso \ref{inc:segnivelparagrafo} do \ref{par:nivelparagrafo} do \ref{art:comparagrafoaserref} do Modelo de Regimento.
+        \item Aqui tem-se um exemplo de referência ao~\ref{art:observancia}.
+        \item Aqui tem-se um exemplo de referência ao~\ref{art:comparagrafoaserref},~\ref{par:nivelparagrafo}.
+        \item Aqui tem-se um exemplo de referência na ordem decrescente ao~\ref{art:comparagrafoaserref},~\ref{par:nivelparagrafo},~\ref{inc:segnivelparagrafo},~\ref{ali:ternivelparagrafo} do Modelo de Regimento.
+        \item Aqui tem-se um exemplo de referência na ordem crescente a alínea~\ref{ali:ternivelparagrafo} do inciso~\ref{inc:segnivelparagrafo} do~\ref{par:nivelparagrafo} do~\ref{art:comparagrafoaserref} do Modelo de Regimento.
     \end{paragrafo}
 \end{artigo}
 
@@ -161,13 +158,12 @@ Campus São José}
 \section{Das limitações conhecidas}
 
 \begin{artigo}
-    \item De acordo com o inciso \ref{inc:formatoartigo} do \ref{art:observancia}, os artigos devem ter a numeração ordinal até o nono e cardinal a parte deste, porém esse modelo ainda não está respeitando isso.
+    \item De acordo com o inciso~\ref{inc:formatoartigo} do~\ref{art:observancia}, os artigos devem ter a numeração ordinal até o nono e cardinal a parte deste, porém esse modelo ainda não está respeitando isso.
     \paragrafounico{É possível que os pacotes \texttt{moreenum} e \texttt{fmtcount} possuam facilidades para permitir isso por meio de contadores personalizados.}
     \item De acordo com o inciso V do art. 10 da lei complementar nº 95 de 26 de fevereiro de 1998, o agrupamento de artigos poderá constituir Subseções; o de Subseções, a Seção; o de Seções, o Capítulo; o de Capítulos, o Título; o de Títulos, o Livro e o de Livros, a Parte;
     \paragrafounico{Esse modelo só redefiniu a apresentação das divisões \texttt{chapter} e \texttt{section}.}
     
 \end{artigo}
 
-    
 \end{normativa}
 \end{document}
