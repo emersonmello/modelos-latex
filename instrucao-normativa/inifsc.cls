@@ -93,12 +93,14 @@
 
 % Novas listas enumerate para artigo, paragrafo, inciso e alinea
 
-\newlist{artigo}{enumerate}{1}
+\newlist{artigo}{enumerate}{5}
 % \setlist[artigo]{resume,labelindent=\parindent, itemindent=0px, align=left, label=\textbf{Art. \arabic*º}, ref=art. \arabic*º}
 
-\setlist[artigo]{resume,labelindent=\parindent, itemindent=0px, align=left, label=\textbf{Art. \ordcard*}, ref=art. \ordcard*}
-
-
+\setlist[artigo,1]{resume,labelindent=\parindent, itemindent=0px, align=left, label=\textbf{Art. \ordcard*}, ref=art. \ordcard*}
+\setlist[artigo,2]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\textbf{Parágrafo único -}, ref=parágrafo único}
+\setlist[artigo,3]{start=1,labelindent=\parindent, topsep=0pt,align=left,itemindent=0px, label=\Roman*.,ref=\Roman*}
+\setlist[artigo,4]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px,align=left, label=\alph*),ref=\alph*}
+\setlist[artigo,5]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\arabic*.}
 
 \newlist{paragrafo}{enumerate}{4}
 \setlist[paragrafo,1]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\textbf{§\ordcard*}, ref=§\ordcard*}
@@ -110,11 +112,6 @@
 \setlist[inciso,1]{start=1,labelindent=\parindent, topsep=0pt,align=left, itemindent=0px,label=\Roman*.,ref=\Roman*}
 \setlist[inciso,2]{start=1,labelindent=\parindent,topsep=0pt, align=left,itemindent=0px, label=\alph*),ref=\alph*}
 \setlist[inciso,3]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\arabic*.}
-
-% comando para gerar parágrafo único
-\newcommand{\paragrafounico}[1]{%
-\par\textbf{Parágrafo único - } #1\par
-}
 
 
 \RequirePackage{titlesec}

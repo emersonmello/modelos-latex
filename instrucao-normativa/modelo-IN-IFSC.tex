@@ -50,10 +50,10 @@
 
 \begin{artigo}
     \item A elaboração, a redação, a alteração e a consolidação das leis obedecerão ao disposto na lei complementar Nº 95, de 26 de fevereiro de 1998\footnote{\url{http://www.planalto.gov.br/ccivil_03/leis/lcp/lcp95.htm}}.
-
-    \paragrafounico{As disposições desta Lei Complementar aplicam-se, ainda, às medidas provisórias e demais atos normativos referidos no art. 59 da Constituição Federal, bem como, no que couber, aos decretos e aos demais atos de regulamentação expedidos por órgãos do Poder Executivo.}    
+    \begin{artigo}
+        \item As disposições desta Lei Complementar aplicam-se, ainda, às medidas provisórias e demais atos normativos referidos no art. 59 da Constituição Federal, bem como, no que couber, aos decretos e aos demais atos de regulamentação expedidos por órgãos do Poder Executivo.
+    \end{artigo}
 \end{artigo}
-
 
 
 \chapter{Das Técnicas de Elaboração e Redação}
@@ -107,7 +107,15 @@
 \section{Dos desdobramentos}
 
 \begin{artigo}
-    \item O ambiente \textbf{artigo} só possui um nível de profundidade e dentro desse ambiente pode-se colocar o ambiente \textbf{parágrafo} ou o ambiente \textbf{inciso} ou o comando \textbf{paragrafounico}.
+    \item O ambiente \textbf{artigo} possui cinco níveis de profundidade e dentro desse ambiente pode-se ainda colocar o ambiente \textbf{parágrafo} ou o ambiente \textbf{inciso}.
+    \begin{artigo}
+        \item Se o artigo tiver somente um parágrafo, então crie um segundo nível do ambiente artigo, como é o que está sendo feito nesse parágrafo.
+        \begin{artigo}
+            \item Se o artigo possuir mais de um parágrafo, então o dentro do ambiente \texttt{artigo} deve-se colocar um ambiente \texttt{parágrafo}.
+        \end{artigo}
+    \end{artigo}
+
+
     \item\label{art:comparagrafoaserref}
     O ambiente \textbf{parágrafo} tem quatro níveis de profundidade
     \begin{paragrafo}
@@ -136,10 +144,7 @@
             \end{inciso}
         \end{inciso}
     \end{inciso}
-    \item Esse artigo possui somente um parágrafo
-    \paragrafounico{Esse é o único parágrafo do artigo.}
 \end{artigo}
-
 
 
 \section{Das referências cruzadas}
@@ -150,7 +155,9 @@
         \item Aqui tem-se um exemplo de referência ao~\ref{art:observancia}.
         \item Aqui tem-se um exemplo de referência ao~\ref{art:comparagrafoaserref},~\ref{par:nivelparagrafo}.
         \item Aqui tem-se um exemplo de referência na ordem decrescente ao~\ref{art:comparagrafoaserref},~\ref{par:nivelparagrafo},~\ref{inc:segnivelparagrafo},~\ref{ali:ternivelparagrafo} do Modelo de Regimento.
-        \item Aqui tem-se um exemplo de referência na ordem crescente a alínea~\ref{ali:ternivelparagrafo} do inciso~\ref{inc:segnivelparagrafo} do~\ref{par:nivelparagrafo} do~\ref{art:comparagrafoaserref} do Modelo de Regimento.
+        \begin{paragrafo}
+            \item Aqui tem-se um exemplo de referência na ordem crescente a alínea~\ref{ali:ternivelparagrafo} do inciso~\ref{inc:segnivelparagrafo} do~\ref{par:nivelparagrafo} do~\ref{art:comparagrafoaserref} do Modelo de Regimento.    
+        \end{paragrafo}
     \end{paragrafo}
 \end{artigo}
 
@@ -159,8 +166,20 @@
 
 \begin{artigo}
     \item De acordo com o inciso V do art. 10 da lei complementar nº 95 de 26 de fevereiro de 1998, o agrupamento de artigos poderá constituir Subseções; o de Subseções, a Seção; o de Seções, o Capítulo; o de Capítulos, o Título; o de Títulos, o Livro e o de Livros, a Parte;
-    \paragrafounico{Esse modelo só redefiniu a apresentação das divisões \texttt{chapter} e \texttt{section}.}
+    \begin{artigo}
+        \item Esse modelo redefiniu a apresentação das divisões \texttt{chapter} e \texttt{section}.
+    \end{artigo}
+
+    \item O ambiente \textbf{artigo} cria uma lista de itens com vários níveis de profundidade, porém seu uso deveria ser restringido somente para quando quiser criar parágrafo único.
+    \begin{artigo}
+        \item Seria interessante criar uma solução de listas que se houver somente um único item, esse seria numerado com parágrafo único, senão todos os itens deveriam ser numerados com o símbolo § seguido de um número cardinal.
+        \begin{artigo}
+            \item Enquanto isso, não use mais de um de nível de profundidade para \textbf{artigo} se você tiver mais de um parágrafo dentro desse artigo.
+        \end{artigo}
+    \end{artigo}
+
     \item É possível que existam outras limitações nesse modelo e os autores incentivam que, caso encontre alguma, reporte-a aos autores.
+    
 \end{artigo}
 
 \end{normativa}
