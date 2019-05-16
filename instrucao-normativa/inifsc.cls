@@ -3,7 +3,7 @@
 
 % https://en.wikibooks.org/wiki/LaTeX/List_Structures#Easylist_package
 
-\ProvidesClass{inifsc}[2019/05/15 version 1.00 Instrucao Normativa] 
+\ProvidesClass{inifsc}[2019/05/15 version 1.01 Instrucao Normativa] 
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: initial code part
@@ -73,15 +73,35 @@
 \RequirePackage[utf8]{inputenc}
 
 \RequirePackage{enumitem}
-\RequirePackage{moreenum}
+
+% Macro para traduzir o contador de forma a deixar em ordinal número < 10 e cardinal quando >=10
+\def\traduzir#1{
+\ifx @#1%
+\else
+\ifnum\number#1<10
+\number#1º%
+\else
+\number#1%
+\fi
+\fi
+}
+\def\ordcard#1{\expandafter\@ordcard\csname c@#1\endcsname}
+\def\@ordcard#1{\traduzir{#1}}
+\AddEnumerateCounter{\ordcard}{\@ordcard}{999}
+
+
 
 % Novas listas enumerate para artigo, paragrafo, inciso e alinea
 
 \newlist{artigo}{enumerate}{1}
-\setlist[artigo]{resume,labelindent=\parindent, itemindent=0px, align=left, label=\textbf{Art. \arabic*º}, ref=art. \arabic*º}
+% \setlist[artigo]{resume,labelindent=\parindent, itemindent=0px, align=left, label=\textbf{Art. \arabic*º}, ref=art. \arabic*º}
+
+\setlist[artigo]{resume,labelindent=\parindent, itemindent=0px, align=left, label=\textbf{Art. \ordcard*}, ref=art. \ordcard*}
+
+
 
 \newlist{paragrafo}{enumerate}{4}
-\setlist[paragrafo,1]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\textbf{§ \arabic*º}, ref=§ \arabic*º}
+\setlist[paragrafo,1]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\textbf{§\ordcard*}, ref=§\ordcard*}
 \setlist[paragrafo,2]{start=1,labelindent=\parindent, topsep=0pt,align=left,itemindent=0px, label=\Roman*.,ref=\Roman*}
 \setlist[paragrafo,3]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px,align=left, label=\alph*),ref=\alph*}
 \setlist[paragrafo,4]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\arabic*.}
