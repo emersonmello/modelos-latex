@@ -165,24 +165,35 @@
 \RequirePackage{lastpage}
 
 \RequirePackage{fancyhdr}
+
+
 \fancypagestyle{firstpage}{%
   \fancyhf{} % clear all six fields
-  \renewcommand{\headrulewidth}{1pt}
+  \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
-  \fancyhead[L]{\pgfuseimage{logo}}
-  \fancyhead[R]{
-  \begin{scriptsize}  
-  \textsc{\show@instituicao}
-  \end{scriptsize}}
+  \fancyhead[C]{\pgfuseimage{logo}}
   \fancyfoot[R]{página \thepage~de \pageref{LastPage}}
 }
+
+% Se desejar usar um texto para o cabeçalho, faça uso do comando instituicao e descomente as linhas abaixo
+% \fancypagestyle{firstpage}{%
+%   \fancyhf{} % clear all six fields
+%   \renewcommand{\headrulewidth}{1pt}
+%   \renewcommand{\footrulewidth}{0pt}
+%   \fancyhead[L]{\pgfuseimage{logo}}
+%   \fancyhead[R]{
+%   \begin{scriptsize}  
+%   \textsc{\show@instituicao}
+%   \end{scriptsize}}
+%   \fancyfoot[R]{página \thepage~de \pageref{LastPage}}
+% }
 
 \fancypagestyle{followingpage}{%
   \fancyhf{} % clear all six fields
   \fancyhead[RE,LO]{\begin{tiny}\textsc{\show@departamento}\end{tiny}}
-  \renewcommand{\headrulewidth}{1pt}
+  \renewcommand{\headrulewidth}{.4pt}
   \renewcommand{\footrulewidth}{0pt}
-  \fancyfoot[R]{página \thepage~de \pageref{LastPage}}
+  \fancyfoot[R]{\begin{small}página \thepage~de \pageref{LastPage}\end{small}}
 }
 
 

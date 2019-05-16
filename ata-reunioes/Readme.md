@@ -4,4 +4,4 @@
 
 ## Captura de telas
 
-![Prova](telas.png)
+![tela](telas.png)
