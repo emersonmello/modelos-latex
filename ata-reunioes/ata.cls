@@ -72,6 +72,11 @@
 % ---
 \LoadClass{article}
 
+
+% Codificação de caracteres
+\RequirePackage[utf8]{inputenc}
+
+
 % --- Class structure: main code part
 % ---
 
@@ -154,9 +159,6 @@
 
 % Para hachurar partes confidenciais
 \RequirePackage{censor}
-
-% Codificação de caracteres
-\RequirePackage[utf8]{inputenc}
 
 
 % Page layout

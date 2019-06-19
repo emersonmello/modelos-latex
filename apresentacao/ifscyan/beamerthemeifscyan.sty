@@ -248,6 +248,8 @@
 \definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
 \definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
 
+
+
 \lstset{ %
   aboveskip=\bigskipamount,
   backgroundcolor=\color{colBack},   % choose the background color; you must add \usepackage{color} or 
@@ -285,6 +287,20 @@
 %  stringstyle=\color{colString},     % string literal style
   tabsize=2,	                   % sets default tabsize to 2 spaces
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+% Criando definição para linguagem Groovy
+\definecolor{groovyblue}{HTML}{0000A0}
+\definecolor{groovygreen}{HTML}{008000}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+ 
+\lstdefinelanguage{Groovy}[]{Java}{
+  keywordstyle=\color{groovyblue}\bfseries,
+  stringstyle=\color{groovygreen}\ttfamily,
+  keywords=[3]{each, findAll, groupBy, collect, inject, eachWithIndex},
+  morekeywords={def, as, in, use},
+  moredelim=[is][\textcolor{darkgray}]{\%\%}{\%\%},
+  moredelim=[il][\textcolor{darkgray}]{§§}
 }
 
 % Permitindo caracteres acentuados dentro do ambiente lstlisting
@@ -341,6 +357,9 @@
 \lstdefinestyle{xmlp}{language=xml,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{sql}{language=sql,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{sqlp}{language=sql,basicstyle=\ttfamily\scriptsize}
+
+\lstdefinestyle{groovy}{language=Groovy,basicstyle=\ttfamily\footnotesize}
+\newcommand{\groovy}{\lstset{style=Groovy}}
 
 \newcommand{\cpp}{\lstset{style=cpp}}
 \newcommand{\cppp}{\lstset{style=cppp}}

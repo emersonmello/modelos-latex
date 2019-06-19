@@ -27,15 +27,15 @@
 \everymath={\sf}
 \usepackage[T1]{fontenc}
 
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------------------------------------- %
 % Configurações do cabeçalho e rodapé
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------------------------------------- %
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot[R]{\thepage}
 \fancyfoot[L]{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny} }
 \renewcommand{\headrulewidth}{0pt} % e a linha
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------------------------------------- %
 
 
 % Para permitir que as referências cruzadas sejam ponteiros
@@ -52,9 +52,9 @@
 
 
 
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------------------------------------- %
 % Comandos personalizados para o IFSC
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------------------------------------- %
 
 % Cabeçalho da nota de aula
 %\cabecalho{Aula}{numero}{data}{BCD29008 -- Disciplina}{Assunto}{Professor \hfill \url{email ou pagina da disciplina}}
@@ -76,6 +76,30 @@ Professor: #6
 \bigskip\bigskip
 }
 
+% Cabeçalho da nota de aula com nome do curso
+
+%\cabecalhoCurso[Nome do Curso]{Aula}{numero}{data}{BCD29008 -- Disciplina}{Assunto}{Professor \hfill \url{email ou pagina da disciplina}}
+
+\newcommand{\cabecalhoCurso}[7][]{
+\noindent
+\begin{center}
+\fbox{
+\begin{minipage}{.97\textwidth}
+\begin{tabular}{lp{12cm}}
+ \multirow{2}{1cm}{\pgfuseimage{logo}} & #1  \\ 
+  &  #5 \\
+\end{tabular}\hfill#4
+  \begin{center}
+    {\Large \textbf{#2 #3:} #6} \\[5mm]
+  \end{center}
+Professor: #7
+\end{minipage}
+}
+\end{center}
+\bigskip\bigskip
+}
+
+
 % ----------------------------------------------------
 % Declaração do caminho das imagens
 % ----------------------------------------------------
@@ -85,6 +109,8 @@ Professor: #6
 \pgfdeclareimage[width=.6cm]{nota}{imagem/nota.pdf}
 % Warning
 \pgfdeclareimage[width=.6cm]{atencao}{imagem/atencao.pdf}
+
+
 
 % Criando ambientes nota e atencao
 %  Retirado do aula-01.tex ``Programando em Python``, Gustavo Sverzut Barbieri
@@ -115,14 +141,13 @@ Professor: #6
     \end{myboxenv}
  }
  
- \newenvironment{notap}
-  {
-    \begin{myboxenv}{
-        Nota}
-   }
-    {
+\newenvironment{notap}
+{
+    \begin{myboxenv}{Nota}
+}
+{
     \end{myboxenv}
- }
+}
 
 
   \newenvironment{atencao}
@@ -135,12 +160,15 @@ Professor: #6
     {
     \end{myboxenv}
  }
-% -------------------------------------------------------------------------------------------------------------- %
 
 
-% -------------------------------------------------------------------------------------------------------------- %
+
+% -------------------------------------------------------------------------------- %
+
+
+% -------------------------------------------------------------------------------- %
 % Configurações para inserir código fonte de programas - pacote listings
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------------------------------------- %
 % Altera o nome padrão do rótulo usado no comando \autoref{}
 \renewcommand{\lstlistingname}{Código}
 
@@ -234,6 +262,8 @@ identifierstyle=\color{colIdentifier},
         {Í}{{\~{Í}}}1
 }
 
+
+
 % Criando comandos para algumas linguagens de programação
 \lstdefinestyle{shell}{language=csh,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{shellp}{language=csh,basicstyle=\ttfamily\scriptsize}
@@ -267,6 +297,26 @@ identifierstyle=\color{colIdentifier},
 \newcommand{\shell}{\lstset{style=shell}}
 \newcommand{\shellp}{\lstset{style=shellp}}
 
+
+% -------------------------------------------------------------------------------- %
+% Criando definição para linguagem Groovy
+\definecolor{groovyblue}{HTML}{0000A0}
+\definecolor{groovygreen}{HTML}{008000}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+ 
+\lstdefinelanguage{Groovy}[]{Java}{
+  keywordstyle=\color{groovyblue}\bfseries,
+  stringstyle=\color{groovygreen}\ttfamily,
+  keywords=[3]{each, findAll, groupBy, collect, inject, eachWithIndex},
+  morekeywords={def, as, in, use},
+  moredelim=[is][\textcolor{darkgray}]{\%\%}{\%\%},
+  moredelim=[il][\textcolor{darkgray}]{§§}
+}
+\lstdefinestyle{groovy}{language=Groovy,basicstyle=\ttfamily\footnotesize}
+\newcommand{\groovy}{\lstset{style=Groovy}}
+% -------------------------------------------------------------------------------- %
+
+
 % Incluindo códigos que estão em um arquivo externo
 %parâmetros: linguagem (shell, java, matlab, python, c, php), label, caption, arquivo
 
@@ -274,7 +324,7 @@ identifierstyle=\color{colIdentifier},
 
 \newcommand{\includecode}[4][c]{\lstinputlisting[captionpos=t,caption=#3, label=#2,escapechar={@*}, style=#1]{#4}}
 
-%---------------------------------------------------------------------------------------------------------------%
+% -------------------------------------------------------------------------------- %
 
 
 
