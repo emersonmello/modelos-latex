@@ -16,6 +16,12 @@
 % \addcontentsline{toc}{chapter}{Lista de abreviaturas e siglas}
 \markboth{Lista de abreviaturas e siglas}{}
 
+% Para diminuir o espaçamento entre linhas no ambiente de listas acronym
+\let\oldbaselinestretch=\baselinestretch%
+\renewcommand{\baselinestretch}{.2}%
+\large\normalsize%
+
+
 
 \begin{acronym}
 	\acro{ABNT}{Associação Brasileira de Normas Técnicas}
@@ -27,3 +33,8 @@
 \end{acronym}
 
 
+
+
+% Voltando ao valor anterior para o baselinestretch
+\renewcommand{\baselinestretch}{\oldbaselinestretch}%
+\large\normalsize%

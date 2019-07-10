@@ -5,25 +5,23 @@
 % ---
 % Pacotes 
 % ---
-\usepackage{lmodern}			% Usa a fonte Latin Modern			
-\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
-\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
-\usepackage{lastpage}			% Usado pela Ficha catalográfica
-\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
-\usepackage{color}				% Controle das cores
-\usepackage{graphicx}			% Inclusão de gráficos
-\usepackage{microtype} 			% para melhorias de justificação
-\usepackage{url,listings,color}
-\usepackage{amsmath}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage[printonlyused,withpage]{acronym}
-\usepackage[withpage]{acronym}
-\usepackage{lipsum}				% para geração de dummy text
+\RequirePackage{lmodern}			% Usa a fonte Latin Modern			
+\RequirePackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\RequirePackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\RequirePackage{lastpage}			% Usado pela Ficha catalográfica
+\RequirePackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\RequirePackage{color}				% Controle das cores
+\RequirePackage{graphicx}			% Inclusão de gráficos
+\RequirePackage{microtype} 			% para melhorias de justificação
+\RequirePackage{url,listings,color}
+\RequirePackage{amsmath,tikz,pgf}
+\RequirePackage{caption,subcaption}
+\RequirePackage[printonlyused,withpage]{acronym}
+\RequirePackage{lipsum}				% para geração de dummy text
 % ---
 % Pacotes de citações
-\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
-\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+\RequirePackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\RequirePackage[alf]{abntex2cite}	% Citações padrão ABNT
 % --- 
 % CONFIGURAÇÕES DE PACOTES
 % --- 
@@ -231,7 +229,6 @@
 identifierstyle=\color{colIdentifier},
   keywordstyle=\color{colKeys},       % keyword style
 %  otherkeywords={*,...},            % if you want to add more keywords to the set
-  firstnumber=last,
   numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
   numbersep=5pt,                   % how far the line-numbers are from the code
   numberstyle=\tiny,
@@ -243,6 +240,20 @@ identifierstyle=\color{colIdentifier},
   stringstyle=\color{colString},     % string literal style
   tabsize=2,	                   % sets default tabsize to 2 spaces
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+% Criando definição para linguagem Groovy
+\definecolor{groovyblue}{HTML}{0000A0}
+\definecolor{groovygreen}{HTML}{008000}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+ 
+\lstdefinelanguage{Groovy}[]{Java}{
+  keywordstyle=\color{groovyblue}\bfseries,
+  stringstyle=\color{groovygreen}\ttfamily,
+  keywords=[3]{each, findAll, groupBy, collect, inject, eachWithIndex},
+  morekeywords={def, as, in, use},
+  moredelim=[is][\textcolor{darkgray}]{\%\%}{\%\%},
+  moredelim=[il][\textcolor{darkgray}]{§§}
 }
 
 % Permitindo caracteres acentuados dentro do ambiente lstlisting
@@ -298,6 +309,10 @@ identifierstyle=\color{colIdentifier},
 \lstdefinestyle{xmlp}{language=xml,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{sql}{language=sql,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{sqlp}{language=sql,basicstyle=\ttfamily\scriptsize}
+
+\lstdefinestyle{groovy}{language=Groovy,basicstyle=\ttfamily\footnotesize}
+\newcommand{\groovy}{\lstset{style=Groovy}}
+
 
 \newcommand{\ansic}{\lstset{style=ansic}}
 \newcommand{\ansicp}{\lstset{style=ansicp}}

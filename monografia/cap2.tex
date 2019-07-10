@@ -20,7 +20,7 @@ A inclusão de figuras no texto necessita que algumas regras sejam atendidas. S�
 		\item Evite colocar fotos e outras figuras complexas;
 		\item Opte por figuras simples e que realmente expressem algo, mesmo quando impressas em preto e branco;
 	\end{itemize}
-	\item Em \LaTeX as figuras deverão estar nos formatos: \texttt{PDF}, \texttt{JPG} ou \texttt{PNG};
+	\item Em \LaTeX~as figuras deverão estar nos formatos: \texttt{PDF}, \texttt{JPG} ou \texttt{PNG};
 	\item Toda figura deverá possuir uma legenda;
 	\item Toda figura deverá ser referenciada em alguma parte do texto.
 \end{itemize}
@@ -34,21 +34,24 @@ A \autoref{f_c2_disco} foi inserida no texto para mostrar como fazer tal inserç
  	\label{f_c2_disco}
 \end{figure}
 
-O objetivo deste documento é de mostrar como preparar uma monografia para o Curso Superior de Tecnologia em Sistemas de Telecomunicações. No \autoref{c_cap3} é apresentado uma forma para fazer citações de outros trabalhos. O capítulo ainda apresenta uma forma para incluir tabelas no documento. O \autoref{c_conclusoes} apresenta as conclusões deste trabalho além de apresentar os trabalhos futuros.
+O objetivo deste documento é de mostrar como preparar uma monografia para o curso de Engenharia de Telecomunicações. No \autoref{c_cap3} é apresentado uma forma para fazer citações de outros trabalhos. O capítulo ainda apresenta uma forma para incluir tabelas no documento. O \autoref{c_conclusoes} apresenta as conclusões deste trabalho além de apresentar os trabalhos futuros.
 
 \subsection{Mascotes}
 \label{s_c2_mascotes}
 
-Essa é uma subseção da \autoref{s_c2_figuras} do \autoref{c_cap2}. Subseções como esta não deverão ser numeradas. 
+Essa é uma subseção da \autoref{s_c2_figuras} do \autoref{c_cap2}. 
+
 
 \begin{figure}[!htpb]
     \centering
-    \begin{subfigure}[!htpb]{.45\textwidth}
+	% Deixando as figuras alinhadas a partir da parte de baixo (b)
+	\begin{subfigure}[b]{.45\textwidth}
         \includegraphics[width=\textwidth]{figs/lion}
         \caption{O mascote estudando}
         \label{f_c2_masco1}
     \end{subfigure}
-    \begin{subfigure}[!htpb]{.45\textwidth}
+	% Deixando as figuras alinhadas a partir da parte de baixo (b)
+    \begin{subfigure}[b]{.4\textwidth}
         \includegraphics[width=\textwidth]{figs/latex_lion}
         \caption{O mascote ensinando}
         \label{f_c2_masco2}
@@ -57,7 +60,7 @@ Essa é uma subseção da \autoref{s_c2_figuras} do \autoref{c_cap2}. Subseçõe
 	\label{f_c2_mascotes}
 \end{figure}
 
-A \autoref{f_c2_mascotes} ilustra uma forma de incluir duas figuras, lado a lado. A \autoref{f_c2_masco1} ilustra o mascote do \LaTeX estudando. Já na \autoref{f_c2_masco2} o mascote aparece apresentando algum assunto. 
+A \autoref{f_c2_mascotes} ilustra uma forma de incluir duas figuras, lado a lado, usando o pacote \texttt{subcaption}. A \autoref{f_c2_masco1} ilustra o mascote do \LaTeX~estudando. Já na \autoref{f_c2_masco2} o mascote aparece apresentando algum assunto. 
 
 
 \section{Como apresentar equações}
@@ -65,10 +68,10 @@ A \autoref{f_c2_mascotes} ilustra uma forma de incluir duas figuras, lado a lado
 
 O \LaTeX é um pacote feito para a preparação de textos impressos de alta qualidade, especialmente
 para textos matemáticos. Ele foi desenvolvido por Leslie Lamport a partir do programa
-\TeX criado por Donald Knuth.
+\TeX~criado por Donald Knuth.
 
 Fórmulas matemáticas são produzidas digitando no arquivo fonte texto descrevendo-as. Isto
-significa que o \LaTeX deve ser informado que o texto que vem a seguir é uma fórmula e também
+significa que o \LaTeX~deve ser informado que o texto que vem a seguir é uma fórmula e também
 quando ela termina e o texto normal recomeça. As fórmulas podem ocorrer em uma linha de
 texto como $ax^2 + bx + c = 0$, ou destacada do texto principal como na \autoref{e_c2_eq1}.
 
@@ -124,8 +127,8 @@ nível}\label{sec-exemplo-subsubsubsection}
 Esta é uma seção de quinto nível. Ela é produzida com o seguinte comando:
 
 \begin{verbatim}
-\subsubsubsection{Esta é uma subseção de quinto
-nível}\label{sec-exemplo-subsubsubsection}
+\subsubsubsection{Esta é uma subseção de quinto nível}
+\label{sec-exemplo-subsubsubsection}
 \end{verbatim}
 
 \subsubsubsection{Esta é outra subseção de quinto nível}\label{sec-exemplo-subsubsubsection-outro}
@@ -139,7 +142,8 @@ Este é um exemplo de parágrafo nomeado. Ele é produzida com o comando de
 parágrafo:
 
 \begin{verbatim}
-\paragraph{Este é um parágrafo nomeado}\label{sec-exemplo-paragrafo}
+\paragraph{Este é um parágrafo nomeado}
+\label{sec-exemplo-paragrafo}
 \end{verbatim}
 
 A numeração entre parágrafos numeradaos e subsubsubseções são contínuas.
