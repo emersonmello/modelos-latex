@@ -29,24 +29,28 @@
 \usepackage[T1]{fontenc}
 
 
-% Para permitir que as referências cruzadas sejam ponteiros
+% -------------------------------------------------%
+% Configurações para o PDF que será gerado
+% -------------------------------------------------%
 \RequirePackage{hyperref}
-\hypersetup{colorlinks,
-	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
-	citecolor=black,  %%% cor do \cite
-	urlcolor=black,   %%% cor do \url e \href
-	%pdfpagemode,     %%%  None (default), UseThumbs, UseOutlines, FullScreen
-	pdfstartview=FitH, %%% FitB, FitH
-	bookmarksopen=false,
-	bookmarksopenlevel=1
+\hypersetup{
+    colorlinks,
+    pdffitwindow=false,  % window fit to page when opened
+    pdfstartview={FitH}, % fits the width of the page to the window
+    linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
+	  citecolor=black,  %%% cor do \cite
+	  urlcolor=black   %%% cor do \url e \href
 }
+% Use esse comando para fazer links para sites.
+% Os links ficarão em azual e dentro dos símbolos < e > 
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{<#3>}}}%
+% -------------------------------------------------%
 
 
 
-
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % Configurações da classe exam
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % dicas obtidas em
 % http://www.tex-br.org/index.php?title=Exam&printable=yes
 
@@ -68,12 +72,13 @@
 \hpgword{Páginas} %substitutes text for Page:
 \hpword{Total de pontos} %substitutes text for Points:
 \hsword{Pontos obtidos} %substitutes text for Score:
-\htword{Total} %substitutes text for Total% -------------------------------------------------------------------------------------------------------------- %
+\htword{Total} %substitutes text for Total
+% -------------------------------------------------%
 
 
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % Comandos personalizados para o IFSC
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % ----------------------------------------------------
 % Declaração do caminho das imagens
 % ----------------------------------------------------
@@ -85,9 +90,9 @@
 \noindent Aluno: \rule{.6\linewidth}{.4pt} Matrícula: \rule{.19\linewidth}{.4pt}
 \bigskip}
 
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % Configurações do cabeçalho e rodapé
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 \newcommand{\cabecalho}[4]{
 \pagestyle{headandfoot}
 
@@ -123,11 +128,11 @@
   \end{minipage}}
 \end{center}
 }
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % Configurações para inserir código fonte de programas - pacote listings
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % Altera o nome padrão do rótulo usado no comando \autoref{}
 \renewcommand{\lstlistingname}{Código}
 
@@ -259,4 +264,4 @@ identifierstyle=\color{colIdentifier},
 
 \newcommand{\includecode}[4][c]{\lstinputlisting[captionpos=t,caption=#3, label=#2,escapechar={@*}, style=#1]{#4}}
 
-%---------------------------------------------------------------------------------------------------------------%
+% -------------------------------------------------%

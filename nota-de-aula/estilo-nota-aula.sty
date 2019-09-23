@@ -27,37 +27,44 @@
 \everymath={\sf}
 \usepackage[T1]{fontenc}
 
-% -------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % Configurações do cabeçalho e rodapé
-% -------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot[R]{\thepage}
 \fancyfoot[L]{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny} }
 \renewcommand{\headrulewidth}{0pt} % e a linha
-% -------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 
 
-% Para permitir que as referências cruzadas sejam ponteiros
+% -------------------------------------------------%
+% Configurações para o PDF que será gerado
+% -------------------------------------------------%
 \RequirePackage{hyperref}
-\hypersetup{colorlinks,
-	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
-	citecolor=black,  %%% cor do \cite
-	urlcolor=black,   %%% cor do \url e \href
-	%pdfpagemode,     %%%  None (default), UseThumbs, UseOutlines, FullScreen
-	pdfstartview=FitH, %%% FitB, FitH
-	bookmarksopen=false,
-	bookmarksopenlevel=1
+\hypersetup{
+    colorlinks,
+    pdffitwindow=false,  % window fit to page when opened
+    pdfstartview={FitH}, % fits the width of the page to the window
+    linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
+	  citecolor=black,  %%% cor do \cite
+	  urlcolor=black   %%% cor do \url e \href
 }
+% Use esse comando para fazer links para sites.
+% Os links ficarão em azual e dentro dos símbolos < e > 
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{<#3>}}}%
+% -------------------------------------------------%
 
 
 
-% -------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % Comandos personalizados para o IFSC
-% -------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 
+% -------------------------------------------------%
 % Cabeçalho da nota de aula
 %\cabecalho{Aula}{numero}{data}{BCD29008 -- Disciplina}{Assunto}{Professor \hfill \url{email ou pagina da disciplina}}
+% -------------------------------------------------%
 \newcommand{\cabecalho}[6]{
 \noindent
 \begin{center}
@@ -76,10 +83,10 @@ Professor: #6
 \bigskip\bigskip
 }
 
-% Cabeçalho da nota de aula com nome do curso
-
+% -------------------------------------------------%
+% Outra opção de cabeçalho da nota de aula. Este tem o nome do curso
 %\cabecalhoCurso[Nome do Curso]{Aula}{numero}{data}{BCD29008 -- Disciplina}{Assunto}{Professor \hfill \url{email ou pagina da disciplina}}
-
+% -------------------------------------------------%
 \newcommand{\cabecalhoCurso}[7][]{
 \noindent
 \begin{center}
@@ -111,9 +118,10 @@ Professor: #7
 \pgfdeclareimage[width=.6cm]{atencao}{imagem/atencao.pdf}
 
 
-
+% -------------------------------------------------%
 % Criando ambientes nota e atencao
 %  Retirado do aula-01.tex ``Programando em Python``, Gustavo Sverzut Barbieri
+% -------------------------------------------------%
   \def\fboxsep{3pt}
   \newenvironment{myboxenv}[1]
   {
@@ -163,12 +171,12 @@ Professor: #7
 
 
 
-% -------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 
 
-% -------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % Configurações para inserir código fonte de programas - pacote listings
-% -------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % Altera o nome padrão do rótulo usado no comando \autoref{}
 \renewcommand{\lstlistingname}{Código}
 
@@ -177,8 +185,9 @@ Professor: #7
 
 
 
-
+% -------------------------------------------------%
 % Definindo cores
+% -------------------------------------------------%
 \definecolor{hellgelb}{rgb}{1,1,0.9}
 \definecolor{colKeys}{rgb}{0,0,0}
 \definecolor{colIdentifier}{rgb}{0,0,0.9}
@@ -226,7 +235,9 @@ identifierstyle=\color{colIdentifier},
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
+% -------------------------------------------------%
 % Permitindo caracteres acentuados dentro do ambiente lstlisting
+% -------------------------------------------------%
 \lstset{%
         inputencoding=utf8,
         extendedchars=true,
@@ -298,7 +309,7 @@ identifierstyle=\color{colIdentifier},
 \newcommand{\shellp}{\lstset{style=shellp}}
 
 
-% -------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % Criando definição para linguagem Groovy
 \definecolor{groovyblue}{HTML}{0000A0}
 \definecolor{groovygreen}{HTML}{008000}
@@ -314,7 +325,7 @@ identifierstyle=\color{colIdentifier},
 }
 \lstdefinestyle{groovy}{language=Groovy,basicstyle=\ttfamily\footnotesize}
 \newcommand{\groovy}{\lstset{style=Groovy}}
-% -------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 
 
 % Incluindo códigos que estão em um arquivo externo
@@ -324,7 +335,7 @@ identifierstyle=\color{colIdentifier},
 
 \newcommand{\includecode}[4][c]{\lstinputlisting[captionpos=t,caption=#3, label=#2,escapechar={@*}, style=#1]{#4}}
 
-% -------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 
 
 

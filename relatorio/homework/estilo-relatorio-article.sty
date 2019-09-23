@@ -1,11 +1,11 @@
-% ------------------------------------------------------------------------------------
+% -------------------------------------------------%
 % 2018-11-29 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
-% ------------------------------------------------------------------------------------
+% -------------------------------------------------%
 \ProvidesPackage{estilo-relatorio-article}
 
-% ------------------------------------------------------------------------------------
+% -------------------------------------------------%
 % Pacotes e suas configurações
-% ------------------------------------------------------------------------------------
+% -------------------------------------------------%
 \RequirePackage[table]{xcolor}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english,brazil]{babel}
@@ -39,33 +39,38 @@
 \everymath={\sf}
 \usepackage[T1]{fontenc}
 
-% Para permitir que as referências cruzadas sejam ponteiros
+% -------------------------------------------------%
+% Configurações para o PDF que será gerado
+% -------------------------------------------------%
 \RequirePackage{hyperref}
-\hypersetup{colorlinks,
-	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
-	citecolor=black,  %%% cor do \cite
-	urlcolor=black,   %%% cor do \url e \href
-	%pdfpagemode,     %%%  None (default), UseThumbs, UseOutlines, FullScreen
-	pdfstartview=FitH, %%% FitB, FitH
-	bookmarksopen=false,
-	bookmarksopenlevel=1
+\hypersetup{
+    colorlinks,
+    pdffitwindow=false,  % window fit to page when opened
+    pdfstartview={FitH}, % fits the width of the page to the window
+    linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
+	  citecolor=black,  %%% cor do \cite
+	  urlcolor=black   %%% cor do \url e \href
 }
+% Use esse comando para fazer links para sites.
+% Os links ficarão em azual e dentro dos símbolos < e > 
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{<#3>}}}%
+% -------------------------------------------------%
 
 
-% ------------------------------------------------------------------------------------
+% -------------------------------------------------%
 
-% ------------------------------------------------------------------------------------
+% -------------------------------------------------%
 % Parágrafo
-% ------------------------------------------------------------------------------------
+% -------------------------------------------------%
 % recuo do parágrafo
 \parindent 1.27cm
 % espaçamento entre parágrafos
 \parskip   6pt
 % \flushbottom
 
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % Configurações para inserir código fonte de programas - pacote listings
-% -------------------------------------------------------------------------------------------------------------- %
+% -------------------------------------------------%
 % Altera o nome padrão do rótulo usado no comando \autoref{}
 \renewcommand{\lstlistingname}{Código}
 

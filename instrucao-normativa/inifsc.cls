@@ -138,16 +138,23 @@
 \RequirePackage[a4paper,hmargin=2.3cm,top=3.5cm,bottom=2cm,headheight=3cm,heightrounded]{geometry}
 
 \RequirePackage{lastpage}
+% -------------------------------------------------%
+% Configurações para o PDF que será gerado
+% -------------------------------------------------%
 \RequirePackage{hyperref}
-\hypersetup{colorlinks,
-	linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
-	citecolor=black,  %%% cor do \cite
-	urlcolor=black,   %%% cor do \url e \href
-	%pdfpagemode,     %%%  None (default), UseThumbs, UseOutlines, FullScreen
-	pdfstartview=FitH, %%% FitB, FitH
-	bookmarksopen=false,
-	bookmarksopenlevel=1
+\hypersetup{
+    colorlinks,
+    pdffitwindow=false,  % window fit to page when opened
+    pdfstartview={FitH}, % fits the width of the page to the window
+    linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
+	  citecolor=black,  %%% cor do \cite
+	  urlcolor=black   %%% cor do \url e \href
 }
+% Use esse comando para fazer links para sites.
+% Os links ficarão em azual e dentro dos símbolos < e > 
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{<#3>}}}%
+% -------------------------------------------------%
+
 
 % Cabeçalho
 \makepagestyle{plain}

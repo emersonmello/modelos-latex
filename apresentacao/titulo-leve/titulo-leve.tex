@@ -10,10 +10,21 @@
 \usepackage[T1]{fontenc}
 \usepackage[english,brazil]{babel}
 
-% Metadados do PDF a ser gerado
-\hypersetup{pdfstartview={Fit},pdftitle={\@title},
- 	pdfsubject={Engenharia de Telecomunicacoes - IFSC},pdfauthor={\@author}
+% -------------------------------------------------%
+% Configurações para o PDF que será gerado
+% -------------------------------------------------%
+\hypersetup{
+    colorlinks,
+    pdffitwindow=false,  % window fit to page when opened
+    pdfstartview={FitH}, % fits the width of the page to the window
+    linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
+	citecolor=black,  %%% cor do \cite
+	urlcolor=black   %%% cor do \url e \href
 }
+% Use esse comando para fazer links para sites.
+% Os links ficarão em azual e dentro dos símbolos < e > 
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{<#3>}}}%
+% -------------------------------------------------%
 
 
 % -------------------------------------------------%
