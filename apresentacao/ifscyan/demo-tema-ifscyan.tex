@@ -9,24 +9,31 @@
 \usetheme{ifscyan}
 \usepackage{beamerthemeifscyan}
 
-%\pgfdeclareimage[width=\paperwidth]{footer}{../../latex-estilos/apresentacao/titulo-leve/figs/rodape-2018}
-%\pgfdeclareimage[width=.25\paperwidth]{ifsclogo}{../../latex-estilos/apresentacao/titulo-leve/figs/ifsclogo.png}
-
-% Metadados do PDF a ser gerado
-\hypersetup{pdfstartview={Fit},pdftitle={\@title},
- 	pdfsubject={Engenharia de Telecomunicacoes - IFSC},pdfauthor={\@author}
+% -------------------------------------------------%
+% Configurações para o PDF que será gerado
+% -------------------------------------------------%
+\hypersetup{
+    colorlinks,
+    pdffitwindow=false,  % window fit to page when opened
+    pdfstartview={FitH}, % fits the width of the page to the window
+    linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
+	citecolor=black,  %%% cor do \cite
+	urlcolor=black   %%% cor do \url e \href
 }
+% Use esse comando para fazer links para sites.
+% Os links ficarão em azual e dentro dos símbolos < e > 
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{<#3>}}}%
+% -------------------------------------------------%
 
-%%%
-%%%
-% Fazendo com que a lista de item se espalhe para ocupar toda a 
-% altura do slide
-\let\olditem\item
-\renewcommand{\item}{%
-\olditem\vspace{\fill}}     
-%%%
-%%%
-%%%
+% -------------------------------------------------%
+% Descomente as linhas abaixo para fazer com que a 
+% lista de item se espalhe para ocupar toda a altura
+% do slide
+% -------------------------------------------------%
+% \let\olditem\item
+% \renewcommand{\item}{%
+% \olditem\vspace{\fill}}     
+% -------------------------------------------------%
 
 
 
@@ -38,13 +45,17 @@
 \author{Prof. Emerson Ribeiro de Mello}
 \titlegraphic{\pgfuseimage{ifsclogo}}
 \institute{
-\url{mello@ifsc.edu.br}}
+\href{mello@ifsc.edu.br}{mello@ifsc.edu.br}
+}
 \date{04/07/2018}
 % -------------------------------------------------%
 
 
 \begin{document}
 
+% -------------------------------------------------%
+% Slide com o título
+% -------------------------------------------------%
 \setbeamertemplate{footline}{} 
 \begin{frame}[t]
 	\maketitle
@@ -54,17 +65,17 @@
   \usebeamercolor[fg]{framenumber}
   \pgftext[at=\pgfpoint{-35pt}{5pt},center,bottom]{\insertframenumber/\inserttotalframenumber}
 }
-%--------------------------------------------------------------------------------%
+% -------------------------------------------------%
 %                         Inicio do documento
-%--------------------------------------------------------------------------------%
+% -------------------------------------------------%
 
 \section{Listas}
 
-\begin{frame}{Apenas começando}
+\begin{frame}[wide]{Parâmetro wide para aumentar o espaço entre itens}
 	\begin{enumerate}
 		\item Primeiro item
 		\begin{itemize}
-			\item Primeiro item
+			\item \MYhref{http://docente.ifsc.edu.br/mello}{Aqui está um exemplo de link para site}
 			\item Segundo item
 		\end{itemize}
 		\item Segundo item
@@ -76,40 +87,40 @@
 	\end{enumerate}
 \end{frame}
 
-    \begin{frame}{Listas em colunas}
-        \begin{columns}[t, onlytextwidth]
-            \column{0.3\textwidth}
-                Items:
+\begin{frame}[wide]{Listas em colunas}
+    \begin{columns}[t, onlytextwidth]
+        \column{0.3\textwidth}
+            Items:
+            \begin{itemize}
+                \item Item 1
                 \begin{itemize}
-                    \item Item 1
-                    \begin{itemize}
-                        \item Subitem 1.1
-                        \item Subitem 1.2
-                    \end{itemize}
-                    \item Item 2
-                    \item Item 3
+                    \item Subitem 1.1
+                    \item Subitem 1.2
                 \end{itemize}
-            
-            \column{0.3\textwidth}
-                Enumerations:
+                \item Item 2
+                \item Item 3
+            \end{itemize}
+        
+        \column{0.3\textwidth}
+            Enumerations:
+            \begin{enumerate}
+                \item First
+                \item Second
                 \begin{enumerate}
-                    \item First
-                    \item Second
-                    \begin{enumerate}
-                        \item Sub-first
-                        \item Sub-second
-                    \end{enumerate}
-                    \item Third
+                    \item Sub-first
+                    \item Sub-second
                 \end{enumerate}
-            
-            \column{0.4\textwidth}
-                Descriptions:
-                \begin{description}
-                    \item[First] Yes.
-                    \item[Second] No.
-                \end{description}
-        \end{columns}
-    \end{frame}
+                \item Third
+            \end{enumerate}
+        
+        \column{0.4\textwidth}
+            Descriptions:
+            \begin{description}
+                \item[First] Yes.
+                \item[Second] No.
+            \end{description}
+    \end{columns}
+\end{frame}
 
 
 \section{Blocos}
@@ -142,11 +153,15 @@
 		\end{itemize}
 \end{itemize}
 
+% -------------------------------------------------%
 % incluindo o código de um arquivo externo
+% -------------------------------------------------%
 \includecode{ansic}{codigos/ola.c}	
 
 
+% -------------------------------------------------%
 % escrevendo o código diretamente dentro do frame
+% -------------------------------------------------%
 \javap
 \begin{lstlisting}
 public static voi main(String args[]){
