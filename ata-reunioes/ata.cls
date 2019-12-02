@@ -201,21 +201,3 @@
 
 \pagestyle{followingpage}
 \AtBeginDocument{\thispagestyle{firstpage}}
-
-
-
-
-% A redefinição abaixo é necessária para permitir que o comando \blackout do pacote censor
-% processe caracteres utf8 (com mais de 1 byte), por exemplo, caracteres acentuados.
-
-\def\stringend{$}
-\long\def\blackout#1{%
-\protected@edef\tmp{#1}%
-\def~{-}\expandafter\censor@Block\tmp\stringend\let~\sv@tilde}
-\long\def\censor@Block{\IfNextToken\stringend{\@gobble}%
-  {\IfNextToken\@sptoken{ \bl@t{\censor@Block}}%
-  {\bl@t{\censor@Block}}}}
-
-\long\def\bl@t#1#2{%
-\ifx\bpar#2\let\next\par\else\ifx.#2\let\next\censordot\else\def\next{\censor{#2}}\fi\fi
-  \next#1}
