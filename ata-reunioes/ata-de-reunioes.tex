@@ -38,30 +38,44 @@
 \departamento{Colegiado do curso da Engenharia de Telecomunicações}
 
 
-
-
-
 %-----------------------------------------------------------
 % Informações que devem ser preenchidas para cada reunião
 %-----------------------------------------------------------
+% Formas de uso do comando \participante
 
-\listapresentes{
-Emerson Ribeiro de Mello,
-Fulano da Silva,
-\papel{Juca Falante}{Comentarista},
-\presidente{Odilson Tadeu},
-\secretario{Ricardo Escrev},
-\secretaria{Maria Escriba},
-\titular{Roseana Parti},
-\suplente{Jucênica Virtu}}
+% Para presentes na reunião
+% \participante{Nome do participante}
 
-%-------------------
-% A lista abaixo pode ser completamente excluída se não houver ausentes
-%-------------------
-\listaausentes{
-Fulana da Silva,
-\capacitacao{Juca Luca},
-\aula{Professor Tal}}
+% Para ausentes sem justificativa
+% \participante{Nome do participante}[ausente]
+
+% Para ausentes com justificativa
+% \participante{Nome do participante}[ausente][informar a justificativa]
+%-----------------------------------------------------------
+
+
+\participante{Emerson Ribeiro de Mello}
+
+\participante{Fulana dos Santos}[ausente]
+
+\participante{Fulano da Silva}
+
+\participante{\papel{Juca Falante}{Comentarista}}
+
+\participante{Juca Luca}[ausente][capacitação]
+
+\participante{\presidente{Odilson Tadeu}}
+
+\participante{\secretario{Ricardo Escrev}}
+
+\participante{\secretaria{Maria Escriba}}
+
+\participante{\titular{Roseana Parti}}
+
+\participante{Rosevânia Nomera}[ausente][em aula]
+
+\participante{\suplente{Jucênica Virtu}}
+
 
 %-------------------
 % Se houver convidados descomente a lista abaixo
@@ -70,7 +84,7 @@ Fulana da Silva,
 % Professora Tal de Tal,
 % \papel{Seo Joca}{coordenador de pesquisa}}
 
-\date{03 de maio de 2019}
+\date{03 de dezembro de 2019}
 
 %-----------------------------------------------------------
 % Descomente a linha abaixo para que os trechos protegidos 
@@ -97,8 +111,7 @@ Fulana da Silva,
 \end{itemize}
 Uma boa ata irá conter esses tópicos. Dificilmente uma ata conterá mais informações além destas. É importante lembrar que a ata deve ser um documento sucinto, de fácil leitura e identificação (em especial) das decisões tomadas. E uma ata que não abranja todos estes itens ficará incompleta, deixando os leitores com dúvidas sobre algum aspecto da reunião. Esse texto foi extraído na íntegra do \textit{site} \url{https://manualdasecretaria.com.br/ata-de-reuniao-como-fazer/} em 03 de maio de 2019.
 
-\item
-A viagem do \censor{Fulano de Tal} não acontecerá.
+\item A viagem do \censor{Fulano de Tal} não acontecerá.
 \end{informes}
 
 %-----------------------------------------------------------

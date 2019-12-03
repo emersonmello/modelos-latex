@@ -2,7 +2,7 @@
 % 2019-05-03 Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % Esse documento está fortemente baseado no modelo desenvolvido no artigo Minutes in Less That Hours: Using LaTeX Resources de Jimm Hefferon
 
-\ProvidesClass{ata}[2019/05/03 version 1.00 Ata de Reuniao] 
+\ProvidesClass{ata}[2019/12/03 version 1.10 Ata de Reuniao] 
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: initial code part
@@ -16,11 +16,36 @@
 \newcommand{\departamento}[1]{\def\@departamento{#1}}
 \newcommand{\show@departamento}{\@departamento}
 
+% Necessário para o comando usado para a lista de participantes
+\RequirePackage{etoolbox}
+\RequirePackage{xifthen}
+\RequirePackage{xargs}
 
-% Quem participou?
-\def\@presentes{Ninguém}
-\newcommand{\listapresentes}[1]{\def\@presentes{#1}}
-\newcommand{\show@presentes}{\@presentes}
+\newcommand{\listadepresentes}{}
+\newcommand{\listadeausentes}{}
+
+\newcommandx*\participante[3][2=presente,3=nada,usedefault]{
+  \ifthenelse{\equal{#2}{presente}}{
+    \ifdefempty{\listadepresentes}%
+      {\eappto\listadepresentes{#1}}%
+      {\eappto\listadepresentes{, #1}}%
+    \csdef{participantespresentes}{\listadepresentes}%
+    }%else
+    {
+    \ifdefempty{\listadeausentes}%
+     {
+       \ifthenelse{\equal{#3}{nada}}%
+       {\eappto\listadeausentes{#1}}%
+       {\eappto\listadeausentes{#1 (#3)}}%
+     }%else
+     {%
+       \ifthenelse{\equal{#3}{nada}}%
+       {\eappto\listadeausentes{, #1}}%
+       {\eappto\listadeausentes{, #1 (#3)}}%
+     }%
+    \csdef{participantesausentes}{\listadeausentes}%
+    }
+}
 
 % quais papéis que os membros podem possuir?
 \newcommand{\papel}[2]{#1 (#2)}
@@ -34,6 +59,11 @@
 \newcommand{\justificativa}[2]{#1 (#2)}
 \newcommand{\capacitacao}[1]{\justificativa{#1}{justificado -- capacitação}}
 \newcommand{\aula}[1]{\justificativa{#1}{justificado -- em aula}}
+
+% Lista de presentes
+\global\let\@presentes\@empty
+\newcommand{\listapresentes}[1]{\def\@presentes{#1}}
+\newcommand{\show@presentes}{\@presentes}
 
 % quem está ausente? 
 \global\let\@ausentes\@empty
@@ -80,36 +110,39 @@
 % --- Class structure: main code part
 % ---
 
-% \newcommand{\lista@membros}{
-% % \begin{description}[align=left,labelwidth=2cm]
-% \begin{description}
-% \item[Presentes:] \show@presentes
-% \ifx\@ausentes\@empty
-%   \relax
-% \else
-%   \item[Ausentes:] \show@ausentes
-% \fi %
-% \ifx\@convidados\@empty
-%   \relax
-% \else
-%   \item[Convidados:] \show@convidados
-% \fi %
-% \end{description}
-% }
-
 \newcommand{\lista@membros}{
-% \begin{description}[align=left,labelwidth=2cm]
+\ifthenelse{\equal{\listadepresentes}{}}{
+% Esse bloco é só para manter compatibilidade com código legado da versão 1.00 dessa classe.
+% Poderia ser substituído por \relax
+\ifx\@presentes\@empty
+  \relax
+\else
 \noindent
 \textbf{Presentes:} \show@presentes.
+\fi
+% ---- Fim do bloco legado -------- %
+}{%
+\noindent
+\textbf{Presentes:} \csuse{participantespresentes}.%
+}
+\ifthenelse{\equal{\listadeausentes}{}}{
+% Esse bloco é só para manter compatibilidade com código legado da versão 1.00 dessa classe.
+% Poderia ser substituído por \relax
 \ifx\@ausentes\@empty
   \relax
 \else
 \noindent
 \textbf{Ausentes:} \show@ausentes.
-\fi %
+\fi %  
+% ---- Fim do bloco legado -------- %
+}{%
+\noindent
+\textbf{Ausentes:} \csuse{participantesausentes}.
+}
 \ifx\@convidados\@empty
   \relax
 \else
+
 \noindent
 \textbf{Convidados:} \show@convidados.
 \fi %
