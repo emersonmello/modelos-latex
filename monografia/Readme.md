@@ -2,7 +2,7 @@
 
 
 
-Esse modelo de monografia atualizado em 2017 segue o [modelo oficial de trabalho acadêmico publicado pela Biblioteca do IFSC em setembro de 2016](http://www.ifsc.edu.br/menu-colecao-abnt).
+Esse modelo de monografia foi atualizado em 2017 segue o [modelo oficial de trabalho acadêmico publicado pela Biblioteca do IFSC em setembro de 2016](http://www.ifsc.edu.br/menu-colecao-abnt).
 
 
 
