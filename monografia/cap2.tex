@@ -29,9 +29,8 @@ A \autoref{f_c2_disco} foi inserida no texto para mostrar como fazer tal inserç
 
 \begin{figure}[!htpb]
 	\centering
+	\caption{Disquete}\label{f_c2_disco}
 	\includegraphics[width=5cm]{figs/disco}
-	\caption{Disquete}
- 	\label{f_c2_disco}
 \end{figure}
 
 O objetivo deste documento é de mostrar como preparar uma monografia para o curso de Engenharia de Telecomunicações. No \autoref{c_cap3} é apresentado uma forma para fazer citações de outros trabalhos. O capítulo ainda apresenta uma forma para incluir tabelas no documento. O \autoref{c_conclusoes} apresenta as conclusões deste trabalho além de apresentar os trabalhos futuros.
@@ -44,20 +43,19 @@ Essa é uma subseção da \autoref{s_c2_figuras} do \autoref{c_cap2}.
 
 \begin{figure}[!htpb]
     \centering
-	% Deixando as figuras alinhadas a partir da parte de baixo (b)
-	\begin{subfigure}[b]{.45\textwidth}
+	\caption{O mascote do \LaTeX em diferentes poses}\label{f_c2_mascotes}
+	% Deixando as figuras alinhadas a partir do topo (t)
+	\begin{subfigure}[t]{.45\textwidth}
+	\caption{O mascote estudando}\label{f_c2_masco1}
         \includegraphics[width=\textwidth]{figs/lion}
-        \caption{O mascote estudando}
-        \label{f_c2_masco1}
+        
     \end{subfigure}
-	% Deixando as figuras alinhadas a partir da parte de baixo (b)
-    \begin{subfigure}[b]{.4\textwidth}
+	% Deixando as figuras alinhadas a partir do topo (t)
+    \begin{subfigure}[t]{.4\textwidth}
+	\caption{O mascote ensinando}\label{f_c2_masco2}
         \includegraphics[width=\textwidth]{figs/latex_lion}
-        \caption{O mascote ensinando}
-        \label{f_c2_masco2}
+        
     \end{subfigure}
-	\caption{O mascote do \LaTeX em diferentes poses}
-	\label{f_c2_mascotes}
 \end{figure}
 
 A \autoref{f_c2_mascotes} ilustra uma forma de incluir duas figuras, lado a lado, usando o pacote \texttt{subcaption}. A \autoref{f_c2_masco1} ilustra o mascote do \LaTeX~estudando. Já na \autoref{f_c2_masco2} o mascote aparece apresentando algum assunto. 
