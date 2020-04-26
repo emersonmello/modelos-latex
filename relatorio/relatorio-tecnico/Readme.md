@@ -1,0 +1,222 @@
+# Modelo de Relatório Técnico
+
+Esse modelo faz uso da classe `report` e apresenta um exemplo de como gerar glossário e lista de siglas com o pacote [glossaries-extra](https://www.ctan.org/pkg/glossaries-extra) e com a ferramenta [bib2gls](https://www.ctan.org/pkg/bib2gls). Para as referências bibliográficas foi feito uso do estilo fornecido pelo pacote [abnTeX2](https://github.com/abntex/abntex2).
+
+
+## Configurações para o script [latexmk](https://mg.readthedocs.io/latexmk.html)
+
+Para quem usa a o script [latexmk](https://mg.readthedocs.io/latexmk.html) para compilar, abaixo são apresentadas [instruções](https://tex.stackexchange.com/questions/1226/how-to-make-latexmk-use-makeglossaries/1228#1228) que ajudam a gerar o glossário por meio dele. 
+
+As instruções abaixo podem estar no arquivo de configuração global, no home do usuário (`$/.latexmkrc`), ou dentro do diretório desse projeto de relatório `.latexmkrc`. 
+
+O presente projeto já possui esse arquivo [.latexmkrc](.latexmkrc). Atente-se que é um arquivo oculto.
+
+```perl
+# https://tex.stackexchange.com/questions/400325/latexmkrc-for-bib2gls
+print("GLOBAL LATEXMK: Glossaries Module...\n");
+
+use File::Basename;
+
+add_cus_dep('glo', 'gls', 0, 'run_makeglossaries');
+add_cus_dep('acn', 'acr', 0, 'run_makeglossaries');
+
+add_cus_dep('aux', 'glstex', 0, 'run_bib2gls');
+
+sub run_makeglossaries {
+   $dir = dirname($_[0]);
+   $file = basename($_[0]);
+   if ( $silent ) {
+      system "makeglossaries -q -d '$dir' '$file'";
+   }
+   else {
+      system "makeglossaries -d '$dir' '$file'";
+   };
+}
+
+sub run_bib2gls {
+  if ( $silent ) {
+    my $ret = system "bib2gls --silent --group '$_[0]'";
+  } else {
+    my $ret = system "bib2gls --group '$_[0]'";
+  };
+  my ($base, $path) = fileparse( $_[0] );
+  if ($path && -e "$base.glstex") {
+    rename "$base.glstex", "$path$base.glstex";
+  }
+  # Analyze log file.
+  local *LOG;
+  $LOG = "$_[0].glg";
+  if (!$ret && -e $LOG) {
+    open LOG, "<$LOG";
+    while (<LOG>) {
+      if (/^Reading (.*\.bib)\s$/) {
+        rdb_ensure_file( $rule, $1 );
+      }
+    }
+    close LOG;
+  }
+  return $ret;
+}
+
+push @generated_exts, 'glo', 'gls', 'glg';
+push @generated_exts, 'acn', 'acr', 'alg';
+$clean_ext .= ' %R.ist %R.xdy';
+$clean_ext .= ' nav snm vrb';
+
+```
+
+
+## Usando o [Visual Studio Code](https://code.visualstudio.com/) como IDE LaTeX
+
+### Lista de extensões que deve instalar
+
+- [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+- [bibtexLanguage](https://marketplace.visualstudio.com/items?itemName=phr0s.bib)
+- [Brazilian Portuguese - Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker-portuguese-brazilian)
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+
+### Configurações do VSCode
+
+Edite o arquivo `settings.json` (File -> Preferences -> Settings) e adicione dentro dele o bloco a seguir. Esse bloco contém instruções para o latexmk e faz com que os arquivos gerados com a compilação do projeto sejam colocados no subdiretório `outlatexdir`, inclusive o PDF.
+
+> Use o VSCode para abrir o diretório desse projeto e não apenas para abrir o .tex. O VSCode trata diretório como workspace.
+
+Com as configurações abaixo, sempre que salvar o arquivo .tex, o projeto será automaticamente compilado com o latexmk.
+
+```json
+"files.exclude": {
+        "**/*.alg": true,
+        "**/*.aux": true,
+        "**/*.bbl": true,
+        "**/*.bcf": true,
+        "**/*.blg": true,
+        "**/*.fdb_latexmk": true,
+        "**/*.fls": true,
+        "**/*.glg": true,
+        "**/*.gls": true,
+        "**/*.idx": true,
+        "**/*.ind": true,
+        "**/*.ist": true,
+        "**/*.lof": true,
+        "**/*.lol": true,
+        "**/*.log": true,
+        "**/*.lot": true,
+        "**/*.nav": true,
+        "**/*.out": true,
+        "**/*.snm": true,
+        "**/*.synctex*": true,
+        "**/*.toc": true,
+        "**/*.vrb": true,
+        "**/*.xdy": true,
+        "**/*.acr": true,
+        "**/.classpath": true,
+        "**/.factorypath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/*.run.xml" : true,
+        "**/*.acn": true,
+        "**/*.glo": true
+      },
+      "latex-workshop.latex.clean.subfolder.enabled": true,
+      "latex-workshop.synctex.afterBuild.enabled": true,
+      "latex-workshop.latex.outDir": "%DIR%/outlatexdir",
+      "latex-workshop.latex.recipe.default": "lastUsed",
+      "latex-workshop.latex.recipes": [
+      {
+        "name": "latexmk",
+        "tools": ["latexmk", "latexmk-clean"]
+      }
+      ],
+      "latex-workshop.latex.tools": [
+      {
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+          "-pdf",
+          "-synctex=1",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "-aux-directory=%OUTDIR%",
+          "-outdir=%OUTDIR%",
+          "%DOC%"
+        ],
+        "env": {}
+      },
+      {
+        "name": "latexmk-clean",
+        "command": "latexmk",
+        "args": ["-bibtex", "-c", "-outdir=%OUTDIR%", "%DOC%"]
+      },
+      {
+          "name": "pdflatex",
+          "command": "pdflatex",
+          "args": [
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-output-directory=%OUTDIR%",
+              "%DOC%"
+          ]
+      },
+       {
+        "name": "xelatex",
+        "command": "xelatex",
+        "args": [
+          "-synctex=1",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "--aux-directory=%OUTDIR%",
+          "--output-directory=%OUTDIR%",
+          "%DOC%"
+        ]
+      },
+      {
+        "name": "biber",
+        "command": "biber",
+         "args": [
+          "--input-directory=%OUTDIR%",
+          "--output-directory=%OUTDIR%",
+          "%DOCFILE%"
+        ]
+      },
+      {
+        "name": "makeglossaries",
+        "command": "makeglossaries",
+        "args": [
+          "-d%OUTDIR%",
+          "%DOCFILE%"
+        ]
+      }
+    ],
+    "latex-workshop.latex.clean.fileTypes": [
+      "*.aux",
+      "*.bbl",
+      "*.blg",
+      "*.bcf",
+      "*.idx",
+      "*.ind",
+      "*.lof",
+      "*.lol",
+      "*.lot",
+      "*.out",
+      "*.toc",
+      "*.acn",
+      "*.acr",
+      "*.alg",
+      "*.glg",
+      "*.glo",
+      "*.gls",
+      "*.fls",
+      "*.log",
+      "*.fdb_latexmk",
+      "*.snm",
+      "*.nav",
+      "*.vrb",
+      "*.run.xml",
+      "*.xdy"
+    ],
+    "latex-workshop.message.update.show": false,
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.view.pdf.zoom": "page-width",
+```
+

@@ -26,8 +26,9 @@ Modelos de documentos LaTeX que uso em minhas aulas ou em outras atividades no I
   - [Modelo que faz uso da classe `exam`](prova/prova-exam). Também permite gerar folha de resposta.
 - **Relatório**
   - [Modelo que faz uso da classe `article`](relatorio/article) e tem um exemplo de um simples relatório.
-  - [Modelo que faz uso da classe `report`](relatorio/report) e tem um exemplo de como construir glossário e lista de siglas com o pacote `glossary`.
+  - [Modelo que faz uso da classe `report`](relatorio/report) e tem um exemplo de como construir glossário e lista de siglas com o pacote `glossaries`.
   - [Modelo de relatório para trabalho de disciplina](relatorio/homework). Esse modelo pode ser usado por alunos em seus trabalhos de disciplina. 
+  - [Modelo de relatório técnico](relatorio/relatorio-tecnico) com glossário e lista de siglas usando o pacote [glossaries-extra](https://www.ctan.org/pkg/glossaries-extra) e o aplicativo [bib2gls](https://www.ctan.org/pkg/bib2gls).
 
 
 
