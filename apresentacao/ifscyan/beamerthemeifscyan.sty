@@ -11,6 +11,7 @@
 \RequirePackage{pgf}
 \RequirePackage{graphicx}
 \RequirePackage{listings,color,upquote}
+\RequirePackage{booktabs}
 \RequirePackage{array}
 \RequirePackage{multirow}
 \RequirePackage{url,color,ae}
@@ -23,6 +24,66 @@
 \RequirePackage{tikz}
 \RequirePackage{etoolbox} % \BeforeBeginEnvironment
 \RequirePackage{appendixnumberbeamer} % Don't number appendix frames.
+\RequirePackage{fontawesome}
+\RequirePackage[skins]{tcolorbox}
+
+% -------------------------------------------------%
+% Configurações para o PDF que será gerado
+% -------------------------------------------------%
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\hypersetup{
+    colorlinks,
+    pdffitwindow=false,  % window fit to page when opened
+    pdfstartview={FitH}, % fits the width of the page to the window
+    linkcolor=midnightblue,  %%% cor do tableofcontents, \ref, \footnote, etc
+	citecolor=midnightblue,  %%% cor do \cite
+	urlcolor=midnightblue   %%% cor do \url e \href
+}
+% Use esse comando para fazer links para sites.
+% Os links ficarão em midnightblue e dentro dos símbolos < e > 
+\newcommand{\MYhref}[3][midnightblue]{\href{#2}{\color{#1}{<#3>}}}%
+% -------------------------------------------------%
+
+%---------------------------------------------------------%
+% Comandos informacao, atencao e cuidado
+%---------------------------------------------------------%
+\definecolor{azul}{HTML}{7da6cb}
+\definecolor{amarelo}{HTML}{f0b400}
+
+\newenvironment{informacao}
+{
+\begin{tcolorbox}[enhanced, drop fuzzy shadow, enlarge by=1mm, sidebyside, boxrule=0pt,width=.98\linewidth,lefthand width=.7cm, lower separated=false]
+\begin{center}
+  \textcolor{azul}{{\huge \faInfoCircle}}
+\end{center}
+\tcblower
+}{
+\end{tcolorbox}
+}
+
+\newenvironment{atencao}
+{
+\begin{tcolorbox}[enhanced, drop fuzzy shadow, enlarge by=1mm, sidebyside, boxrule=0pt,width=.98\linewidth,lefthand width=.7cm, lower separated=false]
+\begin{center}
+  \textcolor{azul}{{\huge \faExclamationCircle}}
+\end{center}
+\tcblower
+}{
+\end{tcolorbox}
+}
+
+\newenvironment{cuidado}
+{
+\begin{tcolorbox}[enhanced, drop fuzzy shadow, enlarge by=1mm, sidebyside, boxrule=0pt,width=.98\linewidth,lefthand width=.74cm, lower separated=false]
+\begin{center}
+  \textcolor{amarelo}{{\huge \faWarning}}
+\end{center}
+\tcblower
+}{
+\end{tcolorbox}
+}
+
+
 
 % ----------------------------------------------------------------------------%
 %                           CORES
@@ -249,6 +310,16 @@
 \definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
 
 
+% XML color
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{lightblue}{rgb}{0.0,0.0,0.9}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
+
 
 \lstset{ %
   aboveskip=\bigskipamount,
@@ -303,6 +374,69 @@
   moredelim=[il][\textcolor{darkgray}]{§§}
 }
 
+\lstdefinelanguage{XML}
+{
+  morestring=[s][\color{mauve}]{"}{"},
+  morestring=[s][\color{black}]{>}{<},
+  morecomment=[s]{<?}{?>},
+  morecomment=[s][\color{dkgreen}]{<!--}{-->},
+  stringstyle=\color{black},
+  identifierstyle=\color{lightblue},
+  keywordstyle=\color{red},
+  morekeywords={xmlns,xsi,noNamespaceSchemaLocation,type,id,x,y,source,target,version,tool,transRef,roleRef,objective,eventually}% list your attributes here
+}
+
+
+\definecolor{eclipseStrings}{RGB}{42,0.0,255}
+\definecolor{eclipseKeywords}{RGB}{127,0,85}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+  basicstyle=\normalfont\ttfamily,
+    commentstyle=\color{eclipseStrings}, % style of comment
+    stringstyle=\color{eclipseKeywords}, % style of strings
+    string=[s]{"}{"},
+    comment=[l]{:\ "},
+    morecomment=[l]{:"},
+    literate=
+        *{0}{{{\color{numb}0}}}{1}
+         {1}{{{\color{numb}1}}}{1}
+         {2}{{{\color{numb}2}}}{1}
+         {3}{{{\color{numb}3}}}{1}
+         {4}{{{\color{numb}4}}}{1}
+         {5}{{{\color{numb}5}}}{1}
+         {6}{{{\color{numb}6}}}{1}
+         {7}{{{\color{numb}7}}}{1}
+         {8}{{{\color{numb}8}}}{1}
+         {9}{{{\color{numb}9}}}{1}
+    % numbers=left,
+    % numberstyle=\scriptsize,
+    % stepnumber=1,
+    % numbersep=8pt,
+    % showstringspaces=false,
+    % breaklines=true,
+    % frame=lines,
+    % backgroundcolor=\color{background},
+    % literate=
+    %  *{0}{{{\color{numb}0}}}{1}
+    %   {1}{{{\color{numb}1}}}{1}
+    %   {2}{{{\color{numb}2}}}{1}
+    %   {3}{{{\color{numb}3}}}{1}
+    %   {4}{{{\color{numb}4}}}{1}
+    %   {5}{{{\color{numb}5}}}{1}
+    %   {6}{{{\color{numb}6}}}{1}
+    %   {7}{{{\color{numb}7}}}{1}
+    %   {8}{{{\color{numb}8}}}{1}
+    %   {9}{{{\color{numb}9}}}{1}
+    %   {:}{{{\color{punct}{:}}}}{1}
+    %   {,}{{{\color{punct}{,}}}}{1}
+    %   {\{}{{{\color{delim}{\{}}}}{1}
+    %   {\}}{{{\color{delim}{\}}}}}{1}
+    %   {[}{{{\color{delim}{[}}}}{1}
+    %   {]}{{{\color{delim}{]}}}}{1},
+}
+
+
 % Permitindo caracteres acentuados dentro do ambiente lstlisting
 \lstset{%
         inputencoding=utf8,
@@ -349,17 +483,21 @@
 \lstdefinestyle{cppp}{language=C++,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{java}{language=java,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{javap}{language=java,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{json}{language=json,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{jsonp}{language=json,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{matlab}{language=matlab,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{matlabp}{language=matlab,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{python}{language=python,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{pythonp}{language=python,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{xml}{language=xml,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{xmlp}{language=xml,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{xml}{language=XML,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{xmlp}{language=XML,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{sql}{language=sql,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{sqlp}{language=sql,basicstyle=\ttfamily\scriptsize}
 
 \lstdefinestyle{groovy}{language=Groovy,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{groovyp}{language=Groovy,basicstyle=\ttfamily\scriptsize}
 \newcommand{\groovy}{\lstset{style=Groovy}}
+\newcommand{\groovyp}{\lstset{style=Groovyp}}
 
 \newcommand{\cpp}{\lstset{style=cpp}}
 \newcommand{\cppp}{\lstset{style=cppp}}
@@ -367,6 +505,8 @@
 \newcommand{\ansicp}{\lstset{style=ansicp}}
 \newcommand{\java}{\lstset{style=java}}
 \newcommand{\javap}{\lstset{style=javap}}
+\newcommand{\json}{\lstset{style=json}}
+\newcommand{\jsonp}{\lstset{style=jsonp}}
 \newcommand{\sql}{\lstset{style=sql}}
 \newcommand{\sqlp}{\lstset{style=sqlp}}
 \newcommand{\xml}{\lstset{style=xml}}
