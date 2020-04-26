@@ -12,6 +12,7 @@
 \RequirePackage{pgf}
 \RequirePackage{url,subcaption,graphicx,pgf,multirow,multicol,enumerate}
 \urlstyle{sf}
+\RequirePackage{booktabs}
 
 \RequirePackage{listings,color,indentfirst}
 % para resolver o problema dos apóstrofos e crases no listings
@@ -37,18 +38,18 @@
 \renewcommand{\headrulewidth}{0pt} % e a linha
 % -------------------------------------------------%
 
-
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
 % -------------------------------------------------%
 % Configurações para o PDF que será gerado
 % -------------------------------------------------%
 \RequirePackage{hyperref}
 \hypersetup{
-    colorlinks,
+    colorlinks=true,
     pdffitwindow=false,  % window fit to page when opened
     pdfstartview={FitH}, % fits the width of the page to the window
-    linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
-	  citecolor=black,  %%% cor do \cite
-	  urlcolor=black   %%% cor do \url e \href
+    linkcolor=midnightblue,  %%% cor do tableofcontents, \ref, \footnote, etc
+	  citecolor=midnightblue,  %%% cor do \cite
+	  urlcolor=midnightblue   %%% cor do \url e \href
 }
 % Use esse comando para fazer links para sites.
 % Os links ficarão em azual e dentro dos símbolos < e > 
