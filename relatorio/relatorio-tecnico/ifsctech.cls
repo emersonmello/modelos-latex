@@ -58,15 +58,37 @@
 \definecolor{darkpastelblue}{rgb}{0.47, 0.62, 0.8}
 \definecolor{indigo}{rgb}{0.0, 0.25, 0.42}
 \definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
-
 \RequirePackage[colorlinks=true,linkcolor=midnightblue,citecolor=midnightblue,urlcolor=black]{hyperref}
+
+% Para alterar rodapé e incluir número da revisão
+\RequirePackage{fancyhdr}
+
+\fancypagestyle{plain}{ %
+  \fancyhf{} % remove everything
+  \renewcommand{\headrulewidth}{0pt} % remove lines as well
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[C]{\begin{tiny}Página \thepage\end{tiny}}
+  \fancyfoot[R]{\begin{tiny}\textsc{Versão \numeroRevisao}\end{tiny}}
+}
+
+\fancypagestyle{followingpage}{%
+\fancyhf{} % remove everything
+\renewcommand{\headrulewidth}{0pt} % remove lines as well
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\begin{tiny}Página \thepage\end{tiny}}
+\fancyfoot[R]{\begin{tiny}\textsc{Versão \numeroRevisao}\end{tiny}}
+}
+\pagestyle{followingpage}
+
 
 %-----------------------------%
 % Para fazer glossário
 %-----------------------------%
 % para listar acronimos, para aparecer no TOC, para não agrupar por iniciais 
+% \usepackage[acronym,toc,nogroupskip,postpunc=dot,xindy]{glossaries-extra}
 
 % https://tex.stackexchange.com/questions/417534/glossaries-dual-entry-isused-flag
+
 \usepackage[record,% use bib2gls
  abbreviations,
  nostyles,% only need list style so don't load others
@@ -124,6 +146,8 @@
 
 \RequirePackage{microtype}
 
+\RequirePackage{xifthen}
+
 % Aumentando a largura das linhas das tabelas
 \renewcommand{\arraystretch}{1.2}
 
@@ -131,13 +155,13 @@
 %-----------------------------%
 % Configurações para o TODO Notes
 %-----------------------------%
-% \setlength{\marginparwidth}{2cm}
-% \usepackage{xargs}   
-% \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
-% \newcommandx{\duvida}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
-% \newcommandx{\corrigir}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
-% \newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
-% \newcommandx{\melhorar}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+\setlength{\marginparwidth}{2cm}
+\usepackage{xargs}   
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\newcommandx{\duvida}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\corrigir}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\melhorar}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
 
 
 %---------------------------------------------------------%
@@ -148,6 +172,28 @@
 %---------------------------------------------------------%
 % Comandos
 %---------------------------------------------------------%
+
+% Ambiente para manter histórico das revisões
+\def\numeroRevisao{0.0.0}
+
+\newenvironment{historico}{%
+\newcommand{\revisao}[3]{%
+  \ifthenelse{\equal{\numeroRevisao}{0.0.0}}{%
+    \gdef \numeroRevisao{\string##1}% Update version number
+  }
+  \string##1 & ##2 & ##3\\%
+}%
+\chapter*{Histórico de revisões}%
+\begin{center}%
+  \begin{tabular*}{\linewidth}{rp{2cm}p{.8\linewidth}}\toprule%
+    Revisão & Data & Descrição\\\midrule%
+}{%
+\bottomrule%
+\end{tabular*}%    
+\end{center}%
+}%
+
+
 \definecolor{azul}{HTML}{7da6cb}
 \definecolor{amarelo}{HTML}{f0b400}
 
@@ -224,7 +270,7 @@
         \vspace{4em}
         {\sffamily\Huge \@title}\\[2em]
         {\sffamily Relatório Técnico \@reportnumber}\\[4em]
-        {\sffamily\Large \@author}\\[2em]
+        {\sffamily{\large \@author}}\\[2em]
         {\sffamily \@date}
         \vfill
         \begin{tikzpicture}[overlay, remember picture]

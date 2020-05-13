@@ -2,6 +2,29 @@
 
 Esse modelo faz uso da classe `report` e apresenta um exemplo de como gerar glossário e lista de siglas com o pacote [glossaries-extra](https://www.ctan.org/pkg/glossaries-extra) e com a ferramenta [bib2gls](https://www.ctan.org/pkg/bib2gls). Para as referências bibliográficas foi feito uso do estilo fornecido pelo pacote [abnTeX2](https://github.com/abntex/abntex2).
 
+## Histórico de versões do documento
+
+A semântica da numeração das versões que colocará no relatório deve seguir a orientação descrita no documento [Semantic Versioning 2.0.0](https://semver.org/).
+
+Dada uma revisão numerada como `MAIOR.MENOR.CORREÇÃO`, incremente esses componentes da seguinte forma:
+
+1. `MAIOR` quando as alterações tornarem a nova versão incompatível com a versão anterior;
+2. `MENOR` quando as alterações adicionarem novos capítulos, seções ou parágrafos e que ainda assim mantém compatibilidade com a versão anterior do documento;
+3. `CORREÇÃO` quando fizer pequenas correções e ajustes no documento.
+
+O primeiro ambiente que deve ser criado e atualizado na escrita deste tipo de relatório é o ambiente `histórico` que está logo após o comando `\begin{document}`. 
+```tex
+%-----------------------------%
+% Histórico de revisões do presente documento
+%-----------------------------%
+\begin{historico}
+  % \revisao{1.1.0}{04.05.2020}{Adição da seção exemplo}
+  % \revisao{1.0.1}{04.05.2020}{Correção de erros ortográficos}
+  \revisao{1.0.0}{04.05.2020}{Versão inicial}
+\end{historico}
+%-----------------------------%
+```
+
 
 ## Configurações para o script [latexmk](https://mg.readthedocs.io/latexmk.html)
 
