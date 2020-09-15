@@ -1,5 +1,9 @@
-% !TEX pdfSinglePage
+% 2018-2020 Emerson Ribeiro de Mello - mello@ifsc.edu.br
+
 \documentclass{beamer}
+% Se desejar slides com proporção 'wide', use a linha abaixo ao invés da linha acima
+% \documentclass[aspectratio=169]{beamer}
+
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -9,51 +13,36 @@
 \usetheme{ifscyan}
 \usepackage{beamerthemeifscyan}
 
-
-
-% -------------------------------------------------%
-% Descomente as linhas abaixo para fazer com que a 
-% lista de item se espalhe para ocupar toda a altura
-% do slide
-% -------------------------------------------------%
-% \let\olditem\item
-% \renewcommand{\item}{%
-% \olditem\vspace{\fill}}     
-% -------------------------------------------------%
-
-
-
 % -------------------------------------------------%
 %              Título 
 % -------------------------------------------------%
-\title{IFSCyan \\ Um outro tema para o IFSC}
-\subtitle{Tema para \LaTeX Beamer}
+\title{IFSCyan Um outro tema para o IFSC}
+\subtitle{Tema para \LaTeX~Beamer}
+
 \author{Prof. Emerson Ribeiro de Mello}
-\titlegraphic{\pgfuseimage{ifsclogo}}
 \institute{
-\href{mello@ifsc.edu.br}{mello@ifsc.edu.br}
+    \href{mello@ifsc.edu.br}{mello@ifsc.edu.br}
 }
 \date{04/07/2018}
+% ifsclogo has been defined on .sty file
+\titlegraphic{\pgfuseimage{ifsclogo}}
 % -------------------------------------------------%
-
 
 \begin{document}
 
-% -------------------------------------------------%
-% Slide com o título
-% -------------------------------------------------%
-\setbeamertemplate{footline}{} 
-\begin{frame}[t]
-	\maketitle
+\begin{frame}[plain]
+	\titlepage
 \end{frame}
-\setbeamertemplate{footline}{
-	\pgfuseimage{footer}%
-  \usebeamercolor[fg]{framenumber}
-  \pgftext[at=\pgfpoint{-35pt}{5pt},center,bottom]{\insertframenumber/\inserttotalframenumber}
-}
+
+% \section[Sumário]{}
+% \begin{frame}{Sumário}
+%     \tableofcontents
+% \end{frame}
+
 % -------------------------------------------------%
-%                         Inicio do documento
+%  Início do documento 
 % -------------------------------------------------%
+
 
 \section{Listas}
 
@@ -182,7 +171,6 @@ public static voi main(String args[]){
     \vfill
     O pacote \texttt{appendixnumberbeamer} é usado para não numerar os slides de backup
 \end{frame}
-
 
 
 \end{document}
