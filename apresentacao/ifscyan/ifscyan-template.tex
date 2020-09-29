@@ -1,17 +1,24 @@
 % 2018-2020 Emerson Ribeiro de Mello - mello@ifsc.edu.br
-
 \documentclass{beamer}
 % Se desejar slides com proporção 'wide', use a linha abaixo ao invés da linha acima
 % \documentclass[aspectratio=169]{beamer}
 
-
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 \usepackage[english,brazil]{babel}
 
 % usando tema IFSCyan
 \usetheme{ifscyan}
 \usepackage{beamerthemeifscyan}
+
+
+% -------------------------------------------------%
+% Fazendo com que a lista de item se espalhe para ocupar
+% toda a altura do slide
+% -------------------------------------------------%
+% \let\olditem\item
+% \renewcommand{\item}{%
+% \olditem\vspace{\fill}}     
+% -------------------------------------------------%
 
 % -------------------------------------------------%
 %              Título 
@@ -20,12 +27,11 @@
 \subtitle{Tema para \LaTeX~Beamer}
 
 \author{Prof. Emerson Ribeiro de Mello}
-\institute{
-    \href{mello@ifsc.edu.br}{mello@ifsc.edu.br}
-}
+\institute{%
+\href{mello@ifsc.edu.br}{mello@ifsc.edu.br}%
+}%
 \date{04/07/2018}
-% ifsclogo has been defined on .sty file
-\titlegraphic{\pgfuseimage{ifsclogo}}
+% logo has been defined on .sty file
 % -------------------------------------------------%
 
 \begin{document}

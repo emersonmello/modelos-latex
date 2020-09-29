@@ -20,10 +20,9 @@
 \urlstyle{sf}
 
 \RequirePackage[T1]{fontenc}
-% \RequirePackage{FiraSans}
 \usepackage[sfdefault]{roboto}
 \RequirePackage{tikz}
-% \usetikzlibrary{calc,math}
+\usetikzlibrary{calc,math,positioning}
 \RequirePackage{etoolbox} % \BeforeBeginEnvironment
 \RequirePackage{appendixnumberbeamer} % Don't number appendix frames.
 \RequirePackage{fontawesome}
@@ -44,6 +43,9 @@
 % ----------------------------------------------------------------------------%
 %                           CORES
 % ----------------------------------------------------------------------------%
+
+\definecolor{verdeifsc}{RGB}{50,160,65}
+\definecolor{vermelhoifsc}{RGB}{200,25,30}
 
 \definecolor{coolblack}{rgb}{0.0, 0.18, 0.39}
 \definecolor{darkcerulean}{rgb}{0.03, 0.27, 0.49}
@@ -74,8 +76,8 @@
 \setbeamercolor{block title alerted}{bg=alert, fg=background}
 \setbeamercolor{block body alerted}{bg=alert!10!background, fg=black}
 
-\setbeamercolor{block title example}{bg=example, fg=background}
-\setbeamercolor{block body example}{bg=example!10!background, fg=main}
+\setbeamercolor{block title example}{bg=verdeifsc!80!black, fg=background}
+\setbeamercolor{block body example}{bg=verdeifsc!10!background, fg=main}
 
 \setbeamercolor{itemize item}{fg=main}
 \setbeamercolor{itemize subitem}{fg=main}
@@ -127,47 +129,43 @@
 
 \useinnertheme{rectangles}
 
-% \pgfdeclareimage[width=.25\paperwidth]{ifsclogo}{img/ifsclogo.png}
-\pgfdeclareimage[height=.47\paperheight]{ifsclogo}{img/ifsclogo.png}
-
-% \tikzmath{
-%   \dim   = 1;
-%   \canto =  (.1 * \dim) ; % .1;
-%   \diametro = 1.05 * \dim; % 1.05; 
-%   \dist = 1.1 * \dim; % 1.1; 
-%   \lin = 6;
-%   \col = 0;
-% }
+\tikzmath{
+  \dim   = 1;
+  \canto =  (.1 * \dim) ; % .1;
+  \diametro = 1.05 * \dim; % 1.05; 
+  \dist = 1.2 * \dim; % 1.1; 
+  \lin = 6;
+  \col = 2.2;
+}
 
 \newsavebox\ifsclogobranco
 \begin{lrbox}{\ifsclogobranco}
 \scalebox{.1}{
     \begin{tikzpicture}[
-        squarednode/.style={rectangle, fill=white, minimum size=1cm,rounded corners=.1cm},
-        roundnode/.style={circle, fill=white, minimum size=1.05cm},
+        squarednode/.style={rectangle, fill=white, minimum size=\dim cm,rounded corners=\canto cm},
+        roundnode/.style={circle, fill=white, minimum size=\diametro cm},
         ]
         
         %  Grade guia
         % \draw[step=.2cm,gray,very thin] (-1,-1.6) grid (5.4,7);
     
         % 1a. linha
-        % \node[squarednode] at (0,6) {};
-        \node[roundnode]   (circulo) at (0,6) {};
-        \node[squarednode] at (1.1,6) {};
-        \node[squarednode] at (2.2,6) {};
+        \node[roundnode=#1]   (circulo) at (\col,\lin) {};
+        \node[squarednode=#2] at (\col+\dist*1,\lin) {};
+        \node[squarednode=#2] at (\col+\dist*2,\lin) {};
     
         % 2a. linha
-        \node[squarednode] at (0,4.9) {};
-        \node[squarednode] at (1.1,4.9) {};
+        \node[squarednode=#2] at (\col,\lin-\dist) {};
+        \node[squarednode=#2] at (\col+\dist*1,\lin-\dist) {};
     
         % 3a. linha
-        \node[squarednode] at (0,3.8) {};
-        \node[squarednode] at (1.1,3.8) {};
-        \node[squarednode] at (2.2,3.8) {};
+        \node[squarednode=#2] at (\col,\lin-\dist*2) {};
+        \node[squarednode=#2] at (\col+\dist*1,\lin-\dist*2) {};
+        \node[squarednode=#2] at (\col+\dist*2,\lin-\dist*2) {};
     
         % 4a. linha
-        \node[squarednode] at (0,2.7) {};
-        \node[squarednode] at (1.1,2.7) {};
+        \node[squarednode=#2] at (\col,\lin-\dist*3) {};
+        \node[squarednode=#2] at (\col+\dist*1,\lin-\dist*3) {};
     \end{tikzpicture}
 }
 \end{lrbox}
@@ -177,58 +175,21 @@
 
 % Title page.
 \defbeamertemplate*{title page}{ifscyan}[1][]{
-    \vbox{}
-    \vfill
-    \begingroup
-    {%
     \begin{tikzpicture}[overlay, remember picture]
         \fill[color=main] (current page.north west) rectangle ([shift = {(0, -0.45\paperheight)}] current page.north east);
-    \end{tikzpicture}
-    }
+        \node [anchor=south east, text width=.95\paperwidth,align=left] (titulo) at (.96\paperwidth,.075\paperheight){\usebeamerfont{title}\usebeamercolor[fg]{frametitle}\inserttitle};
+        \node[anchor=south east, below=0em of titulo, text width=.95\paperwidth,align=left] {\usebeamerfont{subtitle}\usebeamercolor[fg]{frametitle}\insertsubtitle};
 
-    \vspace{-1.65\baselineskip}
-    \begin{minipage}[b][0.33\paperheight]{\textwidth}
-        \vspace{\baselineskip}
-        \usebeamerfont{title}
-        \usebeamercolor[fg]{frametitle}
-        \inserttitle
-    \end{minipage}
-    
-    \begin{minipage}[t][0.1\paperheight]{\textwidth}
-        \usebeamerfont{subtitle}
-        \usebeamercolor[fg]{frametitle}
-        \insertsubtitle
-    \end{minipage}
-    
-    % Set the title graphic in a zero-height box, so that
-    % the position of other elements is not affected.
-    {\vfuzz=9999pt\vbox to 0pt {
-        \raggedleft
-        \inserttitlegraphic
-    }}
-    
-    \begin{minipage}[t]{\textwidth}
-        \usebeamerfont{author}
-        \insertauthor
-    \end{minipage}
-    
-    \vspace*{\baselineskip}
-    \begin{minipage}[t]{\textwidth}
-        \usebeamerfont{institute}
-        \insertinstitute
-    \end{minipage}
-    
-    \vspace*{\baselineskip}
-    \begin{minipage}[t]{\textwidth}
-        \usebeamerfont{date}{\insertdate}
-    \end{minipage}
-    
-    \vspace*{5\baselineskip}
-    \endgroup
-    
+        \node [anchor=north west] (logoifsc) at (\paperwidth-3.5cm,-.08\paperheight) {\includegraphics[height=.47\paperheight]{img/ifsclogo.pdf}};
+
+        \node [anchor=north east, text width=.7\paperwidth,align=left, execute at begin node=\setlength{\baselineskip}{1.5em}] (autor) at (.71\paperwidth,-.095\paperheight){\usebeamerfont{author}\insertauthor};
+
+        \node [anchor=south east, below=1em of autor, text width=.7\paperwidth,align=left, execute at begin node=\setlength{\baselineskip}{1.5em}] (instituicao) {\usebeamerfont{institute}\insertinstitute};
+
+        \node [anchor=north east, below=1em of instituicao, node distance=2.5em, text width=.7\paperwidth,align=left] (data) {\usebeamerfont{date}{\insertdate}};
+    \end{tikzpicture}%
     \addtocounter{framenumber}{-1}
 }
-
 
 \AtBeginSection[]{%
 \begin{frame}[plain, noframenumbering]{}
@@ -349,6 +310,9 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 \renewcommand{\lstlistlistingname}{Lista de códigos}
 
 
+% -------------------------------------------------%
+% Configurações para o listing
+% -------------------------------------------------%
 \definecolor{hellgelb}{rgb}{1,1,0.9}
 \definecolor{colKeys}{rgb}{0,0,0}
 \definecolor{colIdentifier}{rgb}{0,0,0.9}
@@ -386,7 +350,6 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 % YAML
 \newcommand\YAMLcolonstyle{\color{red}\mdseries}
 
-
 \lstset{ %
   aboveskip=\bigskipamount,
   backgroundcolor=\color{colBack}, 
@@ -419,11 +382,6 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
   title=\lstname
 }
 
-% Criando definição para linguagem Groovy
-\definecolor{groovyblue}{HTML}{0000A0}
-\definecolor{groovygreen}{HTML}{008000}
-\definecolor{darkgray}{rgb}{.4,.4,.4}
- 
 \lstdefinelanguage{Groovy}[]{Java}{
   keywordstyle=\color{groovyblue}\bfseries,
   stringstyle=\color{groovygreen}\ttfamily,
@@ -468,9 +426,6 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 }
 
 
-\definecolor{eclipseStrings}{RGB}{42,0.0,255}
-\definecolor{eclipseKeywords}{RGB}{127,0,85}
-\colorlet{numb}{magenta!60!black}
 
 
 \lstdefinelanguage{json}{
