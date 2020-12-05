@@ -1,0 +1,810 @@
+% ifscutils.sty
+% ------------------------------------------------------------%
+% 2020-12-05
+% 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% ------------------------------------------------------------%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ifscutils}[2020/06/13 Utilidades para documentos no IFSC]
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[english,brazilian]{babel}
+
+\RequirePackage{tikz,pgf}
+\usetikzlibrary{calc,math,positioning}
+
+%  para subfigures
+\RequirePackage{subcaption}
+
+% Fontes
+\RequirePackage[T1]{fontenc}
+\RequirePackage{amsfonts,amsmath}
+\RequirePackage{lmodern}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Set Helvetica Font in Text and Math in LaTeX %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{fix-cm}
+\renewcommand{\familydefault}{\sfdefault}
+\RequirePackage[scaled=1]{helvet}
+\RequirePackage[helvet]{sfmath}
+\everymath={\sf}
+% Fontes https://fontawesome.com/?from=io
+\RequirePackage{fontawesome}
+
+
+% Aumentando a altura das linhas nas tabelas
+\renewcommand{\arraystretch}{1.2}
+
+%---------------------------------------------------------%
+
+% espaçamento entre linhas
+\renewcommand{\baselinestretch}{1.05} 
+
+
+% ----------------------------------------------------
+% Criação do logo do IFSC
+% ----------------------------------------------------
+
+\definecolor{verdeifsc}{RGB}{50,160,65}
+\definecolor{vermelhoifsc}{RGB}{200,25,30}
+
+\tikzmath{
+  \dim   = 1;
+  \canto =  (.1 * \dim) ; % .1;
+  \diametro = 1.05 * \dim; % 1.05; 
+  \dist = 1.2 * \dim; % 1.1; 
+  \lin = 6;
+  \col = 2.2;
+}
+
+\tikzset{squarednode/.style={rectangle, fill=#1, minimum size=\dim cm,rounded corners=\canto cm}}%
+\tikzset{roundnode/.style={circle, fill=#1, minimum size=\diametro cm}}%
+
+\tikzset{%
+    pics/ifsclogo/.style n args={2}{
+        code = {
+          \node[roundnode=#1]   (circulo) at (\col,\lin) {};
+          \node[squarednode=#2] at (\col+\dist*1,\lin) {};
+          \node[squarednode=#2] at (\col+\dist*2,\lin) {};
+      
+          % 2a. linha
+          \node[squarednode=#2] at (\col,\lin-\dist) {};
+          \node[squarednode=#2] at (\col+\dist*1,\lin-\dist) {};
+      
+          % 3a. linha
+          \node[squarednode=#2] at (\col,\lin-\dist*2) {};
+          \node[squarednode=#2] at (\col+\dist*1,\lin-\dist*2) {};
+          \node[squarednode=#2] at (\col+\dist*2,\lin-\dist*2) {};
+      
+          % 4a. linha
+          \node[squarednode=#2] at (\col,\lin-\dist*3) {};
+          \node[squarednode=#2] at (\col+\dist*1,\lin-\dist*3) {};
+        }
+    }%
+}%
+
+%  Exemplo de como usar o LOGO:
+% \scalebox{.5}{\tikz \pic{ifsclogo={vermelhoifsc}{verdeifsc}};}%
+
+% Exemplo de como criar uma box
+% \newsavebox\ifsclogopreto%
+% \begin{lrbox}{\ifsclogopreto}
+%   \scalebox{.22}{\tikz \pic{ifsclogo};}%
+% \end{lrbox}
+% E como usar
+% \usebox\ifsclogopreto
+
+
+
+% ---------------------------
+% Cores
+% ---------------------------
+\RequirePackage{xcolor}
+\definecolor{coolblack}{rgb}{0.0, 0.18, 0.39}
+\definecolor{darkcerulean}{rgb}{0.03, 0.27, 0.49}
+\definecolor{darkpastelblue}{rgb}{0.47, 0.62, 0.8}
+\definecolor{indigo}{rgb}{0.0, 0.25, 0.42}
+\definecolor{azul}{HTML}{7da6cb}
+\definecolor{amarelo}{HTML}{f0b400}
+
+\RequirePackage{url,graphicx}
+\urlstyle{sf}
+% para quebrar citações que estouram a margem
+\RequirePackage{breakcites}
+\RequirePackage{soulutf8}
+\RequirePackage{csquotes}
+
+
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{enumitem}
+\RequirePackage[normalem]{ulem}
+\RequirePackage{xifthen}
+
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\RequirePackage[colorlinks=true,linkcolor=midnightblue,citecolor=midnightblue,urlcolor=midnightblue]{hyperref}
+
+
+% Set up how figure and table captions are displayed
+% Make the standard latex tables look so much better
+\RequirePackage{array,booktabs,bookmark,multirow,caption}
+
+% Definindo o espaço entre caption e a tabela
+\captionsetup[table]{skip=10pt}
+\captionsetup[figure]{skip=10pt}
+\captionsetup[lstlisting]{skip=10pt}
+
+% Novos tipos de colunas alinhado: à direita, centralizado ou esquerda e que permita definir a largura
+\RequirePackage{ragged2e}
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+% Pacote para incluir listagem de códigos
+
+% para resolver o problema dos apostrofos e crases no listings
+\RequirePackage{upquote,listings}
+\renewcommand{\lstlistlistingname}{Lista de Códigos}
+\renewcommand*\lstlistingname{Listagem}
+
+
+
+% Para ficar visível os Overfull hbox
+\overfullrule=2cm
+
+
+% Para formatar unidades físicas para o padrão usado no Brasil
+\RequirePackage[binary-units=true]{siunitx}
+\sisetup{
+  input-ignore={.},
+  input-decimal-markers={,},
+  output-decimal-marker = {,},
+  group-separator={.},
+  group-minimum-digits=4,
+}
+
+
+\RequirePackage{microtype}
+
+\RequirePackage{supertabular,longtable}
+\RequirePackage{mdframed}
+% para corrigir um bug na margem lateral esquerda do subtitle
+\tikzset{mdfsubtitlebackground/.style={draw=none,fill=\mdf@subtitlebackgroundcolor}}
+
+%---------------------------------------------------------%
+% Comandos
+%---------------------------------------------------------%
+\RequirePackage{ccicons}
+\newcommand{\licenciamentoLivre}{%
+\begin{center}%
+  \ccby~Este documento está licenciado sob \href{https://creativecommons.org/licenses/by/4.0/deed.pt_BR}{Creative Commons ``Atribuição 4.0 Internacional''.}%  
+\end{center}%
+}
+
+% Ambiente para manter histórico das revisões
+\def\numeroRevisao{0.0.0}
+
+\newenvironment{historico}[1][chapter]{%
+\newcommand{\revisao}[3]{%
+  \ifthenelse{\equal{\numeroRevisao}{0.0.0}}{%
+    \gdef \numeroRevisao{\string##1}% Update version number
+  }%
+  \string##1 & ##2 & ##3\\%
+}%
+\ifthenelse{\equal{\string #1}{\string chapter}}
+    {\chapter*{Histórico de revisões}}%
+    {\section*{Histórico de revisões}}%
+
+\begin{center}%
+  \begin{tabular*}{\linewidth}{@{}rp{2cm}p{.75\linewidth}@{}}\toprule%
+    Revisão & Data & Descrição\\\midrule%
+}{%
+\bottomrule%
+\end{tabular*}%    
+\end{center}%
+}%
+
+
+
+
+%---------------------------------------------------------%
+% Listas
+%---------------------------------------------------------%
+
+\newlist{lista}{enumerate}{10} 
+\setlist[lista,1]{resume,label*=\arabic*.}
+\setlist[lista]{label*=\arabic*.}
+
+% Macro para traduzir o contador de forma a deixar em ordinal número < 10 e cardinal quando >=10
+\def\traduzir#1{
+\ifx @#1%
+\else
+\ifnum\number#1<10
+\number#1º%
+\else
+\number#1%
+\fi
+\fi
+}
+\def\ordcard#1{\expandafter\@ordcard\csname c@#1\endcsname}
+\def\@ordcard#1{\traduzir{#1}}
+\AddEnumerateCounter{\ordcard}{\@ordcard}{999}
+
+
+
+% Novas listas enumerate para artigo, paragrafo, inciso e alinea
+
+\newlist{artigo}{enumerate}{5}
+% \setlist[artigo]{resume,labelindent=\parindent, itemindent=0px, align=left, label=\textbf{Art. \arabic*º}, ref=art. \arabic*º}
+
+\setlist[artigo,1]{resume,labelindent=\parindent, itemindent=0px, align=left, label=\textbf{Art. \ordcard*}, ref=art. \ordcard*}
+\setlist[artigo,2]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\textbf{Parágrafo único -}, ref=parágrafo único}
+\setlist[artigo,3]{start=1,labelindent=\parindent, topsep=0pt,align=left,itemindent=0px, label=\Roman*.,ref=\Roman*}
+\setlist[artigo,4]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px,align=left, label=\alph*),ref=\alph*}
+\setlist[artigo,5]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\arabic*.}
+
+\newlist{paragrafo}{enumerate}{4}
+\setlist[paragrafo,1]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\textbf{§\ordcard*}, ref=§\ordcard*}
+\setlist[paragrafo,2]{start=1,labelindent=\parindent, topsep=0pt,align=left,itemindent=0px, label=\Roman*.,ref=\Roman*}
+\setlist[paragrafo,3]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px,align=left, label=\alph*),ref=\alph*}
+\setlist[paragrafo,4]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\arabic*.}
+
+\newlist{inciso}{enumerate}{3}
+\setlist[inciso,1]{start=1,labelindent=\parindent, topsep=0pt,align=left, itemindent=0px,label=\Roman*.,ref=\Roman*}
+\setlist[inciso,2]{start=1,labelindent=\parindent,topsep=0pt, align=left,itemindent=0px, label=\alph*),ref=\alph*}
+\setlist[inciso,3]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\arabic*.}
+
+
+% ---------------------------------------
+% Baloes de informacao
+% ---------------------------------------
+\newtcbox{\dest}[1][red]{on line,
+arc=0pt,outer arc=0pt,colback=#1!10!white,colframe=#1!50!black, boxsep=0pt,left=1pt,right=1pt,top=2pt,bottom=2pt, boxrule=0pt,bottomrule=1pt,toprule=1pt}
+\newtcbox{\destx}[1][red]{on line, arc=7pt,colback=#1!10!white,colframe=#1!50!black, before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=6pt,right=6pt,top=2pt,bottom=2pt}
+
+\newtcolorbox{informacao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.98\linewidth,colback=gray!5,colframe=gray,%
+overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\huge \faInfoCircle}}}; }}
+
+\newtcolorbox{atencao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.98\linewidth,colback=gray!5,colframe=gray,%
+overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\huge \faExclamationCircle}}}; }}
+
+\newtcolorbox{cuidado}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.98\linewidth,colback=gray!5,colframe=gray,%
+overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolor{amarelo}{{\huge \faWarning}}}; }}
+
+
+
+% -------------------------------------------------%
+%  Cabeçalho
+% -------------------------------------------------%
+\newcommand{\cabecalhoCurso}[6]{
+\hbadness=10000
+\noindent%
+\begin{center}%
+  \fbox{%
+  \begin{minipage}{.98\textwidth}%
+    \begin{tabular*}{\linewidth}{@{} l p{9.1cm} R{6cm}@{}}
+      \multirow{2}{*}{\scalebox{.20}{\tikz \pic{ifsclogo={black}{black}};}} & {\small #1} &  {\small #3} \\% 
+      &  {\small #2} &  {\small #4}%
+    \end{tabular*}
+    \begin{center}%
+      #5
+    \end{center}%
+    \begin{flushright}
+      {\small #6}
+    \end{flushright}
+  \end{minipage}%
+  }%
+\end{center}%
+\bigskip%
+}
+% -------------------------------------------------%
+% nome do aluno
+% -------------------------------------------------%
+\newcommand{\nomealuno}[2][\rule{.22\linewidth}{.4pt}]{
+\noindent \textbf{Aluno:} #2 \hfill \textbf{Matrícula:} #1
+\bigskip}
+% -------------------------------------------------%
+
+
+% Use esse comando para fazer links para sites.
+% Os links ficarão em azual e dentro dos símbolos < e > 
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{<#3>}}}%
+
+
+% -------------------------------------------------%
+% Ambiente para casos de uso UML 
+% -------------------------------------------------%
+\definecolor{gainsboro}{rgb}{0.86, 0.86, 0.86}
+\newmdenv[
+    frametitlerulewidth=.5pt,
+    frametitlerule=true,
+    frametitlebackgroundcolor=gainsboro,
+    subtitlebelowskip=0pt,
+    subtitleaboveskip=2pt
+    ]{usecasemdframed}
+
+% Cabeçalho do ambiente usecase
+\newenvironment{cabecalhoUC}{%
+\newcommand{\atorPrimario}[1]{%
+\textbf{Ator primário} & ##1 \\%
+}%
+\newcommand{\atoresSecundarios}[1]{%
+\textbf{Atores secundários} & ##1 \\%
+}%
+\newcommand{\precondicoesUC}[1]{%
+\textbf{Pré-condições} & ##1 \\%
+}%
+\newcommand{\poscondicoesUC}[1]{%
+\textbf{Pós-condições} & ##1 \\%
+}%
+\begin{tabular}{@{}p{3.8cm} p{11.6cm}@{}}%
+}{%
+\end{tabular}%
+}%
+
+% https://tex.stackexchange.com/questions/82471/creating-a-new-environment-with-referencing
+% Contador para o ambiente usecase
+\newcounter{usecase}[section]
+\renewcommand*{\theusecase}{UC-\thechapter.\arabic{usecase}}
+\newcommand*{\usecaseautorefname}{Caso de Uso}
+\newcommand{\usecaseLabel}[1]{%
+\refstepcounter{usecase}\theusecase\label{#1}%
+}%
+
+% ambiente usecase
+\newenvironment{usecase}[3]{%
+\newenvironment{fluxoprincipal}{%
+\mdfsubtitle{Fluxo principal}%
+\begin{enumerate}%
+}{%
+\end{enumerate}%
+}%
+\newenvironment{fluxoalternativo}[1]{%
+\mdfsubtitle{Fluxo alternativo: ##1}%
+\begin{enumerate}%
+}{%
+\end{enumerate}%
+}%
+\newenvironment{fluxoexcecao}[1]{%
+\mdfsubtitle{Fluxo de exceção: ##1}%
+\begin{enumerate}%
+}{%
+\end{enumerate}%
+}%
+\begin{usecasemdframed}[frametitle={\usecaseLabel{#2}: #1}]%
+  \textbf{Resumo} #3\\[2mm]%
+}{%
+\end{usecasemdframed}%
+}%
+
+
+
+
+%\includecode[shell]{l_olamundo}{Olá mundo em shell script}{codigos/ola.sh}
+\newcommand{\includecode}[4][c]{\lstinputlisting[captionpos=t,caption=#3, label=#2,escapechar={@*}, style=#1]{#4}}
+
+
+% -------------------------------------------------%
+% Configurações para o listing
+% -------------------------------------------------%
+\definecolor{hellgelb}{rgb}{1,1,0.9}
+\definecolor{colKeys}{rgb}{0,0,0}
+\definecolor{colIdentifier}{rgb}{0,0,0.9}
+\definecolor{colComments}{rgb}{.4,.4,.4}
+\definecolor{colString}{rgb}{0,0,0.6}
+\definecolor{deepblue}{rgb}{0,0,0.8}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{colBack}{rgb}{1,1,0.9}
+\definecolor{colKeys}{rgb}{108,48,130}%{0,0,0}
+\definecolor{colIdentifier}{rgb}{0,0,0.9}
+\definecolor{colComments}{rgb}{0,0.6,0}%{.4,.4,.4}
+\definecolor{colString}{rgb}{0.6,0,0}
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+% XML color
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{lightblue}{rgb}{0.0,0.0,0.9}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
+% Criando definição para linguagem Groovy
+\definecolor{groovyblue}{HTML}{0000A0}
+\definecolor{groovygreen}{HTML}{008000}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+% json
+\definecolor{eclipseStrings}{RGB}{42,0.0,255}
+\definecolor{eclipseKeywords}{RGB}{127,0,85}
+\colorlet{numb}{magenta!60!black}
+% YAML
+\newcommand\YAMLcolonstyle{\color{red}\mdseries}
+
+% Protocol Buffers
+% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/style.sty
+\definecolor{proto_basic}{RGB}{0,0,0}             % black
+\definecolor{proto_keyword}{RGB}{0,0,255}         % blue
+\definecolor{proto_type}{RGB}{128,0,0}            % dark red
+\definecolor{proto_options}{RGB}{128,0,128}       % purple
+\definecolor{proto_comment}{RGB}{0,128,0}         % dark green
+\definecolor{proto_string}{RGB}{255,0,0}          % red
+\definecolor{proto_number}{RGB}{108,113,196}      % violet
+\definecolor{proto_ident}{RGB}{0,0,0}             % black
+\definecolor{proto_digits}{RGB}{0,0,128}          % dark blue
+\definecolor{proto_background}{RGB}{255,255,255}  % white
+
+
+
+\lstset{ %
+  aboveskip=\bigskipamount,
+  backgroundcolor=\color{colBack}, 
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{deepblue},
+  stringstyle=\color{javared},
+  commentstyle=\color{javagreen},
+  breakatwhitespace=false,
+  breaklines=true,        
+  captionpos=n,           
+  columns=flexible,
+  deletekeywords={...},  
+  escapechar={@*},       
+  extendedchars=true,    
+  linewidth=0.98\linewidth,
+  tab=$\to$,
+  float=tbph,
+  xleftmargin=10pt,
+  frame=single,	         
+  keepspaces=true,       
+  numbers=left,    
+  numbersep=5pt,   
+  numberstyle=\tiny,
+  rulecolor=\color{black}, 
+  showspaces=false,        
+  showstringspaces=false,  
+  showtabs=false,          
+  tabsize=2,
+  title=\lstname
+}
+% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/lang.sty
+\lstdefinelanguage{protobuf3}{%
+    sensitive=true,%
+    morecomment=[l]{//},%
+    morecomment=[s]{/*}{*/},%
+    morestring=[b]{"},%
+    % For the keywords of Protocol Buffers
+    % see https://developers.google.com/protocol-buffers/docs/proto
+    morekeywords={enum,oneof,map,syntax,public,import,option,package,message,%
+        group,optional,required,repeated,default,reserved,extend,extensions,%
+        to,max,service,rpc,returns,true,false},%
+    % Basic types
+    % see https://developers.google.com/protocol-buffers/docs/proto#scalar
+    morekeywords=[2]{%
+        double,float,int32,int64,uint32,uint64,sint32,sint64,%
+        fixed32,fixed64,sfixed32,sfixed64,bool,string,bytes},%
+    % Options
+    % taken from 'google/protobuf/descriptor.proto'
+    morekeywords=[3]{%
+        % Generic Options
+        deprecated, uninterpreted_option,%
+        % File Options
+        java_package,java_outer_classname,java_multiple_files,%
+        java_generate_equals_and_hash,java_string_check_utf8,optimize_for,%
+        go_package,cc_generic_services,java_generic_services,%
+        py_generic_services,cc_enable_arenas,obj_class_prefix,%
+        csharp_namespace,%
+        % Message Options
+        message_set_wire_format,no_standard_descriptor_accessor,map_entry,%
+        % Field Options
+        ctype, packed,jstype,lazy,weak,%
+        % Enum Options
+        allow_alias}%
+    deletekeywords={
+      % 'group' was marked as deprecated in protobuf2; now it's disallowed
+      group,%
+      % in protobuf3 the Any type replaces extensions (from protobuf2)
+      extensions, to, extend, max,%
+      % 'required' is no longer allowed
+      required,%
+      % 'optional' is default; stating it explicitly is disallowed
+      optional,%
+      % explicit default values are no longer allowed
+      default}%
+}
+
+\lstdefinelanguage{Groovy}[]{Java}{
+  keywordstyle=\color{groovyblue}\bfseries,
+  stringstyle=\color{groovygreen}\ttfamily,
+  keywords=[3]{each, findAll, groupBy, collect, inject, eachWithIndex},
+  morekeywords={def, as, in, use},
+  moredelim=[is][\textcolor{darkgray}]{\%\%}{\%\%},
+  moredelim=[il][\textcolor{darkgray}]{§§}
+}
+
+\lstdefinelanguage{XSD}{
+  columns=fullflexible,   
+  basicstyle=\ttfamily\footnotesize,
+  commentstyle=\ttfamily\itshape\color{javagreen},   
+  morestring=[s]{"}{"},   
+  morecomment=[s]{?}{?},   
+  morecomment=[s]{!--}{--},   
+  morecomment=[s]{!DOCTYPE}{]},   
+  moredelim=[s][\color{black}]{>}{<},   
+  moredelim=[s][\bfseries\color{black}]{\ }{=},   
+  moredelim=[s][\bfseries\color{violet}]{</}{>},
+  stringstyle=\color{blue},   
+  identifierstyle=\bfseries\color{violet} 
+}
+
+\lstdefinelanguage{XML}{
+  columns=fullflexible,   
+  basicstyle=\ttfamily\footnotesize,
+  commentstyle=\ttfamily\itshape\color{javagreen},   
+  morestring=[b]",
+  morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  morecomment=[s]{!--}{--},   
+  morecomment=[s]{!DOCTYPE}{]},   
+  moredelim=[s][\color{black}]{>}{<},   
+  moredelim=[s][\bfseries\color{black}]{\ }{=},   
+  moredelim=[s][\bfseries\color{violet}]{</}{>},
+  stringstyle=\color{blue},   
+  identifierstyle=\bfseries\color{violet} 
+}
+
+
+
+
+\lstdefinelanguage{json}{
+  basicstyle=\normalfont\ttfamily,
+    commentstyle=\color{eclipseStrings}, % style of comment
+    stringstyle=\color{eclipseKeywords}, % style of strings
+    string=[s]{"}{"},
+    comment=[l]{:\ "},
+    morecomment=[l]{:"},
+    literate=
+        *{0}{{{\color{numb}0}}}{1}
+         {1}{{{\color{numb}1}}}{1}
+         {2}{{{\color{numb}2}}}{1}
+         {3}{{{\color{numb}3}}}{1}
+         {4}{{{\color{numb}4}}}{1}
+         {5}{{{\color{numb}5}}}{1}
+         {6}{{{\color{numb}6}}}{1}
+         {7}{{{\color{numb}7}}}{1}
+         {8}{{{\color{numb}8}}}{1}
+         {9}{{{\color{numb}9}}}{1}
+}
+
+\lstdefinelanguage{YAML}{
+  keywords={true,false,null,y,n},
+  keywordstyle=\color{darkgray}\bfseries,
+  basicstyle=\color{black},                                 % assuming a key comes first
+  sensitive=false,
+  comment=[l]{\#},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{blue}\ttfamily,
+  moredelim=[l][\color{orange}]{\&},
+  moredelim=[l][\color{magenta}]{*},
+  moredelim=**[il][\YAMLcolonstyle{:}\color{blue}\ttfamily]{:},   % switch to value style at :
+  morestring=[b]',
+  morestring=[b]",
+  literate =    {---}{{\ProcessThreeDashes}}3
+                {>}{{\textcolor{red}\textgreater}}1     
+                {|}{{\textcolor{red}\textbar}}1 
+                {\ -\ }{{\mdseries\ -\ }}3,
+}
+\newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
+
+
+\lstdefinelanguage{docker}{
+  keywords={FROM, RUN, COPY, ADD, ENTRYPOINT, CMD,  ENV, ARG, WORKDIR, EXPOSE, LABEL, USER, VOLUME, STOPSIGNAL, ONBUILD, MAINTAINER},
+  keywordstyle=\color{blue}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  % stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinelanguage{docker-compose}{
+  keywords={image, environment, ports, container_name, ports, volumes, links},
+  keywordstyle=\color{blue}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  % stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstdefinelanguage{docker-compose-2}{
+  keywords={version, volumes, services},
+  keywordstyle=\color{blue}\bfseries,
+  keywords=[2]{image, environment, ports, container_name, ports, links, build},
+  keywordstyle=[2]\color{olive}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinestyle{shell}{language=csh,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{shellp}{language=csh,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{php}{language=php,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{phpp}{language=php,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{ansic}{language=c,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{ansicp}{language=c,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{cpp}{language=C++,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{cppp}{language=C++,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{docker}{language=docker,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{docker-compose}{language=docker-compose,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{docker-compose2}{language=docker-compose2,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{json}{language=json,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{jsonp}{language=json,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{java}{language=java,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{javap}{language=java,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{matlab}{language=matlab,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{matlabp}{language=matlab,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{python}{language=python,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{pythonp}{language=python,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{xml}{language=XML,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{xmlp}{language=XML,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{xsd}{language=XSD,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{xsdp}{language=XSD,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{sql}{language=sql,moredelim=[is][\underbar]{__}{__},basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{sqlp}{language=sql,moredelim=[is][\underbar]{__}{__},basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{groovy}{language=Groovy,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{yaml}{language=YAML,basicstyle=\ttfamily\footnotesize}
+
+% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/style.sty
+\lstdefinestyle{protobuf}{
+  language=protobuf3,
+  basicstyle=\color{proto_basic}\footnotesize\ttfamily,
+	keywordstyle=[1]\color{proto_keyword},
+	keywordstyle=[2]\color{proto_type},
+	keywordstyle=[3]\color{proto_options},
+	commentstyle=\color{proto_comment},
+	stringstyle=\color{proto_string},
+  numberstyle=\color{proto_number}\tiny,
+  identifierstyle=\color{proto_ident},
+	breaklines=true,
+	showstringspaces=false,
+  tabsize=2,
+  inputencoding=utf8,
+  extendedchars=true,
+  % This 'literate' block is responsible for colouring numbers
+  % appearing in the code
+  literate={0}{{\textcolor{proto_digits}{0}}}{1}%
+           {1}{{\textcolor{proto_digits}{1}}}{1}%
+           {2}{{\textcolor{proto_digits}{2}}}{1}%
+           {3}{{\textcolor{proto_digits}{3}}}{1}%
+           {4}{{\textcolor{proto_digits}{4}}}{1}%
+           {5}{{\textcolor{proto_digits}{5}}}{1}%
+           {6}{{\textcolor{proto_digits}{6}}}{1}%
+           {7}{{\textcolor{proto_digits}{7}}}{1}%
+           {8}{{\textcolor{proto_digits}{8}}}{1}%
+           {9}{{\textcolor{proto_digits}{9}}}{1}%
+           {.0}{{\textcolor{proto_digits}{.0}}}{2}%
+           {.1}{{\textcolor{proto_digits}{.1}}}{2}%
+           {.2}{{\textcolor{proto_digits}{.2}}}{2}%
+           {.3}{{\textcolor{proto_digits}{.3}}}{2}%
+           {.4}{{\textcolor{proto_digits}{.4}}}{2}%
+           {.5}{{\textcolor{proto_digits}{.5}}}{2}%
+           {.6}{{\textcolor{proto_digits}{.6}}}{2}%
+           {.7}{{\textcolor{proto_digits}{.7}}}{2}%
+           {.8}{{\textcolor{proto_digits}{.8}}}{2}%
+           {.9}{{\textcolor{proto_digits}{.9}}}{2}%
+           % We need to add some hacks - otherwise 'listings' would
+           % colour (only) the digits in the types instead of the type
+           {int32}{{\textcolor{proto_type}{int32}}}{5}%
+           {int64}{{\textcolor{proto_type}{int64}}}{5}%
+           {uint32}{{\textcolor{proto_type}{uint32}}}{6}%
+           {uint64}{{\textcolor{proto_type}{uint64}}}{6}%
+           {sint32}{{\textcolor{proto_type}{sint32}}}{6}%
+           {sint64}{{\textcolor{proto_type}{sint64}}}{6}%
+           {fixed32}{{\textcolor{proto_type}{fixed32}}}{7}%
+           {fixed64}{{\textcolor{proto_type}{fixed64}}}{7}%
+           {sfixed32}{{\textcolor{proto_type}{sfixed32}}}{8}%
+           {sfixed64}{{\textcolor{proto_type}{sfixed64}}}{8}%
+           {java_string_check_utf8}{{%
+             \textcolor{proto_options}{java_string_check_utf8}}}{2}%
+           {\ }{{ }}{1}
+           {é}{{\'{e}}}1
+        {è}{{\`{e}}}1
+        {ê}{{\^{e}}}1
+        {ë}{{\¨{e}}}1
+        {É}{{\'{E}}}1
+        {Ê}{{\^{E}}}1
+        {û}{{\^{u}}}1
+        {ù}{{\`{u}}}1
+        {â}{{\^{a}}}1
+        {à}{{\`{a}}}1
+        {á}{{\'{a}}}1
+        {ã}{{\~{a}}}1
+        {Á}{{\'{A}}}1
+        {Â}{{\^{A}}}1
+        {Ã}{{\~{A}}}1
+        {ç}{{\c{c}}}1
+        {Ç}{{\c{C}}}1
+        {õ}{{\~{o}}}1
+        {ó}{{\'{o}}}1
+        {ú}{{\'{u}}}1
+        {Ú}{{\'{U}}}1
+        {ô}{{\^{o}}}1
+        {Õ}{{\~{O}}}1
+        {Ó}{{\'{O}}}1
+        {Ô}{{\^{O}}}1
+        {î}{{\^{i}}}1
+        {Î}{{\^{I}}}1
+        {í}{{\'{i}}}1
+        {Í}{{\~{Í}}}1
+           ,
+	prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	upquote=true,
+}
+
+
+
+
+\newcommand{\groovy}{\lstset{style=Groovy}}
+\newcommand{\cpp}{\lstset{style=cpp}}
+\newcommand{\cppp}{\lstset{style=cppp}}
+\newcommand{\ansic}{\lstset{style=ansic}}
+\newcommand{\ansicp}{\lstset{style=ansicp}}
+\newcommand{\json}{\lstset{style=json}}
+\newcommand{\jsonp}{\lstset{style=jsonp}}
+\newcommand{\yaml}{\lstset{style=yaml}}
+\newcommand{\java}{\lstset{style=java}}
+\newcommand{\javap}{\lstset{style=javap}}
+\newcommand{\sql}{\lstset{style=sql}}
+\newcommand{\sqlp}{\lstset{style=sqlp}}
+\newcommand{\xml}{\lstset{style=xml}}
+\newcommand{\xmlp}{\lstset{style=xmlp}}
+\newcommand{\xsd}{\lstset{style=xsd}}
+\newcommand{\xsdp}{\lstset{style=xsdp}}
+\newcommand{\python}{\lstset{style=python}}
+\newcommand{\pythonp}{\lstset{style=pythonp}}
+\newcommand{\csh}{\lstset{style=shell}}
+\newcommand{\cshp}{\lstset{style=shellp}}
+\newcommand{\shell}{\lstset{style=shell}}
+\newcommand{\shellp}{\lstset{style=shellp}}
+
+% Permitindo caracteres acentuados dentro do ambiente lstlisting
+\lstset{%
+        inputencoding=utf8,
+        extendedchars=true,
+        literate=%
+        {é}{{\'{e}}}1
+        {è}{{\`{e}}}1
+        {ê}{{\^{e}}}1
+        {ë}{{\¨{e}}}1
+        {É}{{\'{E}}}1
+        {Ê}{{\^{E}}}1
+        {û}{{\^{u}}}1
+        {ù}{{\`{u}}}1
+        {â}{{\^{a}}}1
+        {à}{{\`{a}}}1
+        {á}{{\'{a}}}1
+        {ã}{{\~{a}}}1
+        {Á}{{\'{A}}}1
+        {Â}{{\^{A}}}1
+        {Ã}{{\~{A}}}1
+        {ç}{{\c{c}}}1
+        {Ç}{{\c{C}}}1
+        {õ}{{\~{o}}}1
+        {ó}{{\'{o}}}1
+        {ú}{{\'{u}}}1
+        {Ú}{{\'{U}}}1
+        {ô}{{\^{o}}}1
+        {Õ}{{\~{O}}}1
+        {Ó}{{\'{O}}}1
+        {Ô}{{\^{O}}}1
+        {î}{{\^{i}}}1
+        {Î}{{\^{I}}}1
+        {í}{{\'{i}}}1
+        {Í}{{\~{Í}}}1
+}
