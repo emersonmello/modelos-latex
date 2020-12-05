@@ -1,31 +1,62 @@
 % !TEX root = monografia.tex
 \ProvidesPackage{estilo-monografia-ifsc}
 
-%---------------------------------------------------------------------%
-% ---
+%-----------------------------------------------%
 % Pacotes 
-% ---
-\RequirePackage{lmodern}			% Usa a fonte Latin Modern			
+%-----------------------------------------------%
+\RequirePackage{lmodern}		  	% Usa a fonte Latin Modern			
 \RequirePackage[T1]{fontenc}		% Selecao de codigos de fonte.
-\RequirePackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
-\RequirePackage{lastpage}			% Usado pela Ficha catalográfica
+\RequirePackage[utf8]{inputenc}	% Codificacao do documento (conversão automática dos acentos)
+\RequirePackage{lastpage}			  % Usado pela Ficha catalográfica
 \RequirePackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
-\RequirePackage{color}				% Controle das cores
-\RequirePackage{graphicx}			% Inclusão de gráficos
+\RequirePackage{color,xcolor}	  % Controle das cores
+\RequirePackage{graphicx}			  % Inclusão de gráficos
 \RequirePackage{microtype} 			% para melhorias de justificação
-\RequirePackage{url,listings,color}
+\RequirePackage{url}
+\RequirePackage{breakcites}     % para quebrar citações que estouram a margem
 \RequirePackage{amsmath,tikz,pgf}
 \RequirePackage{caption,subcaption}
+\RequirePackage{soulutf8}
+\RequirePackage{csquotes}
 \RequirePackage[printonlyused,withpage]{acronym}
 \RequirePackage{lipsum}				% para geração de dummy text
-% ---
+\RequirePackage{array,booktabs,bookmark,multirow}
+\RequirePackage{ragged2e}
+% para resolver o problema dos apostrofos e crases no listings
+\RequirePackage{upquote,listings}
+% Para formatar unidades físicas para o padrão usado no Brasil
+\RequirePackage[binary-units=true]{siunitx}
 % Pacotes de citações
 \RequirePackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
 \RequirePackage[alf]{abntex2cite}	% Citações padrão ABNT
-% --- 
+
+%-----------------------------------------------%
+% Cores
+%-----------------------------------------------%
+\definecolor{coolblack}{rgb}{0.0, 0.18, 0.39}
+\definecolor{darkcerulean}{rgb}{0.03, 0.27, 0.49}
+\definecolor{darkpastelblue}{rgb}{0.47, 0.62, 0.8}
+\definecolor{indigo}{rgb}{0.0, 0.25, 0.42}
+\definecolor{azul}{HTML}{7da6cb}
+\definecolor{amarelo}{HTML}{f0b400}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+
+
+%-----------------------------------------------%
 % CONFIGURAÇÕES DE PACOTES
-% --- 
-% ---
+%-----------------------------------------------%
+% Novos tipos de colunas que permita definir a largura
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+
+
+
+
+
+
+
 % Configurações do pacote backref
 % Usado sem a opção hyperpageref de backref
 \renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
@@ -40,14 +71,13 @@
 	\else
 		Citado #1 vezes nas páginas #2.%
 	\fi}%
-% ---
+%-----------------------------------------------%
 
-% -------------------------------------------------------------------------------------------------------------- %
+
+%-----------------------------------------------%
 % Personalização do modelo da abnTeX2 para se adequar com o modelo do IFSC
 % 2017-08-23 - Segue o modelo do IFSC publicado em setembro de 2016
-% -------------------------------------------------------------------------------------------------------------- %
-
-
+%-----------------------------------------------%
 % alterando a capa
 \renewcommand{\imprimircapa}{%
   \begin{capa}%
@@ -71,9 +101,9 @@
     \vspace*{1cm}
   \end{capa}
 }
-
+%-----------------------------------------------%
 % folha de rosto 
-
+%-----------------------------------------------%
 \makeatletter
 
 \renewcommand{\folhaderostocontent}{
@@ -118,58 +148,50 @@
 
 \makeatother
 
+%-----------------------------------------------%
 % comando para imprimir texto de aprovação
+%-----------------------------------------------%
 \providecommand{\imprimirtextoaprovacao}{}
 \newcommand{\textoaprovacao}[1]{\renewcommand{\imprimirtextoaprovacao}{\begin{center}#1\end{center}
 }} 
-% -------------------------------------------------------------------------------------------------------------- %
+%-----------------------------------------------%
 
-
-
-% ---
+%-----------------------------------------------%
 % Configurações de aparência do PDF final
+%-----------------------------------------------%
 
 % alterando o aspecto da cor azul
 \definecolor{blue}{RGB}{41,5,195}
 
 % informações do PDF
 \makeatletter
-\hypersetup{
-     	%pagebackref=true,
-		pdftitle={\@title}, 
-		pdfauthor={\@author},
-    	pdfsubject={\imprimirpreambulo},
-		pdfkeywords={trabalho acadêmico}, 
-		colorlinks=true,       		% false: boxed links; true: colored links
-    	linkcolor=black,          	% color of internal links
-    	citecolor=black,        		% color of links to bibliography
-    	filecolor=black,      		% color of file links
-		urlcolor=black,
-		bookmarksdepth=4
-}
+\hypersetup{%
+pdftitle={\@title},%
+pdfauthor={\@author},%
+pdfsubject={\imprimirpreambulo},%
+pdfkeywords={trabalho acadêmico},% 
+colorlinks=true,linkcolor=midnightblue,citecolor=midnightblue,urlcolor=black,%
+bookmarksdepth=4%
+}%
 \makeatother
 
-% --- 
-
-% --- 
+%-----------------------------------------------%
 % Espaçamentos entre linhas e parágrafos 
-% --- 
-
+%-----------------------------------------------%
 % O tamanho do parágrafo é dado por:
 \setlength{\parindent}{1.3cm}
-
 % Controle do espaçamento entre um parágrafo e outro:
 \setlength{\parskip}{0.2cm}  % tente também \onelineskip
 
-% ---
+%-----------------------------------------------%
 % compila o indice
-% ---
+%-----------------------------------------------%
 \makeindex
-% ---
+%-----------------------------------------------%
 
-% -------------------------------------------------------------------------------------------------------------- %
-% Configurações para inserir código fonte de programas - pacote listings
-% -------------------------------------------------------------------------------------------------------------- %
+%-----------------------------------------------%
+% Configurações para inserir código fonte
+%-----------------------------------------------%
 
 % Altera o nome padrão do rótulo usado no comando \autoref{}
 \renewcommand{\lstlistingname}{Código}
@@ -177,7 +199,7 @@
 % Altera o rótulo a ser usando no elemento pré-textual "Lista de código"
 \renewcommand{\lstlistlistingname}{Lista de códigos}
 
-%% Configura a ``Lista de Códigos'' conforme as regras da ABNT (para abnTeX2)
+% Configura a ``Lista de Códigos'' conforme as regras da ABNT (para abnTeX2)
 \begingroup\makeatletter
 \let\newcounter\@gobble\let\setcounter\@gobbletwo
   \globaldefs\@ne \let\c@loldepth\@ne
@@ -195,58 +217,76 @@
    \oldlstlistoflistings%
    \endgroup}
 
-% Definindo cores
+% -------------------------------------------------%
+% Configurações para o listing
+% -------------------------------------------------%
 \definecolor{hellgelb}{rgb}{1,1,0.9}
 \definecolor{colKeys}{rgb}{0,0,0}
 \definecolor{colIdentifier}{rgb}{0,0,0.9}
 \definecolor{colComments}{rgb}{.4,.4,.4}
 \definecolor{colString}{rgb}{0,0,0.6}
-
-\definecolor{colBack}{rgb}{1,1,.98}
-\definecolor{colKeys}{rgb}{0,0,0}
+\definecolor{deepblue}{rgb}{0,0,0.8}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{colBack}{rgb}{1,1,0.9}
+\definecolor{colKeys}{rgb}{108,48,130}%{0,0,0}
 \definecolor{colIdentifier}{rgb}{0,0,0.9}
-\definecolor{colComments}{rgb}{.4,.4,.4}
-\definecolor{colString}{rgb}{0,0,0.6}
-
-\lstset{ %
-  aboveskip=\bigskipamount,
-  backgroundcolor=\color{colBack},   % choose the background color; you must add \usepackage{color} or 
-  basicstyle=\ttfamily\footnotesize,       % the size of the fonts that are used for the code
-  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-  breaklines=true,                 % sets automatic line breaking
-  captionpos=n,                    % sets the caption-position to bottom
-  columns=flexible,
-  commentstyle=\color{colComments},    % comment style
-  deletekeywords={...},            % if you want to delete keywords from the given language
-  escapechar={@*},          % if you want to add LaTeX within your code
-  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-  linewidth=0.98\linewidth,
-  tab=$\to$,
-  float=tbph,
-  xleftmargin=10pt,
-  frame=single,	                   % adds a frame around the code
-  keepspaces=true,                % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-identifierstyle=\color{colIdentifier},
-  keywordstyle=\color{colKeys},       % keyword style
-%  otherkeywords={*,...},            % if you want to add more keywords to the set
-  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
-  numbersep=5pt,                   % how far the line-numbers are from the code
-  numberstyle=\tiny,
-  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-  showstringspaces=false,          % underline spaces within strings only
-  showtabs=false,                  % show tabs within strings adding particular underscores
-%   stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle=\color{colString},     % string literal style
-  tabsize=2,	                   % sets default tabsize to 2 spaces
-  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
-}
-
+\definecolor{colComments}{rgb}{0,0.6,0}%{.4,.4,.4}
+\definecolor{colString}{rgb}{0.6,0,0}
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+% XML color
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{lightblue}{rgb}{0.0,0.0,0.9}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
 % Criando definição para linguagem Groovy
 \definecolor{groovyblue}{HTML}{0000A0}
 \definecolor{groovygreen}{HTML}{008000}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
- 
+% json
+\definecolor{eclipseStrings}{RGB}{42,0.0,255}
+\definecolor{eclipseKeywords}{RGB}{127,0,85}
+\colorlet{numb}{magenta!60!black}
+
+\lstset{ %
+  aboveskip=\bigskipamount,
+  backgroundcolor=\color{colBack}, 
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{deepblue},
+  stringstyle=\color{javared},
+  commentstyle=\color{javagreen},
+  morecomment=[s][\color{javadocblue}]{/**}{*/},
+  breakatwhitespace=false,
+  breaklines=true,        
+  captionpos=n,           
+  columns=flexible,
+  deletekeywords={...},  
+  escapechar={@*},       
+  extendedchars=true,    
+  linewidth=0.98\linewidth,
+  tab=$\to$,
+  float=tbph,
+  xleftmargin=10pt,
+  frame=single,	         
+  keepspaces=true,       
+  numbers=left,    
+  numbersep=5pt,   
+  numberstyle=\tiny,
+  rulecolor=\color{black}, 
+  showspaces=false,        
+  showstringspaces=false,  
+  showtabs=false,          
+  tabsize=2,
+  title=\lstname
+}
+
 \lstdefinelanguage{Groovy}[]{Java}{
   keywordstyle=\color{groovyblue}\bfseries,
   stringstyle=\color{groovygreen}\ttfamily,
@@ -255,7 +295,36 @@ identifierstyle=\color{colIdentifier},
   moredelim=[is][\textcolor{darkgray}]{\%\%}{\%\%},
   moredelim=[il][\textcolor{darkgray}]{§§}
 }
-
+\lstdefinelanguage{XML}{
+  morestring=[s][\color{mauve}]{"}{"},
+  morestring=[s][\color{black}]{>}{<},
+  morecomment=[s]{<?}{?>},
+  morecomment=[s][\color{dkgreen}]{<!--}{-->},
+  stringstyle=\color{black},
+  identifierstyle=\color{lightblue},
+  keywordstyle=\color{red},
+  % list your attributes here
+  morekeywords={xmlns,xsi,noNamespaceSchemaLocation,type,id,x,y,source,target,version,tool,transRef,roleRef,objective,eventually}
+}
+\lstdefinelanguage{json}{
+  basicstyle=\normalfont\ttfamily,
+    commentstyle=\color{eclipseStrings}, % style of comment
+    stringstyle=\color{eclipseKeywords}, % style of strings
+    string=[s]{"}{"},
+    comment=[l]{:\ "},
+    morecomment=[l]{:"},
+    literate=
+        *{0}{{{\color{numb}0}}}{1}
+         {1}{{{\color{numb}1}}}{1}
+         {2}{{{\color{numb}2}}}{1}
+         {3}{{{\color{numb}3}}}{1}
+         {4}{{{\color{numb}4}}}{1}
+         {5}{{{\color{numb}5}}}{1}
+         {6}{{{\color{numb}6}}}{1}
+         {7}{{{\color{numb}7}}}{1}
+         {8}{{{\color{numb}8}}}{1}
+         {9}{{{\color{numb}9}}}{1}
+}
 % Permitindo caracteres acentuados dentro do ambiente lstlisting
 \lstset{%
         inputencoding=utf8,
@@ -292,30 +361,33 @@ identifierstyle=\color{colIdentifier},
         {Í}{{\~{Í}}}1
 }
 
-% Criando comandos para algumas linguagens de programação
 \lstdefinestyle{shell}{language=csh,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{shellp}{language=csh,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{php}{language=php,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{phpp}{language=php,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{ansic}{language=c,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{ansicp}{language=c,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{cpp}{language=C++,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{cppp}{language=C++,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{json}{language=json,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{java}{language=java,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{javap}{language=java,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{matlab}{language=matlab,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{matlabp}{language=matlab,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{python}{language=python,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{pythonp}{language=python,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{xml}{language=xml,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{xmlp}{language=xml,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{xml}{language=XML,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{xmlp}{language=XML,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{sql}{language=sql,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{sqlp}{language=sql,basicstyle=\ttfamily\scriptsize}
-
 \lstdefinestyle{groovy}{language=Groovy,basicstyle=\ttfamily\footnotesize}
+
 \newcommand{\groovy}{\lstset{style=Groovy}}
-
-
+\newcommand{\cpp}{\lstset{style=cpp}}
+\newcommand{\cppp}{\lstset{style=cppp}}
 \newcommand{\ansic}{\lstset{style=ansic}}
 \newcommand{\ansicp}{\lstset{style=ansicp}}
+\newcommand{\json}{\lstset{style=json}}
 \newcommand{\java}{\lstset{style=java}}
 \newcommand{\javap}{\lstset{style=javap}}
 \newcommand{\sql}{\lstset{style=sql}}
@@ -329,12 +401,6 @@ identifierstyle=\color{colIdentifier},
 \newcommand{\shell}{\lstset{style=shell}}
 \newcommand{\shellp}{\lstset{style=shellp}}
 
-% Incluindo códigos que estão em um arquivo externo
-%parâmetros: linguagem (shell, java, matlab, python, c, php), label, caption, arquivo
-
 %\includecode[shell]{l_olamundo}{Olá mundo em shell script}{codigos/ola.sh}
 
 \newcommand{\includecode}[4][c]{\lstinputlisting[captionpos=t,caption=#3, label=#2,escapechar={@*}, style=#1]{#4}}
-
-
-%---------------------------------------------------------------------------------------------------------------%

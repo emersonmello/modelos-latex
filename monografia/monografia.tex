@@ -1,5 +1,4 @@
-% ------------------------------------------------------------------------
-% ------------------------------------------------------------------------
+%-----------------------------------------------%
 % abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
 % mestrado e trabalhos monograficos em geral) em conformidade com 
 % ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
@@ -7,8 +6,8 @@
 %
 % Adaptado por Emerson Ribeiro de Mello (2017-08-23)
 % baseado no modelo "Template para elaboração de trabalho acadêmico - versão setembro/2016" fornecido pela Biblioteca do IFSC - http://www.ifsc.edu.br/menu-colecao-abnt (acessado em 2017-08-23)
-% ------------------------------------------------------------------------
-% ------------------------------------------------------------------------
+%-----------------------------------------------%
+
 \documentclass[
 	% -- opções da classe memoir --
 	10pt,				% tamanho da fonte
@@ -31,15 +30,13 @@
 %  chamado estilo-monografia-ifsc.sty.
 \usepackage{estilo-monografia-ifsc}	
 
-%---------------------------------------------------------------------%
-%---------------------------------------------------------------------%
+%-----------------------------------------------%
 % Informações de dados para CAPA e FOLHA DE ROSTO
-%---------------------------------------------------------------------%
-%---------------------------------------------------------------------%
+%-----------------------------------------------%
 \titulo{Modelo de Trabalho Acadêmico com \abnTeX}
 \autor{Nome do Aluno}
 \local{São José - SC}
-\data{agosto/2017}
+\data{dezembro/2020}
 \orientador{Professor Orientador da Silva}
 \coorientador{Professor Coorientador da Silva}
 \instituicao{%
@@ -49,221 +46,48 @@
   \par
   Engenharia de Telecomunicações}
 \tipotrabalho{Monografia (Graduação)}
+%-----------------------------------------------%
 
-% O preambulo deve conter o tipo do trabalho, o objetivo, 
-% o nome da instituição e a área de concentração 
+%-----------------------------------------------%
+% O preambulo deve conter o tipo do trabalho, o objetivo, o nome da instituição e a área de concentração 
 \preambulo{Trabalho de conclusão de curso apresentado à Coordenadoria do Curso de Engenharia de Telecomunicações do campus São José do Instituto Federal de Santa Catarina para a obtenção do diploma de Engenheiro de Telecomunicações.}
-%---------------------------------------------------------------------%
+
 \textoaprovacao{Este trabalho foi julgado adequado para obtenção do título de Engenheiro de Telecomunicações, pelo Instituto Federal de Educação, Ciência e Tecnologia de Santa Catarina, e aprovado na sua forma final pela comissão avaliadora abaixo indicada.}
+%-----------------------------------------------%
 
 
 
-
-
-
-
-%---------------------------------------------------------------------%
+%-----------------------------------------------%
 % Início do documento
-%---------------------------------------------------------------------%
-
-
+%-----------------------------------------------%
 \begin{document}
 % Seleciona o idioma do documento (conforme pacotes do babel)
 \selectlanguage{brazil}
 % Retira espaço extra obsoleto entre as frases.
 \frenchspacing 
 
-
-% ----------------------------------------------------------
+%-----------------------------------------------%
 % ELEMENTOS PRÉ-TEXTUAIS
-% ----------------------------------------------------------
-% \pretextual
+%-----------------------------------------------%
+\pretextual
 
 \imprimircapa
-% Folha de rosto - (o * indica que haverá a ficha bibliográfica)
-\imprimirfolhaderosto*
-% ---
 
-%---------------------------------------------------------------------%
-% ATENÇÃO - Pergunte para a Biblioteca do IFSC
-% Inserir a ficha bibliografica - 
-%
-%---------------------------------------------------------------------%
-% Isto é um exemplo de Ficha Catalográfica, ou ``Dados internacionais de
-% catalogação-na-publicação''. Você pode utilizar este modelo como referência. 
-% Porém, provavelmente a biblioteca da sua universidade lhe fornecerá um PDF
-% com a ficha catalográfica definitiva após a defesa do trabalho. Quando estiver
-% com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
-% o conteúdo de implementação deste arquivo pelo comando abaixo:
-%
-% \begin{fichacatalografica}
-%     \includepdf{fig_ficha_catalografica.pdf}
-% \end{fichacatalografica}
-
-\begin{fichacatalografica}
-	\sffamily
-	\vspace*{\fill}					% Posição vertical
-	\begin{center}					% Minipage Centralizado
-	\fbox{\begin{minipage}[c][8cm]{13.5cm}		% Largura
-	\small
-	\imprimirautor
-	%Sobrenome, Nome do autor
-	
-	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
-	\imprimirlocal, \imprimirdata-
-	
-	\hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.\\
-	
-	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
-	
-	\hspace{0.5cm}
-	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
-	\imprimirdata.}\\
-	
-	\hspace{0.5cm}
-		1. Palavra-chave1.
-		2. Palavra-chave2.
-		2. Palavra-chave3.
-		I. Orientador.
-		II. Instituto Federal de Santa Catarina.
-		III. Campus São José.
-		IV. Título 
-	\end{minipage}}
-	\end{center}
-\end{fichacatalografica}
-%---------------------------------------------------------------------%
-
-%---------------------------------------------------------------------%
-% Inserir folha de aprovação
-%---------------------------------------------------------------------%
-
-% Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR
-% 14724/2011 (seção 4.2.1.3). Você pode utilizar este modelo até a aprovação
-% do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
-% imagem da página assinada pela banca com o comando abaixo:
-%
-% \includepdf{folhadeaprovacao_final.pdf}
-%
-\begin{folhadeaprovacao}
-
-  \begin{center}
-    {\ABNTEXchapterfont\large\MakeUppercase{\imprimirautor}}
-
-    \vspace*{\fill}\vspace*{\fill}
-    \begin{center}
-      \ABNTEXchapterfont\bfseries\Large\MakeUppercase{\imprimirtitulo}
-    \end{center}
-    \vspace*{\fill}
-    
-    \imprimirtextoaprovacao
-     
-    \vspace*{1cm}
-    
-	\imprimirlocal, 15 de outubro de 2015:
-
-    \vspace*{\fill}
-
-   \end{center}
-        
+%-----------------------------------------------%
+% No arquivo abaixo tem detalhes sobre folha de
+% aprovação, ficha catalográfica, agradecimentos,
+% resumo, abstract, etc.
+% 
+% Se não for a versão final do PDF, talvez fosse
+% interessante comentar a linha abaixo.
+%-----------------------------------------------%
+\input{pretextuais.tex}
 
 
-   \assinatura{\textbf{\imprimirorientador, Dr.} \\ Orientador\\Instituto Federal de Santa Catarina} 
-   \assinatura{\textbf{Professor, Dr.} \\ Instituto X }
-   \assinatura{\textbf{Professor} \\ Instituto Y}
-   \assinatura{\textbf{Professor} \\ Instituto Z}
-   %\assinatura{\textbf{Professor} \\ Convidado 4}
-      
-    \vspace*{1cm}  
-  
-\end{folhadeaprovacao}
-% ---
-
-%---------------------------------------------------------------------%
-% Dedicatória
-%---------------------------------------------------------------------%
-\begin{dedicatoria}
-   \vspace*{\fill}
-   \begin{flushright}
-   \noindent
-   \textit{ Este trabalho é dedicado às crianças adultas que,\\
-   quando pequenas, sonharam em se tornar cientistas.}\vspace*{2cm}
-   \end{flushright}
-\end{dedicatoria}
-% ---
-
-%---------------------------------------------------------------------%
-% Agradecimentos
-%---------------------------------------------------------------------%
-\begin{agradecimentos}
-Os agradecimentos principais são direcionados à Gerald Weber, Miguel Frasson,
-Leslie H. Watter, Bruno Parente Lima, Flávio de Vasconcellos Corrêa, Otavio Real
-Salvador, Renato Machnievscz\footnote{Os nomes dos integrantes do primeiro
-projeto abn\TeX\ foram extraídos de
-\url{http://codigolivre.org.br/projects/abntex/}} e todos aqueles que
-contribuíram para que a produção de trabalhos acadêmicos conforme
-as normas ABNT com \LaTeX\ fosse possível.
-
-Agradecimentos especiais são direcionados ao Centro de Pesquisa em Arquitetura
-da Informação\footnote{\url{http://www.cpai.unb.br/}} da Universidade de
-Brasília (CPAI), ao grupo de usuários
-\emph{latex-br}\footnote{\url{http://groups.google.com/group/latex-br}} e aos
-novos voluntários do grupo
-\emph{\abnTeX}\footnote{\url{http://groups.google.com/group/abntex2} e
-\url{http://www.abntex.net.br/}}~que contribuíram e que ainda
-contribuirão para a evolução do \abnTeX.
-
-\end{agradecimentos}
-% ---
-
-%---------------------------------------------------------------------%
-% Epígrafe
-%---------------------------------------------------------------------%
-\begin{epigrafe}
-    \vspace*{\fill}
-	\begin{flushright}
-		\textit{``Não vos amoldeis às estruturas deste mundo, \\
-		mas transformai-vos pela renovação da mente, \\
-		a fim de distinguir qual é a vontade de Deus: \\
-		o que é bom, o que Lhe é agradável, o que é perfeito.\\
-		(Bíblia Sagrada, Romanos 12, 2)}
-	\end{flushright}
-\end{epigrafe}
-% ---
-
-%---------------------------------------------------------------------%
-% RESUMOS
-%---------------------------------------------------------------------%
-% resumo em português
-\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
-\begin{resumo}
- Segundo a \citeonline[3.1-3.2]{NBR6028:2003}, o resumo deve ressaltar o
- objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão
- destes itens dependem do tipo de resumo (informativo ou indicativo) e do
- tratamento que cada item recebe no documento original. O resumo deve ser
- precedido da referência do documento, com exceção do resumo inserido no
- próprio documento. O resumo deve ser escrito como um parágrafo único, sem utilizar referências bibliográficas e evitando ao máximo, o uso de siglas/abreviações. O resumo deve conter até X palavras, sendo composto das seguintes partes (organização lógica): introdução, objetivos, justificativa, metodologia e resultados esperados. Esta é a sequência lógica, não devendo ser utilizados títulos e subtítulos. Não abuse na contextualização, pois o foco deve ser nos objetivos e nos resultados esperados. (\ldots) As palavras-chave devem figurar logo abaixo do
- resumo, antecedidas da expressão Palavras-chave:, separadas entre si por
- ponto e finalizadas também por ponto.
-
- \textbf{Palavras-chave}: Latex. Abntex. Editoração de texto.
-\end{resumo}
-
-% resumo em inglês
-\begin{resumo}[Abstract]
- \begin{otherlanguage*}{english}
-   This is the english abstract.
-
-   \vspace{\onelineskip}
- 
-   \noindent 
-   \textbf{Keywords}: Latex. Abntex. Text editoration.
- \end{otherlanguage*}
-\end{resumo}
-
-
-%---------------------------------------------------------------------%
-% inserir lista de ilustrações, tabelas, listagem de códigos, abreviaturas, símbolos
-%---------------------------------------------------------------------%
+%-----------------------------------------------%
+% inserir lista de ilustrações, tabelas, listagem 
+% de códigos, abreviaturas, símbolos
+%-----------------------------------------------%
 \pdfbookmark[0]{\listfigurename}{lof}
 \listoffigures*
 \cleardoublepage
@@ -272,51 +96,51 @@ contribuirão para a evolução do \abnTeX.
 \listoftables*
 \cleardoublepage
 
-% ---
+%-----------------------------------------------%
 % inserir lista de listings
-% ---
+%-----------------------------------------------%
 \pdfbookmark[0]{\lstlistlistingname}{lol}
 \begin{KeepFromToc}
 \lstlistoflistings
 \end{KeepFromToc}
 \cleardoublepage
-% ---
+%-----------------------------------------------%
 
+%-----------------------------------------------%
 % inserir lista de abreviaturas e siglas
+%-----------------------------------------------%
 \pdfbookmark[0]{Lista de abreviaturas e siglas}{loa}
 \include{abreviaturas}
 \cleardoublepage
+%-----------------------------------------------%
 
+%-----------------------------------------------%
 % inserir lista de símbolos
+%-----------------------------------------------%
 \begin{simbolos}
   \item[$ \Gamma $] Letra grega Gama
   \item[$ \Lambda $] Lambda
   \item[$ \zeta $] Letra grega minúscula zeta
   \item[$ \in $] Pertence
 \end{simbolos}
-%---------------------------------------------------------------------%
+%-----------------------------------------------%
 
-
-
-
-%---------------------------------------------------------------------%
+%-----------------------------------------------%
 % inserir o sumario
-%---------------------------------------------------------------------%
+%-----------------------------------------------%
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
 \cleardoublepage
+%-----------------------------------------------%
 
 
-% ----------------------------------------------------------
+%-----------------------------------------------%
 % ELEMENTOS TEXTUAIS
-% ----------------------------------------------------------
+%-----------------------------------------------%
 \textual
-
-
-
-% ----------------------------------------------------------
+%-----------------------------------------------%
 % Inclusão dos capítulos que estão em outros arquivos .tex
-% ----------------------------------------------------------
+%-----------------------------------------------%
 \include{introducao}
 \include{cap2}
 \include{cap3}
@@ -325,23 +149,18 @@ contribuirão para a evolução do \abnTeX.
 
 
 
-
-
-% ----------------------------------------------------------
+%-----------------------------------------------%
 % ELEMENTOS PÓS-TEXTUAIS
-% ----------------------------------------------------------
+%-----------------------------------------------%
 \postextual
-% ----------------------------------------------------------
-
-% ----------------------------------------------------------
+%-----------------------------------------------%
+%-----------------------------------------------%
 % Referências bibliográficas
-% ----------------------------------------------------------
+%-----------------------------------------------%
 \bibliography{referencias}
-
-
-% ----------------------------------------------------------
+%-----------------------------------------------%
 % Apêndices
-% ----------------------------------------------------------
+%-----------------------------------------------%
 \begin{apendicesenv}
 % Imprime uma página indicando o início dos apêndices
 \partapendices
@@ -351,9 +170,9 @@ contribuirão para a evolução do \abnTeX.
 
 \end{apendicesenv}
 
-% ----------------------------------------------------------
+%-----------------------------------------------%
 % Anexos
-% ----------------------------------------------------------
+%-----------------------------------------------%
 \begin{anexosenv}
 % Imprime uma página indicando o início dos anexos
 \partanexos
@@ -367,11 +186,11 @@ contribuirão para a evolução do \abnTeX.
 
 \end{anexosenv}
 
-%---------------------------------------------------------------------
+%-----------------------------------------------%
 % INDICE REMISSIVO
-%---------------------------------------------------------------------
+%-----------------------------------------------%
 \phantompart
 \printindex
-%---------------------------------------------------------------------
+%-----------------------------------------------%
 
 \end{document}

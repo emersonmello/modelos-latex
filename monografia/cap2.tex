@@ -40,23 +40,15 @@ O objetivo deste documento é de mostrar como preparar uma monografia para o cur
 
 Essa é uma subseção da \autoref{s_c2_figuras} do \autoref{c_cap2}. 
 
-
-\begin{figure}[!htpb]
-    \centering
-	\caption{O mascote do \LaTeX em diferentes poses}\label{f_c2_mascotes}
-	% Deixando as figuras alinhadas a partir do topo (t)
-	\begin{subfigure}[t]{.45\textwidth}
-	\caption{O mascote estudando}\label{f_c2_masco1}
-        \includegraphics[width=\textwidth]{figs/lion}
-        
-    \end{subfigure}
-	% Deixando as figuras alinhadas a partir do topo (t)
-    \begin{subfigure}[t]{.4\textwidth}
-	\caption{O mascote ensinando}\label{f_c2_masco2}
-        \includegraphics[width=\textwidth]{figs/latex_lion}
-        
-    \end{subfigure}
+\begin{figure}[ht]
+	\centering
+	\caption{O mascote do~\LaTeX~em diferentes poses}\label{f_c2_mascotes}
+	\subcaptionbox{O mascote estudando\label{f_c2_masco1}}
+		{\includegraphics[width=.4\textwidth]{figs/lion}}
+	\subcaptionbox{O mascote ensinando\label{f_c2_masco2}}
+		{\includegraphics[width=.4\textwidth]{figs/latex_lion}}
 \end{figure}
+
 
 A \autoref{f_c2_mascotes} ilustra uma forma de incluir duas figuras, lado a lado, usando o pacote \texttt{subcaption}. A \autoref{f_c2_masco1} ilustra o mascote do \LaTeX~estudando. Já na \autoref{f_c2_masco2} o mascote aparece apresentando algum assunto. 
 
