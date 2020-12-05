@@ -1,0 +1,68 @@
+% ------------------------------------------------------------%
+% 2020-12-05
+% 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% ------------------------------------------------------------%
+\documentclass[11pt]{../classes/ifscarticle}
+\usepackage{../classes/ifscutils}
+\geometry{a4paper,hmargin=2cm,top=3.5cm,bottom=2cm,headheight=3cm,heightrounded}
+
+
+\fancypagestyle{firstpage}{
+	\fancyhead[C]{\pgfuseimage{cabecalho}}
+}
+\pgfdeclareimage[width=1.29\linewidth]{cabecalho}{../classes/imagens/ifsc-header.png}
+
+
+\begin{document}
+
+\begin{center}
+	{\huge Plano de ensino}\vspace*{.5cm}
+\end{center}
+
+% \section{Dados da disciplina}
+\noindent\fbox{%
+\begin{minipage}{.98\textwidth}%
+	\begin{small}
+	\begin{tabular}{@{}l l@{}}
+	\textbf{Curso}                & Engenharia de Telecomunicações\\
+	\textbf{Unidade curricular}   & Programação Orientada a Objetos\\
+	\textbf{Semestre}             & 2020-01\\
+	\textbf{Carga horária}        & 72 horas\\
+	\textbf{Professor}            & Emerson Ribeiro de Mello\\
+	\textbf{Página da disciplina} & \url{http://docente.ifsc.edu.br/mello}\\
+	\end{tabular}
+	\end{small}			
+\end{minipage}%
+}\vspace*{.5cm}
+
+\section{Ementa}
+
+Introdução ao paradigma da orientação a objetos: Classes, objeto, associações entre classes, herança. Introdução à linguagem de modelagem unificada (UML): Diagramas de caso de uso, classes, sequência. Introdução a linguagem de programação Java: Tipos de dados primitivos, estruturas de controle, vetores; concepção de projeto orientado a objetos, herança, polimorfismo; interfaces gráficas amigáveis.
+
+\section{Objetivos}
+
+Ao término da disciplina o aluno será capaz de modelar, implementar e testar software de média complexidade na linguagem Java e de acordo com o paradigma da programação orientada a objetos. Os objetivos específicos da disciplina são:
+
+\begin{itemize}
+    \item Introduzir os conceitos da programação orientada a objetos;
+    \item Apresentar a linguagem de programação Java e a linguagem de modelagem unificada (UML);
+    \item Usar de forma efetiva ferramentas como ambiente integrado de desenvolvimento e sistema de controle de versão para trabalhar de forma colaborativa;
+    \item Modelar software de média complexidade por meio de diagramas UML comportamentais e estruturais.
+\end{itemize}
+
+
+
+\section{Metodologia}
+
+\section{Conteúdo programático}
+
+
+
+\nocite{*}
+
+\bibliographystyle{plain}
+\renewcommand{\refname}{Bibliografia}
+\bibliography{referencias-poo.bib}
+
+
+\end{document}
