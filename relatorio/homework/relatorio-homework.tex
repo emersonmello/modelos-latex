@@ -1,30 +1,31 @@
-% ------------------------------------------------------------------------------------
-% 2018-11-29 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
-% ------------------------------------------------------------------------------------
-\documentclass[11pt]{article}
-\usepackage[a4paper,hmargin=2.2cm,top=2cm,bottom=2cm]{geometry}
-\usepackage{estilo-relatorio-article}
+% ------------------------------------------------------------%
+% 2020-12-05
+% 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% ------------------------------------------------------------%
+\documentclass[11pt]{../../classes/ifscarticle}
+\usepackage{../../classes/ifscutils}
 \usepackage[alf]{abntex2cite} % Citações padrão ABNT
 
-% Esse pacote só foi usado para gerar blocos de textos "lorem ipsum" para preencher o exemplo.
+\renewcommand*{\theusecase}{UC-\thesection.\arabic{usecase}}
+
+
 \usepackage{lipsum}
 
-
+\AtBeginDocument{\thispagestyle{empty}}
 \begin{document}
-% ------------------------------------------------------------------------------------
+% ------------------------------------------------------------%
 % Capa
-% ------------------------------------------------------------------------------------
-\pagestyle{empty}	
+% ------------------------------------------------------------%
 \begin{titlepage}
 \begin{center}
 % Logotipo do IFSC
-\includegraphics[scale=.5]{figuras/ifsc-logo-v}
+\includegraphics[scale=.7]{../../classes/imagens/ifsc-v}
 \vspace{4cm}
 
 \rule{\linewidth}{0.5pt} \\[6pt] 
 
 % Título
-{\huge \bfseries Laboratório 01}
+{\huge \bfseries Laboratório 01}\\[3pt] 
 
 % Subtítulo
 {\large  Método construtor e modificadores de acesso}\\
@@ -43,7 +44,7 @@
 \textbf{Professor:}
 \end{flushleft}
 \end{minipage}~
-\begin{minipage}{0.9\textwidth}
+\begin{minipage}{0.8\textwidth}
 \begin{flushleft} \large
 Engenharia de Telecomunicações\\
 POO29004 -- Programação Orientada a Objetos\\
@@ -66,23 +67,24 @@ Nome do segundo aluno
 
 % Coloque aqui a data
 \begin{center}
-28 de novembro de 2018
+05 de dezembro de 2020
 \end{center}
 
 \end{titlepage}
-\pagestyle{plain}
-% ------------------------------------------------------------------------------------
+\pagestyle{firstpage}
+% ------------------------------------------------------------%
+
+% ------------------------------------------------------------%
+% Para adicionar sumário
+% ------------------------------------------------------------%
+% \tableofcontents
+% \clearpage
+% ------------------------------------------------------------%
 
 
-
-
-
-
-
-% ------------------------------------------------------------------------------------
-% Início da parte textual
-% ------------------------------------------------------------------------------------
-
+% ------------------------------------------------------------%
+% Início do documento
+% ------------------------------------------------------------%
 \section{Introdução}
 \label{sec:introducao}
 
@@ -95,14 +97,13 @@ Nome do segundo aluno
     \label{fig:logolatex}
 \end{figure}
 
-Na introdução é apresentada a organização do documento e uma breve descrição de como o mesmo foi construído.   Esse é um modelo em \LaTeX \cite{lamport94} e o estilo das referências bibliográficas segue as normas da ABNT, implementadas pelo pacote abnTeX2. A \autoref{fig:logolatex} apresentada o logo do \LaTeX. O restante do documento está organizado da seguinte forma. Na \autoref{sec:construtorjava} é apresentado o código de como fazer um método construtor em Java. Na \autoref{sec:construtorpython} é apresentado como fazer um método construtor em Python.
+Na introdução é apresentada a organização do documento e uma breve descrição de como o mesmo foi construído.   Esse é um modelo em \LaTeX~ \cite{lamport94} e o estilo das referências bibliográficas segue as normas da ABNT, implementadas pelo pacote abnTeX2. A \autoref{fig:logolatex} apresentada o logo do \LaTeX. O restante do documento está organizado da seguinte forma. Na \autoref{sec:construtorjava} é apresentado o código de como fazer um método construtor em Java. Na \autoref{sec:construtorpython} é apresentado como fazer um método construtor em Python.
 
 \subsection{Método construtor em Java}
 \label{sec:construtorjava}
 
-\java
 
-\begin{lstlisting}
+\begin{lstlisting}[language=java]
 public class Carro{
     private String modelo = "Fusca";
     private int velocidade = 0;
@@ -118,9 +119,8 @@ public class Carro{
 \subsection{Método construtor em Python}
 \label{sec:construtorpython}
 
-\python
 
-\begin{lstlisting}
+\begin{lstlisting}[language=python]
 class Carro:
     def __init__(self, modelo='Fusca', velocidade=0):
         self.modelo = modelo

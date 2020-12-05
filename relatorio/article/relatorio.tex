@@ -1,25 +1,25 @@
-% ------------------------------------------------------------------------------------
-% 2018-11-29 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
-% ------------------------------------------------------------------------------------
-\documentclass[11pt]{article}
-\usepackage[a4paper,hmargin=2.2cm,top=2cm,bottom=2cm]{geometry}
-\usepackage{estilo-relatorio-article}
+% ------------------------------------------------------------%
+% 2020-12-05
+% 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% ------------------------------------------------------------%
+\documentclass[11pt]{../../classes/ifscarticle}
+\usepackage{../../classes/ifscutils}
 \usepackage[alf]{abntex2cite} % Citações padrão ABNT
 
-% Esse pacote só foi usado para gerar blocos de textos "lorem ipsum" para preencher o exemplo.
+\renewcommand*{\theusecase}{UC-\thesection.\arabic{usecase}}
+
+
 \usepackage{lipsum}
 
+\AtBeginDocument{\thispagestyle{empty}}
 \begin{document}
-
-
-% ------------------------------------------------------------------------------------
+% ------------------------------------------------------------%
 % Capa
-% ------------------------------------------------------------------------------------
-\pagestyle{empty}
+% ------------------------------------------------------------%
 \begin{center}
 
 % Logotipo do órgão
-\includegraphics[scale=.7]{figuras/ifsc-logo-v}
+\includegraphics[scale=.7]{../../classes/imagens/ifsc-v}
 \vspace{7.5cm}
 
 % Título
@@ -28,44 +28,40 @@
 \vspace{.5cm}
 
 % Subtítulo
-{\large \bfseries Um modelo \LaTeX que faz uso da classe \texttt{article}}
+{\large \bfseries Um modelo \LaTeX~que faz uso da classe \texttt{article}}
 
 \vfill
 \end{center}
 
 % Autor(es)
 {\noindent \large \bfseries 
-Emerson Ribeiro de Mello 
-\\ Segundo Autor do Trabalho
+Emerson Ribeiro de Mello%
+\\[.5em] Segundo Autor do Trabalho%
 }
 
 % Data que o relatório foi gerado
 \begin{flushright}
-29 de novembro de 2018
+05 de dezembro de 2020
 \end{flushright}
 
 \clearpage
-\pagestyle{plain}
-% ------------------------------------------------------------------------------------
+\pagestyle{firstpage}
+% ------------------------------------------------------------%
 
-
-% ------------------------------------------------------------------------------------
+% ------------------------------------------------------------%
 % Adicionando sumário
-% ------------------------------------------------------------------------------------
+% ------------------------------------------------------------%
 \tableofcontents
 \clearpage
 
-
-
-
-% ------------------------------------------------------------------------------------
-% Início da parte textual
-% ------------------------------------------------------------------------------------
+% ------------------------------------------------------------%
+% Início do documento
+% ------------------------------------------------------------%
 
 \section{Introdução}
 \label{sec:introducao}
 
-Na introdução é apresentada a organização do documento e uma breve descrição de como o mesmo foi construído.   Esse é um modelo em \LaTeX \cite{lamport94} e o estilo das referências bibliográficas segue as normas da ABNT, implementadas pelo pacote abnTeX2. A \autoref{fig:logolatex} apresentada o logo do \LaTeX.
+Na introdução é apresentada a organização do documento e uma breve descrição de como o mesmo foi construído.   Esse é um modelo em \LaTeX~ \cite{lamport94} e o estilo das referências bibliográficas segue as normas da ABNT, implementadas pelo pacote abnTeX2. A \autoref{fig:logolatex} apresentada o logo do \LaTeX.
 
 \begin{figure}[ht]
     \centering
@@ -96,53 +92,65 @@ Nessa seção deve ser apresentada a lista de pessoas que participaram do levant
 \label{sec:reqfuncionais}
 
 \begin{enumerate}
-	\item O sistema deve permitir que alunos visualizem as notas obtidas
-	\item O sistema deve permitir que os alunos façam matrícula nas disciplinas do semestre letivo
-	\item O sistema deve permitir que os alunos possam obter seus históricos escolares
+    \item O sistema deve permitir que alunos visualizem as notas obtidas
+    \item O sistema deve permitir que os alunos façam matrícula nas disciplinas do semestre letivo
+    \item O sistema deve permitir que os alunos possam obter seus históricos escolares
 \end{enumerate}
 
 \subsection{Requisitos não funcionais}
 \label{sec:reqnaofuncionais}
 
 \begin{enumerate}
-	\item A interface do usuário deve ser simplificada e evitar múltiplos cliques (passos) para chegar em qualquer funcionalidade
-	\item Fazer uso de protocolos criptográficos para troca de mensagens
-	\item O sistema deverá ser desenvolvido em uma linguagem para web e que não dependa de plugins para o navegador
-	\item O banco de dados precisar ser o MySQL
+    \item A interface do usuário deve ser simplificada e evitar múltiplos cliques (passos) para chegar em qualquer funcionalidade
+    \item Fazer uso de protocolos criptográficos para troca de mensagens
+    \item O sistema deverá ser desenvolvido em uma linguagem para web e que não dependa de plugins para o navegador
+    \item O banco de dados precisar ser o MySQL
 \end{enumerate}
 
 \subsection{Regras de negócio}
 \label{sec:regrasdenegocio}
 
 \begin{enumerate}
-	\item \textbf{Número máximo de matrículas por semestre letivo}
-	\begin{itemize}
-		\item Em um semestre letivo um aluno não poderá se matricular em um número de disciplinas cujo o soma de créditos ultrapasse 18.
-	\end{itemize}
-	\item \textbf{Número máximo de alunos por turma}
-	\begin{itemize}
-		\item Uma oferta de disciplina não pode ter mais de 40 vagas para matrícula.
-	\end{itemize}
-	\item \textbf{Validação de créditos}
-	\begin{itemize}
-		\item Um aluno só poderá solicitar validação de uma disciplina caso nunca tenha se matriculado na mesma.
-	\end{itemize}
+    \item \textbf{Número máximo de matrículas por semestre letivo}
+    \begin{itemize}
+        \item Em um semestre letivo um aluno não poderá se matricular em um número de disciplinas cujo o soma de créditos ultrapasse 18.
+    \end{itemize}
+    \item \textbf{Número máximo de alunos por turma}
+    \begin{itemize}
+        \item Uma oferta de disciplina não pode ter mais de 40 vagas para matrícula.
+    \end{itemize}
+    \item \textbf{Validação de créditos}
+    \begin{itemize}
+        \item Um aluno só poderá solicitar validação de uma disciplina caso nunca tenha se matriculado na mesma.
+    \end{itemize}
 \end{enumerate}
 
 
+\section{Casos de uso}\label{sec:casos_de_uso}
 
 
+\begin{usecase}{Consultar informações}{uc:consultarinfos}{Esse caso de uso descreve as etapas para o PAF obter informações como versão do SB, resumo criptográfico do SB, IdDAF, modelo, fabricante, valor atual do contador, certificado armazenado, estado do DAF, algoritmos criptográficos que o DAF provê suporte e identificadores dos documentos retidos na MT.}
+    \begin{cabecalhoUC}
+    \atorPrimario{PAF}
+    % \atoresSecundarios{ABC, DEF}
+    \precondicoesUC{DAF deve estar no estado \textsc{Pronto}, \textsc{Inativo} ou \textsc{Bloqueado}}
+    \end{cabecalhoUC}
 
+    \begin{fluxoprincipal}
+        \item O PAF solicita ao DAF suas informações 
+        \item O DAF retorna para o PAF o documento estruturado com suas informações
+    \end{fluxoprincipal}  
 
+    \begin{fluxoexcecao}{Pedido mal formado}
+        \item O DAF retorna para o PAF uma mensagem de erro informando que o pedido foi mal formado)
+    \end{fluxoexcecao}   
+\end{usecase}
 
 
 % ----------------------------------------------------------
 % Referências bibliográficas
 % ----------------------------------------------------------
 \bibliography{referencias}
-
-
-
 
 
 \end{document}

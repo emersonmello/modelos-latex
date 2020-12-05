@@ -1,25 +1,13 @@
-% 2017-03-18 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
-\documentclass[11pt]{article}
-\usepackage{estilo-nota-aula}
-\usepackage{pdflscape}
+% ------------------------------------------------------------%
+% 2020-12-05
+% 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% ------------------------------------------------------------%
+\documentclass[11pt]{../classes/ifscarticle}
+\usepackage{../classes/ifscutils}
 
-% ----------------------------------------------------
-% Declaração do caminho das imagens
-% ----------------------------------------------------
-% Logo
-\pgfdeclareimage[width=.75cm]{logo}{imagem/logo-mono.png}
-% Info
-\pgfdeclareimage[width=.6cm]{nota}{imagem/nota.pdf}
-% Warning
-\pgfdeclareimage[width=.6cm]{atencao}{imagem/atencao.pdf}
-
-
-% ------------------------------------------------------------------------------------------------------------ %
-%                       Início do documento
-% ------------------------------------------------------------------------------------------------------------ %
 \begin{document}
 
-\cabecalhoCurso[Formação Inicial e Continuada]{Aula}{9}{23/05/2017}{Configuração de Redes de Computadores Linux}{Shell Script}{Emerson Ribeiro de Mello \hfill \url{http://docente.ifsc.edu.br/mello}}
+\cabecalhoCurso{Engenharia de Telecomunicações}{Configuração de Redes de Computadores Linux}{Prof. Emerson Ribeiro de Mello}{\url{http://docente.ifsc.edu.br/mello/bcd}}{\textbf{Aula 01:} Shell Script}{14/06/2020}
 
 \shell
 
@@ -34,6 +22,10 @@ No interpretador de comandos é possível invocar comandos isolados ou ainda com
 Como dito, o \textit{shell} é um interpretador de comandos e temos a opção de entrar com uma seqüência de comandos sempre que desejarmos realizar uma tarefa ou podemos colocar tal sequência dentro um arquivo e chamar este arquivo sempre que necessário. E assim temos o \textit{shell script} ilustrado pelo \autoref{intro}.
 
 \includecode[shell]{intro}{Meu primeiro shell script}{codigos/intro.sh}
+
+\begin{informacao}
+	Para executar um \textit{bash script} digite: \dest[green]{\texttt{bash nome-do-arquivo.sh}} ou deixe o arquivo com permissão para execução, com o comando \dest[green]{\texttt{chmod +x nome-do-arquivo.sh}} e executá-lo da seguinte forma: \dest[green]{\texttt{./nome-do-script.sh}}
+\end{informacao}
 
 \subsection{Alguns comandos interessantes para shell script}
 
@@ -57,19 +49,19 @@ Abaixo um lista com os principais comandos que iremos utilizar em nossos scripts
 		\item[-n N] Após ler N caracteres o \texttt{read} é encerrado sem que precise pressionar \texttt{ENTER} 
 	\end{description}
 	\item \textbf{expr} -- para fazer cálculos, porém só faz operações com inteiros. Exemplo de uso: 
-	\begin{lstlisting}
-	# executando o expr em um terminal
-	expr 2 + 2
-	# executando o expr em um terminal e guardando o resultado na varial 'soma'
-	soma=`expr 2 + 2`
+\begin{lstlisting}
+# executando o expr em um terminal
+expr 2 + 2
+# executando o expr em um terminal e guardando o resultado na variável 'soma'
+soma=`expr 2 + 2`
 \end{lstlisting}
 	\item \textbf{bc} -- trata-se de uma calculadora, ideal para quando necessitamos efetuar cálculos com números reais. Exemplo de uso: 
-	\begin{lstlisting}
-	# executando o bc em um terminal, combinado com o echo
-	echo "scale=2; 1/2" | bc
+\begin{lstlisting}
+# executando o bc em um terminal, combinado com o echo
+echo "scale=2; 1/2" | bc
 
-	# armazendo o resultado da saida do bc na variavel 'resultado'
-	resultado=`echo "scale=2; 1/2" | bc`
+# armazenando o resultado da saida do bc na variável 'resultado'
+resultado=`echo "scale=2; 1/2" | bc`
 \end{lstlisting}
 
 \end{itemize}
@@ -91,11 +83,11 @@ As \textit{variáveis de ambiente} são aquelas que afetam o comportamento do in
 
 \begin{table}[!htpb]
 \begin{center}
-\begin{tabular}{|l|p{5cm}|l|p{5cm}|}\hline
-\textbf{Variável} & \textbf{Descrição}  & \textbf{Variável} & \textbf{Descrição} \\ \hline \hline 
-\$BASH & caminho do binário do bash & \$\$ & número do processo do shell\\ \hline
-\$HOME & diretório \textit{home} do usuário & \$HOSTNAME & nome da máquina\\ \hline
-\$PATH & caminho para os binários & \$SECONDS & número de segundos desde quando o script começou a ser executado\\ \hline
+\begin{tabular}{lp{5cm}lp{5cm}}\toprule
+\textbf{Variável} & \textbf{Descrição}  & \textbf{Variável} & \textbf{Descrição} \\ \midrule
+\$BASH & caminho do binário do bash & \$\$ & número do processo do shell\\ 
+\$HOME & diretório \textit{home} do usuário & \$HOSTNAME & nome da máquina\\ 
+\$PATH & caminho para os binários & \$SECONDS & número de segundos desde quando o script começou a ser executado\\ \bottomrule
 
 \end{tabular}
 \end{center}
@@ -109,15 +101,15 @@ Antes de apresentar as estruturas de decisão, na tabela \ref{tabelaoperadores} 
 \begin{table}[!htpb]
  \begin{center}
 % use packages: array
-\begin{tabular}{|c|c||c|c||c|c|} \hline
-\multicolumn{6}{|c|}{\textbf{Operadores lógicos e relacionais}} \\ \hline
-\multicolumn{2}{|c||}{\textbf{Numéricos}} & \multicolumn{2}{|c||}{\textbf{Cadeia de caracteres}} & \multicolumn{2}{|c|}{\textbf{Operadores lógicos}}\\ \hline \hline
+\begin{tabular}{ll||ll||ll} \toprule
+\multicolumn{6}{c}{\textbf{Operadores lógicos e relacionais}} \\ 
+\multicolumn{2}{c}{\textbf{Numéricos}} & \multicolumn{2}{c}{\textbf{Cadeia de caracteres}} & \multicolumn{2}{c}{\textbf{Operadores lógicos}}\\ \midrule
 \texttt{-eq} & igual     & \texttt{=} & igual & \texttt{-a} & E lógico (AND) \\ \hline
 \texttt{-ne} & diferente & \texttt{!=} & diferente & \&\& & E lógico (AND)\\ \hline
 \texttt{-ge} & maior ou igual & \texttt{-n} & não é nula & \texttt{-o} & OU lógico (OR)\\ \hline
 \texttt{-le} & menor ou igual & \texttt{-z} & é nula & $\|$ & OU lógico (OR)\\ \hline
 \texttt{-gt} & maior &  & & \texttt{!} & negação \\ \hline
-\texttt{-lt} & menor &  &  & &\\ \hline
+\texttt{-lt} & menor &  &  & &\\ \bottomrule
  \end{tabular}
  \end{center}
 \caption{Operadores relacionais e lógicos}
@@ -162,4 +154,9 @@ Antes de apresentar as estruturas de decisão, na tabela \ref{tabelaoperadores} 
 \end{enumerate}
 
 
- \end{document}
+\vspace*{\fill}
+\licenciamentoLivre
+
+
+
+\end{document}
