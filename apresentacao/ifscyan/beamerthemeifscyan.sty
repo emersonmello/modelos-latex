@@ -10,6 +10,9 @@
 %                          Pacotes
 % ----------------------------------------------------------------------------%
 \RequirePackage{pgf}
+\RequirePackage{caption}
+% Para diminuir o tamanho da fonte do caption da figura
+\captionsetup[figure]{font=tiny}
 \RequirePackage{graphicx}
 \RequirePackage{listings,color,upquote}
 \RequirePackage{booktabs}
@@ -20,6 +23,7 @@
 \urlstyle{sf}
 
 \RequirePackage[T1]{fontenc}
+% \RequirePackage{FiraSans}
 \usepackage[sfdefault]{roboto}
 \RequirePackage{tikz}
 \usetikzlibrary{calc,math,positioning}
@@ -38,6 +42,15 @@
     linkcolor=midnightblue,  %%% cor do tableofcontents, \ref, \footnote, etc
 	citecolor=midnightblue,  %%% cor do \cite
 	urlcolor=midnightblue   %%% cor do \url e \href
+}
+
+\RequirePackage[binary-units=true]{siunitx}
+\sisetup{
+  input-ignore={.},
+  input-decimal-markers={,},
+  output-decimal-marker = {,},
+  group-separator={.},
+  group-minimum-digits=4,
 }
 
 % ----------------------------------------------------------------------------%
@@ -110,6 +123,7 @@
 \setbeamerfont{date}{size=\large, shape=\scshape}
 
 \setbeamerfont{sectiontitle}{size=\huge, series=\bfseries}
+\setbeamerfont{subsectiontitle}{size=\Large, series=\bfseries}
 \setbeamerfont{frametitle}{size=\large}
 
 \setbeamerfont{footer}{size=\normalsize}
@@ -180,7 +194,8 @@
         \node [anchor=south east, text width=.95\paperwidth,align=left] (titulo) at (.96\paperwidth,.075\paperheight){\usebeamerfont{title}\usebeamercolor[fg]{frametitle}\inserttitle};
         \node[anchor=south east, below=0em of titulo, text width=.95\paperwidth,align=left] {\usebeamerfont{subtitle}\usebeamercolor[fg]{frametitle}\insertsubtitle};
 
-        \node [anchor=north west] (logoifsc) at (\paperwidth-3.5cm,-.08\paperheight) {\includegraphics[height=.47\paperheight]{img/ifsclogo.pdf}};
+        % \node [anchor=north west] (logoifsc) at (\paperwidth-3.5cm,-.08\paperheight) {\includegraphics[height=.47\paperheight]{img/ifsclogo.pdf}};
+        \node [anchor=north west] (logoifsc) at (\paperwidth-3.5cm,-.08\paperheight) {\pgfuseimage{ifsclogo}};
 
         \node [anchor=north east, text width=.7\paperwidth,align=left, execute at begin node=\setlength{\baselineskip}{1.5em}] (autor) at (.71\paperwidth,-.095\paperheight){\usebeamerfont{author}\insertauthor};
 
@@ -267,6 +282,10 @@
 % ----------------------------------------------------------------------------%
 
 
+% Aumentando a altura das linhas nas tabelas
+% \renewcommand{\arraystretch}{1.2}
+
+
 % ----------------------------------------------------------------------------%
 
 
@@ -300,6 +319,15 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 % Os links ficarão em midnightblue e dentro dos símbolos < e > 
 \newcommand{\MYhref}[3][midnightblue]{\href{#2}{\color{#1}{<#3>}}}%
 
+\RequirePackage{ccicons}
+\newcommand{\licenciamentoLivre}{
+  \begin{center}
+    {\Huge \ccby}
+    \vspace*{1cm} 
+
+    Estes slides estão licenciados com uma Licença \href{https://creativecommons.org/licenses/by/4.0/deed.pt_BR}{Creative Commons ``Atribuição 4.0 Internacional''.}
+  \end{center}
+}
 %-----------------------------------------------------------------------------------%
 %                          Opções para o pacote listings 
 %-----------------------------------------------------------------------------------%
@@ -350,6 +378,21 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 % YAML
 \newcommand\YAMLcolonstyle{\color{red}\mdseries}
 
+% Protocol Buffers
+% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/style.sty
+\definecolor{proto_basic}{RGB}{0,0,0}             % black
+\definecolor{proto_keyword}{RGB}{0,0,255}         % blue
+\definecolor{proto_type}{RGB}{128,0,0}            % dark red
+\definecolor{proto_options}{RGB}{128,0,128}       % purple
+\definecolor{proto_comment}{RGB}{0,128,0}         % dark green
+\definecolor{proto_string}{RGB}{255,0,0}          % red
+\definecolor{proto_number}{RGB}{108,113,196}      % violet
+\definecolor{proto_ident}{RGB}{0,0,0}             % black
+\definecolor{proto_digits}{RGB}{0,0,128}          % dark blue
+\definecolor{proto_background}{RGB}{255,255,255}  % white
+
+
+
 \lstset{ %
   aboveskip=\bigskipamount,
   backgroundcolor=\color{colBack}, 
@@ -357,7 +400,6 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
   keywordstyle=\color{deepblue},
   stringstyle=\color{javared},
   commentstyle=\color{javagreen},
-  morecomment=[s][\color{javadocblue}]{/**}{*/},
   breakatwhitespace=false,
   breaklines=true,        
   captionpos=n,           
@@ -381,6 +423,51 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
   tabsize=2,
   title=\lstname
 }
+% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/lang.sty
+\lstdefinelanguage{protobuf3}{%
+    sensitive=true,%
+    morecomment=[l]{//},%
+    morecomment=[s]{/*}{*/},%
+    morestring=[b]{"},%
+    % For the keywords of Protocol Buffers
+    % see https://developers.google.com/protocol-buffers/docs/proto
+    morekeywords={enum,oneof,map,syntax,public,import,option,package,message,%
+        group,optional,required,repeated,default,reserved,extend,extensions,%
+        to,max,service,rpc,returns,true,false},%
+    % Basic types
+    % see https://developers.google.com/protocol-buffers/docs/proto#scalar
+    morekeywords=[2]{%
+        double,float,int32,int64,uint32,uint64,sint32,sint64,%
+        fixed32,fixed64,sfixed32,sfixed64,bool,string,bytes},%
+    % Options
+    % taken from 'google/protobuf/descriptor.proto'
+    morekeywords=[3]{%
+        % Generic Options
+        deprecated, uninterpreted_option,%
+        % File Options
+        java_package,java_outer_classname,java_multiple_files,%
+        java_generate_equals_and_hash,java_string_check_utf8,optimize_for,%
+        go_package,cc_generic_services,java_generic_services,%
+        py_generic_services,cc_enable_arenas,obj_class_prefix,%
+        csharp_namespace,%
+        % Message Options
+        message_set_wire_format,no_standard_descriptor_accessor,map_entry,%
+        % Field Options
+        ctype, packed,jstype,lazy,weak,%
+        % Enum Options
+        allow_alias}%
+    deletekeywords={
+      % 'group' was marked as deprecated in protobuf2; now it's disallowed
+      group,%
+      % in protobuf3 the Any type replaces extensions (from protobuf2)
+      extensions, to, extend, max,%
+      % 'required' is no longer allowed
+      required,%
+      % 'optional' is default; stating it explicitly is disallowed
+      optional,%
+      % explicit default values are no longer allowed
+      default}%
+}
 
 \lstdefinelanguage{Groovy}[]{Java}{
   keywordstyle=\color{groovyblue}\bfseries,
@@ -393,7 +480,6 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 
 \lstdefinelanguage{XSD}{
   columns=fullflexible,   
-  % basicstyle=\rmfamily,   
   basicstyle=\ttfamily\footnotesize,
   commentstyle=\ttfamily\itshape\color{javagreen},   
   morestring=[s]{"}{"},   
@@ -409,13 +495,11 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 
 \lstdefinelanguage{XML}{
   columns=fullflexible,   
-  % basicstyle=\rmfamily,   
   basicstyle=\ttfamily\footnotesize,
   commentstyle=\ttfamily\itshape\color{javagreen},   
   morestring=[b]",
   morestring=[s]{>}{<},
   morecomment=[s]{<?}{?>},
-  % morestring=[s]{"}{"},   
   morecomment=[s]{!--}{--},   
   morecomment=[s]{!DOCTYPE}{]},   
   moredelim=[s][\color{black}]{>}{<},   
@@ -469,6 +553,183 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 }
 \newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
 
+
+\lstdefinelanguage{docker}{
+  keywords={FROM, RUN, COPY, ADD, ENTRYPOINT, CMD,  ENV, ARG, WORKDIR, EXPOSE, LABEL, USER, VOLUME, STOPSIGNAL, ONBUILD, MAINTAINER},
+  keywordstyle=\color{blue}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  % stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinelanguage{docker-compose}{
+  keywords={image, environment, ports, container_name, ports, volumes, links},
+  keywordstyle=\color{blue}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  % stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstdefinelanguage{docker-compose-2}{
+  keywords={version, volumes, services},
+  keywordstyle=\color{blue}\bfseries,
+  keywords=[2]{image, environment, ports, container_name, ports, links, build},
+  keywordstyle=[2]\color{olive}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinestyle{shell}{language=csh,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{shellp}{language=csh,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{php}{language=php,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{phpp}{language=php,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{ansic}{language=c,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{ansicp}{language=c,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{cpp}{language=C++,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{cppp}{language=C++,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{docker}{language=docker,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{docker-compose}{language=docker-compose,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{docker-compose2}{language=docker-compose2,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{json}{language=json,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{jsonp}{language=json,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{java}{language=java,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{javap}{language=java,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{matlab}{language=matlab,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{matlabp}{language=matlab,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{python}{language=python,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{pythonp}{language=python,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{xml}{language=XML,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{xmlp}{language=XML,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{xsd}{language=XSD,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{xsdp}{language=XSD,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{sql}{language=sql,moredelim=[is][\underbar]{__}{__},basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{sqlp}{language=sql,moredelim=[is][\underbar]{__}{__},basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{groovy}{language=Groovy,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{yaml}{language=YAML,basicstyle=\ttfamily\footnotesize}
+
+% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/style.sty
+\lstdefinestyle{protobuf}{
+  language=protobuf3,
+  basicstyle=\color{proto_basic}\footnotesize\ttfamily,
+	keywordstyle=[1]\color{proto_keyword},
+	keywordstyle=[2]\color{proto_type},
+	keywordstyle=[3]\color{proto_options},
+	commentstyle=\color{proto_comment},
+	stringstyle=\color{proto_string},
+  numberstyle=\color{proto_number}\tiny,
+  identifierstyle=\color{proto_ident},
+	breaklines=true,
+	showstringspaces=false,
+  tabsize=2,
+  inputencoding=utf8,
+  extendedchars=true,
+  % This 'literate' block is responsible for colouring numbers
+  % appearing in the code
+  literate={0}{{\textcolor{proto_digits}{0}}}{1}%
+           {1}{{\textcolor{proto_digits}{1}}}{1}%
+           {2}{{\textcolor{proto_digits}{2}}}{1}%
+           {3}{{\textcolor{proto_digits}{3}}}{1}%
+           {4}{{\textcolor{proto_digits}{4}}}{1}%
+           {5}{{\textcolor{proto_digits}{5}}}{1}%
+           {6}{{\textcolor{proto_digits}{6}}}{1}%
+           {7}{{\textcolor{proto_digits}{7}}}{1}%
+           {8}{{\textcolor{proto_digits}{8}}}{1}%
+           {9}{{\textcolor{proto_digits}{9}}}{1}%
+           {.0}{{\textcolor{proto_digits}{.0}}}{2}%
+           {.1}{{\textcolor{proto_digits}{.1}}}{2}%
+           {.2}{{\textcolor{proto_digits}{.2}}}{2}%
+           {.3}{{\textcolor{proto_digits}{.3}}}{2}%
+           {.4}{{\textcolor{proto_digits}{.4}}}{2}%
+           {.5}{{\textcolor{proto_digits}{.5}}}{2}%
+           {.6}{{\textcolor{proto_digits}{.6}}}{2}%
+           {.7}{{\textcolor{proto_digits}{.7}}}{2}%
+           {.8}{{\textcolor{proto_digits}{.8}}}{2}%
+           {.9}{{\textcolor{proto_digits}{.9}}}{2}%
+           % We need to add some hacks - otherwise 'listings' would
+           % colour (only) the digits in the types instead of the type
+           {int32}{{\textcolor{proto_type}{int32}}}{5}%
+           {int64}{{\textcolor{proto_type}{int64}}}{5}%
+           {uint32}{{\textcolor{proto_type}{uint32}}}{6}%
+           {uint64}{{\textcolor{proto_type}{uint64}}}{6}%
+           {sint32}{{\textcolor{proto_type}{sint32}}}{6}%
+           {sint64}{{\textcolor{proto_type}{sint64}}}{6}%
+           {fixed32}{{\textcolor{proto_type}{fixed32}}}{7}%
+           {fixed64}{{\textcolor{proto_type}{fixed64}}}{7}%
+           {sfixed32}{{\textcolor{proto_type}{sfixed32}}}{8}%
+           {sfixed64}{{\textcolor{proto_type}{sfixed64}}}{8}%
+           {java_string_check_utf8}{{%
+             \textcolor{proto_options}{java_string_check_utf8}}}{2}%
+           {\ }{{ }}{1}
+           {é}{{\'{e}}}1
+        {è}{{\`{e}}}1
+        {ê}{{\^{e}}}1
+        {ë}{{\¨{e}}}1
+        {É}{{\'{E}}}1
+        {Ê}{{\^{E}}}1
+        {û}{{\^{u}}}1
+        {ù}{{\`{u}}}1
+        {â}{{\^{a}}}1
+        {à}{{\`{a}}}1
+        {á}{{\'{a}}}1
+        {ã}{{\~{a}}}1
+        {Á}{{\'{A}}}1
+        {Â}{{\^{A}}}1
+        {Ã}{{\~{A}}}1
+        {ç}{{\c{c}}}1
+        {Ç}{{\c{C}}}1
+        {õ}{{\~{o}}}1
+        {ó}{{\'{o}}}1
+        {ú}{{\'{u}}}1
+        {Ú}{{\'{U}}}1
+        {ô}{{\^{o}}}1
+        {Õ}{{\~{O}}}1
+        {Ó}{{\'{O}}}1
+        {Ô}{{\^{O}}}1
+        {î}{{\^{i}}}1
+        {Î}{{\^{I}}}1
+        {í}{{\'{i}}}1
+        {Í}{{\~{Í}}}1
+           ,
+	prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	upquote=true,
+}
+
+
+
+
+\newcommand{\groovy}{\lstset{style=Groovy}}
+\newcommand{\cpp}{\lstset{style=cpp}}
+\newcommand{\cppp}{\lstset{style=cppp}}
+\newcommand{\ansic}{\lstset{style=ansic}}
+\newcommand{\ansicp}{\lstset{style=ansicp}}
+\newcommand{\json}{\lstset{style=json}}
+\newcommand{\jsonp}{\lstset{style=jsonp}}
+\newcommand{\yaml}{\lstset{style=yaml}}
+\newcommand{\java}{\lstset{style=java}}
+\newcommand{\javap}{\lstset{style=javap}}
+\newcommand{\sql}{\lstset{style=sql}}
+\newcommand{\sqlp}{\lstset{style=sqlp}}
+\newcommand{\xml}{\lstset{style=xml}}
+\newcommand{\xmlp}{\lstset{style=xmlp}}
+\newcommand{\xsd}{\lstset{style=xsd}}
+\newcommand{\xsdp}{\lstset{style=xsdp}}
+\newcommand{\python}{\lstset{style=python}}
+\newcommand{\pythonp}{\lstset{style=pythonp}}
+\newcommand{\csh}{\lstset{style=shell}}
+\newcommand{\cshp}{\lstset{style=shellp}}
+\newcommand{\shell}{\lstset{style=shell}}
+\newcommand{\shellp}{\lstset{style=shellp}}
+
 % Permitindo caracteres acentuados dentro do ambiente lstlisting
 \lstset{%
         inputencoding=utf8,
@@ -504,54 +765,6 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
         {í}{{\'{i}}}1
         {Í}{{\~{Í}}}1
 }
-
-\lstdefinestyle{shell}{language=csh,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{shellp}{language=csh,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{php}{language=php,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{phpp}{language=php,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{ansic}{language=c,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{ansicp}{language=c,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{cpp}{language=C++,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{cppp}{language=C++,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{json}{language=json,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{java}{language=java,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{javap}{language=java,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{matlab}{language=matlab,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{matlabp}{language=matlab,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{python}{language=python,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{pythonp}{language=python,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{xml}{language=XML,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{xmlp}{language=XML,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{xsd}{language=XSD,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{xsdp}{language=XSD,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{sql}{language=sql,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{sqlp}{language=sql,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{groovy}{language=Groovy,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{yaml}{language=YAML,basicstyle=\ttfamily\footnotesize}
-
-\newcommand{\groovy}{\lstset{style=Groovy}}
-\newcommand{\cpp}{\lstset{style=cpp}}
-\newcommand{\cppp}{\lstset{style=cppp}}
-\newcommand{\ansic}{\lstset{style=ansic}}
-\newcommand{\ansicp}{\lstset{style=ansicp}}
-\newcommand{\json}{\lstset{style=json}}
-\newcommand{\yaml}{\lstset{style=yaml}}
-\newcommand{\java}{\lstset{style=java}}
-\newcommand{\javap}{\lstset{style=javap}}
-\newcommand{\sql}{\lstset{style=sql}}
-\newcommand{\sqlp}{\lstset{style=sqlp}}
-\newcommand{\xml}{\lstset{style=xml}}
-\newcommand{\xmlp}{\lstset{style=xmlp}}
-\newcommand{\xsd}{\lstset{style=xsd}}
-\newcommand{\xsdp}{\lstset{style=xsdp}}
-\newcommand{\python}{\lstset{style=python}}
-\newcommand{\pythonp}{\lstset{style=pythonp}}
-\newcommand{\csh}{\lstset{style=shell}}
-\newcommand{\cshp}{\lstset{style=shellp}}
-\newcommand{\shell}{\lstset{style=shell}}
-\newcommand{\shellp}{\lstset{style=shellp}}
-
-
 
 \newcommand{\includecode}[2]{\lstinputlisting[caption=,escapechar={@*},style=#1]{#2}}
 

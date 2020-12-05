@@ -1,24 +1,22 @@
-% 2018-2020 Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% ------------------------------------------------------------%
+% 2020-12-05
+% 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% ------------------------------------------------------------%
 \documentclass{beamer}
 % Se desejar slides com proporção 'wide', use a linha abaixo ao invés da linha acima
 % \documentclass[aspectratio=169]{beamer}
 
+
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[english,brazil]{babel}
 
 % usando tema IFSCyan
 \usetheme{ifscyan}
 \usepackage{beamerthemeifscyan}
+% Logo
+\pgfdeclareimage[height=.47\paperheight]{ifsclogo}{img/ifsclogo.pdf}
 
-
-% -------------------------------------------------%
-% Fazendo com que a lista de item se espalhe para ocupar
-% toda a altura do slide
-% -------------------------------------------------%
-% \let\olditem\item
-% \renewcommand{\item}{%
-% \olditem\vspace{\fill}}     
-% -------------------------------------------------%
 
 % -------------------------------------------------%
 %              Título 
@@ -31,7 +29,15 @@
 \href{mello@ifsc.edu.br}{mello@ifsc.edu.br}%
 }%
 \date{04/07/2018}
-% logo has been defined on .sty file
+% -------------------------------------------------%
+
+% -------------------------------------------------%
+% Fazendo com que a lista de item se espalhe para ocupar toda a 
+% altura do slide
+% -------------------------------------------------%
+% \let\olditem\item
+% \renewcommand{\item}{%
+% \olditem\vspace{\fill}}   
 % -------------------------------------------------%
 
 \begin{document}
@@ -49,6 +55,10 @@
 %  Início do documento 
 % -------------------------------------------------%
 
+
+\begin{frame}{Licenciamento}
+	\licenciamentoLivre
+\end{frame}
 
 \section{Listas}
 
