@@ -10,7 +10,7 @@ Modelos de documentos LaTeX que uso em minhas aulas ou em outras atividades no I
     - [Tema *IFSCyan*](apresentacao/ifscyan)
     - [Tema *Título Leve*](apresentacao/titulo-leve)
 - **Lista de exercício ou Prova**
-  - [Modelo que faz uso da classe exam](lista-exercicio/lista-exam)
+  - [Modelo que faz uso da classe exam](lista-ou-prova/exam)
 - **Monografia**
   - [Modelo de monografia do IFSC - 2016](monografia) segue o modelo oficial de trabalho acadêmico publicado pela Biblioteca do IFSC em setembro de 2016.
 - **Notas de aula**
