@@ -9,6 +9,12 @@
 % This class is based on class "article"
 \LoadClassWithOptions{article}
 
+
+% espaçamento entre parágrafos
+\setlength{\parskip}{.3em}
+
+
+
 %---------------------------------------------------------%
 % Pacotes
 %---------------------------------------------------------%
