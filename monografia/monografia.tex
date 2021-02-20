@@ -55,6 +55,16 @@
 \textoaprovacao{Este trabalho foi julgado adequado para obtenção do título de Engenheiro de Telecomunicações, pelo Instituto Federal de Educação, Ciência e Tecnologia de Santa Catarina, e aprovado na sua forma final pela comissão avaliadora abaixo indicada.}
 %-----------------------------------------------%
 
+%-----------------------------------------------%
+% Estilo de cabeçalho que só contém o número da 
+% página e uma linha
+%-----------------------------------------------%
+\makepagestyle{cabecalholimpo}
+\makeevenhead{cabecalholimpo}{\thepage}{}{}
+\makeoddhead{cabecalholimpo}{}{}{\thepage}
+\makeheadrule{cabecalholimpo}{\textwidth}{\normalrulethickness}
+%-----------------------------------------------%
+
 
 
 %-----------------------------------------------%
@@ -138,6 +148,10 @@
 % ELEMENTOS TEXTUAIS
 %-----------------------------------------------%
 \textual
+% Se não quiser que apareça o título dos capítulos
+% no cabeçalho, então retire o comentário da linha
+% abaixo
+% \pagestyle{cabecalholimpo}
 %-----------------------------------------------%
 % Inclusão dos capítulos que estão em outros arquivos .tex
 %-----------------------------------------------%
