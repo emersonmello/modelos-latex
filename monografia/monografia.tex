@@ -60,9 +60,9 @@
 % página e uma linha
 %-----------------------------------------------%
 \makepagestyle{cabecalholimpo}
-\makeevenhead{cabecalholimpo}{\thepage}{}{}
-\makeoddhead{cabecalholimpo}{}{}{\thepage}
-\makeheadrule{cabecalholimpo}{\textwidth}{\normalrulethickness}
+\makeevenhead{cabecalholimpo}{\thepage}{}{} % páginas pares
+\makeoddhead{cabecalholimpo}{}{}{\thepage} % páginas ímpares
+% \makeheadrule{cabecalholimpo}{\textwidth}{\normalrulethickness} % linha
 %-----------------------------------------------%
 
 
@@ -148,10 +148,9 @@
 % ELEMENTOS TEXTUAIS
 %-----------------------------------------------%
 \textual
-% Se não quiser que apareça o título dos capítulos
-% no cabeçalho, então retire o comentário da linha
-% abaixo
-% \pagestyle{cabecalholimpo}
+% Se quiser que apareça o título dos capítulos
+% no cabeçalho, então comente a linha abaixo
+\pagestyle{cabecalholimpo}
 %-----------------------------------------------%
 % Inclusão dos capítulos que estão em outros arquivos .tex
 %-----------------------------------------------%
