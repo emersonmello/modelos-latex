@@ -471,7 +471,7 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 
 \lstdefinelanguage{Groovy}[]{Java}{
   keywordstyle=\color{groovyblue}\bfseries,
-  stringstyle=\color{groovygreen}\ttfamily,
+  stringstyle=\color{blue}\ttfamily,
   keywords=[3]{each, findAll, groupBy, collect, inject, eachWithIndex},
   morekeywords={def, as, in, use},
   moredelim=[is][\textcolor{darkgray}]{\%\%}{\%\%},
@@ -615,6 +615,7 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 \lstdefinestyle{sql}{language=sql,moredelim=[is][\underbar]{__}{__},basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{sqlp}{language=sql,moredelim=[is][\underbar]{__}{__},basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{groovy}{language=Groovy,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{groovyp}{language=Groovy,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{yaml}{language=YAML,basicstyle=\ttfamily\footnotesize}
 
 % https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/style.sty
@@ -707,7 +708,8 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 
 
 
-\newcommand{\groovy}{\lstset{style=Groovy}}
+\newcommand{\groovy}{\lstset{style=groovy}}
+\newcommand{\groovyp}{\lstset{style=groovyp}}
 \newcommand{\cpp}{\lstset{style=cpp}}
 \newcommand{\cppp}{\lstset{style=cppp}}
 \newcommand{\ansic}{\lstset{style=ansic}}
