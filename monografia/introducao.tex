@@ -5,7 +5,20 @@
 \chapter{Introdução}
 \label{c_introducao}
 
-Neste capítulo serão introduzidos todos os assuntos abordados por este documento. Pretende-se apresentar a motivação, os objetivos e a organização do texto. A codificação de todos os arquivos do \abnTeX\ é \texttt{UTF8}. É necessário que você utilize a mesma codificação nos documentos que escrever, inclusive nos arquivos de base bibliográficas |.bib|.
+A introdução abre o trabalho propriamente dito. Tem a finalidade de apresentar os motivos que levaram o autor a realizar a pesquisa, o problema abordado, os objetivos e a justificativa. O objetivo principal da introdução é situar o leitor no contexto da pesquisa. O leitor deverá perceber claramente o que foi analisado, como e por que, as limitações encontradas, o alcance da investigação e suas bases teóricas gerais. Ela tem, acima de tudo, um caráter didático de apresentar o que foi investigado, levando-se em conta o leitor a que se destina e a finalidade do trabalho.
+
+Assim, na introdução contextualize o tema, delimite o assunto, apresente um rápido histórico do problema e das soluções porventura já apresentadas, com breve revisão crítica das investigações anteriores; faça referência às fontes de material, aos métodos seguidos, às teorias ou aos conceitos que embasam o desenvolvimento e a argumentação, às eventuais faltas de informação, ao instrumental utilizado. A introdução deverá conter, ainda:
+
+\begin{enumerate}
+   \item Justificativa;
+   \item Definição do problema;
+   \item Objetivo geral e objetivos específicos.
+\end{enumerate}
+
+
+% ---
+\section{Compilar o documento \LaTeX}
+% ---
 
 É uma boa prática dividir o seu documento em diversos arquivos, e não apenas escrever tudo em um único. Esse recurso foi utilizado neste documento. Para incluir diferentes arquivos em um arquivo principal, de modo que cada arquivo incluído fique em uma página diferente, utilize o comando:
 
@@ -18,10 +31,6 @@ Para incluir documentos sem quebra de páginas, utilize:
 \begin{verbatim}
    \input{documento-a-ser-incluido}      % sem a extensão .tex
 \end{verbatim}
-
-% ---
-\section{Compilar o documento \LaTeX}
-% ---
 
 Geralmente os editores \LaTeX, como o
 TeXlipse\footnote{\url{http://texlipse.sourceforge.net/}}, o

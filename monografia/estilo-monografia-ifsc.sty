@@ -325,6 +325,43 @@ bookmarksdepth=4%
          {8}{{{\color{numb}8}}}{1}
          {9}{{{\color{numb}9}}}{1}
 }
+
+
+\lstdefinelanguage{docker}{
+  keywords={FROM, RUN, COPY, ADD, ENTRYPOINT, CMD,  ENV, ARG, WORKDIR, EXPOSE, LABEL, USER, VOLUME, STOPSIGNAL, ONBUILD, MAINTAINER},
+  keywordstyle=\color{blue}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  % stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinelanguage{docker-compose}{
+  keywords={image, environment, ports, container_name, ports, volumes, links},
+  keywordstyle=\color{blue}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  % stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstdefinelanguage{docker-compose-2}{
+  keywords={version, volumes, services},
+  keywordstyle=\color{blue}\bfseries,
+  keywords=[2]{image, environment, ports, container_name, ports, links, build},
+  keywordstyle=[2]\color{olive}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
 % Permitindo caracteres acentuados dentro do ambiente lstlisting
 \lstset{%
         inputencoding=utf8,
@@ -369,6 +406,9 @@ bookmarksdepth=4%
 \lstdefinestyle{ansicp}{language=c,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{cpp}{language=C++,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{cppp}{language=C++,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{docker}{language=docker,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{docker-compose}{language=docker-compose,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{docker-compose2}{language=docker-compose2,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{json}{language=json,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{java}{language=java,basicstyle=\ttfamily\footnotesize}
 \lstdefinestyle{javap}{language=java,basicstyle=\ttfamily\scriptsize}
