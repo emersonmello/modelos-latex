@@ -53,6 +53,12 @@
   group-minimum-digits=4,
 }
 
+% Novos tipos de colunas alinhado: à direita, centralizado ou esquerda e que permita definir a largura
+\RequirePackage{ragged2e}
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
 % ----------------------------------------------------------------------------%
 %                           CORES
 % ----------------------------------------------------------------------------%
