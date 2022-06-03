@@ -1,10 +1,10 @@
 % ifscexam.cls
 % ------------------------------------------------------------%
-% 2020-12-05
+% 2022-06-03
 % 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % ------------------------------------------------------------%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ifscarticle}[2020/11/23 version 1.00 IFSC exam] 
+\ProvidesClass{ifscexam}[2022/06/03 version 1.01 IFSC exam] 
 
 % This class is based on class "exam"
 \PassOptionsToClass{\CurrentOption}{exam}
@@ -36,8 +36,6 @@
 \hpword{Total de pontos} %substitutes text for Points:
 \hsword{Pontos obtidos} %substitutes text for Score:
 \htword{Total} %substitutes text for Total% 
-
-
 %-------------------------------------------------%
 
 
@@ -45,7 +43,8 @@
 % Configurações do cabeçalho e rodapé
 %-------------------------------------------------%
 \pagestyle{headandfoot}
+
 % Rodapé
-% \footrule
-\firstpagefooter{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny}}{}{\begin{tiny}Página \thepage\ de \numpages\end{tiny}}
-\runningfooter{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny}}{}{\begin{tiny}Página \thepage\ de \numpages\end{tiny}}
+\cfoot{}
+\lfoot{\oddeven{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny}}{\begin{tiny}Página \thepage\ de \numpages\end{tiny}}}
+\rfoot{\oddeven{\begin{tiny}Página \thepage\ de \numpages\end{tiny}}{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny}}}
