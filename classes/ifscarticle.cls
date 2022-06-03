@@ -1,10 +1,10 @@
 % ifscarticle.cls
 % ------------------------------------------------------------%
-% 2020-12-05
+% 2022-06-03
 % 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % ------------------------------------------------------------%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ifscarticle}[2020/06/14 version 1.00 IFSC article] 
+\ProvidesClass{ifscarticle}[2022/06/03 version 1.01 IFSC article] 
 
 % This class is based on class "article"
 \LoadClassWithOptions{article}
@@ -33,21 +33,13 @@
 % Para alterar rodapé e incluir número da revisão
 \RequirePackage{fancyhdr}
 
-\fancypagestyle{firstpage}{ %
+\fancypagestyle{followingpage}{%
   \fancyhf{} % remove everything
   \renewcommand{\headrulewidth}{0pt} % remove lines as well
-  \renewcommand{\footrulewidth}{0pt}
-  % \fancyhead[C]{\pgfuseimage{cabecalho}}
-  \fancyfoot[L]{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny} }
-  \fancyfoot[R]{\begin{tiny}Página \thepage\end{tiny}}
+  \renewcommand{\footrulewidth}{0pt}%
+  \fancyfoot[RE,LO]{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny} }%
+  \fancyfoot[LE,RO]{\begin{tiny}Página \thepage\end{tiny}}%
 }
 
-\fancypagestyle{followingpage}{%
-\fancyhf{} % remove everything
-\renewcommand{\headrulewidth}{0pt} % remove lines as well
-\renewcommand{\footrulewidth}{0pt}
-\fancyfoot[L]{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny} }
-  \fancyfoot[R]{\begin{tiny}Página \thepage\end{tiny}}
-}
 \pagestyle{followingpage}
-\AtBeginDocument{\thispagestyle{firstpage}}
+\AtBeginDocument{\thispagestyle{followingpage}}
