@@ -173,7 +173,6 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 
 \setbeamercolor{section in toc}{fg=slidefgcolor}
 \setbeamercolor{subsection in toc}{fg=slidefgcolor}
-\setbeamercolor{item projected}{fg=textfg, bg=textbg}
 
 \setbeamercolor{block title}{fg=textfg, bg=textbg!80!slidebg}
 \setbeamercolor{block body}{fg=textbg, bg=textbg!10!slidebg}
@@ -181,6 +180,7 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 \setbeamercolor{block body alerted}{fg=vermelhoifsc!60!black, bg=vermelhoifsc!10!slidebg}
 \setbeamercolor{block title example}{fg=textfg, bg=verdeifsc!80!black}
 \setbeamercolor{block body example}{fg=verdeifsc!80!black, bg=verdeifsc!10!slidebg}
+
 
 % \setbeamercolor{bibliography item}{fg=textbg}
 % \setbeamercolor{bibliography entry author}{fg=textbg!70!black}
@@ -275,7 +275,7 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 
     \begin{minipage}[t][0.45\paperheight]{\textwidth}
         \usebeamerfont{subsectiontitle}
-        \usebeamercolor[bg]{frametitle}
+        \usebeamercolor[fg]{normal text}
         \insertsubsection
     \end{minipage}
 }
@@ -299,7 +299,7 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
     % \vspace{.5\baselineskip}
     \begin{minipage}[t][0.45\paperheight]{\textwidth}
         \usebeamerfont{subsectiontitle}
-        \usebeamercolor[bg]{frametitle}
+        \usebeamercolor[fg]{normal text}
         \let\hyperlink\@secondoftwo\insertsubsection
     \end{minipage}
 }
