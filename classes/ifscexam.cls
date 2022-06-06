@@ -45,6 +45,12 @@
 \pagestyle{headandfoot}
 
 % Rodapé
+\if@twoside%
 \cfoot{}
 \lfoot{\oddeven{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny}}{\begin{tiny}Página \thepage\ de \numpages\end{tiny}}}
 \rfoot{\oddeven{\begin{tiny}Página \thepage\ de \numpages\end{tiny}}{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny}}}
+\else%
+\cfoot{}
+\lfoot{\begin{tiny}IFSC -- \textsc{Campus São José}\end{tiny}}
+\rfoot{\begin{tiny}Página \thepage\ de \numpages\end{tiny}}
+\fi% 
