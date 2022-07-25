@@ -339,20 +339,21 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 % ------------------------- %
 % IFSC Logo
 % ------------------------- %
-\tikzmath{
-  \dim   = 1;
-  \canto =  (.1 * \dim) ; % .1;
-  \diametro = 1.05 * \dim; % 1.05; 
-  \dist = 1.2 * \dim; % 1.1; 
-  \lin = 6;
-  \col = 2.2;
+\tikzmath{%
+  real \dimensao, \canto, \diametro, \dist, \col, \lin;%
+  \dimensao   = 1;%
+  \canto =  (.1 * \dimensao) ; % .1;
+  \diametro = 1.05 * \dimensao; % 1.05; 
+  \dist = 1.2 * \dimensao; % 1.1; 
+  \lin = 6;%
+  \col = 2.2;%
 }
 \usebeamercolor{title}
 \newsavebox\ifsclogobranco
 \begin{lrbox}{\ifsclogobranco}
 \scalebox{.1}{
     \begin{tikzpicture}[
-        squarednode/.style={rectangle, fill={title.fg}, minimum size=\dim cm,rounded corners=\canto cm},
+        squarednode/.style={rectangle, fill={title.fg}, minimum size=\dimensao cm,rounded corners=\canto cm},
         roundnode/.style={circle, fill={title.fg}, minimum size=\diametro cm},
         ]
         
