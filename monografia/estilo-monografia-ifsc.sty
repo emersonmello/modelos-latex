@@ -1,5 +1,4 @@
-% !TEX root = monografia.tex
-\ProvidesPackage{estilo-monografia-ifsc}
+\ProvidesPackage{estilo-monografia-ifsc}[2022/08/20 Estilo monografia IFSC]
 
 %-----------------------------------------------%
 % Pacotes 
@@ -25,7 +24,16 @@
 % para resolver o problema dos apostrofos e crases no listings
 \RequirePackage{upquote,listings}
 % Para formatar unidades físicas para o padrão usado no Brasil
-\RequirePackage[binary-units=true]{siunitx}
+\RequirePackage{siunitx}
+\sisetup{
+  input-ignore={.},
+  input-decimal-markers={,},
+  output-decimal-marker = {,},
+  group-separator={.},
+  group-minimum-digits=4,
+}
+
+
 % Pacotes de citações
 \RequirePackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
 \RequirePackage[alf]{abntex2cite}	% Citações padrão ABNT
@@ -52,7 +60,8 @@
 
 
 
-
+% A legenda de subfigures deve ficar abaixo da figura e a legenda da figura deve ficar no topo
+\captionsetup[figure]{textfont=it,position=bottom}
 
 
 
@@ -265,7 +274,7 @@ bookmarksdepth=4%
   morecomment=[s][\color{javadocblue}]{/**}{*/},
   breakatwhitespace=false,
   breaklines=true,        
-  captionpos=n,           
+  captionpos=t,           
   columns=flexible,
   deletekeywords={...},  
   escapechar={@*},       
@@ -440,7 +449,5 @@ bookmarksdepth=4%
 \newcommand{\cshp}{\lstset{style=shellp}}
 \newcommand{\shell}{\lstset{style=shell}}
 \newcommand{\shellp}{\lstset{style=shellp}}
-
-%\includecode[shell]{l_olamundo}{Olá mundo em shell script}{codigos/ola.sh}
 
 \newcommand{\includecode}[4][c]{\lstinputlisting[captionpos=t,caption=#3, label=#2,escapechar={@*}, style=#1]{#4}}

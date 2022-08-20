@@ -75,11 +75,10 @@ texto como $ax^2 + bx + c = 0$, ou destacada do texto principal como na \autoref
 
 Em alguns casos é desejado incluir trechos de códigos no documento. O \LaTeX oferece inúmeras maneiras para isto e o pacote \textbf{listings} é conhecido por apresentar um dos melhores resultados. A \autoref{l_olamundo} apresenta o código em \textit{shell script} para o complexo problema do ``Olá mundo!''. A \autoref{l_matlab} apresenta um trecho de código em MatLab.
 
-%parâmetros: linguagem (shell, java, matlab, python, c, php), label, caption, arquivo
 
-\includecode[shell]{l_olamundo}{Olá mundo em shell script}{codigos/ola.sh}
+\lstinputlisting[style=shell,caption={Olá mundo em shell script},label=l_olamundo]{codigos/ola.sh}
 
-\includecode[matlab]{l_matlab}{Um pequeno código em MatLab}{codigos/matlab.m}
+\lstinputlisting[style=matlab,caption={Um pequeno código em MatLab},label=l_matlab]{codigos/matlab.m}
 
 % ---
 \section{Divisões do documento: seção}\label{sec-divisoes}
