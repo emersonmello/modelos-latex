@@ -48,16 +48,17 @@
 \definecolor{verdeifsc}{RGB}{50,160,65}
 \definecolor{vermelhoifsc}{RGB}{200,25,30}
 
-\tikzmath{
-  \dim   = 1;
-  \canto =  (.1 * \dim) ; % .1;
-  \diametro = 1.05 * \dim; % 1.05; 
-  \dist = 1.2 * \dim; % 1.1; 
-  \lin = 6;
-  \col = 2.2;
+\tikzmath{%
+  real \dimensao, \canto, \diametro, \dist, \col, \lin;%
+  \dimensao   = 1;%
+  \canto =  (.1 * \dimensao) ; % .1;
+  \diametro = 1.05 * \dimensao; % 1.05; 
+  \dist = 1.2 * \dimensao; % 1.1; 
+  \lin = 6;%
+  \col = 2.2;%
 }
 
-\tikzset{squarednode/.style={rectangle, fill=#1, minimum size=\dim cm,rounded corners=\canto cm}}%
+\tikzset{squarednode/.style={rectangle, fill=#1, minimum size=\dimensao cm,rounded corners=\canto cm}}%
 \tikzset{roundnode/.style={circle, fill=#1, minimum size=\diametro cm}}%
 
 \tikzset{%
