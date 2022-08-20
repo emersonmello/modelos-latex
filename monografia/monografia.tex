@@ -5,6 +5,7 @@
 % Apresentacao
 %
 % Adaptado por Emerson Ribeiro de Mello (2017-08-23)
+% revisão 2022-08-20
 % baseado no modelo "Template para elaboração de trabalho acadêmico" fornecido pela Biblioteca do IFSC - https://www.ifsc.edu.br/documentos-uteis (acessado em 2021-05-06)
 %-----------------------------------------------%
 
@@ -26,57 +27,15 @@
 	brazil				% o último idioma é o principal do documento
 	]{abntex2}
 
-%	Todas as indicações de pacotes e configurações estão no arquivo de estilo
-%  chamado estilo-monografia-ifsc.sty.
+% Todas as indicações de pacotes e configurações estão no arquivo estilo-monografia-ifsc.sty.
 \usepackage{estilo-monografia-ifsc}	
 
 
 
 %-----------------------------------------------%
-% Para alterar o gênero dos comandos orientador
-% e coorientador.
+% Capa
 %-----------------------------------------------%
-% \renewcommand{\orientadorname}{Orientadora:}
-% \renewcommand{\coorientadorname}{Coorientadora:}
-%-----------------------------------------------%
-
-
-%-----------------------------------------------%
-% Informações de dados para CAPA e FOLHA DE ROSTO
-%-----------------------------------------------%
-\titulo{Modelo de Trabalho Acadêmico com \abnTeX}
-\autor{Nome do Aluno}
-\local{São José - SC}
-\data{maio/2021}
-\orientador{Prof. Orientador da Silva, Dr.}
-\coorientador{Prof. Coorientador da Silva, Dr.}
-\instituicao{%
-  Instituto Federal de Santa Catarina -- IFSC
-  \par
-  Campus São José
-  \par
-  Engenharia de Telecomunicações}
-\tipotrabalho{Monografia (Graduação)}
-%-----------------------------------------------%
-
-
-
-
-%-----------------------------------------------%
-% O preambulo deve conter o tipo do trabalho, o objetivo, o nome da instituição e a área de concentração 
-\preambulo{Monografia apresentada ao Curso de Engenharia de Telecomunicações do campus São José do Instituto Federal de Santa Catarina para a obtenção do diploma de Engenheiro de Telecomunicações.}
-
-\textoaprovacao{Este trabalho foi julgado adequado para obtenção do título de Engenheiro de Telecomunicações, pelo Instituto Federal de Educação, Ciência e Tecnologia de Santa Catarina, e aprovado na sua forma final pela comissão avaliadora abaixo indicada.}
-%-----------------------------------------------%
-
-%-----------------------------------------------%
-% Estilo de cabeçalho que só contém o número da 
-% página e uma linha
-%-----------------------------------------------%
-\makepagestyle{cabecalholimpo}
-\makeevenhead{cabecalholimpo}{\thepage}{}{} % páginas pares
-\makeoddhead{cabecalholimpo}{}{}{\thepage} % páginas ímpares
-% \makeheadrule{cabecalholimpo}{\textwidth}{\normalrulethickness} % linha
+\input{pretextuais/capa}
 %-----------------------------------------------%
 
 
@@ -105,7 +64,7 @@
 % Se não for a versão final do PDF, talvez fosse
 % interessante comentar a linha abaixo.
 %-----------------------------------------------%
-\input{pretextuais.tex}
+\input{pretextuais/pretextuais}
 
 
 %-----------------------------------------------%
@@ -121,7 +80,7 @@
 \cleardoublepage
 
 %-----------------------------------------------%
-% inserir lista de listings
+% inserir lista de listagem de códigos
 %-----------------------------------------------%
 \pdfbookmark[0]{\lstlistlistingname}{lol}
 \begin{KeepFromToc}
@@ -134,23 +93,19 @@
 % inserir lista de abreviaturas e siglas
 %-----------------------------------------------%
 \pdfbookmark[0]{Lista de abreviaturas e siglas}{loa}
-\include{abreviaturas}
+\input{capitulos/abreviaturas}
 \cleardoublepage
 %-----------------------------------------------%
 
 %-----------------------------------------------%
 % inserir lista de símbolos
 %-----------------------------------------------%
-\begin{simbolos}
-  \item[$ \Gamma $] Letra grega Gama
-  \item[$ \Lambda $] Lambda
-  \item[$ \zeta $] Letra grega minúscula zeta
-  \item[$ \in $] Pertence
-\end{simbolos}
+\input{capitulos/simbolos.tex}
+
 %-----------------------------------------------%
 
 %-----------------------------------------------%
-% inserir o sumario
+% inserir o sumário
 %-----------------------------------------------%
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
@@ -165,13 +120,15 @@
 % Se quiser que apareça o título dos capítulos
 % no cabeçalho, então comente a linha abaixo
 \pagestyle{cabecalholimpo}
+
+
 %-----------------------------------------------%
 % Inclusão dos capítulos que estão em outros arquivos .tex
 %-----------------------------------------------%
-\include{introducao}
-\include{cap2}
-\include{cap3}
-\include{conclusoes}
+\include{capitulos/cap1}
+\include{capitulos/cap2}
+\include{capitulos/cap3}
+\include{capitulos/cap4}
 
 
 
