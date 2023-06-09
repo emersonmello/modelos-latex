@@ -1,0 +1,67 @@
+\useinnertheme{rectangles}
+
+
+% -------------------------------------------------%
+% Alterando a distância padrão dos ambientes itemize / enumerate
+% -------------------------------------------------%
+% https://tex.stackexchange.com/a/129544
+\def\beamer@extra@frameoptions{}
+\def\beamer@extra@setframeoptions#1%
+  {\appto\beamer@extra@frameoptions{\setkeys{beamerframe}{#1}}}
+\def\defaultframeoptions{\@ifstar
+  {\def\beamer@extra@frameoptions{}\beamer@extra@setframeoptions}
+  {\beamer@extra@setframeoptions}}
+\define@key{beamerframe}{environment}%
+  {\def\beamer@frameenvironmentsubst{#1}\beamer@extra@frameoptions}
+
+% A new frame option for wider items
+\define@key{beamerframe}{wide}[10pt]{%
+\def\beamer@cramped{\itemsep #1\topsep0.5pt\relax}}
+
+% Definir o espaçamento padrão entre os itens nas listas
+\defaultframeoptions{wide=\beamerthemeifsclean@itemsep}
+% -------------------------------------------------%
+
+
+% Empty footline.
+\defbeamertemplate{footline}{none}{}
+\setbeamertemplate{footline}[frame number]
+% -------------------------------------------------%
+
+
+% ------------------------- %
+% Background do slide do título
+% ------------------------- %
+\setbeamertemplate{background}{%
+  \begin{tikzpicture}%
+    \ifnum\thepage=1\relax%
+    \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+    \fill[color=titlebg] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+    \fi
+  \end{tikzpicture}
+}
+
+% ------------------------- %
+% Title page
+% ------------------------- %
+\defbeamertemplate*{title page}{ifsclean}
+{% 
+\begin{tikzpicture}[overlay, remember picture]
+    
+    \node [anchor=south west, text width=.85\paperwidth,align=left] (titulo) at (0,.075\paperheight){\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par};
+  
+    \node[below=.5em of titulo, text width=.85\paperwidth,align=left] (subtitulo) {\usebeamerfont{subtitle}\usebeamercolor[fg]{title}\insertsubtitle\par};
+
+    \node [below=5em of subtitulo,align=flush right,inner sep=0pt,text width=.85\paperwidth] (autor) {\usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor\par};
+
+    \node [below=1em of autor,align=flush right,inner sep=0pt,text width=.85\paperwidth] (instituto) {\usebeamercolor[fg]{author}\usebeamerfont{institute}\insertinstitute\par};
+
+    \node [below=1em of instituto, node distance=2.5em, text width=.85\paperwidth,align=flush right] (data) {\usebeamercolor[fg]{date}\usebeamerfont{date}\insertdate\par};
+
+    \node [anchor=south west] (logoifsc) at (0,-5.2) {\usebox\ifsclogotexto};
+    % Caso queira usar o logo a partir de um PNG, comente a linha acima e descomente a linha abaixo
+    % \node [anchor=south west] (logoifsc) at (0,-5.2) {\pgfuseimage{ifsclogo}};
+
+\end{tikzpicture}%
+}
+% ------------------------- %
