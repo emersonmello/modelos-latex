@@ -16,9 +16,11 @@
 
 \RequirePackage{pdflscape}
 
+\RequirePackage{xargs}
+
 % Fontes
 \RequirePackage[T1]{fontenc}
-\RequirePackage{amsfonts,amsmath}
+\RequirePackage{amsfonts,amsmath,amssymb}
 \RequirePackage{pifont}
 \RequirePackage{lmodern}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -27,7 +29,7 @@
 \RequirePackage{fix-cm}
 \renewcommand{\familydefault}{\sfdefault}
 \RequirePackage[scaled=1]{helvet}
-\RequirePackage[helvet]{sfmath}
+% \RequirePackage[helvet]{sfmath}
 \everymath={\sf}
 % Fontes https://fontawesome.com/?from=io
 \RequirePackage{fontawesome}
@@ -40,6 +42,7 @@
 
 % espaçamento entre linhas
 \renewcommand{\baselinestretch}{1.05} 
+
 
 % ----------------------------------------------------
 % Criação do logo do IFSC
@@ -108,11 +111,18 @@
 \definecolor{azul}{HTML}{7da6cb}
 \definecolor{amarelo}{HTML}{f0b400}
 
+\definecolor{amareloinfo}{HTML}{FEE886}
+\definecolor{vermelhoinfo}{HTML}{e44131}
+\definecolor{verdeinfo}{HTML}{31a250}
+\definecolor{azulinfo}{HTML}{4080ec}
+\definecolor[named]{cinzaescuro}{HTML}{595959}
+
+
 \RequirePackage{url,graphicx}
 \urlstyle{sf}
 % para quebrar citações que estouram a margem
 \RequirePackage{breakcites}
-\RequirePackage{soulutf8}
+\RequirePackage{soul}
 \RequirePackage{csquotes}
 
 
@@ -177,9 +187,21 @@
 \RequirePackage{ccicons}
 \newcommand{\licenciamentoLivre}{%
 \begin{center}%
-  \ccby~Este documento está licenciado sob \href{https://creativecommons.org/licenses/by/4.0/deed.pt_BR}{Creative Commons ``Atribuição 4.0 Internacional''.}%  
+  \ccby~Documento licenciado sob \href{https://creativecommons.org/licenses/by/4.0/deed.pt_BR}{\color{azulinfo}{Creative Commons ``Atribuição 4.0 Internacional''.}}%  
 \end{center}%
 }
+
+
+\newcommand{\plagio}{
+  \begin{cuidado}[Plágio não é tolerado]
+    Você deve ser o único(a) responsável por fazer a entrega para essa atividade. Todo o código ou texto deverá ser produzido exclusivamente por você, exceto trechos de códigos que possam ter sido fornecidos como parte do enunciado.
+    
+    Você pode discutir com outro estudantes com o intuito de esclarecer pontos, isso é até incentivado, porém você não poderá copiar trechos de códigos, textos ou soluções de qualquer fonte (i.e. colegas da mesma turma, colegas das turmas anteriores, repositórios de códigos na Internet ou soluções providas por serviços gratuitos ou pagos etc). 
+  \end{cuidado}
+}
+
+
+
 
 % Ambiente para manter histórico das revisões
 \def\numeroRevisao{0.0.0}
@@ -256,21 +278,72 @@
 
 
 % ---------------------------------------
+% todo list (check list) Optional commands: \cmark and \xmark
+% https://tex.stackexchange.com/a/313337
+% ex: \item [\cmark] Create new list
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\newcommand{\cmark}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\ding{51}}}%
+\hspace{-2.5pt}}
+\newcommand{\xmark}{\rlap{$\square$}{\large\hspace{1pt}\ding{55}}}
+
+
+% ---------------------------------------
 % Baloes de informacao
 % ---------------------------------------
 \newtcbox{\dest}[1][red]{on line,
 arc=0pt,outer arc=0pt,colback=#1!10!white,colframe=#1!50!black, boxsep=0pt,left=1pt,right=1pt,top=2pt,bottom=2pt, boxrule=0pt,bottomrule=1pt,toprule=1pt}
 \newtcbox{\destx}[1][red]{on line, arc=7pt,colback=#1!10!white,colframe=#1!50!black, before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=6pt,right=6pt,top=2pt,bottom=2pt}
 
-\newtcolorbox{informacao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.987\linewidth,colback=gray!5,colframe=gray,%
-overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\huge \faInfoCircle}}}; }}
+% \newtcolorbox{informacao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.987\linewidth,colback=gray!5,colframe=gray,%
+% overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\huge \faInfoCircle}}}; }}
 
-\newtcolorbox{atencao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.987\linewidth,colback=gray!5,colframe=gray,%
-overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\huge \faExclamationCircle}}}; }}
+% \newtcolorbox{atencao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.987\linewidth,colback=gray!5,colframe=gray,%
+% overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\huge \faExclamationCircle}}}; }}
 
-\newtcolorbox{cuidado}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.987\linewidth,colback=gray!5,colframe=gray,%
-overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolor{amarelo}{{\huge \faWarning}}}; }}
+% \newtcolorbox{cuidado}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.987\linewidth,colback=gray!5,colframe=gray,%
+% overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolor{amarelo}{{\huge \faWarning}}}; }}
 
+
+\newtcolorbox[auto counter,number within=section]{caixainfo}[4][]{
+colback=#2,colframe=#2,coltitle=#3,fonttitle=\bfseries\sffamily,
+fontupper=\color{#3},boxrule=.1pt,detach title,breakable,
+pad at break*=0mm,
+#1,
+code={\ifdefempty{\tcbtitletext}{}{\tcbset{before upper={\tcbtitle\par}}}},
+enhanced,
+leftrule=15mm,
+underlay unbroken and first={\node[below,text=#3,anchor=east]
+at ([xshift=0mm]interior.base west) {\Huge  #4};}
+% enhanced jigsaw,
+% leftrule=22mm,
+% underlay unbroken and first={\node[below,text=#3,anchor=east]
+% at ([xshift=-6mm]interior.base west) {\Huge  #4};}
+}
+
+\newenvironmentx{informacao}[4][1=,2=verdeinfo!30,3=black!90,4=\faInfoCircle]
+{\begin{caixainfo}[title=#1]{#2}{#3}{#4}
+\parskip=0.3\baselineskip \advance\parskip by 0pt plus 1pt
+\parindent=0pt
+}{\end{caixainfo}}
+
+\newenvironmentx{informacaoazul}[4][1=,2=azulinfo!30,3=black!90,4=\faInfoCircle]
+{\begin{caixainfo}[title=#1]{#2}{#3}{#4}
+\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+\parindent=0pt
+}{\end{caixainfo}}
+
+\newenvironmentx{atencao}[4][1=,2=amareloinfo!30,3=black!90,4=\faWarning]
+{\begin{caixainfo}[title=#1]{#2}{#3}{#4}
+\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+\parindent=0pt
+}{\end{caixainfo}}
+
+\newenvironmentx{cuidado}[4][1=,2=vermelhoinfo!30,3=black!90,4=\faExclamationCircle]
+{\begin{caixainfo}[title=#1]{#2}{#3}{#4}
+\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+\parindent=0pt
+}{\end{caixainfo}}
 
 
 % -------------------------------------------------%
@@ -300,8 +373,8 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
 % -------------------------------------------------%
 % nome do aluno
 % -------------------------------------------------%
-\newcommand{\nomealuno}[2][\rule{.22\linewidth}{.4pt}]{
-\noindent \textbf{Aluno:} #2 \hfill \textbf{Matrícula:} #1
+\newcommand{\nomealuno}[2][\rule{.2\linewidth}{.4pt}]{
+\noindent \textbf{Aluno(a):} #2 \hfill \textbf{Matrícula:} #1
 \bigskip}
 % -------------------------------------------------%
 
@@ -449,7 +522,7 @@ overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolo
   breakatwhitespace=false,
   breaklines=true,        
   captionpos=n,           
-  columns=flexible,
+  columns=fullflexible,
   deletekeywords={...},  
   escapechar={@*},       
   extendedchars=true,    
