@@ -74,7 +74,7 @@
     \begin{enumerate}
         \item Primeiro item
         \begin{itemize}
-            \item \Myhref{http://docente.ifsc.edu.br/mello}{Este texto é um \textit{link} para um site}
+            \item \Myhref{https://emersonmello.me}{Aqui tem um exemplo de \textit{link} para um \textit{site} usando o comando \texttt{Myhref}}
             \item Segundo item
         \end{itemize}
         \item Segundo item
@@ -86,20 +86,23 @@
     \end{enumerate}
 \end{frame}
 
-\begin{frame}[wide]{Lista de itens com espaçamento 10pt}
-    \begin{enumerate}
-        \item Primeiro item
-        \begin{itemize}
-            \item \Myhref{http://docente.ifsc.edu.br/mello}{Este texto é um \textit{link} para um site}
-            \item Segundo item
-        \end{itemize}
-        \item Segundo item
-        \item Terceiro item 
-        \begin{itemize}
-            \item Neste linha é apresentado um item que tem um texto grande que deverá ocupar mais de uma linha no slide. Assim, espera-se mostrar como será o alinhamento na margem esquerda
-            \item Segundo item
-        \end{itemize}
-    \end{enumerate}
+\subsection{Animações}
+
+\begin{frame}{Animação com lista de itens}
+\begin{itemize}[<+->]
+    \item Primeiro item
+    \item Segundo item
+    \item Terceiro item
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Uso do \texttt{alert}}
+    \begin{itemize}
+        \item<1-| alert@1> Aparecerá desde do slide 1 e receberá destaque no slide 1
+        \item<1-| alert@2> Aparecerá desde do slide 1 e receberá destaque no slide 2
+        \item<1-| alert@3> Aparecerá desde do slide 1 e receberá destaque no slide 3
+        \item<4-| alert@4> Aparecerá desde do slide 4 e receberá destaque no slide 4
+    \end{itemize} 
 \end{frame}
 
 \subsection{Colunas}
@@ -130,6 +133,25 @@
     \end{columns}
 \end{frame}
 
+\begin{frame}{Listas e figuras}
+\begin{columns}
+    \column{.5\linewidth}
+     \begin{center}
+        \includegraphics[width=\linewidth]{figs/4x3.png}
+     \end{center}
+    \column{.5\linewidth}
+    \begin{itemize}
+        \item Item 1
+        \begin{itemize}
+            \item Subitem 1.1
+            \item Subitem 1.2
+        \end{itemize}
+        \item Item 2
+        \item Item 3
+    \end{itemize}
+\end{columns} 
+\end{frame}
+
 
 \section{Blocos}
 
@@ -144,36 +166,60 @@
     \begin{alertblock}{Alerta}
         Esse é um alerta
     \end{alertblock}
-    \begin{exampleblock}{Bloco para exemplo}
-           Um bloco para usar com exemplos
-        \end{exampleblock}
 \end{frame}
+
 
 \begin{frame}{Blocos personalizados}
-\begin{atencao}
-    Isso é uma mensagem de atenção
-\end{atencao}
-\begin{informacao}
-    Isso é uma mensagem de informação
-\end{informacao}
-\begin{cuidado}
-    Isso é uma mensagem de cuidado
-\end{cuidado}
 
+    \begin{informacao}
+    Isso é uma mensagem de informação
+    \end{informacao}
+    
+    \begin{informacaoazul}
+        Isso é uma mensagem de informação
+    \end{informacaoazul}
+
+    \begin{atencao}
+        Isso é uma mensagem de atenção
+    \end{atencao}
+    
+    \begin{cuidado}
+        Isso é uma mensagem de cuidado
+    \end{cuidado}
 \end{frame}
+
+\begin{frame}{Horários}
+    {Veja outros ícones em \url{https://ctan.org/pkg/fontawesome}}
+    \begin{itemize}
+        \item Horário das aulas 
+        \begin{caixa}[azul]{white}{\faCalendar}
+            \begin{itemize}
+                \item 15:40 -- 17:30 - quarta-feira
+                \item 13:30 -- 15:20 - quinta-feira
+            \end{itemize}
+        \end{caixa}
+        \item Atendimento extraclasse
+        \begin{caixa}[azul]{white}{\faCalendar}
+            \begin{itemize}
+                \item 10:00 -- 12:00 - sexta-feira
+            \end{itemize}
+        \end{caixa}
+    \end{itemize}
+\end{frame}
+
 
 \section{Figuras}
 
 \begin{frame}{Figura 4x3}
     \begin{center}
-        \includegraphics[width=.8\linewidth]{figs/4x3.png}
+        \includegraphics[height=.8\paperheight]{figs/4x3.png}
     \end{center}
 \end{frame}
     
 
 \begin{frame}{Figura 16x9}
 \begin{center}
-    \includegraphics[width=\linewidth]{figs/16x9.png}
+    \includegraphics[width=.95\linewidth]{figs/16x9.png}
 \end{center}
 \end{frame}
 
@@ -190,39 +236,24 @@
 \end{center}
 \end{frame}
 
+\section{Incluindo código fonte}
 
 
-
-
-
-\begin{frame}[fragile]{Código em C e Java}
-
-\begin{itemize}
-		\item Comandos criados para as seguintes linguagens
-		\begin{itemize}
-			\item \texttt{ansic, java, shell, php, matlab, python, xml, sql}
-			\item \texttt{ansicp, javap, shellp, phpp, matlabp, pythonp, xmlp, sqlp}
-			\item Letra p no final indica que a fonte será \texttt{scriptsize}
-		\end{itemize}
-\end{itemize}
-
-% -------------------------------------------------%
-% incluindo o código de um arquivo externo
-% -------------------------------------------------%
-\includecode{ansic}{codigos/ola.c}	
-
-
-% -------------------------------------------------%
-% escrevendo o código diretamente dentro do frame
-% -------------------------------------------------%
-\javap
-\begin{lstlisting}
-public static voi main(String args[]){
-	System.out.println("Ola mundo");
-}
-\end{lstlisting}		
+\begin{frame}[fragile]{Olá mundo em C}
+    \lstinputlisting[style=ansic,caption={Olá mundo},label={cod:olac},captionpos=t]{codigos/ola.c}
 \end{frame}
-    
+
+\begin{frame}[fragile]{Olá mundo em Java}
+\begin{lstlisting}[style=java]
+public class App{
+
+    public static void main(String[] args){
+        System.out.println("Olá mundo");
+    }
+
+}
+\end{lstlisting}
+\end{frame}
 
 \begin{frame}{Referências}
     \nocite{*}
