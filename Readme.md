@@ -7,6 +7,7 @@ Modelos de documentos LaTeX que uso em minhas aulas ou em outras atividades no I
 ## Modelos para área acadêmica
 
 - **Apresentação (slides)**
+    - [Tema *IFSClean*](apresentacao/ifsclean)
     - [Tema *IFSCyan*](apresentacao/ifscyan)
     - [Tema *Título Leve*](apresentacao/titulo-leve)
 - **Lista de exercício ou Prova**
