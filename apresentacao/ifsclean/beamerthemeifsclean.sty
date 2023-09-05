@@ -58,6 +58,15 @@
 \RequirePackage{gensymb}
 \RequirePackage{xargs}
 
+\RequirePackage{siunitx}
+\sisetup{
+  input-ignore={.},
+  input-decimal-markers={,},
+  output-decimal-marker = {,},
+  group-separator={.},
+  group-minimum-digits=4,
+}
+
 \hypersetup{pdffitwindow=false, pdfstartview={FitW},colorlinks=false}
 
 % Aumentando a altura das linhas nas tabelas
