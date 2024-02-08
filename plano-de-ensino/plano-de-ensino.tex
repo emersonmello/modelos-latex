@@ -12,6 +12,17 @@
 }
 \pgfdeclareimage[width=1.29\linewidth]{cabecalho}{../classes/imagens/ifsc-header.png}
 
+%-----------------------------%
+% Citações padrão ABNT com biblatex
+%-----------------------------%
+\usepackage[style=abnt,noslsn,justify]{biblatex}
+\usepackage{csquotes}
+
+%-----------------------------%
+% Arquivo com a bibliografia
+%-----------------------------%
+\addbibresource{referencias-poo.bib}
+
 
 \begin{document}
 
@@ -26,10 +37,10 @@
 	\begin{tabular}{@{}l l@{}}
 	\textbf{Curso}                & Engenharia de Telecomunicações\\
 	\textbf{Unidade curricular}   & Programação Orientada a Objetos\\
-	\textbf{Semestre}             & 2020-01\\
-	\textbf{Carga horária}        & 72 horas\\
+	\textbf{Semestre}             & 2024-01\\
+	\textbf{Carga horária}        & 80 horas\\
 	\textbf{Professor}            & Emerson Ribeiro de Mello\\
-	\textbf{Página da disciplina} & \url{http://docente.ifsc.edu.br/mello}\\
+	\textbf{Página da disciplina} & \url{https://emersonmello.me}\\
 	\end{tabular}
 	\end{small}			
 \end{minipage}%
@@ -54,15 +65,33 @@ Ao término da disciplina o aluno será capaz de modelar, implementar e testar s
 
 \section{Metodologia}
 
+Essa unidade curricular será ministrada com aulas expositivas-dialogadas e práticas em laboratório sob a supervisão do professor. As atividades empregarão a metodologia de aprendizado baseado em projetos, em que desafios são lançados e o docente orienta os estudantes em suas soluções com base nos conceitos sendo estudados. As atividades práticas serão conduzidas em computadores com o sistema operacional Linux e com os softwares aplicativos para automatização de projetos e o kit de desenvolvimento Java, além de aplicações web para desenvolvimento de diagramas UML. As aulas práticas serão conduzidas nos laboratórios de informática do campus.
+
 \section{Conteúdo programático}
 
+\begin{enumerate}
+	\item Introdução à programação orientada a objetos
+	\item Introdução à linguagem de modelagem unificada (UML)
+	\item Introdução à linguagem de programação Java
+	\item Concepção de projeto orientado a objetos
+	\item Herança
+	\item Polimorfismo
+\end{enumerate}
 
+% -----------------------------
+% Referências bibliográficas
+% -----------------------------
 
 \nocite{*}
 
-\bibliographystyle{plain}
-\renewcommand{\refname}{Bibliografia}
-\bibliography{referencias-poo.bib}
+% Vai imprimir todas as referências do arquivo referencias-poo.bib que possuam a palavra-chave "basica" 
+\printbibliography[heading=bibintoc,keyword={basica},title={Bibliografia básica}]%
+
+% Vai imprimir todas as referências do arquivo referencias-poo.bib que possuam a palavra-chave "complementar"
+\printbibliography[heading=bibintoc,keyword={complementar},title={Bibliografia complementar}]%
+% -----------------------------
+
+
 
 
 \end{document}
