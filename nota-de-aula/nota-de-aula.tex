@@ -25,9 +25,9 @@ Como dito, o \textit{shell} é um interpretador de comandos e temos a opção de
 
 \includecode[shell]{intro}{Meu primeiro shell script}{codigos/intro.sh}
 
-\begin{informacao}
-	Para executar um \textit{bash script} digite: \dest[green]{\texttt{bash nome-do-arquivo.sh}} ou deixe o arquivo com permissão para execução, com o comando \dest[green]{\texttt{chmod +x nome-do-arquivo.sh}} e executá-lo da seguinte forma: \dest[green]{\texttt{./nome-do-script.sh}}
-\end{informacao}
+\begin{tip}
+	Para executar um \textit{bash script} digite: \dest[green]{\texttt{bash nome-do-arquivo.sh}} ou deixe o arquivo com permissão para execução, com o comando \dest[green]{\texttt{chmod +x nome-do-arquivo.sh}} e executá-lo da seguinte forma: \destx[green]{\texttt{./nome-do-script.sh}}
+\end{tip}
 
 \subsection{Alguns comandos interessantes para shell script}
 
@@ -77,7 +77,6 @@ Nas linguagens de programação as \textbf{variáveis} possuem uma função seme
 
 \includecode[shell]{nome}{Usando variáveis em conjunto com o comando read}{codigos/nome.sh}
 
-\newpage
 
 \subsubsection{Variáveis de ambiente}
 
@@ -152,6 +151,28 @@ Antes de apresentar as estruturas de decisão, na tabela \ref{tabelaoperadores} 
 	\item Desenvolva um algoritmo que leia dois números inteiros e exiba qual deles é o maior 
 	\item Desenvolva um algoritmo que leia um número inteiro positivo e imprima a sequência de 0 até este número. 		\item Desenvolva um algoritmo que simule a autenticação de usuários. O usuário deve fornecer uma senha e se esta senha for igual a palavra \textbf{secreta} deverá exibir a mensagem ``Acesso autorizado'', caso contrário deverá exibir ``Acesso negado''. O algoritmo deverá solicitar a senha ao usuário até que este forneça a senha correta ou até que o número de tentativas permitidas seja alcançado. No caso, o número máximo de tentativas é $3$.
 \end{enumerate}
+
+\section{Ambientes de alerta inspirados no Markdown do GitHub}
+
+\begin{note}
+	Para apresentar uma informação útil 
+\end{note}
+
+\begin{tip}
+	Para apresentar uma dica 
+\end{tip}
+
+\begin{important}
+	Informação importante que precisa ser destacada
+\end{important}
+
+\begin{warning}
+	Algo que precisa ser observado com atenção
+\end{warning}
+
+\begin{caution}
+	Para chamar a atenção do leitor para algo que pode ser perigoso
+\end{caution}
 
 
 \vspace*{\fill}

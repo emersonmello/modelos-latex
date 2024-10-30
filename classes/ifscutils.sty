@@ -292,7 +292,7 @@
 % Baloes de informacao
 % ---------------------------------------
 \newtcbox{\dest}[1][red]{on line,
-arc=0pt,outer arc=0pt,colback=#1!10!white,colframe=#1!50!black, boxsep=0pt,left=1pt,right=1pt,top=2pt,bottom=2pt, boxrule=0pt,bottomrule=1pt,toprule=1pt}
+arc=0pt,outer arc=0pt,colback=#1!10!white,colframe=#1!50!black, boxsep=0pt,left=1pt,right=1pt,top=2pt,bottom=2pt, boxrule=0pt,bottomrule=0pt,toprule=0pt}
 \newtcbox{\destx}[1][red]{on line, arc=7pt,colback=#1!10!white,colframe=#1!50!black, before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=6pt,right=6pt,top=2pt,bottom=2pt}
 
 % \newtcolorbox{informacao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.987\linewidth,colback=gray!5,colframe=gray,%
@@ -344,6 +344,29 @@ at ([xshift=0mm]interior.base west) {\Huge  #4};}
 \parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
 \parindent=0pt
 }{\end{caixainfo}}
+
+% -------------------------------------------------%
+% Ambientes inspirados nos estilos de alertas do Markdown do GitHub
+% -------------------------------------------------%
+\definecolor{notecolor}{RGB}{9,105,218}
+\definecolor{tipcolor}{RGB}{26,127,25}
+\definecolor{importantcolor}{RGB}{130,80,223}
+\definecolor{warningcolor}{RGB}{253,165,15}
+\definecolor{cautioncolor}{RGB}{207,34,46}
+
+\tcbset{alertmarkdown/.style={%
+arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityback=0,opacitybacktitle=0,opacityframe=0}}
+
+\newtcolorbox{note}{alertmarkdown,borderline west={3pt}{0pt}{notecolor},coltitle=notecolor,title={\faInfoCircle~~\textbf{Nota}}}
+
+\newtcolorbox{tip}{alertmarkdown,borderline west={3pt}{0pt}{tipcolor},coltitle=tipcolor,title={\faLightbulbO~~\textbf{Dica}}}
+
+\newtcolorbox{important}{alertmarkdown,borderline west={3pt}{0pt}{importantcolor},coltitle=importantcolor,title={\faExclamation~~\textbf{Importante}}}
+
+\newtcolorbox{warning}{alertmarkdown,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faWarning~~\textbf{Atenção}}}
+
+\newtcolorbox{caution}{alertmarkdown,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faExclamationCircle~~\textbf{Cuidado}}}
+% -------------------------------------------------%
 
 
 % -------------------------------------------------%
