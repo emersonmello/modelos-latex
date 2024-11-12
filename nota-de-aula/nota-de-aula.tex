@@ -13,6 +13,31 @@
 
 \shell
 
+
+\section{Ambientes de alerta inspirados no Markdown do GitHub}
+
+% É possível informar 3 parâmetros para os ambientes de alerta: título, ícone e cor
+\begin{note}[Nota][\faInfoCircle][notecolor]
+	Para apresentar uma informação útil
+\end{note}
+
+\begin{tip}
+	Para apresentar uma dica
+\end{tip}
+
+\begin{important}
+	Informação importante que precisa ser destacada
+\end{important}
+
+\begin{warning}
+	Algo que precisa ser observado com atenção
+\end{warning}
+
+\begin{caution}
+	Para chamar a atenção do leitor para algo que pode ser perigoso
+\end{caution}
+
+
 \section{O interpretador de comandos}
 
 O \textit{shell} consiste em um interpretador de comandos presente em todos os sistemas operacionais variantes dos Unix, que inclui Linux, BSD e MacOS. No linux existem diversos tipos de \textit{shell}, sendo estes: \texttt{csh}, \texttt{bash}, \texttt{ksh} e \texttt{zsh}. 
@@ -128,7 +153,6 @@ Antes de apresentar as estruturas de decisão, na tabela \ref{tabelaoperadores} 
 
 \includecode[shell]{caso}{Estrutura de decisão ESCOLHA}{codigos/caso.sh}
 
-\newpage
 
 \subsection{Estruturas de repetição}
 
@@ -151,28 +175,6 @@ Antes de apresentar as estruturas de decisão, na tabela \ref{tabelaoperadores} 
 	\item Desenvolva um algoritmo que leia dois números inteiros e exiba qual deles é o maior 
 	\item Desenvolva um algoritmo que leia um número inteiro positivo e imprima a sequência de 0 até este número. 		\item Desenvolva um algoritmo que simule a autenticação de usuários. O usuário deve fornecer uma senha e se esta senha for igual a palavra \textbf{secreta} deverá exibir a mensagem ``Acesso autorizado'', caso contrário deverá exibir ``Acesso negado''. O algoritmo deverá solicitar a senha ao usuário até que este forneça a senha correta ou até que o número de tentativas permitidas seja alcançado. No caso, o número máximo de tentativas é $3$.
 \end{enumerate}
-
-\section{Ambientes de alerta inspirados no Markdown do GitHub}
-
-\begin{note}
-	Para apresentar uma informação útil 
-\end{note}
-
-\begin{tip}
-	Para apresentar uma dica 
-\end{tip}
-
-\begin{important}
-	Informação importante que precisa ser destacada
-\end{important}
-
-\begin{warning}
-	Algo que precisa ser observado com atenção
-\end{warning}
-
-\begin{caution}
-	Para chamar a atenção do leitor para algo que pode ser perigoso
-\end{caution}
 
 
 \vspace*{\fill}

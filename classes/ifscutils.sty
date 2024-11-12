@@ -191,7 +191,6 @@
 \end{center}%
 }
 
-
 \newcommand{\plagio}{
   \begin{cuidado}[Plágio não é tolerado]
     Você deve ser o único(a) responsável por fazer a entrega para essa atividade. Todo o código ou texto deverá ser produzido exclusivamente por você, exceto trechos de códigos que possam ter sido fornecidos como parte do enunciado.
@@ -200,6 +199,13 @@
   \end{cuidado}
 }
 
+\newcommand{\plagioGH}{
+  \begin{caution}[Plágio não é tolerado]
+    Você deve ser o único(a) responsável por fazer a entrega para essa atividade. Todo o código ou texto deverá ser produzido exclusivamente por você, exceto trechos de códigos que possam ter sido fornecidos como parte do enunciado.
+    
+    Você pode discutir com outros estudantes com o intuito de esclarecer pontos, isso é até incentivado, porém você não poderá copiar trechos de códigos, textos ou soluções de qualquer fonte (e.g. colegas da mesma turma ou de turmas anteriores, repositórios de códigos na Internet ou soluções providas por serviços como Copilot e ChatGPT). 
+  \end{caution}
+}
 
 
 
@@ -307,7 +313,10 @@ arc=0pt,outer arc=0pt,colback=#1!10!white,colframe=#1!50!black, boxsep=0pt,left=
 
 \newtcolorbox[auto counter,number within=section]{caixainfo}[4][]{
 colback=#2,colframe=#2,coltitle=#3,fonttitle=\bfseries\sffamily,
-fontupper=\color{#3},boxrule=.1pt,detach title,breakable,
+fontupper=\color{#3},
+boxrule=.1pt,
+detach title,
+breakable,
 pad at break*=0mm,
 #1,
 code={\ifdefempty{\tcbtitletext}{}{\tcbset{before upper={\tcbtitle\par}}}},
@@ -357,15 +366,42 @@ at ([xshift=0mm]interior.base west) {\Huge  #4};}
 \tcbset{alertmarkdown/.style={%
 arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityback=0,opacitybacktitle=0,opacityframe=0}}
 
-\newtcolorbox{note}{alertmarkdown,borderline west={3pt}{0pt}{notecolor},coltitle=notecolor,title={\faInfoCircle~~\textbf{Nota}}}
+\newtcolorbox{ghmarkdown}[3][]{alertmarkdown,borderline west={3pt}{0pt}{#3},coltitle=#3,title={#2~~\textbf{#1}}}
 
-\newtcolorbox{tip}{alertmarkdown,borderline west={3pt}{0pt}{tipcolor},coltitle=tipcolor,title={\faLightbulbO~~\textbf{Dica}}}
+% \newtcolorbox{note}{alertmarkdown,borderline west={3pt}{0pt}{notecolor},coltitle=notecolor,title={\faInfoCircle~~\textbf{Nota}}}
+\newenvironmentx{note}[3][1=Nota,2=\faInfoCircle,3=notecolor]
+{\begin{ghmarkdown}[#1]{#2}{#3}
+\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+\parindent=0pt
+}{\end{ghmarkdown}}
 
-\newtcolorbox{important}{alertmarkdown,borderline west={3pt}{0pt}{importantcolor},coltitle=importantcolor,title={\faExclamation~~\textbf{Importante}}}
+% \newtcolorbox{tip}{alertmarkdown,borderline west={3pt}{0pt}{tipcolor},coltitle=tipcolor,title={\faLightbulbO~~\textbf{Dica}}}
+\newenvironmentx{tip}[3][1=Dica,2=\faLightbulbO,3=tipcolor]
+{\begin{ghmarkdown}[#1]{#2}{#3}
+\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+\parindent=0pt
+}{\end{ghmarkdown}}
 
-\newtcolorbox{warning}{alertmarkdown,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faWarning~~\textbf{Atenção}}}
+% \newtcolorbox{important}{alertmarkdown,borderline west={3pt}{0pt}{importantcolor},coltitle=importantcolor,title={\faExclamation~~\textbf{Importante}}}
+\newenvironmentx{important}[3][1=Importante,2=\faExclamation,3=importantcolor]
+{\begin{ghmarkdown}[#1]{#2}{#3}
+\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+\parindent=0pt
+}{\end{ghmarkdown}}
 
-\newtcolorbox{caution}{alertmarkdown,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faExclamationCircle~~\textbf{Cuidado}}}
+% \newtcolorbox{warning}{alertmarkdown,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faWarning~~\textbf{Atenção}}}
+\newenvironmentx{warning}[3][1=Atenção,2=\faWarning,3=warningcolor]
+{\begin{ghmarkdown}[#1]{#2}{#3}
+\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+\parindent=0pt
+}{\end{ghmarkdown}}
+
+% \newtcolorbox{caution}{alertmarkdown,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faExclamationCircle~~\textbf{Cuidado}}}
+\newenvironmentx{caution}[3][1=Cuidado,2=\faExclamationCircle,3=cautioncolor]
+{\begin{ghmarkdown}[#1]{#2}{#3}
+\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+\parindent=0pt
+}{\end{ghmarkdown}}
 % -------------------------------------------------%
 
 
