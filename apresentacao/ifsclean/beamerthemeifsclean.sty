@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemeifsclean}[2023/04/23 v1.0 - IFSC Clean Beamer theme]
+\ProvidesPackage{beamerthemeifsclean}[2025/04/01 v2.0 - IFSC Clean Beamer theme]
 
 \mode<presentation>
 
@@ -7,7 +7,7 @@
 % Pacotes
 % -------------------------------------------------%
 \RequirePackage[T1]{fontenc}
-\RequirePackage[english,brazil]{babel}
+\RequirePackage[utf8]{inputenc}
 % \RequirePackage[sfdefault]{roboto}
 \usepackage[default]{opensans}
 
@@ -20,16 +20,29 @@
 % -------------------------------------------------%
 % Parâmetros do tema
 % -------------------------------------------------%
-\DeclareStringOption[white]{fg}[white]
-\DeclareStringOption[verde]{bg}[verde]
-\DeclareStringOption[fg]{titlefg}[fg]
-\DeclareStringOption[bg]{titlebg}[bg]
-\DeclareStringOption[bg]{frametitlefg}[bg]
-\DeclareStringOption[cinzaescuro]{slidefg}[cinzaescuro]
-\DeclareStringOption[white]{slidebg}[white]
-\DeclareStringOption[fg]{sectionfg}[fg]
-\DeclareStringOption[bg]{sectionbg}[bg]
+
+% ex: \DeclareStringOption [<init>] {<key>} [<default>]
 \DeclareStringOption[7 pt]{itemsep}[7 pt]
+
+\DeclareStringOption[verde]{foreground}[verde]
+\DeclareStringOption[white]{background}[white]
+\DeclareStringOption[cinzaescuro]{textfg}[cinzaescuro]
+
+\DeclareStringOption[\beamerthemeifsclean@background]{titlefg}[\beamerthemeifsclean@background]
+\DeclareStringOption[\beamerthemeifsclean@foreground]{titlebg}[\beamerthemeifsclean@foreground]
+
+\DeclareStringOption[\beamerthemeifsclean@background]{sectionfg}[\beamerthemeifsclean@background]
+\DeclareStringOption[\beamerthemeifsclean@foreground]{sectionbg}[\beamerthemeifsclean@foreground]
+
+\DeclareStringOption[\beamerthemeifsclean@foreground]{frametitlefg}[\beamerthemeifsclean@foreground]
+\DeclareStringOption[\beamerthemeifsclean@background]{frametitlebg}[\beamerthemeifsclean@background]
+
+\DeclareStringOption[\beamerthemeifsclean@background]{blocktitlefg}[\beamerthemeifsclean@background]
+\DeclareStringOption[\beamerthemeifsclean@foreground]{blocktitlebg}[\beamerthemeifsclean@foreground]
+\DeclareStringOption[cinzaescuro]{blockbodyfg}[cinzaescuro]
+
+
+
 % -------------------------------------------------%
 
 \ProcessKeyvalOptions*
@@ -118,7 +131,10 @@ at ([xshift=0mm]interior.base west) {\Huge  #3};}
 }
 
 \newenvironmentx{caixa}[3][1=verde]
-{\setbeamercolor{structure}{fg=#2} \usebeamercolor[fg]{item caixa}
+{
+\usebeamercolor[fg]{item caixa}%
+\setbeamercolor{structure}{bg=bg,fg=white}
+\setbeamercolor{item projected}{fg=black,bg=white} 
 \begin{caixainfo}[#1]{#2}{#3}}{\end{caixainfo}}
 
 \newenvironmentx{informacao}[3][1=verde,2=white,3=\faInfoCircle]
@@ -127,8 +143,8 @@ at ([xshift=0mm]interior.base west) {\Huge  #3};}
 \newenvironmentx{informacaoazul}[3][1=azul,2=white,3=\faInfoCircle]
 {\begin{caixa}[#1]{#2}{#3}}{\end{caixa}}
 
-\newenvironmentx{atencao}[3][1=amarelo,2=cinzaescuro,3=\faWarning]
-{\usebeamercolor[fg]{normal text}\begin{caixa}[#1]{#2}{#3}\usebeamercolor[fg]{item caixaclara}
+\newenvironmentx{atencao}[3][1=amarelo,2=black,3=\faWarning]
+{\begin{caixa}[#1]{#2}{#3}\usebeamercolor[fg]{item caixaclara}
 }{\end{caixa}}
 
 \newenvironmentx{cuidado}[3][1=vermelho,2=white,3=\faExclamationCircle]
@@ -136,13 +152,30 @@ at ([xshift=0mm]interior.base west) {\Huge  #3};}
 
 
 % -------------------------------------------------%
+% Ambientes inspirados nos estilos de alertas do Markdown do GitHub
+% -------------------------------------------------%
+\definecolor{notecolor}{RGB}{9,105,218}
+\definecolor{tipcolor}{RGB}{26,127,25}
+\definecolor{importantcolor}{RGB}{130,80,223}
+\definecolor{warningcolor}{RGB}{253,165,15}
+\definecolor{cautioncolor}{RGB}{207,34,46}
+
+\tcbset{alertmarkdown/.style={%
+arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityback=1,opacitybacktitle=1,opacityframe=0}}
+
+\newtcolorbox{nota}{alertmarkdown,colback=notecolor!5!white,colbacktitle=notecolor!5!white,borderline west={3pt}{0pt}{notecolor},coltitle=notecolor,title={\faInfoCircle~~\textbf{Nota}}}
+
+\newtcolorbox{tip}{alertmarkdown,colback=tipcolor!5!white,colbacktitle=tipcolor!5!white,borderline west={3pt}{0pt}{tipcolor},coltitle=tipcolor,title={\faLightbulbO~~\textbf{Dica}}}
+
+\newtcolorbox{important}{alertmarkdown,colback=importantcolor!5!white,colbacktitle=importantcolor!5!white,borderline west={3pt}{0pt}{importantcolor},coltitle=importantcolor,title={\faExclamation~~\textbf{Importante}}}
+
+\newtcolorbox{warning}{alertmarkdown,colback=warningcolor!5!white,colbacktitle=warningcolor!5!white,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faWarning~~\textbf{Atenção}}}
+
+\newtcolorbox{caution}{alertmarkdown,colback=cautioncolor!5!white,colbacktitle=cautioncolor!5!white,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faExclamationCircle~~\textbf{Cuidado}}}
+
+% -------------------------------------------------%
 % IFSC Logo
 % -------------------------------------------------%
-% dark: #007013 % light: #69d26f
-\definecolor{verdeifsc}{RGB}{50,160,65} % HEX: #32A041
-% dark: #8f0000 % light: #ff5747
-\definecolor{vermelhoifsc}{RGB}{200,25,30} % hex: #C8191E
-
 \tikzmath{
   \dimensao   = .5; %.31
   \canto =  (.1 * \dimensao);
@@ -220,14 +253,16 @@ at ([xshift=0mm]interior.base west) {\Huge  #3};}
     }
 }
 
+% Logo na cor do "titlefgcolor" do tema
 \newsavebox\ifsclogo%
 \begin{lrbox}{\ifsclogo}
-  \scalebox{.35}{\tikz[node distance=\dist cm] \pic{ifsclogo={white}{white}};}%
+  \scalebox{.35}{\tikz[node distance=\dist cm] \pic{ifsclogo={titlefgcolor}{titlefgcolor}};}%
 \end{lrbox}
 
+% Logo na cor do "titlefgcolor" do tema
 \newsavebox\ifsclogotexto%
 \begin{lrbox}{\ifsclogotexto}
-  \scalebox{.3}{\tikz[node distance=\dist cm] \pic{ifsclogotexto={white}{white}{white}};}%
+  \scalebox{.3}{\tikz[node distance=\dist cm] \pic{ifsclogotexto={titlefgcolor}{titlefgcolor}{titlefgcolor}};}%
 \end{lrbox}
 % -------------------------------------------------%
 
@@ -625,6 +660,96 @@ at ([xshift=0mm]interior.base west) {\Huge  #3};}
 	upquote=true,
 }
 
+% https://pt.overleaf.com/latex/examples/listings-code-style-for-html5-css-html-javascript/htstpdbpnpmt
+\definecolor{lightgray}{rgb}{0.95, 0.95, 0.95}
+\definecolor{darkgray}{rgb}{0.4, 0.4, 0.4}
+%\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\definecolor{editorGray}{rgb}{0.95, 0.95, 0.95}
+\definecolor{editorOcher}{rgb}{1, 0.5, 0} % #FF7F00 -> rgb(239, 169, 0)
+\definecolor{editorGreen}{rgb}{0, 0.5, 0} % #007C00 -> rgb(0, 124, 0)
+\definecolor{orange}{rgb}{1,0.45,0.13}		
+\definecolor{olive}{rgb}{0.17,0.59,0.20}
+\definecolor{brown}{rgb}{0.69,0.31,0.31}
+\definecolor{purple}{rgb}{0.38,0.18,0.81}
+\definecolor{lightblue}{rgb}{0.1,0.57,0.7}
+\definecolor{lightred}{rgb}{1,0.4,0.5}
+% JavaScript
+\lstdefinelanguage{JavaScript}{
+  morekeywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  morecomment=[s]{/*}{*/},
+  morecomment=[l]//,
+  morestring=[b]",
+  morestring=[b]'
+}
+
+\lstdefinelanguage{HTML5}{
+  language=html,
+  sensitive=true,	
+  alsoletter={<>=-},	
+  morecomment=[s]{<!-}{-->},
+  tag=[s],
+  otherkeywords={
+  % General
+  >,
+  % Standard tags
+	<!DOCTYPE,
+  </html, <html, <head, <title, </title, <style, </style, <link, </head, <meta, />,
+	% body
+	</body, <body,
+	% Divs
+	</div, <div, </div>, 
+	% Paragraphs
+	</p, <p, </p>,
+	% scripts
+	</script, <script,
+  </button, <button,
+  % More tags...
+  <canvas, /canvas>, <svg, <rect, <animateTransform, </rect>, </svg>, <video, <source, <iframe, </iframe>, </video>, <image, </image>, <header, </header, <article, </article
+  },
+  ndkeywords={
+  % General
+  =,
+  % HTML attributes
+  charset=, src=, id=, width=, height=, style=, type=, rel=, href=,
+  % SVG attributes
+  fill=, attributeName=, begin=, dur=, from=, to=, poster=, controls=, x=, y=, repeatCount=, xlink:href=,
+  % properties
+  margin:, padding:, background-image:, border:, top:, left:, position:, width:, height:, margin-top:, margin-bottom:, font-size:, line-height:,
+	% CSS3 properties
+  transform:, -moz-transform:, -webkit-transform:,
+  animation:, -webkit-animation:,
+  transition:,  transition-duration:, transition-property:, transition-timing-function:,
+  }
+}
+
+\lstdefinestyle{htmlcssjs} {%
+  % General design
+%  backgroundcolor=\color{editorGray},
+  basicstyle={\footnotesize\ttfamily},   
+  % frame=b,
+  % line-numbers
+  % xleftmargin={0.75cm},
+  % numbers=left,
+  % stepnumber=1,
+  % firstnumber=1,
+  % numberfirstline=true,	
+  % Code design
+  identifierstyle=\color{black},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{editorGreen}\bfseries,
+  stringstyle=\color{editorOcher}\ttfamily,
+  commentstyle=\color{brown}\ttfamily,
+  % Code
+  language=HTML5,
+  alsolanguage=JavaScript,
+  alsodigit={.:;},	
+  tabsize=2,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+  extendedchars=true,
+  breaklines=true
+}
 
 
 

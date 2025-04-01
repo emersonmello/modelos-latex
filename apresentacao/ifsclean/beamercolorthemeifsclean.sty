@@ -3,55 +3,63 @@
 \definecolor[named]{verde}{HTML}{31a250}
 \definecolor[named]{azul}{HTML}{4080ec}
 \definecolor[named]{cinzaescuro}{HTML}{595959}
+\definecolor[named]{azulescuro}{HTML}{242b3a}
+
+% dark: #007013 % light: #69d26f
+\definecolor{verdeifsc}{RGB}{50,160,65} % HEX: #32A041
+% dark: #8f0000 % light: #ff5747
+\definecolor{vermelhoifsc}{RGB}{200,25,30} % hex: #C8191E
+\definecolor{vermelhoifscclaro}{HTML}{ff5747} % hex: #C8191E
+
+\definecolor[named]{redwine}{HTML}{880e4f}
+\definecolor[named]{azulcinza}{HTML}{435172}
+
+\definecolor[named]{cyanIFSC}{HTML}{0D4F4D}
+\definecolor[named]{fundoIFSC}{HTML}{eef1ec}
 
 % -------------------------------------------------%
 % Cores definidas como parâmetros do tema
 % -------------------------------------------------%
-\definecolor{fg}{named}{\beamerthemeifsclean@fg}
-\definecolor{bg}{named}{\beamerthemeifsclean@bg}
-\definecolor{titlefg}{named}{\beamerthemeifsclean@titlefg}
-\definecolor{titlebg}{named}{\beamerthemeifsclean@titlebg}
-\definecolor{frametitlefg}{named}{\beamerthemeifsclean@frametitlefg}
-\definecolor{slidefg}{named}{\beamerthemeifsclean@slidefg}
-\definecolor{slidebg}{named}{\beamerthemeifsclean@slidebg}
-\definecolor{sectionfg}{named}{\beamerthemeifsclean@sectionfg}
-\definecolor{sectionbg}{named}{\beamerthemeifsclean@sectionbg}
+\definecolor{fgcolor}{named}{\beamerthemeifsclean@foreground}
+\definecolor{bgcolor}{named}{\beamerthemeifsclean@background}
+\definecolor{textcolor}{named}{\beamerthemeifsclean@textfg}
+
+\definecolor{titlefgcolor}{named}{\beamerthemeifsclean@titlefg}
+\definecolor{titlebgcolor}{named}{\beamerthemeifsclean@titlebg}
+
+\definecolor{frametitlefgcolor}{named}{\beamerthemeifsclean@frametitlefg}
+\definecolor{frametitlebgcolor}{named}{\beamerthemeifsclean@frametitlebg}
+
+\definecolor{sectionfgcolor}{named}{\beamerthemeifsclean@sectionfg}
+\definecolor{sectionbgcolor}{named}{\beamerthemeifsclean@sectionbg}
+
+\definecolor{blocktitlefgcolor}{named}{\beamerthemeifsclean@blocktitlefg}
+\definecolor{blocktitlebgcolor}{named}{\beamerthemeifsclean@blocktitlebg}
+\definecolor{blockbodyfgcolor}{named}{\beamerthemeifsclean@blockbodyfg}
+
+
 % -------------------------------------------------%
 
-\usecolortheme[named=cinzaescuro]{structure}
+\setbeamercolor*{palette primary}{fg=fgcolor,bg=bgcolor}
+\setbeamercolor*{structure}{fg=textcolor,bg=bgcolor}
+\setbeamercolor*{section in toc}{fg=textcolor}
 
-\setbeamercolor{title}{fg=titlefg}
-\setbeamercolor{author}{fg=titlefg}
-\setbeamercolor{institute}{fg=titlefg}
-\setbeamercolor{date}{fg=titlefg}
+\setbeamercolor*{frametitle}{fg=fgcolor,bg=bgcolor}
+\setbeamercolor*{framesubtitle}{parent=frametitle}
 
-\setbeamercolor{structure}{fg=cinzaescuro}
-\setbeamercolor{normal text}{fg=slidefg}
+\setbeamercolor*{normal text}{fg=textcolor,bg=bgcolor}
+\setbeamercolor*{alerted text}{fg=vermelho}
+% \setbeamercolor{example text}{fg=slidefg}
 
-\setbeamercolor{background canvas}{bg=slidebg}
-\setbeamercolor{background}{parent=background canvas}
+\setbeamercolor*{block title}{fg=blocktitlefgcolor, bg=blocktitlebgcolor!80!blocktitlefgcolor}
+\setbeamercolor*{block body}{fg=blockbodyfgcolor,bg=blocktitlebgcolor!10!blocktitlefgcolor}
 
-\setbeamercolor{frametitle}{fg=frametitlefg}%frametitlefg!90!black
-\setbeamercolor{framesubtitle}{parent=frametitle}
+\setbeamercolor{block title alerted}{fg=white, bg=vermelho}
+\setbeamercolor{block body alerted}{fg=vermelho!60!black, bg=vermelho!10!white}
+\setbeamercolor{block title example}{fg=white, bg=azul!80!white}
+\setbeamercolor{block body example}{bg=azul!10!white}
 
-\setbeamercolor{sectiontitle}{fg=sectionfg, bg=sectionbg}
-\setbeamercolor{subsectiontitle}{fg=sectionfg, bg=sectionbg}
-
-\setbeamercolor{section in toc}{fg=slidefg}
-\setbeamercolor{subsection in toc}{fg=slidefg}
-
-\setbeamercolor{block title}{fg=titlefg, bg=titlebg!80!slidebg}
-\setbeamercolor{block body}{fg=slidefg, bg=titlebg!10!slidebg}
-
-\setbeamercolor{block title alerted}{fg=titlefg, bg=vermelho}
-\setbeamercolor{block body alerted}{fg=vermelho!60!black, bg=vermelho!10!slidebg}
-
-\setbeamercolor{block title example}{fg=titlefg, bg=azul!80!slidebg}
-\setbeamercolor{block body example}{fg=slidefg, bg=azul!10!slidebg, }
-
-\setbeamercolor{alerted text}{fg=vermelho}
-\setbeamercolor{example text}{fg=slidefg}
+\setbeamercolor{item projected}{fg=bgcolor,bg=textcolor}
+\setbeamercolor{item subitem}{fg=bgcolor,bg=textcolor}
+\setbeamercolor{item caixaclara}{fg=black}
 \setbeamercolor{item caixa}{fg=white}
-\setbeamercolor{item caixaclara}{fg=cinzaescuro}
-
-% \setbeamercolor{item projected}{fg=slidebg}

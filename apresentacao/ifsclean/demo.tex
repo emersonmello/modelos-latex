@@ -1,5 +1,5 @@
 %-------------------------------------------------%
-% 2023-04-25 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% 2025-04-01 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 %-------------------------------------------------%
 % Sets aspect ratio to 16:9, and frame size to 160 mm by 90 mm.
 \documentclass[aspectratio=169]{beamer}
@@ -13,14 +13,45 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english,brazil]{babel}
 
+
+\usepackage[style=abnt,noslsn,justify]{biblatex}
+\renewcommand*{\bibfont}{\small}
+\usepackage{csquotes}
+\addbibresource{referencias.bib}
+
 % \pgfdeclareimage[width=3cm]{ifsclogo}{img/ifsc-logo-h-branco.png}
 
-% Opções do tema para trocar as cores e o espaçamento entre itens
-% \definecolor[named]{redwine}{HTML}{880e4f}
-% \usetheme[itemsep=7pt,fg=white,bg=redwine,frametitlefg=cinzaescuro]{ifsclean}
 
+% Crie cores personalizadas para usar no tema
+\definecolor[named]{novaCor}{HTML}{303A52}
+\definecolor{verdeescuro}{RGB}{0,112,19}
 
-\usetheme{ifsclean}
+% Outras cores já definidas no tema
+% redwine
+% azulcinza
+% azulescuro
+% cyanIFSC
+% fundoIFSC
+% cinzaescuro
+% verdeifsc
+% vermelhoifsc
+% vermelhoifscclaro
+
+% Theme parameters
+\usetheme[
+    % foreground=redwine, % cor do texto (usado no título dos slides) 
+    % background=white, % cor do fundo dos slides
+    % textfg=black, % cor do texto nos slides
+    % titlefg=white, % cor do texto do slide de título
+    % titlebg=redwine, % cor do fundo do slide de título
+    % sectionfg=white, % cor do texto do slide da seção
+    % sectionbg=redwine, % cor do fundo do slide de seção
+    % blocktitlefg=white, % cor do texto do título dos blocos
+    % blocktitlebg=redwine, % cor do fundo do título dos blocos
+    % blockbodyfg=cinzaescuro, % cor do texto dentro dos blocos
+    % itemsep=7pt % Espaçamento entre os itens das listas 
+]{ifsclean}
+
 
 
 % -------------------------------------------------%
@@ -78,9 +109,17 @@
 
 \begin{frame}{Animação com lista de itens}
 \begin{itemize}[<+->]
-    \item Primeiro item
-    \item Segundo item
-    \item Terceiro item
+    \item\only<1>{Eu não sei quem criou o~\TeX}\only<2->{\st{Eu não sei quem criou o~\TeX}} 
+    \item O~\TeX~foi criado por Donald Knuth
+    \begin{itemize}
+        \item<.-> O~\TeX~é um sistema de tipografia 
+    \end{itemize}
+    \item Leslie Lamport criou o~\LaTeX~\cite{lamport94}
+    \begin{itemize}
+        \item<.-> O~\LaTeX~é um conjunto de macros para o~\TeX 
+    \end{itemize}
+    \item Em \textcite{knuth74} temos um dos trabalhos mais importantes de Donald Knuth
+    
 \end{itemize}
 \end{frame}
 
@@ -154,6 +193,10 @@
     \begin{alertblock}{Alerta}
         Esse é um alerta
     \end{alertblock}
+
+    \begin{exampleblock}{Exemplo}
+        Esse é um exemplo
+    \end{exampleblock}
 \end{frame}
 
 
@@ -175,6 +218,29 @@
         Isso é uma mensagem de cuidado
     \end{cuidado}
 \end{frame}
+
+\begin{frame}[allowframebreaks]{Blocos personalizados}{Inspirados nos blocos Markdown do GitHub}
+\begin{nota}
+    Para apresentar uma informação útil
+\end{nota}
+
+\begin{tip}
+    Para apresentar uma dica
+\end{tip}
+
+\begin{important}
+    Informação importante que precisa ser destacada
+\end{important}
+
+\begin{warning}
+    Algo que precisa ser observado com atenção
+\end{warning}
+
+\begin{caution}
+    Para chamar a atenção do leitor para algo que pode ser perigoso
+\end{caution}
+\end{frame}
+
 
 \begin{frame}{Horários}
     {Veja outros ícones em \url{https://ctan.org/pkg/fontawesome}}
@@ -243,12 +309,19 @@ public class App{
 \end{lstlisting}
 \end{frame}
 
-    
-\begin{frame}{Referências}
+% Para permitir que o código fonte seja quebrado em mais de um slide. Se as referências couberem em um único slide, então pode omitir o uso do allowframebreaks
+\begin{frame}[allowframebreaks]{Referências}
+    % para incluir todas as referências do arquivo referencias.bib, mesmo sem citá-las explicitamente com os comandos \cite ou \textcite
     \nocite{*}
-    \bibliography{demo_bibliography}
-    \bibliographystyle{plain}
+    \printbibliography
 \end{frame}
+    
+% Se não quiser usar o pacote biblatex, use o seguinte código
+% \begin{frame}{Referências}
+%     \nocite{*}
+%     \bibliography{referencias}
+%     \bibliographystyle{plain}
+% \end{frame}
 
 \appendix
 

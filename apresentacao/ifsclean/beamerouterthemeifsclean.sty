@@ -4,42 +4,42 @@
 \AtBeginSection[]{%
 \setbeamertemplate{background}{%
   \begin{tikzpicture}%
-    \draw[fill=sectionbg] (0,0) rectangle(\paperwidth,\paperheight);%
+    \draw[fill=sectionbgcolor] (0,0) rectangle(\paperwidth,\paperheight);%
 \end{tikzpicture}}%
 \begin{frame}[plain, noframenumbering]{}%
     \sectionpage%
 \end{frame}%
 \setbeamertemplate{background}{%
 \begin{tikzpicture}%
-    \draw[fill=slidebg] (0,0) rectangle(\paperwidth,\paperheight);%
+    \draw[fill=bg] (0,0) rectangle(\paperwidth,\paperheight);%
 \end{tikzpicture}}%
 }%
 
 \AtBeginSubsection[]{%
 \setbeamertemplate{background}{%
   \begin{tikzpicture}%
-    \draw[fill=sectionbg] (0,0) rectangle(\paperwidth,\paperheight);%
+    \draw[fill=sectionbgcolor] (0,0) rectangle(\paperwidth,\paperheight);%
 \end{tikzpicture}}%
 \begin{frame}[plain, noframenumbering]{}%
     \subsectionpage%
 \end{frame}%
 \setbeamertemplate{background}{%
 \begin{tikzpicture}%
-    \draw[fill=slidebg] (0,0) rectangle(\paperwidth,\paperheight);%
+    \draw[fill=bg] (0,0) rectangle(\paperwidth,\paperheight);%
 \end{tikzpicture}}%
 }
 
 \defbeamertemplate*{section page}{ifsclean}{%
 \begin{tikzpicture}[overlay, remember picture]
-    \node [anchor=south west, text width=.85\paperwidth,align=left] (titulo) at (0,-3){\usebeamerfont{sectiontitle}\usebeamercolor[fg]{sectiontitle}\let\hyperlink\@secondoftwo\insertsection\par};
+    \node [anchor=south west, text width=.85\paperwidth,align=left] (titulo) at (0,-3){\usebeamerfont{sectiontitle}\usebeamercolor[sectionfgcolor]{sectiontitle}\let\hyperlink\@secondoftwo\insertsection\par};
 \end{tikzpicture}
 }
 
 \defbeamertemplate*{subsection page}{ifsclean}{%
 \begin{tikzpicture}[overlay, remember picture]
-    \node [anchor=south west, text width=.85\paperwidth,align=left] (titulo) at (0,-3){\usebeamerfont{sectiontitle}\usebeamercolor[fg]{sectiontitle}\let\hyperlink\@secondoftwo\insertsection\par};
+    \node [anchor=south west, text width=.85\paperwidth,align=left] (titulo) at (0,-3){\usebeamerfont{sectiontitle}\usebeamercolor[sectionfgcolor]{sectiontitle}\let\hyperlink\@secondoftwo\insertsection\par};
   
-    \node[anchor=south west, below=.5em of titulo, text width=.85\paperwidth,align=left] (subtitulo) {\usebeamerfont{subsectiontitle}\usebeamercolor[fg]{subsectiontitle}\insertsubsection\par};
+    \node[anchor=south west, below=.5em of titulo, text width=.85\paperwidth,align=left] (subtitulo) {\usebeamerfont{subsectiontitle}\usebeamercolor[sectionfgcolor]{subsectiontitle}\insertsubsection\par};
 \end{tikzpicture}
 }
 % -------------------------------------------------%

@@ -36,7 +36,7 @@
   \begin{tikzpicture}%
     \ifnum\thepage=1\relax%
     \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
-    \fill[color=titlebg] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+    \fill[color=titlebgcolor] (0,0) rectangle (\the\paperwidth,\the\paperheight);
     \fi
   \end{tikzpicture}
 }
@@ -48,15 +48,15 @@
 {% 
 \begin{tikzpicture}[overlay, remember picture]
     
-    \node [anchor=south west, text width=.85\paperwidth,align=left] (titulo) at (0,.075\paperheight){\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par};
+    \node [anchor=south west, text width=.85\paperwidth,align=left] (titulo) at (0,.075\paperheight){\usebeamerfont{title}\usebeamercolor[titlefgcolor]{title}\inserttitle\par};
   
-    \node[below=.5em of titulo, text width=.85\paperwidth,align=left] (subtitulo) {\usebeamerfont{subtitle}\usebeamercolor[fg]{title}\insertsubtitle\par};
+    \node[below=.5em of titulo, text width=.85\paperwidth,align=left] (subtitulo) {\usebeamerfont{subtitle}\usebeamercolor[titlefgcolor]{title}\insertsubtitle\par};
 
-    \node [below=5em of subtitulo,align=flush right,inner sep=0pt,text width=.85\paperwidth] (autor) {\usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor\par};
+    \node [below=5em of subtitulo,align=flush right,inner sep=0pt,text width=.85\paperwidth] (autor) {\usebeamercolor[titlefgcolor]{author}\usebeamerfont{author}\insertauthor\par};
 
-    \node [below=1em of autor,align=flush right,inner sep=0pt,text width=.85\paperwidth] (instituto) {\usebeamercolor[fg]{author}\usebeamerfont{institute}\insertinstitute\par};
+    \node [below=1em of autor,align=flush right,inner sep=0pt,text width=.85\paperwidth] (instituto) {\usebeamercolor[titlefgcolor]{author}\usebeamerfont{institute}\insertinstitute\par};
 
-    \node [below=1em of instituto, node distance=2.5em, text width=.85\paperwidth,align=flush right] (data) {\usebeamercolor[fg]{date}\usebeamerfont{date}\insertdate\par};
+    \node [below=1em of instituto, node distance=2.5em, text width=.85\paperwidth,align=flush right] (data) {\usebeamercolor[titlefgcolor]{date}\usebeamerfont{date}\insertdate\par};
 
     \node [anchor=south west] (logoifsc) at (0,-5.2) {\usebox\ifsclogotexto};
     % Caso queira usar o logo a partir de um PNG, comente a linha acima e descomente a linha abaixo
