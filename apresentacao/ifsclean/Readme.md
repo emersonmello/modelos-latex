@@ -19,3 +19,5 @@ Esse tema permite a personalização das cores do texto e do fundo. Basta inform
 ![Verde IFSC escuro](screenshots/ifsclean-verde-escuro.png)
 
 ![Red wine](screenshots/ifsclean-redwine.png)
+
+![Red wine invertido](screenshots/ifsclean-redwine-invertido.png)
