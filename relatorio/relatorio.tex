@@ -2,51 +2,53 @@
 % 2020-12-05
 % 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % ------------------------------------------------------------%
-\documentclass[11pt]{../../classes/ifscarticle}
-\usepackage{../../classes/ifscutils}
-\usepackage[alf]{abntex2cite} % Citações padrão ABNT
+\documentclass[11pt]{ifscarticle}
+\usepackage{ifscapa}
+\usepackage{ifscutils}
 
+\usepackage{lipsum}
 \renewcommand*{\theusecase}{UC-\thesection.\arabic{usecase}}
 
 
-\usepackage{lipsum}
+%-----------------------------%
+% Citações padrão ABNT com biblatex
+%-----------------------------%
+\usepackage[style=abnt,noslsn,justify]{biblatex}
+\usepackage{csquotes}
+% Arquivo com as referências bibliográficas
+\addbibresource{referencias.bib}
 
-\AtBeginDocument{\thispagestyle{empty}}
+% ------------------------------------------------------------%
+% Capa - modelo 1
+% ------------------------------------------------------------%
+\title{Relatório de Análise de Requisitos}
+\subtitle{Um modelo \LaTeX~que faz uso da classe \texttt{article}}
+\author{Emerson Ribeiro de Mello \\[0.5em] Segundo Autor do Trabalho}
+\date{05 de dezembro de 2020}
+% ------------------------------------------------------------%
+
+% ------------------------------------------------------------%
+% Capa - modelo 2
+% ------------------------------------------------------------%
+\labtitle{Laboratório 01}
+\labsubtitle{Método construtor e modificadores de acesso}
+\course{Engenharia de Telecomunicações}
+\discipline{POO29004 -- Programação Orientada a Objetos}
+\professor{Emerson Ribeiro de Mello}
+\students{Aluno 1 \\ Aluno 2}
+% ------------------------------------------------------------%
+
 \begin{document}
+
 % ------------------------------------------------------------%
-% Capa
+% Escolha do modelo de capa 
 % ------------------------------------------------------------%
-\begin{center}
+\capa{modelo1}{../../classes/imagens/ifsc-v}
+% \capa{modelo2}{../../classes/imagens/ifsc-v}
 
-% Logotipo do órgão
-\includegraphics[scale=.7]{../../classes/imagens/ifsc-v}
-\vspace{7.5cm}
 
-% Título
-{\huge \bfseries Relatório de Análise de Requisitos}
 
-\vspace{.5cm}
 
-% Subtítulo
-{\large \bfseries Um modelo \LaTeX~que faz uso da classe \texttt{article}}
-
-\vfill
-\end{center}
-
-% Autor(es)
-{\noindent \large \bfseries 
-Emerson Ribeiro de Mello%
-\\[.5em] Segundo Autor do Trabalho%
-}
-
-% Data que o relatório foi gerado
-\begin{flushright}
-05 de dezembro de 2020
-\end{flushright}
-
-\clearpage
-\pagestyle{firstpage}
-% ------------------------------------------------------------%
 
 % ------------------------------------------------------------%
 % Adicionando sumário
@@ -83,7 +85,7 @@ Indica o propósito do sistema a ser desenvolvido. Por exemplo, descreve a neces
 \section{Requisitos do sistema}
 \label{sec:requisitos}
 
-Nessa seção deve ser apresentada a lista de pessoas que participaram do levantamento de requisitos. Pode-se basear nos livro de \cite{bezerra02}.
+Nessa seção deve ser apresentada a lista de pessoas que participaram do levantamento de requisitos. Pode-se basear nos livro de \textcite{bezerra02}.
 
 \lipsum[2]
 
@@ -142,7 +144,7 @@ Nessa seção deve ser apresentada a lista de pessoas que participaram do levant
     \end{fluxoprincipal}  
 
     \begin{fluxoexcecao}{Pedido mal formado}
-        \item O DAF retorna para o PAF uma mensagem de erro informando que o pedido foi mal formado)
+        \item O DAF retorna para o PAF uma mensagem de erro informando que o pedido foi mal formado
     \end{fluxoexcecao}   
 \end{usecase}
 
@@ -150,8 +152,7 @@ Nessa seção deve ser apresentada a lista de pessoas que participaram do levant
 % ----------------------------------------------------------
 % Referências bibliográficas
 % ----------------------------------------------------------
-\bibliography{referencias}
-
+\printbibliography[heading=bibintoc,title={Referências}]%
 
 \end{document}
 

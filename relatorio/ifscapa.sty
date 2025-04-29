@@ -1,0 +1,116 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ifscapa}[2025/04/29 v1.0 IFSC Capas personalizáveis]
+
+\RequirePackage{graphicx}
+\RequirePackage{geometry}
+\RequirePackage{ifthen}
+
+
+\makeatletter
+\newcommand{\subtitle}[1]{\gdef\@subtitle{#1}}
+\newcommand{\@subtitle}{}  % valor padrão vazio
+\makeatother
+
+% Campos exclusivos do modelo 2
+\makeatletter
+\newcommand{\labtitle}[1]{\gdef\@labtitle{#1}}
+\newcommand{\@labtitle}{}
+
+\newcommand{\labsubtitle}[1]{\gdef\@labsubtitle{#1}}
+\newcommand{\@labsubtitle}{}
+
+\newcommand{\course}[1]{\gdef\@course{#1}}
+\newcommand{\@course}{}
+
+\newcommand{\discipline}[1]{\gdef\@discipline{#1}}
+\newcommand{\@discipline}{}
+
+\newcommand{\professor}[1]{\gdef\@professor{#1}}
+\newcommand{\@professor}{}
+
+\newcommand{\students}[1]{\gdef\@students{#1}}
+\newcommand{\@students}{}
+\makeatother
+
+% Modelo 1
+\makeatletter
+\newcommand{\maketitlemodeloone}[1]{%
+  \begin{titlepage}
+    \thispagestyle{empty}
+    \begin{center}
+      \includegraphics[scale=0.7]{#1}\\[7cm]
+      {\bfseries\Huge \@title \par}
+      \vspace{0.5cm}
+      {\large\bfseries \@subtitle \par}
+      \vfill
+    \end{center}
+
+      \begin{flushright}
+        {\large \@author \par}
+        \vfill
+      \end{flushright}
+    \begin{center}
+      {\@date \par}
+    \end{center}
+  \end{titlepage}
+}
+
+% Modelo 2
+\newcommand{\maketitlemodelotwo}[1]{%
+  \begin{titlepage}
+    \thispagestyle{empty}
+    \begin{center}
+      \includegraphics[scale=0.7]{#1}
+      \vspace{4cm}
+
+      \rule{\linewidth}{0.5pt} \\[6pt] 
+      {\huge \bfseries \@labtitle}\\[3pt]
+      {\large \@labsubtitle}\\
+      \rule{\linewidth}{2pt}  \\[10pt]
+      \vspace{1cm}
+    \end{center}
+
+    \begin{minipage}{.9\linewidth}
+      \begin{minipage}{0.15\textwidth}
+        \begin{flushleft} \large
+          \textbf{Curso:}\\
+          \textbf{Disciplina:}\\
+          \textbf{Professor:}
+        \end{flushleft}
+      \end{minipage}~
+      \begin{minipage}{0.8\textwidth}
+        \begin{flushleft} \large
+          \@course\\
+          \@discipline\\
+          \@professor
+        \end{flushleft}
+      \end{minipage}
+    \end{minipage}
+    \vspace{3cm}
+
+    \begin{minipage}{.9\linewidth}
+      \begin{flushright}
+        \textbf{Alunos}\\
+        \@students
+      \end{flushright}
+    \end{minipage}
+
+    \vfill
+    \begin{center}
+      \@date
+    \end{center}
+  \end{titlepage}
+}
+\makeatother
+
+% Comando principal
+\newcommand{\capa}[2]{%
+  \ifthenelse{\equal{#1}{modelo1}}{%
+    \maketitlemodeloone{#2}%
+  }{%
+  \ifthenelse{\equal{#1}{modelo2}}{%
+    \maketitlemodelotwo{#2}%
+  }{%
+    \PackageError{ifscapa}{Estilo de capa desconhecido: #1}{Use 'modelo1' ou 'modelo2'}%
+  }}%
+}
