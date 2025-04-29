@@ -207,7 +207,7 @@
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
   \fancyhead[C]{\pgfuseimage{logo}}
-  \fancyfoot[R]{página \thepage~de \pageref{LastPage}}
+  \fancyfoot[R]{\begin{footnotesize}página \thepage~de \pageref{LastPage}\end{footnotesize}}
 }
 
 % Se desejar usar um texto para o cabeçalho, faça uso do comando instituicao e descomente as linhas abaixo
@@ -225,10 +225,10 @@
 
 \fancypagestyle{followingpage}{%
   \fancyhf{} % clear all six fields
-  \fancyhead[RE,LO]{\begin{tiny}\textsc{\show@departamento}\end{tiny}}
+  \fancyhead[R,L]{\begin{tiny}\textsc{\show@departamento}\end{tiny}}
   \renewcommand{\headrulewidth}{.4pt}
   \renewcommand{\footrulewidth}{0pt}
-  \fancyfoot[R]{\begin{small}página \thepage~de \pageref{LastPage}\end{small}}
+  \fancyfoot[R]{\begin{footnotesize}página \thepage~de \pageref{LastPage}\end{footnotesize}}
 }
 
 

@@ -2,8 +2,8 @@
 % 2020-12-05
 % 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % ------------------------------------------------------------%
-\documentclass[11pt]{../classes/ifscarticle}
-\usepackage{../classes/ifscutils}
+\documentclass[11pt]{ifscarticle}
+\usepackage{ifscutils}
 
 \usepackage{xargs}
 
@@ -11,7 +11,7 @@
 
 \cabecalhoCurso{Engenharia de Telecomunicações}{Configuração de Redes de Computadores Linux}{Prof. Emerson Ribeiro de Mello}{\url{mello@ifsc.edu.br}}{\textbf{Aula 01:} Shell Script}{14/06/2020}
 
-\shell
+ 
 
 
 \section{Ambientes de alerta inspirados no Markdown do GitHub}
@@ -48,7 +48,7 @@ No interpretador de comandos é possível invocar comandos isolados ou ainda com
 
 Como dito, o \textit{shell} é um interpretador de comandos e temos a opção de entrar com uma sequência de comandos sempre que desejarmos realizar uma tarefa ou podemos colocar tal sequência dentro um arquivo e chamar este arquivo sempre que necessário. E assim temos o \textit{shell script} ilustrado pelo \autoref{intro}.
 
-\includecode[shell]{intro}{Meu primeiro shell script}{codigos/intro.sh}
+\lstinputlisting[style=shell,caption={Meu primeiro shell script},label={intro}]{codigos/intro.sh}
 
 \begin{tip}
 	Para executar um \textit{bash script} digite: \dest[green]{\texttt{bash nome-do-arquivo.sh}} ou deixe o arquivo com permissão para execução, com o comando \dest[green]{\texttt{chmod +x nome-do-arquivo.sh}} e executá-lo da seguinte forma: \destx[green]{\texttt{./nome-do-script.sh}}
@@ -98,9 +98,11 @@ resultado=`echo "scale=2; 1/2" | bc`
 
 Nas linguagens de programação as \textbf{variáveis} possuem uma função semelhante com as variáveis da matemática, ou seja, armazenam valores para que possam ser recuperados posteriormente. O \autoref{variaveis} ilustra algumas formas para atribuir e obter valores em variáveis.
 
-\includecode[shell]{variaveis}{Exemplo de definição e uso de variáveis}{codigos/variaveis.sh}
 
-\includecode[shell]{nome}{Usando variáveis em conjunto com o comando read}{codigos/nome.sh}
+\lstinputlisting[style=shell,caption={Exemplo de definição e uso de variáveis},label={variaveis}]{codigos/variaveis.sh}
+
+\lstinputlisting[style=shell,caption={Usando variáveis em conjunto com o comando read},label={nome}]{codigos/nome.sh}
+
 
 
 \subsubsection{Variáveis de ambiente}
@@ -145,26 +147,27 @@ Antes de apresentar as estruturas de decisão, na tabela \ref{tabelaoperadores} 
 
 \subsubsection{Se\ldots então\ldots senão}
 
-\includecode[shell]{se}{Estrutura de decisão SE}{codigos/se.sh}
 
-\includecode[shell]{se2}{Usando operador lógico E}{codigos/se2.sh}
+\lstinputlisting[style=shell,caption={Estrutura de decisão SE},label={se}]{codigos/se.sh}
+
+\lstinputlisting[style=shell,caption={Usando operador lógico E},label={se2}]{codigos/se2.sh}
 
 \subsubsection{Escolha\ldots caso\ldots}
 
-\includecode[shell]{caso}{Estrutura de decisão ESCOLHA}{codigos/caso.sh}
 
+\lstinputlisting[style=shell,caption={Estrutura de decisão ESCOLHA},label={caso}]{codigos/caso.sh}
 
 \subsection{Estruturas de repetição}
 
 \subsubsection{Enquanto}
 
-\includecode[shell]{enquanto}{Estrutura de repetição ENQUANTO}{codigos/enquanto.sh}
 
+\lstinputlisting[style=shell,caption={Estrutura de repetição ENQUANTO},label={enquanto}]{codigos/enquanto.sh}
 
 \subsubsection{Para}
 
-\includecode[shell]{para}{Estrutura de repetição PARA}{codigos/para.sh}
 
+\lstinputlisting[style=shell,caption={Estrutura de repetição PARA},label={para}]{codigos/para.sh}
 
 \section{Exercícios}
 
