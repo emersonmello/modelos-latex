@@ -1,11 +1,11 @@
 % ifscutils.sty
 % ------------------------------------------------------------%
-% 2020-12-05
-% 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% 2015-2025 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % ------------------------------------------------------------%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ifscutils}[2020/06/13 Utilidades para documentos no IFSC]
-\RequirePackage[utf8]{inputenc}
+\ProvidesPackage{ifscutils}[2025/04/15 v1.1 Utilidades para documentos no IFSC]
+
+% \RequirePackage[utf8]{inputenc} % não é mais necessário - desde 2018
 \RequirePackage[english,brazilian]{babel}
 
 \RequirePackage{tikz,pgf}
@@ -33,7 +33,6 @@
 \everymath={\sf}
 % Fontes https://fontawesome.com/?from=io
 \RequirePackage{fontawesome}
-
 
 % Aumentando a altura das linhas nas tabelas
 \renewcommand{\arraystretch}{1.2}
@@ -117,9 +116,8 @@
 \definecolor{azulinfo}{HTML}{4080ec}
 \definecolor[named]{cinzaescuro}{HTML}{595959}
 
+\RequirePackage{graphicx}
 
-\RequirePackage{url,graphicx}
-\urlstyle{sf}
 % para quebrar citações que estouram a margem
 \RequirePackage{breakcites}
 \RequirePackage{soul}
@@ -132,8 +130,11 @@
 \RequirePackage{xifthen}
 
 \definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
-\RequirePackage[colorlinks=true,linkcolor=midnightblue,citecolor=midnightblue,urlcolor=midnightblue]{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+% \usepackage[nobiblatex]{xurl}
 
+\RequirePackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\urlstyle{sf}
 
 % Set up how figure and table captions are displayed
 % Make the standard latex tables look so much better
@@ -512,29 +513,22 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
 
 
 
-%\includecode[shell]{l_olamundo}{Olá mundo em shell script}{codigos/ola.sh}
-\newcommand{\includecode}[4][c]{\lstinputlisting[captionpos=t,caption=#3, label=#2,escapechar={@*}, style=#1]{#4}}
-
 
 % -------------------------------------------------%
 % Configurações para o listing
 % -------------------------------------------------%
 \definecolor{hellgelb}{rgb}{1,1,0.9}
-\definecolor{colKeys}{rgb}{0,0,0}
-\definecolor{colIdentifier}{rgb}{0,0,0.9}
-\definecolor{colComments}{rgb}{.4,.4,.4}
-\definecolor{colString}{rgb}{0,0,0.6}
-\definecolor{deepblue}{rgb}{0,0,0.8}
-\definecolor{deepred}{rgb}{0.6,0,0}
-\definecolor{deepgreen}{rgb}{0,0.5,0}
-\definecolor{colBack}{rgb}{1,1,0.9}
-\definecolor{colKeys}{rgb}{108,48,130}%{0,0,0}
-\definecolor{colIdentifier}{rgb}{0,0,0.9}
-\definecolor{colComments}{rgb}{0,0.6,0}%{.4,.4,.4}
-\definecolor{colString}{rgb}{0.6,0,0}
-\definecolor{javared}{rgb}{0.6,0,0} % for strings
-\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
-\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{colBack}{rgb}{1,1,0.9} % fundo
+\definecolor{colKeys}{rgb}{108,48,130} % palavras-chave
+\definecolor{colIdentifier}{rgb}{0,0,0.9} % identificadores
+\definecolor{colComments}{rgb}{0,0.6,0} % comentários
+\definecolor{colString}{rgb}{0.6,0,0} % strings
+\definecolor{deepblue}{rgb}{0,0,0.8} % azul
+\definecolor{deepred}{rgb}{0.6,0,0} % vermelho
+\definecolor{deepgreen}{rgb}{0,0.5,0} % verde
+\definecolor{javared}{rgb}{0.6,0,0} % strings Java
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comentários Java
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % palavras-chave Java
 \definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
 % XML color
 \definecolor{dkgreen}{rgb}{0,0.6,0}
@@ -556,6 +550,20 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
 % YAML
 \newcommand\YAMLcolonstyle{\color{red}\mdseries}
 
+% https://pt.overleaf.com/latex/examples/listings-code-style-for-html5-css-html-javascript/htstpdbpnpmt
+\definecolor{lightgray}{rgb}{0.95, 0.95, 0.95}
+\definecolor{darkgray}{rgb}{0.4, 0.4, 0.4}
+%\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\definecolor{editorGray}{rgb}{0.95, 0.95, 0.95}
+\definecolor{editorOcher}{rgb}{1, 0.5, 0} % #FF7F00 -> rgb(239, 169, 0)
+\definecolor{editorGreen}{rgb}{0, 0.5, 0} % #007C00 -> rgb(0, 124, 0)
+\definecolor{orange}{rgb}{1,0.45,0.13}		
+\definecolor{olive}{rgb}{0.17,0.59,0.20}
+\definecolor{brown}{rgb}{0.69,0.31,0.31}
+\definecolor{purple}{rgb}{0.38,0.18,0.81}
+\definecolor{lightblue}{rgb}{0.1,0.57,0.7}
+\definecolor{lightred}{rgb}{1,0.4,0.5}
+
 % Protocol Buffers
 % https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/style.sty
 \definecolor{proto_basic}{RGB}{0,0,0}             % black
@@ -572,80 +580,51 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
 
 
 \lstset{ %
-  aboveskip=\bigskipamount,
-  backgroundcolor=\color{colBack}, 
-  basicstyle=\ttfamily\footnotesize,
-  keywordstyle=\color{deepblue},
-  stringstyle=\color{javared},
-  commentstyle=\color{javagreen},
-  breakatwhitespace=false,
-  breaklines=true,        
-  captionpos=n,           
-  columns=fullflexible,
-  deletekeywords={...},  
-  escapechar={@*},       
-  extendedchars=true,    
-  linewidth=0.98\linewidth,
-  tab=$\to$,
-  float=tbph,
-  xleftmargin=10pt,
-  frame=single,	         
-  keepspaces=true,       
-  numbers=left,    
-  numbersep=5pt,   
-  numberstyle=\tiny,
-  rulecolor=\color{black}, 
-  showspaces=false,        
-  showstringspaces=false,  
-  showtabs=false,          
-  tabsize=2,
-  title=\lstname
+% aboveskip=\bigskipamount,
+backgroundcolor=\color{colBack}, 
+basicstyle=\ttfamily\footnotesize,
+keywordstyle=\color{deepblue}, % palavra-chave
+stringstyle=\color{javared}, % string
+commentstyle=\color{javagreen}, % comentário
+breakatwhitespace=false,
+breaklines=true,        
+captionpos=t,           
+columns=fullflexible,
+deletekeywords={...},  
+escapechar={@*},       
+extendedchars=true,    
+linewidth=0.98\linewidth,
+lineskip=0pt,
+tab=$\to$,
+float=tbph,
+xleftmargin=10pt,
+frame=single,	         
+keepspaces=true,       
+numbers=none,    
+numbersep=5pt,   
+numberstyle=\tiny,
+rulecolor=\color{black}, 
+showspaces=false,        
+showstringspaces=false,  
+showtabs=false,          
+tabsize=2,
+title=\lstname,
+inputencoding=utf8,
+extendedchars=true,
+% Permitindo caracteres acentuados dentro do ambiente lstlisting
+literate={ % Personaliza a renderização de caracteres especiais
+        {é}{{\'{e}}}1 {è}{{\`{e}}}1 {ê}{{\^{e}}}1 {ë}{{\¨{e}}}1
+        {É}{{\'{E}}}1 {Ê}{{\^{E}}}1 {û}{{\^{u}}}1 {ù}{{\`{u}}}1
+        {â}{{\^{a}}}1 {à}{{\`{a}}}1 {á}{{\'{a}}}1 {ã}{{\~{a}}}1
+        {Á}{{\'{A}}}1 {Â}{{\^{A}}}1 {Ã}{{\~{A}}}1 {ç}{{\c{c}}}1
+        {Ç}{{\c{C}}}1 {õ}{{\~{o}}}1 {ó}{{\'{o}}}1 {ú}{{\'{u}}}1
+        {Ú}{{\'{U}}}1 {ô}{{\^{o}}}1 {Õ}{{\~{O}}}1 {Ó}{{\'{O}}}1
+        {Ô}{{\^{O}}}1 {î}{{\^{i}}}1 {Î}{{\^{I}}}1 {í}{{\'{i}}}1
+        {Í}{{\~{Í}}}1
+    },
 }
-% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/lang.sty
-\lstdefinelanguage{protobuf3}{%
-    sensitive=true,%
-    morecomment=[l]{//},%
-    morecomment=[s]{/*}{*/},%
-    morestring=[b]{"},%
-    % For the keywords of Protocol Buffers
-    % see https://developers.google.com/protocol-buffers/docs/proto
-    morekeywords={enum,oneof,map,syntax,public,import,option,package,message,%
-        group,optional,required,repeated,default,reserved,extend,extensions,%
-        to,max,service,rpc,returns,true,false},%
-    % Basic types
-    % see https://developers.google.com/protocol-buffers/docs/proto#scalar
-    morekeywords=[2]{%
-        double,float,int32,int64,uint32,uint64,sint32,sint64,%
-        fixed32,fixed64,sfixed32,sfixed64,bool,string,bytes},%
-    % Options
-    % taken from 'google/protobuf/descriptor.proto'
-    morekeywords=[3]{%
-        % Generic Options
-        deprecated, uninterpreted_option,%
-        % File Options
-        java_package,java_outer_classname,java_multiple_files,%
-        java_generate_equals_and_hash,java_string_check_utf8,optimize_for,%
-        go_package,cc_generic_services,java_generic_services,%
-        py_generic_services,cc_enable_arenas,obj_class_prefix,%
-        csharp_namespace,%
-        % Message Options
-        message_set_wire_format,no_standard_descriptor_accessor,map_entry,%
-        % Field Options
-        ctype, packed,jstype,lazy,weak,%
-        % Enum Options
-        allow_alias}%
-    deletekeywords={
-      % 'group' was marked as deprecated in protobuf2; now it's disallowed
-      group,%
-      % in protobuf3 the Any type replaces extensions (from protobuf2)
-      extensions, to, extend, max,%
-      % 'required' is no longer allowed
-      required,%
-      % 'optional' is default; stating it explicitly is disallowed
-      optional,%
-      % explicit default values are no longer allowed
-      default}%
-}
+
+% Definindo linguagens específicas
 
 \lstdefinelanguage{Groovy}[]{Java}{
   keywordstyle=\color{groovyblue}\bfseries,
@@ -656,9 +635,27 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
   moredelim=[il][\textcolor{darkgray}]{§§}
 }
 
+% https://github.com/cansik/kotlin-latex-listing
+\lstdefinelanguage{kotlin}{
+  comment=[l]{//},
+  commentstyle={\color{gray}\ttfamily},
+  emph={filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println},
+  emphstyle={\color{editorOcher}},
+  identifierstyle=\color{black},
+  keywords={!in, !is, abstract, actual, annotation, as, as?, break, by, catch, class, companion, const, constructor, continue, crossinline, data, delegate, do, dynamic, else, enum, expect, external, false, field, file, final, finally, for, fun, get, if, import, in, infix, init, inline, inner, interface, internal, is, lateinit, noinline, null, object, open, operator, out, override, package, param, private, property, protected, public, receiveris, reified, return, return@, sealed, set, setparam, super, suspend, tailrec, this, throw, true, try, typealias, typeof, val, var, vararg, when, where, while},
+  keywordstyle={\color{javadocblue}\bfseries},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+  morestring=[s]{"""*}{*"""},
+  ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, Any, Unit, Nothing},
+  ndkeywordstyle={\color{editorOcher}\bfseries},
+  sensitive=true,
+  commentstyle=\color{gray}\ttfamily,
+  stringstyle=\color{red}
+}
+
+
 \lstdefinelanguage{XSD}{
-  columns=fullflexible,   
-  basicstyle=\ttfamily\footnotesize,
   commentstyle=\ttfamily\itshape\color{javagreen},   
   morestring=[s]{"}{"},   
   morecomment=[s]{?}{?},   
@@ -672,8 +669,6 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
 }
 
 \lstdefinelanguage{XML}{
-  columns=fullflexible,   
-  basicstyle=\ttfamily\footnotesize,
   commentstyle=\ttfamily\itshape\color{javagreen},   
   morestring=[b]",
   morestring=[s]{>}{<},
@@ -688,37 +683,33 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
 }
 
 
-
-
 \lstdefinelanguage{json}{
-  basicstyle=\normalfont\ttfamily,
-    commentstyle=\color{eclipseStrings}, % style of comment
-    stringstyle=\color{eclipseKeywords}, % style of strings
-    string=[s]{"}{"},
-    comment=[l]{:\ "},
-    morecomment=[l]{:"},
-    literate=
-        *{0}{{{\color{numb}0}}}{1}
-         {1}{{{\color{numb}1}}}{1}
-         {2}{{{\color{numb}2}}}{1}
-         {3}{{{\color{numb}3}}}{1}
-         {4}{{{\color{numb}4}}}{1}
-         {5}{{{\color{numb}5}}}{1}
-         {6}{{{\color{numb}6}}}{1}
-         {7}{{{\color{numb}7}}}{1}
-         {8}{{{\color{numb}8}}}{1}
-         {9}{{{\color{numb}9}}}{1}
+  commentstyle=\color{eclipseStrings}, 
+  stringstyle=\color{eclipseKeywords}, 
+  string=[s]{"}{"}, 
+  comment=[l]{:\ "},
+  literate=
+    {0}{{{\color{numb}0}}}{1}
+    {1}{{{\color{numb}1}}}{1}
+    {2}{{{\color{numb}2}}}{1}
+    {3}{{{\color{numb}3}}}{1}
+    {4}{{{\color{numb}4}}}{1}
+    {5}{{{\color{numb}5}}}{1}
+    {6}{{{\color{numb}6}}}{1}
+    {7}{{{\color{numb}7}}}{1}
+    {8}{{{\color{numb}8}}}{1}
+    {9}{{{\color{numb}9}}}{1}
 }
 
 \lstdefinelanguage{YAML}{
-  keywords={true,false,null,y,n},
+  basicstyle=\color{black},                                 % assuming a key comes first  
   keywordstyle=\color{darkgray}\bfseries,
-  basicstyle=\color{black},                                 % assuming a key comes first
-  sensitive=false,
-  comment=[l]{\#},
-  morecomment=[s]{/*}{*/},
   commentstyle=\color{purple}\ttfamily,
   stringstyle=\color{blue}\ttfamily,
+  sensitive=false,
+  keywords={true,false,null,y,n},
+  comment=[l]{\#},
+  morecomment=[s]{/*}{*/},
   moredelim=[l][\color{orange}]{\&},
   moredelim=[l][\color{magenta}]{*},
   moredelim=**[il][\YAMLcolonstyle{:}\color{blue}\ttfamily]{:},   % switch to value style at :
@@ -729,6 +720,7 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
                 {|}{{\textcolor{red}\textbar}}1 
                 {\ -\ }{{\mdseries\ -\ }}3,
 }
+
 \newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
 
 
@@ -767,214 +759,189 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
   morestring=[b]"
 }
 
-\lstdefinestyle{shell}{language=csh,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{shellp}{language=csh,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{php}{language=php,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{phpp}{language=php,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{ansic}{language=c,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{ansicp}{language=c,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{cpp}{language=C++,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{cppp}{language=C++,basicstyle=\ttfamily\scriptsize}
+% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/lang.sty
+% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/style.sty
+\lstdefinelanguage{protobuf3}{%
+  sensitive=true,%
+  morecomment=[l]{//},%
+  morecomment=[s]{/*}{*/},%
+  morestring=[b]{"},%
+  morekeywords={enum,oneof,map,syntax,public,import,option,package,message,%
+  group,optional,required,repeated,default,reserved,extend,extensions,%
+  to,max,service,rpc,returns,true,false},%
+  morekeywords=[2]{%
+  double,float,int32,int64,uint32,uint64,sint32,sint64,%
+  fixed32,fixed64,sfixed32,sfixed64,bool,string,bytes},%
+  morekeywords=[3]{%
+  deprecated,uninterpreted_option,java_package,java_outer_classname,%
+  java_multiple_files,java_generate_equals_and_hash,java_string_check_utf8,%
+  optimize_for,go_package,cc_generic_services,py_generic_services,%
+  csharp_namespace},%
+  deletekeywords={group,extensions,to,extend,required,optional,default},%
+  % Estilo (parte que estava no lstdefinestyle):
+  basicstyle=\footnotesize\ttfamily\color{proto_basic}, % Cor e tamanho da fonte
+  keywordstyle=[1]\color{proto_keyword}, % Estilo para palavras-chave principais
+  keywordstyle=[2]\color{proto_type}, % Estilo para tipos
+  keywordstyle=[3]\color{proto_options}, % Estilo para opções
+  commentstyle=\color{proto_comment}, % Estilo para comentários
+  stringstyle=\color{proto_string}, % Estilo para strings
+  numberstyle=\tiny\color{proto_number}, % Estilo para números
+  identifierstyle=\color{proto_ident}, % Estilo para identificadores
+  breaklines=true, % Quebra automática de linha
+  showstringspaces=false, % Não exibe espaços dentro de strings
+  tabsize=2, % Tamanho do tab
+  inputencoding=utf8, % Codificação de entrada
+  extendedchars=true, % Caracteres estendidos
+  literate={ % Personaliza a renderização de caracteres especiais
+    {0}{{\textcolor{proto_digits}{0}}}{1}%
+    {1}{{\textcolor{proto_digits}{1}}}{1}%
+    {2}{{\textcolor{proto_digits}{2}}}{1}%
+    {3}{{\textcolor{proto_digits}{3}}}{1}%
+    {4}{{\textcolor{proto_digits}{4}}}{1}%
+    {5}{{\textcolor{proto_digits}{5}}}{1}%
+    {6}{{\textcolor{proto_digits}{6}}}{1}%
+    {7}{{\textcolor{proto_digits}{7}}}{1}%
+    {8}{{\textcolor{proto_digits}{8}}}{1}%
+    {9}{{\textcolor{proto_digits}{9}}}{1}%
+    {.0}{{\textcolor{proto_digits}{.0}}}{2}%
+    {.1}{{\textcolor{proto_digits}{.1}}}{2}%
+    {.2}{{\textcolor{proto_digits}{.2}}}{2}%
+    {.3}{{\textcolor{proto_digits}{.3}}}{2}%
+    {.4}{{\textcolor{proto_digits}{.4}}}{2}%
+    {.5}{{\textcolor{proto_digits}{.5}}}{2}%
+    {.6}{{\textcolor{proto_digits}{.6}}}{2}%
+    {.7}{{\textcolor{proto_digits}{.7}}}{2}%
+    {.8}{{\textcolor{proto_digits}{.8}}}{2}%
+    {.9}{{\textcolor{proto_digits}{.9}}}{2}%
+    {int32}{{\textcolor{proto_type}{int32}}}{5}%
+    {int64}{{\textcolor{proto_type}{int64}}}{5}%
+    {uint32}{{\textcolor{proto_type}{uint32}}}{6}%
+    {uint64}{{\textcolor{proto_type}{uint64}}}{6}%
+    {sint32}{{\textcolor{proto_type}{sint32}}}{6}%
+    {sint64}{{\textcolor{proto_type}{sint64}}}{6}%
+    {fixed32}{{\textcolor{proto_type}{fixed32}}}{7}%
+    {fixed64}{{\textcolor{proto_type}{fixed64}}}{7}%
+    {sfixed32}{{\textcolor{proto_type}{sfixed32}}}{8}%
+    {sfixed64}{{\textcolor{proto_type}{sfixed64}}}{8}%
+    {java_string_check_utf8}{{\textcolor{proto_options}{java_string_check_utf8}}}{2}%
+    {\ }{{ }}{1}%
+    {é}{{\'{e}}}1 {è}{{\`{e}}}1 {ê}{{\^{e}}}1 {ë}{{\¨{e}}}1
+    {É}{{\'{E}}}1 {Ê}{{\^{E}}}1 {û}{{\^{u}}}1 {ù}{{\`{u}}}1
+    {â}{{\^{a}}}1 {à}{{\`{a}}}1 {á}{{\'{a}}}1 {ã}{{\~{a}}}1
+    {Á}{{\'{A}}}1 {Â}{{\^{A}}}1 {Ã}{{\~{A}}}1 {ç}{{\c{c}}}1
+    {Ç}{{\c{C}}}1 {õ}{{\~{o}}}1 {ó}{{\'{o}}}1 {ú}{{\'{u}}}1
+    {Ú}{{\'{U}}}1 {ô}{{\^{o}}}1 {Õ}{{\~{O}}}1 {Ó}{{\'{O}}}1
+    {Ô}{{\^{O}}}1 {î}{{\^{i}}}1 {Î}{{\^{I}}}1 {í}{{\'{i}}}1
+    {Í}{{\~{Í}}}1
+  },
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}, % Símbolo para quebra de linha
+  upquote=true % Habilita as aspas retas
+}
+
+% JavaScript
+\lstdefinelanguage{JavaScript}{
+  morekeywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  morecomment=[s]{/*}{*/},
+  morecomment=[l]//,
+  morestring=[b]",
+  morestring=[b]'
+}
+
+\lstdefinelanguage{HTML5}{
+  language=html,
+  sensitive=true,	
+  alsoletter={<>=-},	
+  morecomment=[s]{<!-}{-->},
+  tag=[s],
+  otherkeywords={
+  % General
+  >,
+  % Standard tags
+	<!DOCTYPE,
+  </html, <html, <head, <title, </title, <style, </style, <link, </head, <meta, />,
+	% body
+	</body, <body,
+	% Divs
+	</div, <div, </div>, 
+	% Paragraphs
+	</p, <p, </p>,
+	% scripts
+	</script, <script,
+  </button, <button,
+  % More tags...
+  <canvas, /canvas>, <svg, <rect, <animateTransform, </rect>, </svg>, <video, <source, <iframe, </iframe>, </video>, <image, </image>, <header, </header, <article, </article
+  },
+  ndkeywords={
+  % General
+  =,
+  % HTML attributes
+  charset=, src=, id=, width=, height=, style=, type=, rel=, href=,
+  % SVG attributes
+  fill=, attributeName=, begin=, dur=, from=, to=, poster=, controls=, x=, y=, repeatCount=, xlink:href=,
+  % properties
+  margin:, padding:, background-image:, border:, top:, left:, position:, width:, height:, margin-top:, margin-bottom:, font-size:, line-height:,
+	% CSS3 properties
+  transform:, -moz-transform:, -webkit-transform:,
+  animation:, -webkit-animation:,
+  transition:,  transition-duration:, transition-property:, transition-timing-function:,
+  }
+}
+
+\lstdefinestyle{htmlcssjs} {%
+%  backgroundcolor=\color{editorGray},
+  basicstyle={\footnotesize\ttfamily},   
+  % frame=b,
+  % line-numbers
+  % xleftmargin={0.75cm},
+  % numbers=left,
+  % stepnumber=1,
+  % firstnumber=1,
+  % numberfirstline=true,	
+  % Code design
+  identifierstyle=\color{black},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{editorGreen}\bfseries,
+  stringstyle=\color{editorOcher}\ttfamily,
+  commentstyle=\color{brown}\ttfamily,
+  % Code
+  language=HTML5,
+  alsolanguage=JavaScript,
+  alsodigit={.:;},	
+  tabsize=2,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+  extendedchars=true,
+  breaklines=true
+}
+
+
+\lstdefinestyle{ansic}{language=c}
+\lstdefinestyle{cpp}{language=C++}
 \lstdefinestyle{docker}{language=docker,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{docker-compose}{language=docker-compose,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{docker-compose2}{language=docker-compose2,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{json}{language=json,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{jsonp}{language=json,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{java}{language=java,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{groovy}{language=Groovy}
+\lstdefinestyle{java}{language=java}
+\lstdefinestyle{json}{language=json}
+\lstdefinestyle{matlab}{language=matlab}
+\lstdefinestyle{php}{language=php}
+\lstdefinestyle{protobuf}{language=protobuf3}
+\lstdefinestyle{python}{language=python}
+\lstdefinestyle{shell}{language=csh}
+\lstdefinestyle{sql}{language=sql,moredelim=[is][\underbar]{__}{__}}
+\lstdefinestyle{xml}{language=XML}
+\lstdefinestyle{xsd}{language=XSD}
+\lstdefinestyle{yaml}{language=YAML}
+
+\lstdefinestyle{ansicp}{language=c,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{cppp}{language=C++,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{javap}{language=java,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{matlab}{language=matlab,basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{jsonp}{language=json,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{matlabp}{language=matlab,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{python}{language=python,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{pythonp}{language=python,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{xml}{language=XML,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{xmlp}{language=XML,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{xsd}{language=XSD,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{xsdp}{language=XSD,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{sql}{language=sql,moredelim=[is][\underbar]{__}{__},basicstyle=\ttfamily\footnotesize}
+\lstdefinestyle{shellp}{language=csh,basicstyle=\ttfamily\scriptsize}
 \lstdefinestyle{sqlp}{language=sql,moredelim=[is][\underbar]{__}{__},basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{groovy}{language=Groovy,basicstyle=\ttfamily\footnotesize}
-\lstdefinestyle{yaml}{language=YAML,basicstyle=\ttfamily\footnotesize}
-
-% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/style.sty
-\lstdefinestyle{protobuf}{
-  language=protobuf3,
-  basicstyle=\color{proto_basic}\footnotesize\ttfamily,
-	keywordstyle=[1]\color{proto_keyword},
-	keywordstyle=[2]\color{proto_type},
-	keywordstyle=[3]\color{proto_options},
-	commentstyle=\color{proto_comment},
-	stringstyle=\color{proto_string},
-  numberstyle=\color{proto_number}\tiny,
-  identifierstyle=\color{proto_ident},
-	breaklines=true,
-	showstringspaces=false,
-  tabsize=2,
-  inputencoding=utf8,
-  extendedchars=true,
-  % This 'literate' block is responsible for colouring numbers
-  % appearing in the code
-  literate={0}{{\textcolor{proto_digits}{0}}}{1}%
-           {1}{{\textcolor{proto_digits}{1}}}{1}%
-           {2}{{\textcolor{proto_digits}{2}}}{1}%
-           {3}{{\textcolor{proto_digits}{3}}}{1}%
-           {4}{{\textcolor{proto_digits}{4}}}{1}%
-           {5}{{\textcolor{proto_digits}{5}}}{1}%
-           {6}{{\textcolor{proto_digits}{6}}}{1}%
-           {7}{{\textcolor{proto_digits}{7}}}{1}%
-           {8}{{\textcolor{proto_digits}{8}}}{1}%
-           {9}{{\textcolor{proto_digits}{9}}}{1}%
-           {.0}{{\textcolor{proto_digits}{.0}}}{2}%
-           {.1}{{\textcolor{proto_digits}{.1}}}{2}%
-           {.2}{{\textcolor{proto_digits}{.2}}}{2}%
-           {.3}{{\textcolor{proto_digits}{.3}}}{2}%
-           {.4}{{\textcolor{proto_digits}{.4}}}{2}%
-           {.5}{{\textcolor{proto_digits}{.5}}}{2}%
-           {.6}{{\textcolor{proto_digits}{.6}}}{2}%
-           {.7}{{\textcolor{proto_digits}{.7}}}{2}%
-           {.8}{{\textcolor{proto_digits}{.8}}}{2}%
-           {.9}{{\textcolor{proto_digits}{.9}}}{2}%
-           % We need to add some hacks - otherwise 'listings' would
-           % colour (only) the digits in the types instead of the type
-           {int32}{{\textcolor{proto_type}{int32}}}{5}%
-           {int64}{{\textcolor{proto_type}{int64}}}{5}%
-           {uint32}{{\textcolor{proto_type}{uint32}}}{6}%
-           {uint64}{{\textcolor{proto_type}{uint64}}}{6}%
-           {sint32}{{\textcolor{proto_type}{sint32}}}{6}%
-           {sint64}{{\textcolor{proto_type}{sint64}}}{6}%
-           {fixed32}{{\textcolor{proto_type}{fixed32}}}{7}%
-           {fixed64}{{\textcolor{proto_type}{fixed64}}}{7}%
-           {sfixed32}{{\textcolor{proto_type}{sfixed32}}}{8}%
-           {sfixed64}{{\textcolor{proto_type}{sfixed64}}}{8}%
-           {java_string_check_utf8}{{%
-             \textcolor{proto_options}{java_string_check_utf8}}}{2}%
-           {\ }{{ }}{1}
-           {é}{{\'{e}}}1
-        {è}{{\`{e}}}1
-        {ê}{{\^{e}}}1
-        {ë}{{\¨{e}}}1
-        {É}{{\'{E}}}1
-        {Ê}{{\^{E}}}1
-        {û}{{\^{u}}}1
-        {ù}{{\`{u}}}1
-        {â}{{\^{a}}}1
-        {à}{{\`{a}}}1
-        {á}{{\'{a}}}1
-        {ã}{{\~{a}}}1
-        {Á}{{\'{A}}}1
-        {Â}{{\^{A}}}1
-        {Ã}{{\~{A}}}1
-        {ç}{{\c{c}}}1
-        {Ç}{{\c{C}}}1
-        {õ}{{\~{o}}}1
-        {ó}{{\'{o}}}1
-        {ú}{{\'{u}}}1
-        {Ú}{{\'{U}}}1
-        {ô}{{\^{o}}}1
-        {Õ}{{\~{O}}}1
-        {Ó}{{\'{O}}}1
-        {Ô}{{\^{O}}}1
-        {î}{{\^{i}}}1
-        {Î}{{\^{I}}}1
-        {í}{{\'{i}}}1
-        {Í}{{\~{Í}}}1
-           ,
-	prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-	upquote=true,
-}
-
-
-
-
-\newcommand{\groovy}{\lstset{style=Groovy}}
-\newcommand{\cpp}{\lstset{style=cpp}}
-\newcommand{\cppp}{\lstset{style=cppp}}
-\newcommand{\ansic}{\lstset{style=ansic}}
-\newcommand{\ansicp}{\lstset{style=ansicp}}
-\newcommand{\json}{\lstset{style=json}}
-\newcommand{\jsonp}{\lstset{style=jsonp}}
-\newcommand{\yaml}{\lstset{style=yaml}}
-\newcommand{\java}{\lstset{style=java}}
-\newcommand{\javap}{\lstset{style=javap}}
-\newcommand{\sql}{\lstset{style=sql}}
-\newcommand{\sqlp}{\lstset{style=sqlp}}
-\newcommand{\xml}{\lstset{style=xml}}
-\newcommand{\xmlp}{\lstset{style=xmlp}}
-\newcommand{\xsd}{\lstset{style=xsd}}
-\newcommand{\xsdp}{\lstset{style=xsdp}}
-\newcommand{\python}{\lstset{style=python}}
-\newcommand{\pythonp}{\lstset{style=pythonp}}
-\newcommand{\csh}{\lstset{style=shell}}
-\newcommand{\cshp}{\lstset{style=shellp}}
-\newcommand{\shell}{\lstset{style=shell}}
-\newcommand{\shellp}{\lstset{style=shellp}}
-
-\lstdefinestyle{acentos}{
-        inputencoding=utf8,
-        extendedchars=true,
-        literate=%
-        {é}{{\'{e}}}1
-        {è}{{\`{e}}}1
-        {ê}{{\^{e}}}1
-        {ë}{{\¨{e}}}1
-        {É}{{\'{E}}}1
-        {Ê}{{\^{E}}}1
-        {û}{{\^{u}}}1
-        {ù}{{\`{u}}}1
-        {â}{{\^{a}}}1
-        {à}{{\`{a}}}1
-        {á}{{\'{a}}}1
-        {ã}{{\~{a}}}1
-        {Á}{{\'{A}}}1
-        {Â}{{\^{A}}}1
-        {Ã}{{\~{A}}}1
-        {ç}{{\c{c}}}1
-        {Ç}{{\c{C}}}1
-        {õ}{{\~{o}}}1
-        {ó}{{\'{o}}}1
-        {ú}{{\'{u}}}1
-        {Ú}{{\'{U}}}1
-        {ô}{{\^{o}}}1
-        {Õ}{{\~{O}}}1
-        {Ó}{{\'{O}}}1
-        {Ô}{{\^{O}}}1
-        {î}{{\^{i}}}1
-        {Î}{{\^{I}}}1
-        {í}{{\'{i}}}1
-        {Í}{{\~{Í}}}1
-}
-
-% Permitindo caracteres acentuados dentro do ambiente lstlisting
-\lstset{%
-        inputencoding=utf8,
-        extendedchars=true,
-        literate=%
-        {é}{{\'{e}}}1
-        {è}{{\`{e}}}1
-        {ê}{{\^{e}}}1
-        {ë}{{\¨{e}}}1
-        {É}{{\'{E}}}1
-        {Ê}{{\^{E}}}1
-        {û}{{\^{u}}}1
-        {ù}{{\`{u}}}1
-        {â}{{\^{a}}}1
-        {à}{{\`{a}}}1
-        {á}{{\'{a}}}1
-        {ã}{{\~{a}}}1
-        {Á}{{\'{A}}}1
-        {Â}{{\^{A}}}1
-        {Ã}{{\~{A}}}1
-        {ç}{{\c{c}}}1
-        {Ç}{{\c{C}}}1
-        {õ}{{\~{o}}}1
-        {ó}{{\'{o}}}1
-        {ú}{{\'{u}}}1
-        {Ú}{{\'{U}}}1
-        {ô}{{\^{o}}}1
-        {Õ}{{\~{O}}}1
-        {Ó}{{\'{O}}}1
-        {Ô}{{\^{O}}}1
-        {î}{{\^{i}}}1
-        {Î}{{\^{I}}}1
-        {í}{{\'{i}}}1
-        {Í}{{\~{Í}}}1
-}
+\lstdefinestyle{phpp}{language=php,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{pythonp}{language=python,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{xmlp}{language=XML,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{xsdp}{language=XSD,basicstyle=\ttfamily\scriptsize}
