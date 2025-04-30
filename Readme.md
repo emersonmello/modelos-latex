@@ -1,8 +1,9 @@
-[![GitHub license](https://img.shields.io/badge/license-CC0-blue.svg)](https://raw.githubusercontent.com/emersonmello/modelos-latex/master/LICENSE)
+![GitHub License](https://img.shields.io/github/license/emersonmello/modelos-latex?logo=creativecommons&logoColor=white&color=blue)
+![GitHub repo size](https://img.shields.io/github/repo-size/emersonmello/modelos-latex?logo=github&logoColor=white)
 
-# Modelos de documentos em LaTeX para docentes e discentes
+# Modelos em LaTeX para docentes e discentes
 
-Modelos de documentos LaTeX que uso em minhas aulas ou em outras atividades no Instituto Federal de Santa Catarina (IFSC).
+Modelos em LaTeX que uso em minhas aulas ou em outras atividades no Instituto Federal de Santa Catarina (IFSC). Os modelos podem ser facilmente adaptados para outros contextos, como por exemplo, para o uso em outras instituições de ensino.
 
 ## Modelos para área acadêmica
 
@@ -14,23 +15,16 @@ Modelos de documentos LaTeX que uso em minhas aulas ou em outras atividades no I
 
 ### Lista de exercício ou prova
 
-- [Modelo que faz uso da classe `exam`](lista-ou-prova/exam)
+- [Modelo que faz uso da classe `exam`](lista-ou-prova), possível incluir questões de múltipla escolha e dissertativas, podendo imprimir as respostas ou não.
 
 ### Notas de aula
 
-- [Modelo de notas de aula](nota-de-aula)
+- [Modelo de notas de aula](nota-de-aula), ideal para apresentar assuntos abordados em sala de aula, com a possibilidade de incluir exercícios e referências bibliográficas.
 
 ### Relatórios
 
-- [Modelo que faz uso da classe `article`](relatorio/article) ideal para relatórios simples e curtos.
-- [Modelo de relatório para trabalhos de disciplina](relatorio/homework) ideal para relatórios mais extensos.
+- [Modelo que faz uso da classe `article`](relatorio), ideal para relatórios de disciplinas e laboratórios.
 
-### Modelo de monografia de trabalho de conclusão de curso (TCC)
-
-Adaptação do documento [abnTeX2: Modelo de Trabalho Acadêmico](https://www.ctan.org/pkg/abntex2) para ficar de acordo com o "Template para elaboração de trabalho acadêmico" fornecido pela [Biblioteca do IFSC](https://www.ifsc.edu.br/documentos-uteis).
-
-> [!WARNING]ATENÇÃO
-> Este modelo foi movido para um repositório próprio: https://github.com/emersonmello/monografia-latex-ifsc.
 
 ## Modelos para a área administrativa
 

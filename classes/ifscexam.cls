@@ -1,7 +1,7 @@
 % ifscexam.cls
 % ------------------------------------------------------------%
 % 2022-06-03
-% 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% 2015-2025 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % ------------------------------------------------------------%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ifscexam}[2022/06/03 version 1.01 IFSC exam] 
