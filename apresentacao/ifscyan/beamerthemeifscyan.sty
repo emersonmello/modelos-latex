@@ -1,8 +1,8 @@
-% 2018-2020 Emerson Ribeiro de Mello
+% 2018-2025 Emerson Ribeiro de Mello
 % This theme is based on BeamerThemeFocus - https://github.com/elauksap/focus-beamertheme
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemeifscyan}[2021/07/16 v2.1 - IFSCyan Beamer theme]
+\ProvidesPackage{beamerthemeifscyan}[2025/05/27 v2.2 - IFSCyan Beamer theme]
 
 % -------------------------------------------------%
 % Pacotes
@@ -139,7 +139,28 @@ at ([xshift=0mm]interior.base west) {\Huge  #3};}
 \newenvironmentx{cuidado}[3][1=vermelho,2=white,3=\faExclamationCircle]
 {\begin{caixa}[#1]{#2}{#3}}{\end{caixa}}
 
+% -------------------------------------------------%
+% Ambientes inspirados nos estilos de alertas do Markdown do GitHub
+% -------------------------------------------------%
+\definecolor{notecolor}{RGB}{9,105,218}
+\definecolor{tipcolor}{RGB}{26,127,25}
+\definecolor{importantcolor}{RGB}{130,80,223}
+\definecolor{warningcolor}{RGB}{253,165,15}
+\definecolor{cautioncolor}{RGB}{207,34,46}
 
+\tcbset{alertmarkdown/.style={%
+arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityback=1,opacitybacktitle=1,opacityframe=0}}
+
+\newtcolorbox{nota}{alertmarkdown,colback=notecolor!5!white,colbacktitle=notecolor!5!white,borderline west={3pt}{0pt}{notecolor},coltitle=notecolor,title={\faInfoCircle~~\textbf{Nota}}}
+
+\newtcolorbox{tip}{alertmarkdown,colback=tipcolor!5!white,colbacktitle=tipcolor!5!white,borderline west={3pt}{0pt}{tipcolor},coltitle=tipcolor,title={\faLightbulbO~~\textbf{Dica}}}
+
+\newtcolorbox{important}{alertmarkdown,colback=importantcolor!5!white,colbacktitle=importantcolor!5!white,borderline west={3pt}{0pt}{importantcolor},coltitle=importantcolor,title={\faExclamation~~\textbf{Importante}}}
+
+\newtcolorbox{warning}{alertmarkdown,colback=warningcolor!5!white,colbacktitle=warningcolor!5!white,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faWarning~~\textbf{Atenção}}}
+
+\newtcolorbox{caution}{alertmarkdown,colback=cautioncolor!5!white,colbacktitle=cautioncolor!5!white,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faExclamationCircle~~\textbf{Cuidado}}}
+% -------------------------------------------------%
 
 % Use esse comando para fazer links para sites.
 % Os links ficarão em midnightblue e dentro dos símbolos < e > 
