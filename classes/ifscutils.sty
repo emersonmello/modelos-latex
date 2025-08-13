@@ -640,18 +640,18 @@ literate={ % Personaliza a renderização de caracteres especiais
   comment=[l]{//},
   commentstyle={\color{gray}\ttfamily},
   emph={filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println},
-  emphstyle={\color{editorOcher}},
+  emphstyle={\color{black}},
   identifierstyle=\color{black},
   keywords={!in, !is, abstract, actual, annotation, as, as?, break, by, catch, class, companion, const, constructor, continue, crossinline, data, delegate, do, dynamic, else, enum, expect, external, false, field, file, final, finally, for, fun, get, if, import, in, infix, init, inline, inner, interface, internal, is, lateinit, noinline, null, object, open, operator, out, override, package, param, private, property, protected, public, receiveris, reified, return, return@, sealed, set, setparam, super, suspend, tailrec, this, throw, true, try, typealias, typeof, val, var, vararg, when, where, while},
   keywordstyle={\color{javadocblue}\bfseries},
   morecomment=[s]{/*}{*/},
   morestring=[b]",
   morestring=[s]{"""*}{*"""},
-  ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, Any, Unit, Nothing},
-  ndkeywordstyle={\color{editorOcher}\bfseries},
+  ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, IntArray, arrayOf, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, Any, Unit, Nothing, listOf, mutableListOf, mapOf, mutableMapOf, setOf, mutableSetOf},
+  ndkeywordstyle={\color{javadocblue}\bfseries},
   sensitive=true,
   commentstyle=\color{gray}\ttfamily,
-  stringstyle=\color{red}
+  stringstyle=\color{editorGreen}
 }
 
 
@@ -924,6 +924,7 @@ literate={ % Personaliza a renderização de caracteres especiais
 \lstdefinestyle{groovy}{language=Groovy}
 \lstdefinestyle{java}{language=java}
 \lstdefinestyle{json}{language=json}
+\lstdefinestyle{kotlin}{language=kotlin}
 \lstdefinestyle{matlab}{language=matlab}
 \lstdefinestyle{php}{language=php}
 \lstdefinestyle{protobuf}{language=protobuf3}
