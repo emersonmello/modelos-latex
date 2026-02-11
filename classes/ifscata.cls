@@ -2,7 +2,7 @@
 % 2019-05-03 Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % Esse documento está fortemente baseado no modelo desenvolvido no artigo Minutes in Less That Hours: Using LaTeX Resources de Jimm Hefferon
 
-\ProvidesClass{ata}[2019/12/03 version 1.10 Ata de Reuniao] 
+\ProvidesClass{ifscata}[2026/02/11 version 1.11 Ata de Reuniao do IFSC] 
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: initial code part
@@ -225,7 +225,7 @@
 
 \fancypagestyle{followingpage}{%
   \fancyhf{} % clear all six fields
-  \fancyhead[R,L]{\begin{tiny}\textsc{\show@departamento}\end{tiny}}
+  \fancyhead[R]{\begin{tiny}\textsc{\show@departamento}\end{tiny}}
   \renewcommand{\headrulewidth}{.4pt}
   \renewcommand{\footrulewidth}{0pt}
   \fancyfoot[R]{\begin{footnotesize}página \thepage~de \pageref{LastPage}\end{footnotesize}}

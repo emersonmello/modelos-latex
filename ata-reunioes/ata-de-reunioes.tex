@@ -1,35 +1,17 @@
 % ------------------------------------------------------------%
 % 2020-12-05
-% 2015-2025 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% 2015-2026 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % ------------------------------------------------------------%
-\documentclass[11pt]{ata}
-
-\usepackage[brazilian]{babel}
-\usepackage{url,graphicx,pgf}
-\urlstyle{sf}
-
+\documentclass[11pt]{ifscata}
+\usepackage{ifscutils}
 
 \usepackage{lipsum}  % produces dummy text
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Set Helvetica Font in Text and Math in LaTeX %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand{\familydefault}{\sfdefault}
-\usepackage[scaled=1]{helvet}
-\usepackage[helvet]{sfmath}
-\everymath={\sf}
-\usepackage[T1]{fontenc}
-
-
-
 
 %-----------------------------------------------------------
 % Informações que aparecerão no cabeçalho
 %-----------------------------------------------------------
 % Logo
-% \pgfdeclareimage[width=5.5cm]{logo}{imagens/ifsc-h-sje.png}
-\pgfdeclareimage[width=1.3\linewidth]{logo}{imagens/ifsc-header.png}
+\pgfdeclareimage[width=1.27\linewidth]{logo}{imagens/ifsc-header.png}
 
 
 % \instituicao{Ministério da Educação\\
@@ -103,36 +85,39 @@
 % Lista de informes
 %-----------------------------------------------------------
 \begin{informes}
-\item \textbf{Como fazer uma ata de reunião informal}. Aspecto informal que se caracteriza como uma espécie de súmula na qual serão registradas apenas as informações mais relevantes e que posteriormente poderá ser enviado ao RH. Ex: reuniões departamentais, reuniões com clientes e entre outros. Principais tópicos que devem constar na ata simples:
-\begin{itemize}
-    \item \textbf{Data, local, horário de início e fim da reunião}: é necessário saber onde e quando as pautas foram discutidas;
-    \item \textbf{Pessoas presentes e seus cargos}: é preciso informar por quem as decisões foram tomadas;
-    \item \textbf{Pauta da reunião}: uma das principais informações que deve constar na ata a fim de saber o propósito para o qual as pessoas se reuniram;
-    \item \textbf{Discussões abordadas}: parte fundamental para registro das discussões para esclarecer porque as decisões foram tomadas e porque algumas ideias foram abandonadas a fim de evitar que a mesma discussão ocorra várias outras vezes;
-    \item \textbf{Registro das decisões}: outra parte fundamental para registrar o que de fato foi acordado entre os integrantes e listar quais serão os próximos passos;
-    \item \textbf{Compromissos}: essencial para registrar os prazos para execução de cada tarefa e é onde se estabelece o dia, horário, local e participantes da próxima reunião;
-\end{itemize}
-Uma boa ata irá conter esses tópicos. Dificilmente uma ata conterá mais informações além destas. É importante lembrar que a ata deve ser um documento sucinto, de fácil leitura e identificação (em especial) das decisões tomadas. E uma ata que não abranja todos estes itens ficará incompleta, deixando os leitores com dúvidas sobre algum aspecto da reunião. Esse texto foi extraído na íntegra do \textit{site} \url{https://manualdasecretaria.com.br/ata-de-reuniao-como-fazer/} em 03 de maio de 2019.
+    \item \textbf{Como fazer uma ata de reunião informal}. Aspecto informal que se caracteriza como uma espécie de súmula na qual serão registradas apenas as informações mais relevantes e que posteriormente poderá ser enviado ao RH. Ex: reuniões departamentais, reuniões com clientes e entre outros. Principais tópicos que devem constar na ata simples:
+    \begin{itemize}
+        \item \textbf{Data, local, horário de início e fim da reunião}: é necessário saber onde e quando as pautas foram discutidas;
+        \item \textbf{Pessoas presentes e seus cargos}: é preciso informar por quem as decisões foram tomadas;
+        \item \textbf{Pauta da reunião}: uma das principais informações que deve constar na ata a fim de saber o propósito para o qual as pessoas se reuniram;
+        \item \textbf{Discussões abordadas}: parte fundamental para registro das discussões para esclarecer porque as decisões foram tomadas e porque algumas ideias foram abandonadas a fim de evitar que a mesma discussão ocorra várias outras vezes;
+        \item \textbf{Registro das decisões}: outra parte fundamental para registrar o que de fato foi acordado entre os integrantes e listar quais serão os próximos passos;
+        \item \textbf{Compromissos}: essencial para registrar os prazos para execução de cada tarefa e é onde se estabelece o dia, horário, local e participantes da próxima reunião;
+    \end{itemize}
+    
+    Uma boa ata irá conter esses tópicos. Dificilmente uma ata conterá mais informações além destas. É importante lembrar que a ata deve ser um documento sucinto, de fácil leitura e identificação (em especial) das decisões tomadas. E uma ata que não abranja todos estes itens ficará incompleta, deixando os leitores com dúvidas sobre algum aspecto da reunião. Esse texto foi extraído na íntegra do \textit{site} \url{https://manualdasecretaria.com.br/ata-de-reuniao-como-fazer/} em 03 de maio de 2019.
 
-\item A viagem do \censor{Fulano de Tal} não acontecerá.
+    \item A viagem do \censor{Fulano de Tal} não acontecerá.
 \end{informes}
 
 %-----------------------------------------------------------
 % Lista dos assuntos tratados (pontos de pauta)
 %-----------------------------------------------------------
 \begin{assuntos}
-\item 
-\aprovada
+    \item 
+    \aprovada
 
-\item
-\lipsum[2]
-    
-\item
-\lipsum[4]
+    \item
+    \lipsum[2]
+        
+    \item
+    \lipsum[4]
 
-\item
-\lipsum[4-5]
+    \item
+    \lipsum[4-5]
 \end{assuntos}
+
+
 \end{reuniao}
 
 % Opcional
