@@ -1,2 +1,2 @@
-# Definindo variável de ambiente para encontrar os arquivos de estilo de de classe
-$ENV{'TEXINPUTS'}='.:../classes/:../classes/imagens/:' . $ENV{'TEXINPUTS'};
+# Variável de ambiente que permitirá ao latexmkrc encontar arquivos com os estilos (.sty) e classes (.cls) deste repositório
+ensure_path( 'TEXINPUTS', '../classes//' );
