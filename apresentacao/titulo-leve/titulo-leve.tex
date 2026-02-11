@@ -1,7 +1,7 @@
 % 2017-03-10 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % \documentclass[handout,xcolor=pdftex,dvipsnames,table]{beamer}
-\documentclass{beamer}
-
+% \documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 % usando tema IFSC-Leve
 \usepackage{beamerthemeIFSC-LEVE}
 %\usepackage{beamerthemeIFSC-LEVE2018}
@@ -123,12 +123,13 @@
 \end{itemize}
 
 % incluindo o código de um arquivo externo
-\includecode{ansic}{codigos/ola.c}	
+% \includecode{ansic}{codigos/ola.c}	
+\lstinputlisting[style=ansic,caption={Meu primeiro programa em C},label={ola},captionpos=b]{codigos/ola.c}
 
 
 % escrevendo o código diretamente dentro do frame
  
-\begin{lstlisting}
+\begin{lstlisting}[style=java,caption={Meu primeiro programa em Java},label={ola-java},captionpos=b]
 public static voi main(String args[]){
 	System.out.println("Ola mundo");
 }
