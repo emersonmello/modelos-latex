@@ -6,11 +6,13 @@
 \usepackage{ifscutils}
 \geometry{a4paper,hmargin=2cm,top=3.5cm,bottom=2cm,headheight=3cm,heightrounded}
 
+% Imagem do cabeçalho
+\pgfdeclareimage[width=1.29\linewidth]{cabecalho}{imagens/ifsc-header.png}
 
+% Configuração do cabeçalho
 \fancypagestyle{followingpage}{
 	\fancyhead[C]{\pgfuseimage{cabecalho}}
 }
-\pgfdeclareimage[width=1.29\linewidth]{cabecalho}{../classes/imagens/ifsc-header.png}
 
 %-----------------------------%
 % Citações padrão ABNT com biblatex
@@ -30,7 +32,6 @@
 	{\huge Plano de ensino}\vspace*{.5cm}
 \end{center}
 
-% \section{Dados da disciplina}
 \noindent\fbox{%
 \begin{minipage}{.98\textwidth}%
 	\begin{small}
