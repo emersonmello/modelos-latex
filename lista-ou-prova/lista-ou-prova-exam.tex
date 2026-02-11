@@ -1,6 +1,6 @@
 % ------------------------------------------------------------%
 % 2021-06-03
-% 2015-2020 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% 2015-2026 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % ------------------------------------------------------------%
 \documentclass[11pt,addpoints]{ifscexam}
 \usepackage{ifscutils}
@@ -26,7 +26,13 @@
 \begin{document}
 
 
-\cabecalhoCurso{Engenharia de Telecomunicações}{Nome da disciplina}{Prof. Emerson Ribeiro de Mello}{\url{mello@ifsc.edu.br}}{\textbf{Avaliação 1}}{24/11/2020}
+\cabecalhoCurso%
+{Engenharia de Telecomunicações}% Nome do curso
+{Nome da disciplina}% Nome da disciplina
+{Prof. Emerson Ribeiro de Mello}% Nome do professor
+{\url{mello@ifsc.edu.br}}% E-mail do professor
+{\textbf{Avaliação 1}}% Título da avaliação
+{24/11/2020}% Data da avaliação
 
 
 % ---------------------------------------------- %
@@ -42,9 +48,7 @@
 
 \begin{questions}
 
-\fullwidth{\Large \textbf{Questões discursivas}}
-
-\question
+\question[1]
 Qual a cor do céu?
 
 \begin{solutionorlines}[2cm]
@@ -52,21 +56,21 @@ Geralmente é azul.
 \end{solutionorlines}
 
 
-\question[20]
+\question[1]
 Calcule $\displaystyle\int_0^1 x \, dx$.
 
-\begin{solutionorbox}[2cm]
+\begin{solutionorbox}[2.5cm]
 $\displaystyle\tfrac{x^2}{2}\Big|^1_0 = \tfrac{1^2}{2} - \tfrac{0^2}{2} = \tfrac{1}{2}$
 \end{solutionorbox}
 
-\question[10]
+\question[1]
 Quantos meses possuem no máximo 30 dias?
 \begin{solutionorlines}[2cm]
 Somente 4. São eles: abril, junho, setembro e novembro.
 \end{solutionorlines}
 
 
-\question[10]
+\question[1]
 Sobre o sistema operacional Linux
 \begin{parts}
     \part
@@ -79,26 +83,27 @@ Sobre o sistema operacional Linux
     \begin{solutionorlines}[1cm]
     Debian, Redhat e Ubuntu. 
     \end{solutionorlines}
+    \part 
+    Explique a diferença entre um software aplicativo e um aplicativo utilitário
+    \begin{solutionorlines}[3cm]
+    Um software aplicativo é um programa que tem uma função específica, como um editor de texto ou um navegador de internet. Já um aplicativo utilitário é um programa que tem a função de auxiliar na administração do sistema operacional, como um gerenciador de arquivos ou um monitor de recursos.
+    \end{solutionorlines}
 \end{parts}
 
-\question[20]
+\question[2]
 O sistema operacional Linux foi criado por \fillin[Linus Torvalds][3.5cm].
 
-% Quebra de página
-\clearpage
-
-\fullwidth{\Large \textbf{Questões de múltipla escolha}}
-
-\question[10]
+\question[1]
 Quais dos meses abaixo pode ter um número de dias diferente em anos bissextos?
 \begin{choices}
     \choice Janeiro
     \correctchoice Fevereiro
     \choice Abril
     \choice Junho
+    \choice Setembro
 \end{choices}
 
-\question[10]
+\question[1]
 Marque todas as opções abaixo que são nomes de sistemas operacionais:
 \begin{checkboxes}
     \correctchoice Linux
@@ -110,8 +115,8 @@ Marque todas as opções abaixo que são nomes de sistemas operacionais:
 
 \fullwidth{\Large \textbf{Verdadeiro ou Falso}}
 
-\question[10] \tf[V] O FreeBSD é um sistema operacional.
-\question[10] \tf[F] O OpenBSD é baseado no sistema operacional Linux.
+\question[1] \tf[V] O FreeBSD é um sistema operacional.
+\question[1] \tf[F] O OpenBSD é baseado no sistema operacional Linux.
 
 \end{questions}
 
@@ -126,8 +131,4 @@ Marque todas as opções abaixo que são nomes de sistemas operacionais:
 \vspace{0.5cm}
 \gradetable[h]
 % ---------------------------------------------- %
-
-
-
-    
 \end{document}
