@@ -6,18 +6,105 @@
 % -------------------------------------------------%
 % Pacotes
 % -------------------------------------------------%
-\RequirePackage[T1]{fontenc}
-% \RequirePackage[sfdefault]{roboto}
-\usepackage[default]{opensans}
-
-\DeclareRobustCommand{\ttfamily}{\fontencoding{T1}\fontfamily{lmtt}\selectfont}
-
 \RequirePackage{xcolor}
 \RequirePackage{xstring}
 \RequirePackage{kvoptions}
+\RequirePackage{textcomp}
+\RequirePackage{pgf}
+\RequirePackage{tikz}
+\RequirePackage{relsize}
+\usetikzlibrary{calc,math,positioning}
+\RequirePackage{graphicx}
+\RequirePackage{etoolbox} % \BeforeBeginEnvironment
+\RequirePackage{appendixnumberbeamer} % Don't number appendix frames.
+\RequirePackage{fontawesome5}
+\RequirePackage[skins]{tcolorbox}
+\RequirePackage{ccicons}
+\RequirePackage{caption}
+
+
+\RequirePackage{listings,color,upquote}
+\RequirePackage{booktabs}
+\RequirePackage{array}
+\RequirePackage{multirow}
+\RequirePackage{url,color}
+\RequirePackage{soul}
+\urlstyle{sf}
+\RequirePackage{gensymb}
+\RequirePackage{xargs}
+\RequirePackage{siunitx}
+\RequirePackage{ragged2e}
+
+
+% Estilo de codigo-fonte para o beamer
+\RequirePackage{ifsclistings-beamer}
+
 
 % -------------------------------------------------%
-% Parâmetros do tema
+% Escolha de fontes
+% -------------------------------------------------%
+
+% Se o usuario estiver usando o LuaLaTeX ou o XeLaTeX, use o fontspec para carregar as fontes do sistema. 
+\iftutex
+  \RequirePackage{fontspec}
+  \defaultfontfeatures{Scale=MatchLowercase}
+
+  % \IfFontExistsTF{Inter}{% Fonte sans-serif
+  %   \setsansfont{Inter}[ 
+  %     Scale=0.88,
+  %     UprightFont = *-Light,
+  %     ItalicFont = *-Light Italic,
+  %     BoldFont = *-Bold,
+  %     BoldItalicFont = *-Bold Italic
+  %   ]
+  % }
+
+  % \IfFontExistsTF{Literata}{% Fonte serifada
+  %     \setmainfont{Literata}
+  % }
+  
+  \IfFontExistsTF{Inconsolata}{% Fonte monoespacada
+
+  \setmonofont{Inconsolata}[
+      AutoFakeSlant=0.2,
+      BoldFont={Inconsolata},
+      ItalicFont={Inconsolata},
+      BoldFeatures={FakeBold=2}
+    ]
+    \AtEndPreamble{%
+      % suprimir warnings de fontes faltando
+      \DeclareFontFamily{TS1}{aess}{}
+      \DeclareFontShape{TS1}{aess}{m}{n}{<->ssub * cmr/m/n}{}
+
+      \DeclareFontFamily{TU}{Inconsolata(1)}{}%
+      \DeclareFontShape{TU}{Inconsolata(1)}{m}{it}{<->ssub * Inconsolata(1)/m/n}{}%
+      \DeclareFontShape{TU}{Inconsolata(1)}{bx}{n}{<->ssub * Inconsolata(1)/b/n}{}%
+    }
+    \AtBeginDocument{%
+    % suprimir warnings de fontes faltando
+      \DeclareFontFamily{TS1}{aess}{}
+      \DeclareFontShape{TS1}{aess}{m}{n}{<->ssub * cmr/m/n}{}
+      
+      \DeclareFontFamily{TU}{Inconsolata(1)}{}%
+      \DeclareFontShape{TU}{Inconsolata(1)}{m}{it}{<->ssub * Inconsolata(1)/m/n}{}%
+      \DeclareFontShape{TU}{Inconsolata(1)}{bx}{n}{<->ssub * Inconsolata(1)/b/n}{}%
+    }
+    \renewcommand{\ttfamily}{\fontspec{Inconsolata}}
+  }
+
+\else % Caso contrario, use as fontes padrao do LaTeX.
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage{helvet}
+  \RequirePackage{mathpazo}
+  \RequirePackage{courier}
+  % \usepackage[default]{opensans}
+  % \DeclareRobustCommand{\ttfamily}{\fontencoding{T1}\fontfamily{lmtt}\selectfont}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+% -------------------------------------------------%
+% Parametros do tema
 % -------------------------------------------------%
 
 % ex: \DeclareStringOption [<init>] {<key>} [<default>]
@@ -40,37 +127,13 @@
 \DeclareStringOption[\beamerthemeifsclean@foreground]{blocktitlebg}[\beamerthemeifsclean@foreground]
 \DeclareStringOption[cinzaescuro]{blockbodyfg}[cinzaescuro]
 
-
-
-% -------------------------------------------------%
-
 \ProcessKeyvalOptions*
 
-\RequirePackage{pgf}
-\RequirePackage{tikz}
-\RequirePackage{relsize}
-\usetikzlibrary{calc,math,positioning}
-\RequirePackage{graphicx}
-\RequirePackage{etoolbox} % \BeforeBeginEnvironment
-\RequirePackage{appendixnumberbeamer} % Don't number appendix frames.
-\RequirePackage{fontawesome}
-\RequirePackage[skins]{tcolorbox}
-\RequirePackage{ccicons}
-\RequirePackage{caption}
-% Para diminuir o tamanho da fonte do caption da figura
-\captionsetup[figure]{font=tiny}
-\RequirePackage{listings,color,upquote}
-\RequirePackage{booktabs}
-\RequirePackage{array}
-\RequirePackage{multirow}
-\RequirePackage{url,color,ae}
-\RequirePackage{soul}
-\urlstyle{sf}
+% -------------------------------------------------%
+% Configuracoes dos pacotes
+% -------------------------------------------------%
 
-\RequirePackage{gensymb}
-\RequirePackage{xargs}
-
-\RequirePackage{siunitx}
+% Configuracoes para o pacote siunitx
 \sisetup{
   input-ignore={.},
   input-decimal-markers={,},
@@ -79,10 +142,17 @@
   group-minimum-digits=4,
 }
 
+% Para diminuir o tamanho da fonte do caption da figura
+\captionsetup[figure]{font=tiny}
+
 \hypersetup{pdffitwindow=false, pdfstartview={FitW},colorlinks=false}
 
 % Aumentando a altura das linhas nas tabelas
 \renewcommand{\arraystretch}{1.2}
+
+% Aumentando a altura das linhas
+\linespread{1.05}
+
 
 % ---------------------------------------
 % Settings
@@ -97,8 +167,8 @@
 \mode<all>
 % ---------------------------------------
 
-% Novos tipos de colunas alinhado: à direita, centralizado ou esquerda e que permita definir a largura
-\RequirePackage{ragged2e}
+% Novos tipos de colunas alinhado: a direita, centralizado ou esquerda e que permita definir a largura
+% pacote ragged2e para usar \RaggedRight, \RaggedLeft e \centering
 \newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
@@ -126,7 +196,7 @@
 \newtcolorbox[auto counter,number within=section]{caixainfo}[3][]{
 enhanced,colback=#1,colframe=#1,fontupper=\color{#2},leftrule=15mm,
 underlay unbroken and first={\node[below,text=#2,anchor=east]
-at ([xshift=0mm]interior.base west) {\Huge  #3};}
+at ([xshift=0mm]interior.base west) {\huge  #3};}
 }
 
 \newenvironmentx{caixa}[3][1=verde]
@@ -142,7 +212,7 @@ at ([xshift=0mm]interior.base west) {\Huge  #3};}
 \newenvironmentx{informacaoazul}[3][1=azul,2=white,3=\faInfoCircle]
 {\begin{caixa}[#1]{#2}{#3}}{\end{caixa}}
 
-\newenvironmentx{atencao}[3][1=amarelo,2=black,3=\faWarning]
+\newenvironmentx{atencao}[3][1=amarelo,2=black,3=\faExclamationTriangle]
 {\begin{caixa}[#1]{#2}{#3}\usebeamercolor[fg]{item caixaclara}
 }{\end{caixa}}
 
@@ -164,11 +234,11 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
 
 \newtcolorbox{nota}{alertmarkdown,colback=notecolor!5!white,colbacktitle=notecolor!5!white,borderline west={3pt}{0pt}{notecolor},coltitle=notecolor,title={\faInfoCircle~~\textbf{Nota}}}
 
-\newtcolorbox{tip}{alertmarkdown,colback=tipcolor!5!white,colbacktitle=tipcolor!5!white,borderline west={3pt}{0pt}{tipcolor},coltitle=tipcolor,title={\faLightbulbO~~\textbf{Dica}}}
+\newtcolorbox{tip}{alertmarkdown,colback=tipcolor!5!white,colbacktitle=tipcolor!5!white,borderline west={3pt}{0pt}{tipcolor},coltitle=tipcolor,title={\faLightbulb[regular]~~\textbf{Dica}}}
 
 \newtcolorbox{important}{alertmarkdown,colback=importantcolor!5!white,colbacktitle=importantcolor!5!white,borderline west={3pt}{0pt}{importantcolor},coltitle=importantcolor,title={\faExclamation~~\textbf{Importante}}}
 
-\newtcolorbox{warning}{alertmarkdown,colback=warningcolor!5!white,colbacktitle=warningcolor!5!white,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faWarning~~\textbf{Atenção}}}
+\newtcolorbox{warning}{alertmarkdown,colback=warningcolor!5!white,colbacktitle=warningcolor!5!white,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faExclamationTriangle~~\textbf{Atenção}}}
 
 \newtcolorbox{caution}{alertmarkdown,colback=cautioncolor!5!white,colbacktitle=cautioncolor!5!white,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faExclamationCircle~~\textbf{Cuidado}}}
 
@@ -189,6 +259,7 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
 
 \tikzset{fundo/.style={rectangle, fill=black!10!white, minimum size=\dimensao cm,rounded corners=\canto cm, anchor=base, inner sep=0pt }}%
 
+\tikzset{every node/.append style={font=\sffamily}}
 \tikzset{fontscale/.style = {font=\relsize{#1}}}
 
 \tikzset{%
@@ -225,7 +296,7 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
           % \node[anchor=west,xshift=-.18cm, #3] at (\dist*3,5.625) {{\large \textbf{INSTITUTO FEDERAL}}};
           % \node[anchor=west,xshift=-.15cm, #3] at (\dist*3,5.22) {{\small Santa Catarina}};
           
-          % \node[anchor=west,xshift=-.15cm, #3] at (\dist*3,4.81) {{\small Campus São José}};
+          % \node[anchor=west,xshift=-.15cm, #3] at (\dist*3,4.81) {{\small Campus Sao Jose}};
 
           % \draw[gray,step=.1cm,very thin] grid (0,0) grid (4,6);
           % \draw[blue,very thin] (\dist*3,3) to (\dist*3,6);
@@ -265,448 +336,3 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
 \end{lrbox}
 % -------------------------------------------------%
 
-
-%-----------------------------------------------------------------------------------%
-%                          Opções para o pacote listings 
-%-----------------------------------------------------------------------------------%
-% Altera o nome padrão do rótulo usado no comando \autoref{}
-\renewcommand{\lstlistingname}{Código}
-
-
-% -------------------------------------------------%
-% Configurações para o listing
-% -------------------------------------------------%
-\definecolor{hellgelb}{rgb}{1,1,0.9}
-\definecolor{colBack}{rgb}{1,1,0.9} % fundo
-\definecolor{colKeys}{rgb}{108,48,130} % palavras-chave
-\definecolor{colIdentifier}{rgb}{0,0,0.9} % identificadores
-\definecolor{colComments}{rgb}{0,0.6,0} % comentários
-\definecolor{colString}{rgb}{0.6,0,0} % strings
-\definecolor{deepblue}{rgb}{0,0,0.8} % azul
-\definecolor{deepred}{rgb}{0.6,0,0} % vermelho
-\definecolor{deepgreen}{rgb}{0,0.5,0} % verde
-\definecolor{javared}{rgb}{0.6,0,0} % strings Java
-\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comentários Java
-\definecolor{javapurple}{rgb}{0.5,0,0.35} % palavras-chave Java
-\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
-% XML color
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-\definecolor{gray}{rgb}{0.4,0.4,0.4}
-\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
-\definecolor{lightblue}{rgb}{0.0,0.0,0.9}
-\definecolor{cyan}{rgb}{0.0,0.6,0.6}
-\definecolor{darkred}{rgb}{0.6,0.0,0.0}
-% Criando definição para linguagem Groovy
-\definecolor{groovyblue}{HTML}{0000A0}
-\definecolor{groovygreen}{HTML}{008000}
-\definecolor{darkgray}{rgb}{.4,.4,.4}
-% json
-\definecolor{eclipseStrings}{RGB}{42,0.0,255}
-\definecolor{eclipseKeywords}{RGB}{127,0,85}
-\colorlet{numb}{magenta!60!black}
-% YAML
-\newcommand\YAMLcolonstyle{\color{red}\mdseries}
-
-% https://pt.overleaf.com/latex/examples/listings-code-style-for-html5-css-html-javascript/htstpdbpnpmt
-\definecolor{lightgray}{rgb}{0.95, 0.95, 0.95}
-\definecolor{darkgray}{rgb}{0.4, 0.4, 0.4}
-%\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
-\definecolor{editorGray}{rgb}{0.95, 0.95, 0.95}
-\definecolor{editorOcher}{rgb}{1, 0.5, 0} % #FF7F00 -> rgb(239, 169, 0)
-\definecolor{editorGreen}{rgb}{0, 0.5, 0} % #007C00 -> rgb(0, 124, 0)
-\definecolor{orange}{rgb}{1,0.45,0.13}		
-\definecolor{olive}{rgb}{0.17,0.59,0.20}
-\definecolor{brown}{rgb}{0.69,0.31,0.31}
-\definecolor{purple}{rgb}{0.38,0.18,0.81}
-\definecolor{lightblue}{rgb}{0.1,0.57,0.7}
-\definecolor{lightred}{rgb}{1,0.4,0.5}
-
-% Protocol Buffers
-% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/style.sty
-\definecolor{proto_basic}{RGB}{0,0,0}             % black
-\definecolor{proto_keyword}{RGB}{0,0,255}         % blue
-\definecolor{proto_type}{RGB}{128,0,0}            % dark red
-\definecolor{proto_options}{RGB}{128,0,128}       % purple
-\definecolor{proto_comment}{RGB}{0,128,0}         % dark green
-\definecolor{proto_string}{RGB}{255,0,0}          % red
-\definecolor{proto_number}{RGB}{108,113,196}      % violet
-\definecolor{proto_ident}{RGB}{0,0,0}             % black
-\definecolor{proto_digits}{RGB}{0,0,128}          % dark blue
-\definecolor{proto_background}{RGB}{255,255,255}  % white
-
-
-
-\lstset{ %
-aboveskip=\bigskipamount,
-backgroundcolor=\color{colBack}, 
-basicstyle=\ttfamily\footnotesize,
-keywordstyle=\color{deepblue}, % palavra-chave
-stringstyle=\color{javared}, % string
-commentstyle=\color{javagreen}, % comentário
-breakatwhitespace=false,
-breaklines=true,        
-captionpos=n,           
-columns=fullflexible,
-deletekeywords={...},  
-escapechar={@*},       
-extendedchars=true,    
-linewidth=0.98\linewidth,
-lineskip=0pt,
-tab=$\to$,
-float=tbph,
-xleftmargin=10pt,
-frame=single,	         
-keepspaces=true,       
-numbers=none,    
-numbersep=5pt,   
-numberstyle=\tiny,
-rulecolor=\color{black}, 
-showspaces=false,        
-showstringspaces=false,  
-showtabs=false,          
-tabsize=2,
-title=\lstname,
-inputencoding=utf8,
-extendedchars=true,
-% Permitindo caracteres acentuados dentro do ambiente lstlisting
-literate={ % Personaliza a renderização de caracteres especiais
-        {é}{{\'{e}}}1 {è}{{\`{e}}}1 {ê}{{\^{e}}}1 {ë}{{\¨{e}}}1
-        {É}{{\'{E}}}1 {Ê}{{\^{E}}}1 {û}{{\^{u}}}1 {ù}{{\`{u}}}1
-        {â}{{\^{a}}}1 {à}{{\`{a}}}1 {á}{{\'{a}}}1 {ã}{{\~{a}}}1
-        {Á}{{\'{A}}}1 {Â}{{\^{A}}}1 {Ã}{{\~{A}}}1 {ç}{{\c{c}}}1
-        {Ç}{{\c{C}}}1 {õ}{{\~{o}}}1 {ó}{{\'{o}}}1 {ú}{{\'{u}}}1
-        {Ú}{{\'{U}}}1 {ô}{{\^{o}}}1 {Õ}{{\~{O}}}1 {Ó}{{\'{O}}}1
-        {Ô}{{\^{O}}}1 {î}{{\^{i}}}1 {Î}{{\^{I}}}1 {í}{{\'{i}}}1
-        {Í}{{\~{Í}}}1
-    },
-}
-
-% Definindo linguagens específicas
-
-\lstdefinelanguage{Groovy}[]{Java}{
-  keywordstyle=\color{groovyblue}\bfseries,
-  stringstyle=\color{colString}\ttfamily,
-  keywords=[3]{each, findAll, groupBy, collect, inject, eachWithIndex},
-  morekeywords={def, as, in, use},
-  moredelim=[is][\textcolor{darkgray}]{\%\%}{\%\%},
-  moredelim=[il][\textcolor{darkgray}]{§§}
-}
-
-% https://github.com/cansik/kotlin-latex-listing
-\lstdefinelanguage{kotlin}{
-  comment=[l]{//},
-  commentstyle={\color{gray}\ttfamily},
-  emph={filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println},
-  emphstyle={\color{black}},
-  identifierstyle=\color{black},
-  keywords={!in, !is, abstract, actual, annotation, as, as?, break, by, catch, class, companion, const, constructor, continue, crossinline, data, delegate, do, dynamic, else, enum, expect, external, false, field, file, final, finally, for, fun, get, if, import, in, infix, init, inline, inner, interface, internal, is, lateinit, noinline, null, object, open, operator, out, override, package, param, private, property, protected, public, receiveris, reified, return, return@, sealed, set, setparam, super, suspend, tailrec, this, throw, true, try, typealias, typeof, val, var, vararg, when, where, while},
-  keywordstyle={\color{javadocblue}\bfseries},
-  morecomment=[s]{/*}{*/},
-  morestring=[b]",
-  morestring=[s]{"""*}{*"""},
-  ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, IntArray, arrayOf, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, Any, Unit, Nothing, listOf, mutableListOf, mapOf, mutableMapOf, setOf, mutableSetOf},
-  ndkeywordstyle={\color{javadocblue}\bfseries},
-  sensitive=true,
-  commentstyle=\color{gray}\ttfamily,
-  stringstyle=\color{editorGreen}
-}
-
-
-\lstdefinelanguage{XSD}{
-  commentstyle=\ttfamily\itshape\color{javagreen},   
-  morestring=[s]{"}{"},   
-  morecomment=[s]{?}{?},   
-  morecomment=[s]{!--}{--},   
-  morecomment=[s]{!DOCTYPE}{]},   
-  moredelim=[s][\color{black}]{>}{<},   
-  moredelim=[s][\bfseries\color{black}]{\ }{=},   
-  moredelim=[s][\bfseries\color{violet}]{</}{>},
-  stringstyle=\color{blue},   
-  identifierstyle=\bfseries\color{violet} 
-}
-
-\lstdefinelanguage{XML}{
-  commentstyle=\ttfamily\itshape\color{javagreen},   
-  morestring=[b]",
-  morestring=[s]{>}{<},
-  morecomment=[s]{<?}{?>},
-  morecomment=[s]{!--}{--},   
-  morecomment=[s]{!DOCTYPE}{]},   
-  moredelim=[s][\color{black}]{>}{<},   
-  moredelim=[s][\bfseries\color{black}]{\ }{=},   
-  moredelim=[s][\bfseries\color{violet}]{</}{>},
-  stringstyle=\color{blue},   
-  identifierstyle=\bfseries\color{violet} 
-}
-
-
-\lstdefinelanguage{json}{
-  commentstyle=\color{eclipseStrings}, 
-  stringstyle=\color{eclipseKeywords}, 
-  string=[s]{"}{"}, 
-  comment=[l]{:\ "},
-  literate=
-    {0}{{{\color{numb}0}}}{1}
-    {1}{{{\color{numb}1}}}{1}
-    {2}{{{\color{numb}2}}}{1}
-    {3}{{{\color{numb}3}}}{1}
-    {4}{{{\color{numb}4}}}{1}
-    {5}{{{\color{numb}5}}}{1}
-    {6}{{{\color{numb}6}}}{1}
-    {7}{{{\color{numb}7}}}{1}
-    {8}{{{\color{numb}8}}}{1}
-    {9}{{{\color{numb}9}}}{1}
-}
-
-\lstdefinelanguage{YAML}{
-  basicstyle=\color{black},                                 % assuming a key comes first  
-  keywordstyle=\color{darkgray}\bfseries,
-  commentstyle=\color{purple}\ttfamily,
-  stringstyle=\color{blue}\ttfamily,
-  sensitive=false,
-  keywords={true,false,null,y,n},
-  comment=[l]{\#},
-  morecomment=[s]{/*}{*/},
-  moredelim=[l][\color{orange}]{\&},
-  moredelim=[l][\color{magenta}]{*},
-  moredelim=**[il][\YAMLcolonstyle{:}\color{blue}\ttfamily]{:},   % switch to value style at :
-  morestring=[b]',
-  morestring=[b]",
-  literate =    {---}{{\ProcessThreeDashes}}3
-                {>}{{\textcolor{red}\textgreater}}1     
-                {|}{{\textcolor{red}\textbar}}1 
-                {\ -\ }{{\mdseries\ -\ }}3,
-}
-
-\newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
-
-
-\lstdefinelanguage{docker}{
-  keywords={FROM, RUN, COPY, ADD, ENTRYPOINT, CMD,  ENV, ARG, WORKDIR, EXPOSE, LABEL, USER, VOLUME, STOPSIGNAL, ONBUILD, MAINTAINER},
-  keywordstyle=\color{blue}\bfseries,
-  identifierstyle=\color{black},
-  sensitive=false,
-  comment=[l]{\#},
-  % stringstyle=\color{red}\ttfamily,
-  morestring=[b]',
-  morestring=[b]"
-}
-
-\lstdefinelanguage{docker-compose}{
-  keywords={image, environment, ports, container_name, ports, volumes, links},
-  keywordstyle=\color{blue}\bfseries,
-  identifierstyle=\color{black},
-  sensitive=false,
-  comment=[l]{\#},
-  % stringstyle=\color{red}\ttfamily,
-  morestring=[b]',
-  morestring=[b]"
-}
-\lstdefinelanguage{docker-compose-2}{
-  keywords={version, volumes, services},
-  keywordstyle=\color{blue}\bfseries,
-  keywords=[2]{image, environment, ports, container_name, ports, links, build},
-  keywordstyle=[2]\color{olive}\bfseries,
-  identifierstyle=\color{black},
-  sensitive=false,
-  comment=[l]{\#},
-  commentstyle=\color{purple}\ttfamily,
-  stringstyle=\color{red}\ttfamily,
-  morestring=[b]',
-  morestring=[b]"
-}
-
-% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/lang.sty
-% https://github.com/aytchell/latex-listings-protobuf/blob/master/protobuf/style.sty
-\lstdefinelanguage{protobuf3}{%
-  sensitive=true,%
-  morecomment=[l]{//},%
-  morecomment=[s]{/*}{*/},%
-  morestring=[b]{"},%
-  morekeywords={enum,oneof,map,syntax,public,import,option,package,message,%
-  group,optional,required,repeated,default,reserved,extend,extensions,%
-  to,max,service,rpc,returns,true,false},%
-  morekeywords=[2]{%
-  double,float,int32,int64,uint32,uint64,sint32,sint64,%
-  fixed32,fixed64,sfixed32,sfixed64,bool,string,bytes},%
-  morekeywords=[3]{%
-  deprecated,uninterpreted_option,java_package,java_outer_classname,%
-  java_multiple_files,java_generate_equals_and_hash,java_string_check_utf8,%
-  optimize_for,go_package,cc_generic_services,py_generic_services,%
-  csharp_namespace},%
-  deletekeywords={group,extensions,to,extend,required,optional,default},%
-  % Estilo (parte que estava no lstdefinestyle):
-  basicstyle=\footnotesize\ttfamily\color{proto_basic}, % Cor e tamanho da fonte
-  keywordstyle=[1]\color{proto_keyword}, % Estilo para palavras-chave principais
-  keywordstyle=[2]\color{proto_type}, % Estilo para tipos
-  keywordstyle=[3]\color{proto_options}, % Estilo para opções
-  commentstyle=\color{proto_comment}, % Estilo para comentários
-  stringstyle=\color{proto_string}, % Estilo para strings
-  numberstyle=\tiny\color{proto_number}, % Estilo para números
-  identifierstyle=\color{proto_ident}, % Estilo para identificadores
-  breaklines=true, % Quebra automática de linha
-  showstringspaces=false, % Não exibe espaços dentro de strings
-  tabsize=2, % Tamanho do tab
-  inputencoding=utf8, % Codificação de entrada
-  extendedchars=true, % Caracteres estendidos
-  literate={ % Personaliza a renderização de caracteres especiais
-    {0}{{\textcolor{proto_digits}{0}}}{1}%
-    {1}{{\textcolor{proto_digits}{1}}}{1}%
-    {2}{{\textcolor{proto_digits}{2}}}{1}%
-    {3}{{\textcolor{proto_digits}{3}}}{1}%
-    {4}{{\textcolor{proto_digits}{4}}}{1}%
-    {5}{{\textcolor{proto_digits}{5}}}{1}%
-    {6}{{\textcolor{proto_digits}{6}}}{1}%
-    {7}{{\textcolor{proto_digits}{7}}}{1}%
-    {8}{{\textcolor{proto_digits}{8}}}{1}%
-    {9}{{\textcolor{proto_digits}{9}}}{1}%
-    {.0}{{\textcolor{proto_digits}{.0}}}{2}%
-    {.1}{{\textcolor{proto_digits}{.1}}}{2}%
-    {.2}{{\textcolor{proto_digits}{.2}}}{2}%
-    {.3}{{\textcolor{proto_digits}{.3}}}{2}%
-    {.4}{{\textcolor{proto_digits}{.4}}}{2}%
-    {.5}{{\textcolor{proto_digits}{.5}}}{2}%
-    {.6}{{\textcolor{proto_digits}{.6}}}{2}%
-    {.7}{{\textcolor{proto_digits}{.7}}}{2}%
-    {.8}{{\textcolor{proto_digits}{.8}}}{2}%
-    {.9}{{\textcolor{proto_digits}{.9}}}{2}%
-    {int32}{{\textcolor{proto_type}{int32}}}{5}%
-    {int64}{{\textcolor{proto_type}{int64}}}{5}%
-    {uint32}{{\textcolor{proto_type}{uint32}}}{6}%
-    {uint64}{{\textcolor{proto_type}{uint64}}}{6}%
-    {sint32}{{\textcolor{proto_type}{sint32}}}{6}%
-    {sint64}{{\textcolor{proto_type}{sint64}}}{6}%
-    {fixed32}{{\textcolor{proto_type}{fixed32}}}{7}%
-    {fixed64}{{\textcolor{proto_type}{fixed64}}}{7}%
-    {sfixed32}{{\textcolor{proto_type}{sfixed32}}}{8}%
-    {sfixed64}{{\textcolor{proto_type}{sfixed64}}}{8}%
-    {java_string_check_utf8}{{\textcolor{proto_options}{java_string_check_utf8}}}{2}%
-    {\ }{{ }}{1}%
-    {é}{{\'{e}}}1 {è}{{\`{e}}}1 {ê}{{\^{e}}}1 {ë}{{\¨{e}}}1
-    {É}{{\'{E}}}1 {Ê}{{\^{E}}}1 {û}{{\^{u}}}1 {ù}{{\`{u}}}1
-    {â}{{\^{a}}}1 {à}{{\`{a}}}1 {á}{{\'{a}}}1 {ã}{{\~{a}}}1
-    {Á}{{\'{A}}}1 {Â}{{\^{A}}}1 {Ã}{{\~{A}}}1 {ç}{{\c{c}}}1
-    {Ç}{{\c{C}}}1 {õ}{{\~{o}}}1 {ó}{{\'{o}}}1 {ú}{{\'{u}}}1
-    {Ú}{{\'{U}}}1 {ô}{{\^{o}}}1 {Õ}{{\~{O}}}1 {Ó}{{\'{O}}}1
-    {Ô}{{\^{O}}}1 {î}{{\^{i}}}1 {Î}{{\^{I}}}1 {í}{{\'{i}}}1
-    {Í}{{\~{Í}}}1
-  },
-  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}, % Símbolo para quebra de linha
-  upquote=true % Habilita as aspas retas
-}
-
-% JavaScript
-\lstdefinelanguage{JavaScript}{
-  morekeywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
-  morecomment=[s]{/*}{*/},
-  morecomment=[l]//,
-  morestring=[b]",
-  morestring=[b]'
-}
-
-\lstdefinelanguage{HTML5}{
-  language=html,
-  sensitive=true,	
-  alsoletter={<>=-},	
-  morecomment=[s]{<!-}{-->},
-  tag=[s],
-  otherkeywords={
-  % General
-  >,
-  % Standard tags
-	<!DOCTYPE,
-  </html, <html, <head, <title, </title, <style, </style, <link, </head, <meta, />,
-	% body
-	</body, <body,
-	% Divs
-	</div, <div, </div>, 
-	% Paragraphs
-	</p, <p, </p>,
-	% scripts
-	</script, <script,
-  </button, <button,
-  % More tags...
-  <canvas, /canvas>, <svg, <rect, <animateTransform, </rect>, </svg>, <video, <source, <iframe, </iframe>, </video>, <image, </image>, <header, </header, <article, </article
-  },
-  ndkeywords={
-  % General
-  =,
-  % HTML attributes
-  charset=, src=, id=, width=, height=, style=, type=, rel=, href=,
-  % SVG attributes
-  fill=, attributeName=, begin=, dur=, from=, to=, poster=, controls=, x=, y=, repeatCount=, xlink:href=,
-  % properties
-  margin:, padding:, background-image:, border:, top:, left:, position:, width:, height:, margin-top:, margin-bottom:, font-size:, line-height:,
-	% CSS3 properties
-  transform:, -moz-transform:, -webkit-transform:,
-  animation:, -webkit-animation:,
-  transition:,  transition-duration:, transition-property:, transition-timing-function:,
-  }
-}
-
-\lstdefinestyle{htmlcssjs} {%
-%  backgroundcolor=\color{editorGray},
-  basicstyle={\footnotesize\ttfamily},   
-  % frame=b,
-  % line-numbers
-  % xleftmargin={0.75cm},
-  % numbers=left,
-  % stepnumber=1,
-  % firstnumber=1,
-  % numberfirstline=true,	
-  % Code design
-  identifierstyle=\color{black},
-  keywordstyle=\color{blue}\bfseries,
-  ndkeywordstyle=\color{editorGreen}\bfseries,
-  stringstyle=\color{editorOcher}\ttfamily,
-  commentstyle=\color{brown}\ttfamily,
-  % Code
-  language=HTML5,
-  alsolanguage=JavaScript,
-  alsodigit={.:;},	
-  tabsize=2,
-  showtabs=false,
-  showspaces=false,
-  showstringspaces=false,
-  extendedchars=true,
-  breaklines=true
-}
-
-
-\lstdefinestyle{ansic}{language=c}
-\lstdefinestyle{cpp}{language=C++}
-\lstdefinestyle{docker}{language=docker,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{docker-compose}{language=docker-compose,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{docker-compose2}{language=docker-compose2,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{groovy}{language=Groovy}
-\lstdefinestyle{java}{language=java}
-\lstdefinestyle{json}{language=json}
-\lstdefinestyle{matlab}{language=matlab}
-\lstdefinestyle{php}{language=php}
-\lstdefinestyle{protobuf}{language=protobuf3}
-\lstdefinestyle{python}{language=python}
-\lstdefinestyle{shell}{language=csh}
-\lstdefinestyle{sql}{language=sql,moredelim=[is][\underbar]{__}{__}}
-\lstdefinestyle{xml}{language=XML}
-\lstdefinestyle{xsd}{language=XSD}
-\lstdefinestyle{yaml}{language=YAML}
-
-\lstdefinestyle{ansicp}{language=c,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{cppp}{language=C++,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{javap}{language=java,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{jsonp}{language=json,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{kotlin}{language=kotlin,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{matlabp}{language=matlab,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{shellp}{language=csh,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{sqlp}{language=sql,moredelim=[is][\underbar]{__}{__},basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{phpp}{language=php,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{pythonp}{language=python,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{xmlp}{language=XML,basicstyle=\ttfamily\scriptsize}
-\lstdefinestyle{xsdp}{language=XSD,basicstyle=\ttfamily\scriptsize}
-
-
-
-
-% ----------------------------------------------------------------%

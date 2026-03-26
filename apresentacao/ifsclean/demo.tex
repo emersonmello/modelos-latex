@@ -20,7 +20,6 @@
 
 % \pgfdeclareimage[width=3cm]{ifsclogo}{img/ifsc-logo-h-branco.png}
 
-
 % Crie cores personalizadas para usar no tema
 \definecolor[named]{novaCor}{HTML}{303A52}
 \definecolor{verdeescuro}{RGB}{0,112,19}
@@ -242,19 +241,18 @@
 \end{caution}
 \end{frame}
 
-
 \begin{frame}{Horários}
-    {Veja outros ícones em \url{https://ctan.org/pkg/fontawesome}}
+    {Veja outros ícones em \url{https://ctan.org/pkg/fontawesome5}}
     \begin{itemize}
         \item Horário das aulas 
-        \begin{caixa}[azul]{white}{\faCalendar}
+        \begin{caixa}[azul]{white}{\faCalendar*[regular]}
             \begin{itemize}
                 \item 15:40 -- 17:30 - quarta-feira
                 \item 13:30 -- 15:20 - quinta-feira
             \end{itemize}
         \end{caixa}
         \item Atendimento extraclasse
-        \begin{caixa}[azul]{white}{\faCalendar}
+        \begin{caixa}[azul]{white}{\faCalendar*[regular]}
             \begin{itemize}
                 \item 10:00 -- 12:00 - sexta-feira
             \end{itemize}
@@ -293,19 +291,22 @@
 
 \section{Incluindo código fonte}
 
-
 \begin{frame}[fragile]{Olá mundo em C}
-    \lstinputlisting[style=ansic,caption={Olá mundo},label={cod:olac}]{codigos/olamundo.c}
+    \lstinputlisting[style=C,caption={Olá mundo em C},label={cod:olac}]{codigos/olamundo.c}
 \end{frame}
 
 \begin{frame}[fragile]{Olá mundo em Java}
-\begin{lstlisting}[style=java]
+\begin{lstlisting}[style=java, caption={Olá mundo em Java},label={cod:olajava}]
 public class App{
 
+    // Método principal
     public static void main(String[] args){
-        System.out.println("Olá mundo");
+        if (args.length > 0) {
+            System.out.println("Olá " + args[0]);
+        } else {
+            System.out.println("Olá mundo");
+        }
     }
-
 }
 \end{lstlisting}
 \end{frame}
