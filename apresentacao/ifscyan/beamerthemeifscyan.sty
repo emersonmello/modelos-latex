@@ -7,32 +7,13 @@
 % -------------------------------------------------%
 % Pacotes
 % -------------------------------------------------%
-\RequirePackage[T1]{fontenc}
-\RequirePackage[english,brazilian]{babel}
-\RequirePackage[sfdefault]{roboto}
-\RequirePackage{xcolor}
-\RequirePackage{xstring}
-\RequirePackage{kvoptions}
-\RequirePackage{xargs}
-
-\DeclareRobustCommand{\ttfamily}{\fontencoding{T1}\fontfamily{lmtt}\selectfont}
-
-
-\DeclareStringOption[0D4F4D]{textbgcolor}[0D4F4D]
-\DeclareStringOption[ffffff]{textfgcolor}[ffffff]
-\DeclareStringOption[eef1ec]{slidebgcolor}[eef1ec]%{RGB}{238,241,236}
-\DeclareStringOption[000000]{authorfgcolor}[000000]
-\DeclareStringOption[000000]{slidefgcolor}[000000]
-\DeclareStringOption[7 pt]{itemsep}[7 pt]
-\ProcessKeyvalOptions*
-
 \RequirePackage{pgf}
 \RequirePackage{tikz}
 \usetikzlibrary{calc,math,positioning}
 \RequirePackage{graphicx}
 \RequirePackage{etoolbox} % \BeforeBeginEnvironment
 \RequirePackage{appendixnumberbeamer} % Don't number appendix frames.
-\RequirePackage{fontawesome}
+\RequirePackage{fontawesome5}
 \RequirePackage[skins]{tcolorbox}
 \RequirePackage{ccicons}
 \RequirePackage{caption}
@@ -45,6 +26,43 @@
 \RequirePackage{url,color,ae}
 \RequirePackage{soul}
 \urlstyle{sf}
+
+\RequirePackage[english,brazilian]{babel}
+\RequirePackage{xcolor}
+\RequirePackage{xstring}
+\RequirePackage{kvoptions}
+\RequirePackage{xargs}
+
+% -------------------------------------------------%
+% Escolha de fontes
+% -------------------------------------------------%
+
+% Se o usuario estiver usando o LuaLaTeX ou o XeLaTeX, use o fontspec para carregar as fontes do sistema. 
+\iftutex
+  \RequirePackage{fontspec}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \AtEndPreamble{%
+      % suprimir warnings de fontes faltando
+      \DeclareFontFamily{TS1}{aess}{}
+      \DeclareFontShape{TS1}{aess}{m}{n}{<->ssub * cmr/m/n}{}
+  }
+\else % Caso contrario, use as fontes padrao do LaTeX.
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[sfdefault]{roboto}
+\fi
+
+
+\DeclareRobustCommand{\ttfamily}{\fontencoding{T1}\fontfamily{lmtt}\selectfont}
+
+
+\DeclareStringOption[0D4F4D]{textbgcolor}[0D4F4D]
+\DeclareStringOption[ffffff]{textfgcolor}[ffffff]
+\DeclareStringOption[eef1ec]{slidebgcolor}[eef1ec]%{RGB}{238,241,236}
+\DeclareStringOption[000000]{authorfgcolor}[000000]
+\DeclareStringOption[000000]{slidefgcolor}[000000]
+\DeclareStringOption[7 pt]{itemsep}[7 pt]
+\ProcessKeyvalOptions*
+
 
 \usepackage{gensymb}
 
@@ -132,7 +150,7 @@ at ([xshift=0mm]interior.base west) {\Huge  #3};}
 \newenvironmentx{informacaoazul}[3][1=azul,2=white,3=\faInfoCircle]
 {\begin{caixa}[#1]{#2}{#3}}{\end{caixa}}
 
-\newenvironmentx{atencao}[3][1=amarelo,2=cinzaescuro,3=\faWarning]
+\newenvironmentx{atencao}[3][1=amarelo,2=cinzaescuro,3=\faExclamationTriangle]
 {\usebeamercolor[fg]{normal text}\begin{caixa}[#1]{#2}{#3}\usebeamercolor[fg]{item caixaclara}
 }{\end{caixa}}
 
@@ -153,11 +171,11 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
 
 \newtcolorbox{nota}{alertmarkdown,colback=notecolor!5!white,colbacktitle=notecolor!5!white,borderline west={3pt}{0pt}{notecolor},coltitle=notecolor,title={\faInfoCircle~~\textbf{Nota}}}
 
-\newtcolorbox{tip}{alertmarkdown,colback=tipcolor!5!white,colbacktitle=tipcolor!5!white,borderline west={3pt}{0pt}{tipcolor},coltitle=tipcolor,title={\faLightbulbO~~\textbf{Dica}}}
+\newtcolorbox{tip}{alertmarkdown,colback=tipcolor!5!white,colbacktitle=tipcolor!5!white,borderline west={3pt}{0pt}{tipcolor},coltitle=tipcolor,title={\faLightbulb[regular]~~\textbf{Dica}}}
 
 \newtcolorbox{important}{alertmarkdown,colback=importantcolor!5!white,colbacktitle=importantcolor!5!white,borderline west={3pt}{0pt}{importantcolor},coltitle=importantcolor,title={\faExclamation~~\textbf{Importante}}}
 
-\newtcolorbox{warning}{alertmarkdown,colback=warningcolor!5!white,colbacktitle=warningcolor!5!white,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faWarning~~\textbf{Atenção}}}
+\newtcolorbox{warning}{alertmarkdown,colback=warningcolor!5!white,colbacktitle=warningcolor!5!white,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faExclamationTriangle~~\textbf{Atenção}}}
 
 \newtcolorbox{caution}{alertmarkdown,colback=cautioncolor!5!white,colbacktitle=cautioncolor!5!white,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faExclamationCircle~~\textbf{Cuidado}}}
 % -------------------------------------------------%
