@@ -1,0 +1,360 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ifsclistings}[2026/03/25 IFSC Listings Style]
+
+\RequirePackage{listings}
+\RequirePackage{xcolor}
+
+% -------------------------------------------------%
+% Estilo com configuracoes para o listing
+% -------------------------------------------------%
+
+
+% -----------------------%
+% CORES
+% -----------------------%
+\definecolor{ifsclistings@bg}{RGB}{250,250,250}
+\definecolor{ifsclistings@text}{RGB}{40,44,52}
+\definecolor{ifsclistings@keyword}{RGB}{0,92,197}
+\definecolor{ifsclistings@string}{RGB}{196,26,22}
+\definecolor{ifsclistings@comment}{RGB}{0,128,0}
+\definecolor{ifsclistings@number}{RGB}{128,0,128}
+\definecolor{ifsclistings@func}{RGB}{111,66,193}
+\definecolor{ifsclistings@type}{RGB}{43,145,175}
+\definecolor{ifsclistings@gray}{RGB}{120,120,120}
+\definecolor{ifsclistings@frame}{RGB}{220,220,220}
+
+
+% Definicao de cores (estilo VS Code)
+% \definecolor{bg}{RGB}{248,248,248}
+% \definecolor{keyword}{RGB}{0,102,204}
+% \definecolor{string}{RGB}{163,21,21}
+% \definecolor{comment}{RGB}{0,128,0}
+% \definecolor{numbers}{RGB}{120,120,120}
+% \definecolor{frame}{RGB}{200,200,200}
+% \lstdefinestyle{modern}{
+%     backgroundcolor=\color{bg},
+%     basicstyle=\ttfamily\small,
+%     keywordstyle=\color{keyword}\bfseries,
+%     stringstyle=\color{string},
+%     commentstyle=\color{comment}\itshape,
+%     numbers=left,
+%     numberstyle=\tiny\color{numbers},
+%     numbersep=8pt,
+%     frame=single,
+%     rulecolor=\color{frame},
+%     frameround=tttt,
+%     breaklines=true,
+%     breakatwhitespace=false,
+%     tabsize=2,
+%     keepspaces=true,
+%     showstringspaces=false,
+%     showspaces=false,
+%     showtabs=false,
+%     columns=fullflexible,
+%     xleftmargin=10pt,
+%     xrightmargin=5pt,
+%     aboveskip=12pt,
+%     belowskip=12pt,
+%     captionpos=b,
+%     inputencoding=utf8
+% }
+% -----------------------%
+% ESTILO BASE
+% -----------------------%
+\lstdefinestyle{ifsclistings@base}{
+    backgroundcolor=\color{ifsclistings@bg},
+    basicstyle=\ttfamily\small\color{ifsclistings@text},
+    keywordstyle=\color{ifsclistings@keyword}\bfseries,
+    stringstyle=\color{ifsclistings@string},
+    commentstyle=\color{ifsclistings@comment},
+    escapechar={@*}, % @* \textbf{negrito} *@
+    numbers=none,
+    numberstyle=\scriptsize\color{ifsclistings@gray},
+    numbersep=10pt,
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{ifsclistings@frame},
+    breaklines=true,
+    breakatwhitespace=false,
+    tabsize=2,
+    keepspaces=true,
+    showstringspaces=false,
+    columns=fullflexible,
+    inputencoding=utf8,
+    literate=
+    %  {0}{{{\color{ifsclistings@number}0}}}{1} % numeros coloridos
+    %  {1}{{{\color{ifsclistings@number}1}}}{1}
+    %  {2}{{{\color{ifsclistings@number}2}}}{1}
+    %  {3}{{{\color{ifsclistings@number}3}}}{1}
+    %  {4}{{{\color{ifsclistings@number}4}}}{1}
+    %  {5}{{{\color{ifsclistings@number}5}}}{1}
+    %  {6}{{{\color{ifsclistings@number}6}}}{1}
+    %  {7}{{{\color{ifsclistings@number}7}}}{1}
+    %  {8}{{{\color{ifsclistings@number}8}}}{1}
+    %  {9}{{{\color{ifsclistings@number}9}}}{1}
+    {é}{{\'{e}}}1 {è}{{\`{e}}}1 {ê}{{\^{e}}}1 {ë}{{\¨{e}}}1
+    {É}{{\'{E}}}1 {Ê}{{\^{E}}}1 {û}{{\^{u}}}1 {ù}{{\`{u}}}1
+    {â}{{\^{a}}}1 {à}{{\`{a}}}1 {á}{{\'{a}}}1 {ã}{{\~{a}}}1
+    {Á}{{\'{A}}}1 {Â}{{\^{A}}}1 {Ã}{{\~{A}}}1 {ç}{{\c{c}}}1
+    {Ç}{{\c{C}}}1 {õ}{{\~{o}}}1 {ó}{{\'{o}}}1 {ú}{{\'{u}}}1
+    {Ú}{{\'{U}}}1 {ô}{{\^{o}}}1 {Õ}{{\~{O}}}1 {Ó}{{\'{O}}}1
+    {Ô}{{\^{O}}}1 {î}{{\^{i}}}1 {Î}{{\^{I}}}1 {í}{{\'{i}}}1
+    {Í}{{\~{Í}}}1
+    % {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    % {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    % {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+    % {À}{{\`A}}1 {È}{{\`E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+    % {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+    % {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+    % {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+    % {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+    % {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+    % {ẞ}{{\SS}}1 {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1 {ø}{{\o}}1 {Ø}{{\O}}1
+    % {å}{{\aa}}1 {Å}{{\AA}}1 {ã}{{\~a}}1 {õ}{{\~o}}1 {Ã}{{\~A}}1
+    % {Õ}{{\~O}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 {¡}{{!`}}1
+    % {°}{{\textdegree}}1 {º}{{\textordmasculine}}1 {ª}{{\textordfeminine}}1
+    % {€}{{\euro}}1 {£}{{\pounds}}1 {©}{{\copyright}}1 {®}{{\textregistered}}1
+    % {«}{{\guillemotleft}}1 {»}{{\guillemotright}}1 {Ð}{{\DH}}1 {ð}{{\dh}}1
+    % {Ý}{{\'Y}}1 {ý}{{\'y}}1 {Þ}{{\TH}}1 {þ}{{\th}}1 {Ă}{{\u{A}}}1
+    % {ă}{{\u{a}}}1 {Ą}{{\k{A}}}1 {ą}{{\k{a}}}1 {Ć}{{\'C}}1 {ć}{{\'c}}1
+    % {Č}{{\v{C}}}1 {č}{{\v{c}}}1 {Ď}{{\v{D}}}1 {ď}{{\v{d}}}1 {Đ}{{\DJ}}1
+    % {đ}{{\dj}}1 {Ė}{{\.{E}}}1 {ė}{{\.{e}}}1 {Ę}{{\k{E}}}1 {ę}{{\k{e}}}1
+    % {Ě}{{\v{E}}}1 {ě}{{\v{e}}}1 {Ğ}{{\u{G}}}1 {ğ}{{\u{g}}}1 {Ĩ}{{\~I}}1
+    % {ĩ}{{\~\i}}1 {Į}{{\k{I}}}1 {į}{{\k{i}}}1 {İ}{{\.{I}}}1 {ı}{{\i}}1
+    % {Ĺ}{{\'L}}1 {ĺ}{{\'l}}1 {Ľ}{{\v{L}}}1 {ľ}{{\v{l}}}1 {Ł}{{\L{}}}1
+    % {ł}{{\l{}}}1 {Ń}{{\'N}}1 {ń}{{\'n}}1 {Ň}{{\v{N}}}1 {ň}{{\v{n}}}1
+    % {Ő}{{\H{O}}}1 {ő}{{\H{o}}}1 {Ŕ}{{\'{R}}}1 {ŕ}{{\'{r}}}1 {Ř}{{\v{R}}}1
+    % {ř}{{\v{r}}}1 {Ś}{{\'S}}1 {ś}{{\'s}}1 {Ş}{{\c{S}}}1 {ş}{{\c{s}}}1
+    % {Š}{{\v{S}}}1 {š}{{\v{s}}}1 {Ť}{{\v{T}}}1 {ť}{{\v{t}}}1 {Ũ}{{\~U}}1
+}
+
+% Definir o estilo base para todos os listings
+\lstset{style=ifsclistings@base}
+
+% -----------------------%
+% BASH
+% -----------------------%
+\lstdefinestyle{bash}{
+  language=bash,
+  style=ifsclistings@base
+}
+\lstdefinestyle{shell}{
+  language=bash,
+  style=ifsclistings@base
+}
+
+% -----------------------%
+% PYTHON
+% -----------------------%
+\lstdefinestyle{python}{
+    style=ifsclistings@base,
+    language=Python,
+    morekeywords={self,async,await},
+    emph={print,len,range,str,int,float,list,dict,set,bool,tuple,super,type,enumerate,zip,map,filter,any,all,as,assert,nonlocal,with,yield,True,False,None,lambda,raise,await,async},
+    emphstyle=\color{ifsclistings@func},
+    morekeywords=[2]{int,float,str,bool,list,dict},
+    keywordstyle=[2]\color{ifsclistings@type}
+}
+
+% -----------------------%
+% JAVA
+% -----------------------%
+\lstdefinestyle{java}{
+    style=ifsclistings@base,
+    language=Java,
+    morekeywords={var,record,sealed},
+    emph={System,out,println},
+    emphstyle=\color{ifsclistings@func},
+    morekeywords=[2]{String,Integer,Double,Boolean,ArrayList},
+    keywordstyle=[2]\color{ifsclistings@type}
+}
+
+% -----------------------%
+% JAVASCRIPT
+% -----------------------%
+\lstdefinestyle{javascript}{
+    style=ifsclistings@base,
+    language=JavaScript,
+    morekeywords={let,const,async,await,yield},
+    emph={console,log,document,window},
+    emphstyle=\color{ifsclistings@func}
+}
+
+% -----------------------%
+% C
+% -----------------------%
+\lstdefinestyle{c}{
+    style=ifsclistings@base,
+    language=C,
+    emph={printf,scanf},
+    emphstyle=\color{ifsclistings@func},
+    morekeywords=[2]{uint8_t,uint16_t,uint32_t},
+    keywordstyle=[2]\color{ifsclistings@type}
+}
+
+% -----------------------%
+% KOTLIN
+% -----------------------%
+\lstdefinelanguage{kotlin}{
+    keywords={fun,val,var,class,object,if,else,when,return,true,false,null},
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]"
+}
+
+\lstdefinestyle{kotlin}{
+    style=ifsclistings@base,
+    language=kotlin,
+    emph={println},
+    emphstyle=\color{ifsclistings@func}
+}
+
+% -----------------------%
+% JSON
+% -----------------------%
+\lstdefinelanguage{json}{
+    morestring=[b]",
+    sensitive=false,
+    morekeywords={true,false,null},
+    literate=
+     *{:}{{{\color{ifsclistings@gray}{:}}}}{1}
+      {,}{{{\color{ifsclistings@gray}{,}}}}{1}
+      {\}}{{{\color{ifsclistings@gray}{\}}}}}{1}
+      {[}{{{\color{ifsclistings@gray}{[}}}}{1}
+      {]}{{{\color{ifsclistings@gray}{]}}}}{1}
+}
+
+\lstdefinestyle{json}{
+    style=ifsclistings@base,
+    language=json,
+    emph={true,false,null},
+    emphstyle=\color{ifsclistings@keyword}\bfseries
+}
+
+% -----------------------%
+% YAML
+% -----------------------%
+\lstdefinelanguage{yaml}{
+    keywords={true,false,null},
+    sensitive=false,
+    morecomment=[l]{\#},
+    morestring=[b]"
+}
+
+\lstdefinestyle{yaml}{
+    style=ifsclistings@base,
+    language=yaml
+}
+
+% -----------------------%
+% DOCKER Compose
+% -----------------------%
+\lstdefinestyle{docker-compose}{
+  style=yaml,
+  emph={
+    version, services, build, image, container_name,
+    ports, volumes, environment, depends_on,
+    networks, command, entrypoint, restart,
+    stdin_open, tty, working_dir
+  },
+  emphstyle=\color{ifsclistings@type}\bfseries,
+  literate=
+    {true}{{{\color{ifsclistings@type}true}}}4
+    {false}{{{\color{ifsclistings@type}false}}}5
+    {:}{{{\color{ifsclistings@type}:}}}1
+}
+
+% -----------------------%
+% DOCKER
+% -----------------------%
+\lstdefinelanguage{docker}{
+    keywords={FROM,RUN,CMD,COPY,ADD,ENTRYPOINT,ENV,EXPOSE,WORKDIR},
+    sensitive=false,
+    morecomment=[l]{\#},
+    morestring=[b]"
+}
+
+\lstdefinestyle{docker}{
+    style=ifsclistings@base,
+    language=docker
+}
+
+% -----------------------%
+% HTML / XML / XSD
+% -----------------------%
+\lstdefinestyle{html5}{
+    style=ifsclistings@base,
+    language=HTML,
+    morekeywords={section,article,header,footer,nav,main}
+}
+
+\lstdefinestyle{xml}{
+    style=ifsclistings@base,
+    language=XML
+}
+
+\lstdefinestyle{xsd}{
+    style=ifsclistings@base,
+    language=XML,
+    morekeywords={xs:schema,xs:element,xs:complexType}
+}
+
+% -----------------------%
+% PROTOCOL BUFFERS
+% -----------------------%
+\lstdefinelanguage{protobuf}{
+    keywords={
+        syntax,import,package,option,
+        message,enum,service,rpc,returns,
+        repeated,optional,required,
+        reserved,oneof,map,
+        true,false
+    },    
+    morekeywords=[2]{
+        int32,int64,uint32,uint64,
+        sint32,sint64,fixed32,fixed64,
+        float,double,bool,string,bytes
+    },
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]"
+}
+
+\lstdefinestyle{protobuf}{
+    style=ifsclistings@base,
+    language=protobuf,
+   keywordstyle=[2]\color{ifsclistings@type},
+    emph={rpc,returns},
+    emphstyle=\color{ifsclistings@func}
+}
+
+% -----------------------%
+% GROOVY
+% -----------------------%
+\lstdefinelanguage{groovy}{
+    keywords={
+        as,assert,break,case,catch,class,const,continue,def,default,
+        do,else,enum,extends,false,finally,for,goto,if,implements,
+        import,in,instanceof,interface,new,null,package,return,
+        super,switch,this,throw,throws,true,try,while,
+        trait,def,var
+    },
+    morekeywords=[2]{
+        String,Integer,Double,Boolean,List,Map,BigDecimal
+    },
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[b]'
+}
+
+\lstdefinestyle{groovy}{
+    style=ifsclistings@base,
+    language=groovy,
+    keywordstyle=[2]\color{ifsclistings@type},
+   emph={println,print,each,collect,findAll},
+    emphstyle=\color{ifsclistings@func}
+}
