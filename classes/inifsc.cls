@@ -18,7 +18,8 @@
 \ProcessOptions \relax
 \LoadClass{memoir}
 
-
+\usepackage{newunicodechar}
+\newunicodechar{º}{\textordmasculine}
 
 % --- Class structure:
 
@@ -94,24 +95,24 @@
 % Novas listas enumerate para artigo, paragrafo, inciso e alinea
 
 \newlist{artigo}{enumerate}{5}
-% \setlist[artigo]{resume,labelindent=\parindent, itemindent=0px, align=left, label=\textbf{Art. \arabic*º}, ref=art. \arabic*º}
+% \setlist[artigo]{resume,labelindent=\parindent, itemindent=0pt, align=left, label=\textbf{Art. \arabic*º}, ref=art. \arabic*º}
 
-\setlist[artigo,1]{resume,labelindent=\parindent, itemindent=0px, align=left, label=\textbf{Art. \ordcard*}, ref=art. \ordcard*}
-\setlist[artigo,2]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\textbf{Parágrafo único -}, ref=parágrafo único}
-\setlist[artigo,3]{start=1,labelindent=\parindent, topsep=0pt,align=left,itemindent=0px, label=\Roman*.,ref=\Roman*}
-\setlist[artigo,4]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px,align=left, label=\alph*),ref=\alph*}
-\setlist[artigo,5]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\arabic*.}
+\setlist[artigo,1]{resume,labelindent=\parindent, itemindent=0pt, align=left, label=\textbf{Art. \ordcard*}, ref=art. \ordcard*}
+\setlist[artigo,2]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0pt, align=left, label=\textbf{Parágrafo único -}, ref=parágrafo único}
+\setlist[artigo,3]{start=1,labelindent=\parindent, topsep=0pt,align=left,itemindent=0pt, label=\Roman*.,ref=\Roman*}
+\setlist[artigo,4]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0pt,align=left, label=\alph*),ref=\alph*}
+\setlist[artigo,5]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0pt, align=left, label=\arabic*.}
 
 \newlist{paragrafo}{enumerate}{4}
-\setlist[paragrafo,1]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\textbf{§\ordcard*}, ref=§\ordcard*}
-\setlist[paragrafo,2]{start=1,labelindent=\parindent, topsep=0pt,align=left,itemindent=0px, label=\Roman*.,ref=\Roman*}
-\setlist[paragrafo,3]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px,align=left, label=\alph*),ref=\alph*}
-\setlist[paragrafo,4]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\arabic*.}
+\setlist[paragrafo,1]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0pt, align=left, label=\textbf{§\ordcard*}, ref=§\ordcard*}
+\setlist[paragrafo,2]{start=1,labelindent=\parindent, topsep=0pt,align=left,itemindent=0pt, label=\Roman*.,ref=\Roman*}
+\setlist[paragrafo,3]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0pt,align=left, label=\alph*),ref=\alph*}
+\setlist[paragrafo,4]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0pt, align=left, label=\arabic*.}
 
 \newlist{inciso}{enumerate}{3}
-\setlist[inciso,1]{start=1,labelindent=\parindent, topsep=0pt,align=left, itemindent=0px,label=\Roman*.,ref=\Roman*}
-\setlist[inciso,2]{start=1,labelindent=\parindent,topsep=0pt, align=left,itemindent=0px, label=\alph*),ref=\alph*}
-\setlist[inciso,3]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\arabic*.}
+\setlist[inciso,1]{start=1,labelindent=\parindent, topsep=0pt,align=left, itemindent=0pt,label=\Roman*.,ref=\Roman*}
+\setlist[inciso,2]{start=1,labelindent=\parindent,topsep=0pt, align=left,itemindent=0pt, label=\alph*),ref=\alph*}
+\setlist[inciso,3]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0pt, align=left, label=\arabic*.}
 
 
 \RequirePackage{titlesec}
