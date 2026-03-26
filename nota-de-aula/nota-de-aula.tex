@@ -5,8 +5,6 @@
 \documentclass[11pt]{ifscarticle}
 \usepackage{ifscutils}
 
-\usepackage{xargs}
-
 \begin{document}
 
 \cabecalhoCurso%
@@ -52,7 +50,7 @@ No interpretador de comandos é possível invocar comandos isolados ou ainda com
 
 Como dito, o \textit{shell} é um interpretador de comandos e temos a opção de entrar com uma sequência de comandos sempre que desejarmos realizar uma tarefa ou podemos colocar tal sequência dentro um arquivo e chamar este arquivo sempre que necessário. E assim temos o \textit{shell script} ilustrado pelo \autoref{intro}.
 
-\lstinputlisting[style=shell,caption={Meu primeiro shell script},label={intro}]{codigos/intro.sh}
+\lstinputlisting[style=bash,caption={Meu primeiro shell script},label={intro}]{codigos/intro.sh}
 
 \begin{tip}
 	Para executar um \textit{bash script} digite: \dest[green]{\texttt{bash nome-do-arquivo.sh}} ou deixe o arquivo com permissão para execução, com o comando \dest[green]{\texttt{chmod +x nome-do-arquivo.sh}} e executá-lo da seguinte forma: \destx[green]{\texttt{./nome-do-script.sh}}
@@ -80,14 +78,14 @@ Abaixo um lista com os principais comandos que iremos utilizar em nossos scripts
 		\item[-n N] Após ler N caracteres o \texttt{read} é encerrado sem que precise pressionar \texttt{ENTER} 
 	\end{description}
 	\item \textbf{expr} -- para fazer cálculos, porém só faz operações com inteiros. Exemplo de uso: 
-\begin{lstlisting}
+\begin{lstlisting}[style=bash]
 # executando o expr em um terminal
 expr 2 + 2
 # executando o expr em um terminal e guardando o resultado na variável 'soma'
 soma=`expr 2 + 2`
 \end{lstlisting}
 	\item \textbf{bc} -- trata-se de uma calculadora, ideal para quando necessitamos efetuar cálculos com números reais. Exemplo de uso: 
-\begin{lstlisting}
+\begin{lstlisting}[style=bash]
 # executando o bc em um terminal, combinado com o echo
 echo "scale=2; 1/2" | bc
 
@@ -103,9 +101,9 @@ resultado=`echo "scale=2; 1/2" | bc`
 Nas linguagens de programação as \textbf{variáveis} possuem uma função semelhante com as variáveis da matemática, ou seja, armazenam valores para que possam ser recuperados posteriormente. O \autoref{variaveis} ilustra algumas formas para atribuir e obter valores em variáveis.
 
 
-\lstinputlisting[style=shell,caption={Exemplo de definição e uso de variáveis},label={variaveis}]{codigos/variaveis.sh}
+\lstinputlisting[style=bash,caption={Exemplo de definição e uso de variáveis},label={variaveis}]{codigos/variaveis.sh}
 
-\lstinputlisting[style=shell,caption={Usando variáveis em conjunto com o comando read},label={nome}]{codigos/nome.sh}
+\lstinputlisting[style=bash,caption={Usando variáveis em conjunto com o comando read},label={nome}]{codigos/nome.sh}
 
 
 
@@ -125,7 +123,7 @@ As \textit{variáveis de ambiente} são aquelas que afetam o comportamento do in
 \end{center}
 \end{table}
 
-
+\clearpage
 \subsection{Estruturas de decisão}
 
 Antes de apresentar as estruturas de decisão, na tabela \ref{tabelaoperadores} são apresentados os operadores relacionais e lógicos que são de grande importância para tais estruturas.
@@ -152,26 +150,26 @@ Antes de apresentar as estruturas de decisão, na tabela \ref{tabelaoperadores} 
 \subsubsection{Se\ldots então\ldots senão}
 
 
-\lstinputlisting[style=shell,caption={Estrutura de decisão SE},label={se}]{codigos/se.sh}
+\lstinputlisting[style=bash,caption={Estrutura de decisão SE},label={se}]{codigos/se.sh}
 
-\lstinputlisting[style=shell,caption={Usando operador lógico E},label={se2}]{codigos/se2.sh}
+\lstinputlisting[style=bash,caption={Usando operador lógico E},label={se2}]{codigos/se2.sh}
 
 \subsubsection{Escolha\ldots caso\ldots}
 
 
-\lstinputlisting[style=shell,caption={Estrutura de decisão ESCOLHA},label={caso}]{codigos/caso.sh}
+\lstinputlisting[style=bash,caption={Estrutura de decisão ESCOLHA},label={caso}]{codigos/caso.sh}
 
 \subsection{Estruturas de repetição}
 
 \subsubsection{Enquanto}
 
 
-\lstinputlisting[style=shell,caption={Estrutura de repetição ENQUANTO},label={enquanto}]{codigos/enquanto.sh}
+\lstinputlisting[style=bash,caption={Estrutura de repetição ENQUANTO},label={enquanto}]{codigos/enquanto.sh}
 
 \subsubsection{Para}
 
 
-\lstinputlisting[style=shell,caption={Estrutura de repetição PARA},label={para}]{codigos/para.sh}
+\lstinputlisting[style=bash,caption={Estrutura de repetição PARA},label={para}]{codigos/para.sh}
 
 \section{Exercícios}
 

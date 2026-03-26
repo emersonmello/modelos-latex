@@ -1,6 +1,10 @@
 #include<stdio.h>
 
 int main(int argc, char *argv[]){
-   printf("Ola mundo\n");
+   if (argc > 1) {
+      printf("Ola %s\n", argv[1]);
+   } else {
+      printf("Ola mundo\n");
+   }
    return 0;
 }

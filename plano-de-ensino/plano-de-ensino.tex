@@ -6,12 +6,10 @@
 \usepackage{ifscutils}
 \geometry{a4paper,hmargin=2cm,top=3.5cm,bottom=2cm,headheight=3cm,heightrounded}
 
-% Imagem do cabeçalho
-\pgfdeclareimage[width=1.29\linewidth]{cabecalho}{imagens/ifsc-header.png}
-
 % Configuração do cabeçalho
+% Imagem do cabeçalho
 \fancypagestyle{followingpage}{
-	\fancyhead[C]{\pgfuseimage{cabecalho}}
+	\fancyhead[C]{\includegraphics[width=\linewidth]{imagens/ifsc-header.png}}
 }
 
 %-----------------------------%
@@ -27,7 +25,6 @@
 
 
 \begin{document}
-
 \begin{center}
 	{\huge Plano de ensino}\vspace*{.5cm}
 \end{center}
