@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{ifsclistings-beamer}[2026/03/25 IFSC Listings Style]
 
-\RequirePackage{listings}
+\RequirePackage{upquote,listings}
 \RequirePackage{xcolor}
 
 % -------------------------------------------------%
@@ -14,16 +14,16 @@
 % -----------------------%
 % CORES
 % -----------------------%
-\definecolor{ifsclistings@bg}{RGB}{250,250,250}
-\definecolor{ifsclistings@text}{RGB}{40,44,52}
-\definecolor{ifsclistings@keyword}{RGB}{0,92,197}
-\definecolor{ifsclistings@string}{RGB}{196,26,22}
-\definecolor{ifsclistings@comment}{RGB}{0,128,0}
-\definecolor{ifsclistings@number}{RGB}{128,0,128}
-\definecolor{ifsclistings@func}{RGB}{111,66,193}
-\definecolor{ifsclistings@type}{RGB}{43,145,175}
-\definecolor{ifsclistings@gray}{RGB}{120,120,120}
-\definecolor{ifsclistings@frame}{RGB}{220,220,220}
+\definecolor{ifsclistings@bg}{RGB}{250,250,250}   % rgb(250,250,250)
+\definecolor{ifsclistings@text}{RGB}{40,44,52}    % rgb(40,44,52)
+\definecolor{ifsclistings@keyword}{RGB}{0,92,197} % rgb(0,92,197)
+\definecolor{ifsclistings@string}{RGB}{196,26,22} % rgb(196,26,22)
+\definecolor{ifsclistings@comment}{RGB}{0,128,0}  % rgb(0,128,0)
+\definecolor{ifsclistings@number}{RGB}{128,0,128} % rgb(128,0,128)
+\definecolor{ifsclistings@func}{RGB}{111,66,193}  % rgb(111,66,193)
+\definecolor{ifsclistings@type}{RGB}{43,145,175}  % rgb(43,145,175)
+\definecolor{ifsclistings@gray}{RGB}{120,120,120} % rgb(120,120,120)
+\definecolor{ifsclistings@frame}{RGB}{220,220,220}% rgb(220,220,220)
 
 % -----------------------%
 % ESTILO BASE
@@ -53,8 +53,6 @@
     {^}{{{\char`\^}}}1
     {~}{{{\char`\~}}}1
     {_}{{{\char`\_}}}1
-    {"}{{{\char`\"}}}1
-    {'}{{{\char`\'}}}1
     {`}{{{\char`\`}}}1
     {é}{{\'{e}}}1 {è}{{\`{e}}}1 {ê}{{\^{e}}}1 {ë}{{\¨{e}}}1
     {É}{{\'{E}}}1 {Ê}{{\^{E}}}1 {û}{{\^{u}}}1 {ù}{{\`{u}}}1

@@ -41,16 +41,24 @@
 \iftutex
   \RequirePackage{fontspec}
   \defaultfontfeatures{Scale=MatchLowercase}
-  \AtEndPreamble{%
-      % suprimir warnings de fontes faltando
-      \DeclareFontFamily{TS1}{aess}{}
-      \DeclareFontShape{TS1}{aess}{m}{n}{<->ssub * cmr/m/n}{}
-  }
-\else % Caso contrario, use as fontes padrao do LaTeX.
+
+  \IfFontExistsTF{Inconsolata}{
+    \setmonofont[
+      UprightFont = * Regular,
+      BoldFont = * Bold,
+      ItalicFont = * Regular,
+      BoldItalicFont = * Bold,
+      Scale=MatchLowercase,
+      Ligatures=NoCommon
+    ]{Inconsolata}
+  }{}
+
+\else
   \RequirePackage[T1]{fontenc}
+  \RequirePackage[utf8]{inputenc}
   \RequirePackage[sfdefault]{roboto}
 \fi
-
+% -------------------------------------------------%
 
 \DeclareRobustCommand{\ttfamily}{\fontencoding{T1}\fontfamily{lmtt}\selectfont}
 

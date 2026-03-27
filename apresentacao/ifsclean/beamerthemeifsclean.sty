@@ -21,9 +21,6 @@
 \RequirePackage[skins]{tcolorbox}
 \RequirePackage{ccicons}
 \RequirePackage{caption}
-
-
-\RequirePackage{listings,color,upquote}
 \RequirePackage{booktabs}
 \RequirePackage{array}
 \RequirePackage{multirow}
@@ -34,7 +31,8 @@
 \RequirePackage{xargs}
 \RequirePackage{siunitx}
 \RequirePackage{ragged2e}
-
+\RequirePackage{newunicodechar}
+\newunicodechar{º}{\textordmasculine}
 
 % Estilo de codigo-fonte para o beamer
 \RequirePackage{ifsclistings-beamer}
@@ -49,58 +47,20 @@
   \RequirePackage{fontspec}
   \defaultfontfeatures{Scale=MatchLowercase}
 
-  % \IfFontExistsTF{Inter}{% Fonte sans-serif
-  %   \setsansfont{Inter}[ 
-  %     Scale=0.88,
-  %     UprightFont = *-Light,
-  %     ItalicFont = *-Light Italic,
-  %     BoldFont = *-Bold,
-  %     BoldItalicFont = *-Bold Italic
-  %   ]
-  % }
+  \IfFontExistsTF{Inconsolata}{
+    \setmonofont[
+      UprightFont = * Regular,
+      BoldFont = * Bold,
+      ItalicFont = * Regular,
+      BoldItalicFont = * Bold,
+      Scale=MatchLowercase,
+      Ligatures=NoCommon
+    ]{Inconsolata}
+  }{}
 
-  % \IfFontExistsTF{Literata}{% Fonte serifada
-  %     \setmainfont{Literata}
-  % }
-  
-  \IfFontExistsTF{Inconsolata}{% Fonte monoespacada
-
-  \setmonofont{Inconsolata}[
-      AutoFakeSlant=0.2,
-      BoldFont={Inconsolata},
-      ItalicFont={Inconsolata},
-      BoldFeatures={FakeBold=2}
-    ]
-    \AtEndPreamble{%
-      % suprimir warnings de fontes faltando
-      \DeclareFontFamily{TS1}{aess}{}
-      \DeclareFontShape{TS1}{aess}{m}{n}{<->ssub * cmr/m/n}{}
-
-      \DeclareFontFamily{TU}{Inconsolata(1)}{}%
-      \DeclareFontShape{TU}{Inconsolata(1)}{m}{it}{<->ssub * Inconsolata(1)/m/n}{}%
-      \DeclareFontShape{TU}{Inconsolata(1)}{bx}{n}{<->ssub * Inconsolata(1)/b/n}{}%
-    }
-    \AtBeginDocument{%
-    % suprimir warnings de fontes faltando
-      \DeclareFontFamily{TS1}{aess}{}
-      \DeclareFontShape{TS1}{aess}{m}{n}{<->ssub * cmr/m/n}{}
-      
-      \DeclareFontFamily{TU}{Inconsolata(1)}{}%
-      \DeclareFontShape{TU}{Inconsolata(1)}{m}{it}{<->ssub * Inconsolata(1)/m/n}{}%
-      \DeclareFontShape{TU}{Inconsolata(1)}{bx}{n}{<->ssub * Inconsolata(1)/b/n}{}%
-    }
-    \renewcommand{\ttfamily}{\fontspec{Inconsolata}}
-  }
-
-\else % Caso contrario, use as fontes padrao do LaTeX.
+\else
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
-  \RequirePackage{helvet}
-  \RequirePackage{mathpazo}
-  \RequirePackage{courier}
-  % \usepackage[default]{opensans}
-  % \DeclareRobustCommand{\ttfamily}{\fontencoding{T1}\fontfamily{lmtt}\selectfont}
-  \renewcommand{\familydefault}{\sfdefault}
 \fi
 
 % -------------------------------------------------%
