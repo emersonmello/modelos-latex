@@ -58,6 +58,13 @@
     ]{Inconsolata}
   }{}
 
+  \IfFontExistsTF{Helvetica Neue}{
+    \setmainfont[
+      Scale=MatchLowercase,
+      SmallCapsFont = *,
+    ]{Helvetica Neue}
+  }{}
+
 \else
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
