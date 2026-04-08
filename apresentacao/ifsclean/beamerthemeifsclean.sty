@@ -9,7 +9,6 @@
 \RequirePackage{xcolor}
 \RequirePackage{xstring}
 \RequirePackage{kvoptions}
-\RequirePackage{textcomp}
 \RequirePackage{pgf}
 \RequirePackage{tikz}
 \RequirePackage{relsize}
@@ -17,7 +16,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{etoolbox} % \BeforeBeginEnvironment
 \RequirePackage{appendixnumberbeamer} % Don't number appendix frames.
-\RequirePackage{fontawesome5}
+\RequirePackage{fontawesome6}
 \RequirePackage[skins]{tcolorbox}
 \RequirePackage{ccicons}
 \RequirePackage{caption}
@@ -27,41 +26,67 @@
 \RequirePackage{url,color}
 \RequirePackage{soul}
 \urlstyle{sf}
-\RequirePackage{gensymb}
 \RequirePackage{xargs}
 \RequirePackage{siunitx}
 \RequirePackage{ragged2e}
 \RequirePackage{newunicodechar}
 \newunicodechar{º}{\textordmasculine}
+\newunicodechar{ª}{\textordfeminine}
+\RequirePackage{iftex}
 
 % Estilo de codigo-fonte para o beamer
 \RequirePackage{ifsclistings-beamer}
 
 
+
 % -------------------------------------------------%
 % Escolha de fontes
 % -------------------------------------------------%
-
-% Se o usuario estiver usando o LuaLaTeX ou o XeLaTeX, use o fontspec para carregar as fontes do sistema. 
-\iftutex
-  \RequirePackage{fontspec}
-  \defaultfontfeatures{Scale=MatchLowercase}
-
-  \IfFontExistsTF{Inconsolata}{
-    \setmonofont[
-      UprightFont = * Regular,
-      BoldFont = * Bold,
-      ItalicFont = * Regular,
-      BoldItalicFont = * Bold,
-      Scale=MatchLowercase,
-      Ligatures=NoCommon
-    ]{Inconsolata}
-  }{}
-
-\else
+\ifPDFTeX
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
+  \RequirePackage{textcomp}
+  \RequirePackage{gensymb}
+
+\else
+% Se o usuario estiver usando o LuaLaTeX ou o XeLaTeX, use o fontspec para carregar as fontes do sistema. 
+  \RequirePackage{fontspec}
+  \RequirePackage{unicode-math}
+  \usefonttheme{professionalfonts}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase,Renderer=HarfBuzz}
+  
+  \IfFontExistsTF{Inconsolata}{
+    \setmonofont[
+      UprightFont    = * Regular,
+      BoldFont       = * Bold,
+      ItalicFont     = * Regular,
+      BoldItalicFont = * Bold,
+      Scale          = 0.85, %MatchLowercase,
+      Ligatures      = NoCommon,
+      RawFeature     = {wght=300}, % Força a versão light da Inconsolata, que é mais legível em slides
+    ]{Inconsolata}
+  }{
+    \setmonofont{TeX Gyre Cursor}
+  }
+
+  \IfFontExistsTF{Inter}{
+    \setsansfont[
+      UprightFont = * Light,
+      BoldFont = * Bold,
+      ItalicFont = * Light Italic,
+      BoldItalicFont = * Bold Italic,
+    ]{Inter}
+  }{
+    \setsansfont{TeX Gyre Heros}
+  }
+
+  % \IfFontExistsTF{Fira Math}{
+  %     \setmathfont{Fira Math}[Scale=MatchLowercase]
+  % }{}
+  % \setmathfont{TeX Gyre Termes Math}[Scale=MatchLowercase]
 \fi
+
+
 
 % -------------------------------------------------%
 % Parametros do tema
@@ -166,17 +191,17 @@ at ([xshift=0mm]interior.base west) {\huge  #3};}
 \setbeamercolor{item projected}{fg=black,bg=white} 
 \begin{caixainfo}[#1]{#2}{#3}}{\end{caixainfo}}
 
-\newenvironmentx{informacao}[3][1=verde,2=white,3=\faInfoCircle]
+\newenvironmentx{informacao}[3][1=verde,2=white,3=\faCircleInfo]
 {\begin{caixa}[#1]{#2}{#3}}{\end{caixa}}
 
-\newenvironmentx{informacaoazul}[3][1=azul,2=white,3=\faInfoCircle]
+\newenvironmentx{informacaoazul}[3][1=azul,2=white,3=\faCircleInfo]
 {\begin{caixa}[#1]{#2}{#3}}{\end{caixa}}
 
-\newenvironmentx{atencao}[3][1=amarelo,2=black,3=\faExclamationTriangle]
+\newenvironmentx{atencao}[3][1=amarelo,2=black,3=\faTriangleExclamation]
 {\begin{caixa}[#1]{#2}{#3}\usebeamercolor[fg]{item caixaclara}
 }{\end{caixa}}
 
-\newenvironmentx{cuidado}[3][1=vermelho,2=white,3=\faExclamationCircle]
+\newenvironmentx{cuidado}[3][1=vermelho,2=white,3=\faCircleExclamation]
 {\begin{caixa}[#1]{#2}{#3}}{\end{caixa}}
 
 
@@ -192,15 +217,15 @@ at ([xshift=0mm]interior.base west) {\huge  #3};}
 \tcbset{alertmarkdown/.style={%
 arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityback=1,opacitybacktitle=1,opacityframe=0}}
 
-\newtcolorbox{nota}{alertmarkdown,colback=notecolor!5!white,colbacktitle=notecolor!5!white,borderline west={3pt}{0pt}{notecolor},coltitle=notecolor,title={\faInfoCircle~~\textbf{Nota}}}
+\newtcolorbox{nota}{alertmarkdown,colback=notecolor!5!white,colbacktitle=notecolor!5!white,borderline west={3pt}{0pt}{notecolor},coltitle=notecolor,title={\faCircleInfo~~\textbf{Nota}}}
 
 \newtcolorbox{tip}{alertmarkdown,colback=tipcolor!5!white,colbacktitle=tipcolor!5!white,borderline west={3pt}{0pt}{tipcolor},coltitle=tipcolor,title={\faLightbulb[regular]~~\textbf{Dica}}}
 
 \newtcolorbox{important}{alertmarkdown,colback=importantcolor!5!white,colbacktitle=importantcolor!5!white,borderline west={3pt}{0pt}{importantcolor},coltitle=importantcolor,title={\faExclamation~~\textbf{Importante}}}
 
-\newtcolorbox{warning}{alertmarkdown,colback=warningcolor!5!white,colbacktitle=warningcolor!5!white,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faExclamationTriangle~~\textbf{Atenção}}}
+\newtcolorbox{warning}{alertmarkdown,colback=warningcolor!5!white,colbacktitle=warningcolor!5!white,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faTriangleExclamation~~\textbf{Atenção}}}
 
-\newtcolorbox{caution}{alertmarkdown,colback=cautioncolor!5!white,colbacktitle=cautioncolor!5!white,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faExclamationCircle~~\textbf{Cuidado}}}
+\newtcolorbox{caution}{alertmarkdown,colback=cautioncolor!5!white,colbacktitle=cautioncolor!5!white,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faCircleExclamation~~\textbf{Cuidado}}}
 
 % -------------------------------------------------%
 % IFSC Logo

@@ -126,10 +126,10 @@ arc=0pt,outer arc=0pt,colback=#1!10!white,colframe=#1!50!black, boxsep=0pt,left=
 \newtcbox{\destx}[1][red]{on line, arc=7pt,colback=#1!10!white,colframe=#1!50!black, before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=6pt,right=6pt,top=2pt,bottom=2pt}
 
 % \newtcolorbox{informacao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.98\linewidth,colback=gray!5,colframe=gray,%
-% overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\Large \faInfoCircle}}}; }}
+% overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\Large \faCircleInfo}}}; }}
 
 % \newtcolorbox{atencao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.98\linewidth,colback=gray!5,colframe=gray,%
-% overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\Large \faExclamationCircle}}}; }}
+% overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\Large \faCircleExclamation}}}; }}
 
 % \newtcolorbox{cuidado}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.98\linewidth,colback=gray!5,colframe=gray,%
 % overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolor{amarelo}{{\Large \faWarning}}}; }}
@@ -152,17 +152,17 @@ at ([xshift=0mm]interior.base west) {\Huge  #3};}
 {\setbeamercolor{structure}{fg=#2} \usebeamercolor[fg]{item caixa}
 \begin{caixainfo}[#1]{#2}{#3}}{\end{caixainfo}}
 
-\newenvironmentx{informacao}[3][1=verde,2=white,3=\faInfoCircle]
+\newenvironmentx{informacao}[3][1=verde,2=white,3=\faCircleInfo]
 {\begin{caixa}[#1]{#2}{#3}}{\end{caixa}}
 
-\newenvironmentx{informacaoazul}[3][1=azul,2=white,3=\faInfoCircle]
+\newenvironmentx{informacaoazul}[3][1=azul,2=white,3=\faCircleInfo]
 {\begin{caixa}[#1]{#2}{#3}}{\end{caixa}}
 
-\newenvironmentx{atencao}[3][1=amarelo,2=cinzaescuro,3=\faExclamationTriangle]
+\newenvironmentx{atencao}[3][1=amarelo,2=cinzaescuro,3=\faTriangleExclamation]
 {\usebeamercolor[fg]{normal text}\begin{caixa}[#1]{#2}{#3}\usebeamercolor[fg]{item caixaclara}
 }{\end{caixa}}
 
-\newenvironmentx{cuidado}[3][1=vermelho,2=white,3=\faExclamationCircle]
+\newenvironmentx{cuidado}[3][1=vermelho,2=white,3=\faCircleExclamation]
 {\begin{caixa}[#1]{#2}{#3}}{\end{caixa}}
 
 % -------------------------------------------------%
@@ -177,15 +177,15 @@ at ([xshift=0mm]interior.base west) {\Huge  #3};}
 \tcbset{alertmarkdown/.style={%
 arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityback=1,opacitybacktitle=1,opacityframe=0}}
 
-\newtcolorbox{nota}{alertmarkdown,colback=notecolor!5!white,colbacktitle=notecolor!5!white,borderline west={3pt}{0pt}{notecolor},coltitle=notecolor,title={\faInfoCircle~~\textbf{Nota}}}
+\newtcolorbox{nota}{alertmarkdown,colback=notecolor!5!white,colbacktitle=notecolor!5!white,borderline west={3pt}{0pt}{notecolor},coltitle=notecolor,title={\faCircleInfo~~\textbf{Nota}}}
 
 \newtcolorbox{tip}{alertmarkdown,colback=tipcolor!5!white,colbacktitle=tipcolor!5!white,borderline west={3pt}{0pt}{tipcolor},coltitle=tipcolor,title={\faLightbulb[regular]~~\textbf{Dica}}}
 
 \newtcolorbox{important}{alertmarkdown,colback=importantcolor!5!white,colbacktitle=importantcolor!5!white,borderline west={3pt}{0pt}{importantcolor},coltitle=importantcolor,title={\faExclamation~~\textbf{Importante}}}
 
-\newtcolorbox{warning}{alertmarkdown,colback=warningcolor!5!white,colbacktitle=warningcolor!5!white,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faExclamationTriangle~~\textbf{Atenção}}}
+\newtcolorbox{warning}{alertmarkdown,colback=warningcolor!5!white,colbacktitle=warningcolor!5!white,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faTriangleExclamation~~\textbf{Atenção}}}
 
-\newtcolorbox{caution}{alertmarkdown,colback=cautioncolor!5!white,colbacktitle=cautioncolor!5!white,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faExclamationCircle~~\textbf{Cuidado}}}
+\newtcolorbox{caution}{alertmarkdown,colback=cautioncolor!5!white,colbacktitle=cautioncolor!5!white,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faCircleExclamation~~\textbf{Cuidado}}}
 % -------------------------------------------------%
 
 % Use esse comando para fazer links para sites.
