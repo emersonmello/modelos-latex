@@ -52,7 +52,6 @@
     {^}{{{\char`\^}}}1
     {~}{{{\char`\~}}}1
     {_}{{{\char`\_}}}1
-    {`}{{{\char`\`}}}1
     {é}{{\'{e}}}1 {è}{{\`{e}}}1 {ê}{{\^{e}}}1 {ë}{{\¨{e}}}1
     {É}{{\'{E}}}1 {Ê}{{\^{E}}}1 {û}{{\^{u}}}1 {ù}{{\`{u}}}1
     {â}{{\^{a}}}1 {à}{{\`{a}}}1 {á}{{\'{a}}}1 {ã}{{\~{a}}}1
@@ -292,4 +291,33 @@
     keywordstyle=[2]\color{ifsclistings@type},
    emph={println,print,each,collect,findAll},
     emphstyle=\color{ifsclistings@func}
+}
+
+% -----------------------%
+% SQL
+% -----------------------%
+
+\lstdefinelanguage{SQL}{
+  morekeywords={
+    SELECT, FROM, WHERE, INSERT, INTO, VALUES, UPDATE, DELETE,
+    CREATE, ALTER, DROP, TABLE, DATABASE, INDEX, VIEW,
+    JOIN, INNER, LEFT, RIGHT, FULL, ON,
+    GROUP, BY, ORDER, HAVING, DISTINCT,
+    UNION, ALL, AS, NULL, IS, NOT, AND, OR, IN, EXISTS,
+    BETWEEN, LIKE, LIMIT, OFFSET,
+    PRIMARY, KEY, FOREIGN, REFERENCES,
+    CHECK, DEFAULT, UNIQUE,
+    CASE, WHEN, THEN, ELSE, END
+  },
+  morekeywords=[2]{COUNT, SUM, AVG, MIN, MAX},
+  sensitive=false,
+  morecomment=[l]{--},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  moredelim=[is][\underbar]{@@}{@@}
+}
+
+\lstdefinestyle{sql}{
+  language=SQL,
+  style=ifsclistings@base
 }
