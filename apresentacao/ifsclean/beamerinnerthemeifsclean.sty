@@ -35,8 +35,10 @@
 \setbeamertemplate{background}{%
   \begin{tikzpicture}%
     \ifnum\thepage=1\relax%
-    \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
-    \fill[color=titlebgcolor] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+      \ifx\beamerthemeifsclean@titlebackground\@empty
+      \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+      \fill[color=titlebgcolor] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+      \fi
     \fi
   \end{tikzpicture}
 }
@@ -47,6 +49,15 @@
 \defbeamertemplate*{title page}{ifsclean}
 {% 
 \begin{tikzpicture}[overlay, remember picture]
+
+  % Background do slide de título
+  \ifx\beamerthemeifsclean@titlebackground\@empty\else
+      \node[opacity=\beamerthemeifsclean@titlebackgroundopacity] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{\beamerthemeifsclean@titlebackground}};
+  \fi
+
+  \ifx\beamerthemeifsclean@subject\@empty\else
+    \node [anchor=south west, text width=.85\paperwidth,align=left] (assunto) at (0,.2\paperheight){\usebeamerfont{subject}\usebeamercolor[titlefgcolor]{title}\insertsubject\par};
+  \fi
     
     \node [anchor=south west, text width=.85\paperwidth,align=left] (titulo) at (0,.075\paperheight){\usebeamerfont{title}\usebeamercolor[titlefgcolor]{title}\inserttitle\par};
   
@@ -58,9 +69,12 @@
 
     \node [below=1em of instituto, node distance=2.5em, text width=.85\paperwidth,align=flush right] (data) {\usebeamercolor[titlefgcolor]{date}\usebeamerfont{date}\insertdate\par};
 
-    \node [anchor=south west] (logoifsc) at (0,-5.2) {\usebox\ifsclogotexto};
-    % Caso queira usar o logo a partir de um PNG, comente a linha acima e descomente a linha abaixo
-    % \node [anchor=south west] (logoifsc) at (0,-5.2) {\pgfuseimage{ifsclogo}};
+    % Para incluir imagem como LOGO ou o logo gerado com TikZ
+    \ifx\beamerthemeifsclean@logo\@empty
+      \node [anchor=south west] (logoifsc) at (0,-5.2) {\usebox\ifsclogotexto};
+    \else
+      \node [anchor=south west] (logoifsc) at (0,-5.2) {\includegraphics[width=2.5cm]{\beamerthemeifsclean@logo}};
+    \fi
 
 \end{tikzpicture}%
 }

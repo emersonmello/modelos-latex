@@ -1,49 +1,43 @@
 %-------------------------------------------------%
-% 2025-04-01 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
+% 2026-04-08 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 %-------------------------------------------------%
-% Sets aspect ratio to 16:9, and frame size to 160 mm by 90 mm.
 \documentclass[aspectratio=169]{beamer}
-
-% Sets aspect ratio to 4:3, and frame size to 128 mm by 96 mm
-% \documentclass{beamer}
-
-% Sets aspect ratio to 16:10, and frame size to 160 mm by 100 mm.
-% \documentclass[aspectratio=161]{beamer}
-
 \usepackage[english,brazilian]{babel}
 
-% \pgfdeclareimage[width=3cm]{ifsclogo}{img/ifsc-logo-h-branco.png}
+% Cores disponíveis para o tema:
+% amarelo     % HEX: #FEE886
+% vermelho    % HEX: #E44131
+% verde       % HEX: #31A250
+% azul        % HEX: #4080EC
+% cinzaescuro % HEX: #595959
+% azulescuro  % HEX: #242B3A
+% redwine     % HEX: #880E4F
+% azulcinza   % HEX: #435172
+% cyanIFSC    % HEX: #0D4F4D
+% fundoIFSC   % HEX: #EEF1EC
+% azulclaro   % HEX: #1B558E
 
 % Crie cores personalizadas para usar no tema
-\definecolor[named]{novaCor}{HTML}{303A52}
-\definecolor{verdeescuro}{RGB}{0,112,19}
+% \definecolor[named]{novaCor}{HTML}{303A52}
+% \definecolor{verdeescuro}{RGB}{0,112,19}
 
-% Outras cores já definidas no tema
-% redwine
-% azulcinza
-% azulescuro
-% cyanIFSC
-% fundoIFSC
-% cinzaescuro
-% verdeifsc
-% vermelhoifsc
-% vermelhoifscclaro
-
-% Theme parameters
+% Parâmetros do tema
 \usetheme[
-    foreground=azulcinza, % cor do texto (usado no título dos slides) 
-    % background=white, % cor do fundo dos slides
-    % textfg=black, % cor do texto nos slides
-    % titlefg=redwine, % cor do texto do slide de título
-    titlebg=azulcinza, % cor do fundo do slide de título
-    frametitlefg=azulcinza, % cor do texto do título do frame
-    % frametitlebg=redwine, % cor do fundo do título do frame
-    % sectionfg=redwine, % cor do texto do slide da seção
-    sectionbg=azulcinza, % cor do fundo do slide de seção
-    % blocktitlefg=white, % cor do texto do título dos blocos
-    blocktitlebg=azulcinza, % cor do fundo do título dos blocos
-    % blockbodyfg=cinzaescuro, % cor do texto dentro dos blocos
-    % itemsep=7pt % Espaçamento entre os itens das listas
+    % logo=img/ifsc-logo-h-branco.png % imagem do logo da instituição
+    titlefg=white, % texto do slide de título
+    titlebg=azulclaro, % fundo do slide de título
+    frametitlefg=azulclaro, % texto do título do frame
+    frametitlebg=white, % fundo do título do frame
+    % textfg=black, % texto dos slides
+    % background=white, % fundo dos slides
+    % sectionfg=white, % texto do slide de seção
+    sectionbg=azulclaro, % fundo do slide de seção
+    % blocktitlefg=white, % texto do título dos blocos
+    blocktitlebg=azulclaro, % fundo do título dos blocos
+    % blockbodyfg=cinzaescuro, % texto dos blocos
+    % itemsep=7pt % Espaço entre itens das listas
+    % titlebackground=img/sao-jose.jpg, % imagem de fundo do slide de título
+    titlebackgroundopacity=1, % opacidade da imagem de fundo (0 a 1)
 ]{ifsclean}
 
 \usepackage[style=abnt,noslsn,justify]{biblatex}
@@ -58,6 +52,8 @@
 \title{Título da apresentação}
 
 \subtitle{Modelo de slides para o IFSC}
+
+\subject{Disciplina de \LaTeX~para o IFSC}
 
 \author{Emerson Ribeiro de Mello}
 
@@ -240,7 +236,7 @@
 \end{frame}
 
 \begin{frame}{Horários}
-    {Veja outros ícones em \url{https://ctan.org/pkg/fontawesome5}}
+    {Veja outros ícones em \url{https://ctan.org/pkg/fontawesome6}}
     \begin{itemize}
         \item Horário das aulas 
         \begin{caixa}[azul]{white}{\faCalendarDays[regular]}
@@ -285,6 +281,18 @@
         Maça    &        1   &   2,50 \\ \bottomrule
     \end{tabular}
 \end{center}
+\end{frame}
+
+\section{Equações}
+
+\begin{frame}{Equações}
+\begin{equation}
+    \int_a^b f(x) dx = F(b) - F(a)
+\end{equation}
+
+\begin{equation}
+    \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+\end{equation}
 \end{frame}
 
 \section{Incluindo código fonte}

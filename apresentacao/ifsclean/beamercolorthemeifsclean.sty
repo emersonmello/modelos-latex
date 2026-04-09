@@ -1,48 +1,44 @@
-\definecolor[named]{amarelo}{HTML}{FEE886}
-\definecolor[named]{vermelho}{HTML}{e44131}
-\definecolor[named]{verde}{HTML}{31a250}
-\definecolor[named]{azul}{HTML}{4080ec}
-\definecolor[named]{cinzaescuro}{HTML}{595959}
-\definecolor[named]{azulescuro}{HTML}{242b3a}
-
-% dark: #007013 % light: #69d26f
-\definecolor{verdeifsc}{RGB}{50,160,65} % HEX: #32A041
-% dark: #8f0000 % light: #ff5747
-\definecolor{vermelhoifsc}{RGB}{200,25,30} % hex: #C8191E
-\definecolor{vermelhoifscclaro}{HTML}{ff5747} % hex: #C8191E
-
-\definecolor[named]{redwine}{HTML}{880e4f}
-\definecolor[named]{azulcinza}{HTML}{435172}
-
-\definecolor[named]{cyanIFSC}{HTML}{0D4F4D}
-\definecolor[named]{fundoIFSC}{HTML}{eef1ec}
-
-\definecolor[named]{azulclaro}{HTML}{1b558e}
-
+% -------------------------------------------------%
+% Definição de cores básicas
+% -------------------------------------------------%
+\definecolor[named]{amarelo}{HTML}{FEE886}     % HEX: #FEE886
+\definecolor[named]{vermelho}{HTML}{e44131}    % HEX: #E44131
+\definecolor[named]{verde}{HTML}{31a250}       % HEX: #31A250
+\definecolor[named]{azul}{HTML}{4080ec}        % HEX: #4080EC
+\definecolor[named]{cinzaescuro}{HTML}{595959} % HEX: #595959
+\definecolor[named]{azulescuro}{HTML}{242b3a}  % HEX: #242B3A
+\definecolor[named]{redwine}{HTML}{880e4f}     % HEX: #880E4F
+\definecolor[named]{azulcinza}{HTML}{435172}   % HEX: #435172
+\definecolor[named]{cyanIFSC}{HTML}{0D4F4D}    % HEX: #0D4F4D
+\definecolor[named]{fundoIFSC}{HTML}{eef1ec}   % HEX: #EEF1EC
+\definecolor[named]{azulclaro}{HTML}{1b558e}   % HEX: #1B558E
 
 % -------------------------------------------------%
-% Cores definidas como parâmetros do tema
+% Cores institucionais IFSC
+% -------------------------------------------------%
+\definecolor{verdeifsc}{RGB}{50,160,65}       % HEX: #32A041
+\definecolor{vermelhoifsc}{RGB}{200,25,30}    % HEX: #C8191E
+\definecolor{vermelhoifscclaro}{HTML}{ff5747} % HEX: #FF5747
+
+% -------------------------------------------------%
+% Cores parametrizadas pelo tema
 % -------------------------------------------------%
 \definecolor{fgcolor}{named}{\beamerthemeifsclean@foreground}
 \definecolor{bgcolor}{named}{\beamerthemeifsclean@background}
 \definecolor{textcolor}{named}{\beamerthemeifsclean@textfg}
-
 \definecolor{titlefgcolor}{named}{\beamerthemeifsclean@titlefg}
 \definecolor{titlebgcolor}{named}{\beamerthemeifsclean@titlebg}
-
 \definecolor{frametitlefgcolor}{named}{\beamerthemeifsclean@frametitlefg}
 \definecolor{frametitlebgcolor}{named}{\beamerthemeifsclean@frametitlebg}
-
 \definecolor{sectionfgcolor}{named}{\beamerthemeifsclean@sectionfg}
 \definecolor{sectionbgcolor}{named}{\beamerthemeifsclean@sectionbg}
-
 \definecolor{blocktitlefgcolor}{named}{\beamerthemeifsclean@blocktitlefg}
 \definecolor{blocktitlebgcolor}{named}{\beamerthemeifsclean@blocktitlebg}
 \definecolor{blockbodyfgcolor}{named}{\beamerthemeifsclean@blockbodyfg}
 
-
 % -------------------------------------------------%
-
+% Configuração das cores do tema Beamer
+% -------------------------------------------------%
 \setbeamercolor*{palette primary}{fg=fgcolor,bg=bgcolor}
 \setbeamercolor*{structure}{fg=textcolor,bg=bgcolor}
 \setbeamercolor*{section in toc}{fg=textcolor}
@@ -52,7 +48,6 @@
 
 \setbeamercolor*{normal text}{fg=textcolor,bg=bgcolor}
 \setbeamercolor*{alerted text}{fg=vermelho}
-% \setbeamercolor{example text}{fg=slidefg}
 
 \setbeamercolor*{block title}{fg=blocktitlefgcolor, bg=blocktitlebgcolor!80!blocktitlefgcolor}
 \setbeamercolor*{block body}{fg=blockbodyfgcolor,bg=blocktitlebgcolor!10!blocktitlefgcolor}

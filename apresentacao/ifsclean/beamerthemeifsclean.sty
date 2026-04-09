@@ -102,6 +102,10 @@
 \DeclareStringOption[\beamerthemeifsclean@background]{titlefg}[\beamerthemeifsclean@background]
 \DeclareStringOption[\beamerthemeifsclean@foreground]{titlebg}[\beamerthemeifsclean@foreground]
 
+\DeclareStringOption{titlebackground}
+\DeclareStringOption{titlebackgroundopacity}[0.8]
+\DeclareStringOption{logo}
+
 \DeclareStringOption[\beamerthemeifsclean@background]{sectionfg}[\beamerthemeifsclean@background]
 \DeclareStringOption[\beamerthemeifsclean@foreground]{sectionbg}[\beamerthemeifsclean@foreground]
 
@@ -162,6 +166,14 @@
 % Use esse comando para fazer links para sites
 \newcommand{\Myhref}[3][azul]{\href{#2}{\color{#1}{#3}}}%
 
+% Comando para incluir um assunto no slide de título
+\def\beamerthemeifsclean@subject{}
+\renewcommand{\subject}[1]{%
+  \def\beamerthemeifsclean@subject{#1}%
+  \hypersetup{pdfsubject={#1}}%
+}
+\newcommand{\insertsubject}{\beamerthemeifsclean@subject}
+
 % -------------------------------------------------%
 % Comando para licenciamento 
 % -------------------------------------------------%
@@ -178,10 +190,15 @@
 % ---------------------------------------
 % Baloes de informacao
 % ---------------------------------------
-\newtcolorbox[auto counter,number within=section]{caixainfo}[3][]{
-enhanced,colback=#1,colframe=#1,fontupper=\color{#2},leftrule=15mm,
-underlay unbroken and first={\node[below,text=#2,anchor=east]
-at ([xshift=0mm]interior.base west) {\huge  #3};}
+\newtcolorbox[auto counter,number within=section]{caixainfo}[3][]{%
+  enhanced,
+  colback=#1,colframe=#1,
+  fontupper=\color{#2},
+  leftrule=15mm,
+  underlay unbroken and first={%
+    \node[below,text=#2,anchor=east]
+      at ([xshift=0mm]interior.base west) {\huge  #3};
+  }
 }
 
 \newenvironmentx{caixa}[3][1=verde]
