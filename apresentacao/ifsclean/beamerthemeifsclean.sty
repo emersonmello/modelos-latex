@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemeifsclean}[2025/04/01 v2.0 - IFSC Clean Beamer theme]
+\ProvidesPackage{beamerthemeifsclean}[2026/04/10 v3.0 - IFSC Clean Beamer theme]
 
 \mode<presentation>
 
@@ -10,8 +10,8 @@
 \RequirePackage{xstring}
 \RequirePackage{kvoptions}
 \RequirePackage{pgf}
-\RequirePackage{tikz}
 \RequirePackage{relsize}
+\RequirePackage{tikz}
 \usetikzlibrary{calc,math,positioning}
 \RequirePackage{graphicx}
 \RequirePackage{etoolbox} % \BeforeBeginEnvironment
@@ -19,11 +19,11 @@
 \RequirePackage{fontawesome6}
 \RequirePackage[skins]{tcolorbox}
 \RequirePackage{ccicons}
-\RequirePackage{caption}
+% \RequirePackage{caption}
 \RequirePackage{booktabs}
+\RequirePackage{siunitx}
 \RequirePackage{array}
 \RequirePackage{multirow}
-\RequirePackage{url,color}
 \RequirePackage{soul}
 \urlstyle{sf}
 \RequirePackage{xargs}
@@ -57,8 +57,8 @@
   
   \IfFontExistsTF{Inconsolata}{
     \setmonofont[
-      UprightFont    = * Regular,
-      BoldFont       = * Bold,
+      % UprightFont    = * Regular,
+      % BoldFont       = * Bold,
       ItalicFont     = * Regular,
       BoldItalicFont = * Bold,
       Scale          = 0.85, %MatchLowercase,
@@ -124,15 +124,16 @@
 
 % Configuracoes para o pacote siunitx
 \sisetup{
-  input-ignore={.},
-  input-decimal-markers={,},
-  output-decimal-marker = {,},
-  group-separator={.},
-  group-minimum-digits=4,
+  locale = DE, % Configura o pacote para usar a vírgula como separador decimal
+  output-decimal-marker = {,}, % Define a vírgula como separador decimal na saída
+  group-separator = {.}, % Define o ponto como separador de milhares
+  group-minimum-digits = 4, % Define o número mínimo de dígitos para usar o separador de milhares
+  per-mode = symbol, % Define o formato para unidades por outra unidade (e.g. m/s)
+  detect-all % Detecta o modo matemático ou texto para formatar as unidades de acordo
 }
 
 % Para diminuir o tamanho da fonte do caption da figura
-\captionsetup[figure]{font=tiny}
+% \captionsetup[figure]{font=tiny}
 
 \hypersetup{pdffitwindow=false, pdfstartview={FitW},colorlinks=false}
 

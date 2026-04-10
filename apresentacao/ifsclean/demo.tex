@@ -36,7 +36,7 @@
     blocktitlebg=azulclaro, % fundo do título dos blocos
     % blockbodyfg=cinzaescuro, % texto dos blocos
     % itemsep=7pt % Espaço entre itens das listas
-    % titlebackground=img/sao-jose.jpg, % imagem de fundo do slide de título
+    titlebackground=img/sao-jose.jpg, % imagem de fundo do slide de título
     titlebackgroundopacity=1, % opacidade da imagem de fundo (0 a 1)
 ]{ifsclean}
 
@@ -91,10 +91,19 @@
             \item Segundo item
         \end{itemize}
         \item Segundo item
+        \begin{itemize}
+            \item Uma entrada com \texttt{fonte monoespaçada} em \texttt{\textit{itálico}} e em \texttt{\textbf{negrito}}
+            \item Formatação de unidade usando o pacote \texttt{siunitx}: 
+            \begin{itemize}
+                \item A velocidade da luz é \SI{299792458}{\meter\per\second}
+                \item A aceleração da gravidade é \SI{9.81}{\meter\per\second\squared}
+                \item \num{12345.678}, \num{0.000001}, \num{1e-6}, \num{1e6}, \num{1.23e-4}, \num{1.23e4}, \num{1.23e-4}, \num{1.23e4}
+            \end{itemize}
+        \end{itemize}
+
         \item Terceiro item 
         \begin{itemize}
-            \item Neste linha é apresentado um item que tem um texto grande que deverá ocupar mais de uma linha no slide. Assim, espera-se mostrar como será o alinhamento na margem esquerda
-            \item Segundo item
+            \item Nesta linha é apresentada um item que tem um texto grande que deverá ocupar mais de uma linha no slide. Assim, espera-se mostrar como será o alinhamento na margem esquerda
         \end{itemize}
     \end{enumerate}
 \end{frame}
@@ -259,31 +268,50 @@
 
 \begin{frame}{Figura 4x3}
     \begin{center}
-        \includegraphics[height=.8\paperheight]{figs/4x3.png}
+        \includegraphics[height=.7\paperheight]{figs/4x3.png}
     \end{center}
 \end{frame}
     
 
 \begin{frame}{Figura 16x9}
 \begin{center}
-    \includegraphics[width=.95\linewidth]{figs/16x9.png}
+    \includegraphics[width=.8\linewidth]{figs/16x9.png}
 \end{center}
 \end{frame}
 
 \section{Tabelas}
 
-\begin{frame}{Tabelas}
-\begin{center}
-    \begin{tabular}{l r r}\\\toprule
-        Produto & Quantidade & Valor (R\$) \\\midrule
-        Água    &      100   &   1,50 \\ 
-        Banana  &       10   &   3,00 \\
-        Maça    &        1   &   2,50 \\ \bottomrule
+\begin{frame}{Tabelas}{Usando pacotes booktabs e siunitx}
+
+    
+    \begin{center}
+        % Campo S do pacote siunitx para alinhar os números pela vírgula decimal
+        % A opção table-format é usada para alinhar os números pela vírgula decimal
+        % 3.2 significa que o número pode ter até 3 dígitos antes da vírgula e 2 dígitos depois da vírgula
+    \begin{tabular}{S[table-format=3.2]}\toprule
+        {Temperatura (\si{\celsius})} \\\midrule
+        23.5 \\
+        100.0 \\
+        -5.25 \\
+        \bottomrule
     \end{tabular}
-\end{center}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{l r r}\\\toprule
+            Produto & Quantidade & Valor (R\$)  \\\midrule
+            Água    &      1000  &  1234,50 \\ 
+            Banana  &       10   &   12,34 \\
+            Maça    &        1   &   0,57 \\ \bottomrule
+        \end{tabular}
+    \end{center}
+
 \end{frame}
 
+
 \section{Equações}
+
+
 
 \begin{frame}{Equações}
 \begin{equation}
