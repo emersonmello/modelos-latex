@@ -3,54 +3,28 @@
 % 2015-2026 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % ------------------------------------------------------------%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ifscutils}[2026/03/25 v2.0 Utilidades para documentos no IFSC]
-
-\PassOptionsToPackage{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black}{hyperref}
-\PassOptionsToPackage{hyphens}{url}
-
-\RequirePackage{iftex}
-\RequirePackage{tikz,pgf}
-\usetikzlibrary{calc,math,positioning}
-\RequirePackage{subcaption} %  para subfigures
-\RequirePackage{pdflscape}
-\RequirePackage{xargs}
-\RequirePackage{etoolbox} % \BeforeBeginEnvironment
-\RequirePackage{fontawesome6}
-\RequirePackage{graphicx}
-\RequirePackage{breakcites} % para quebrar citações que estouram a margem
-\RequirePackage{soul}
-\RequirePackage{csquotes}
-\RequirePackage[most]{tcolorbox}
-\RequirePackage[inline]{enumitem}
-\RequirePackage[normalem]{ulem}
-\RequirePackage{xifthen}
-\RequirePackage{xcolor}
-% Para formatar unidades físicas para o padrão usado no Brasil
-\RequirePackage{siunitx}
-\RequirePackage{supertabular,longtable}
-\RequirePackage{mdframed}
-\RequirePackage{ragged2e}
-\RequirePackage{ccicons}
-\RequirePackage{pifont}
-
-\RequirePackage{newunicodechar}
-\newunicodechar{º}{\textordmasculine}
-\newunicodechar{ª}{\textordfeminine}
-\RequirePackage[brazilian]{babel}  
+\ProvidesPackage{ifscutils}[2026/04/10 v3.0 Utilidades para documentos no IFSC]
 
 % -------------------------------------------------%
 % Configurações para compatibilidade com diferentes engines de compilação
 % -------------------------------------------------%
+\RequirePackage{iftex}
 \ifPDFTeX
   % -------- pdfLaTeX --------
   \RequirePackage[utf8]{inputenc}
   \RequirePackage[T1]{fontenc}
-  % \RequirePackage[brazilian]{babel}  
+  \RequirePackage[brazilian]{babel}  
+  \RequirePackage{inconsolata}
+  \RequirePackage{inter}
   \else
   % -------- XeLaTeX ou LuaLaTeX --------
   \RequirePackage{fontspec}
   \RequirePackage{unicode-math}
-  
+  \RequirePackage{newunicodechar}
+  \newunicodechar{º}{\textordmasculine}
+  \newunicodechar{ª}{\textordfeminine}
+
+  \RequirePackage[brazilian]{babel}    
   % \RequirePackage{polyglossia}
   % \setmainlanguage{brazil}
 
@@ -60,62 +34,94 @@
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase,Renderer=HarfBuzz}
 
   \IfFontExistsTF{Inconsolata}{
-    \setmonofont[
-      UprightFont = * Regular,
-      BoldFont = * Bold,
-      ItalicFont = * Regular,
-      BoldItalicFont = * Bold,
-      Scale=MatchLowercase,
-      Ligatures=NoCommon
-    ]{Inconsolata}
+    \setmonofont{Inconsolata}
   }{}
 
   \IfFontExistsTF{Inter}{
     \setmainfont[
-      UprightFont = * Regular,
-      BoldFont = * Bold,
-      ItalicFont = * Italic,
-      BoldItalicFont = * Bold Italic,
       SmallCapsFont = *,
     ]{Inter}
   }{
     \setmainfont{TeX Gyre Heros}
   }
-
   % \IfFontExistsTF{Fira Math}{
   %     \setmathfont{Fira Math}[Scale=MatchLowercase]
   % }{}
-
-
 \fi
 % -------------------------------------------------%
 
-% Set up how figure and table captions are displayed
-% Make the standard latex tables look so much better
-\RequirePackage{array,booktabs,bookmark,multirow,caption}
-\RequirePackage{hyperref}
-% \urlstyle{sf}
+\RequirePackage{tikz,pgf}
+\usetikzlibrary{calc,math,positioning}
+\RequirePackage{subcaption} %  para subfigures
+\RequirePackage{pdflscape}
+\RequirePackage{etoolbox} % \BeforeBeginEnvironment
+\RequirePackage{graphicx}
+\RequirePackage{breakcites} % para quebrar citações que estouram a margem
+\RequirePackage{soul}
+\RequirePackage{csquotes}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{mdframed}
+\RequirePackage[inline]{enumitem}
+\RequirePackage[normalem]{ulem}
+\RequirePackage{xargs}
+\RequirePackage{xifthen}
+\RequirePackage{xcolor}
+\RequirePackage{siunitx}
+\RequirePackage{supertabular,longtable}
+\RequirePackage{ragged2e}
+\RequirePackage{fontawesome6}
+\RequirePackage{ccicons}
+\RequirePackage{pifont}
+\PassOptionsToPackage{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black}{hyperref}
+\RequirePackage{array,booktabs,bookmark,multirow,hyperref}
 
-\RequirePackage{ifsclistings}% Estilo para código-fonte
+% Pacote com personalizações para o listings
+% Esse arquivo deve estar no mesmo diretório do ifscutils.sty ou 
+% em um diretório que esteja no caminho de busca do LaTeX
+\RequirePackage{ifsclistings}
 
 
+% Configuracoes para o pacote siunitx
+\sisetup{
+  locale = DE, % Configura o pacote para usar a vírgula como separador decimal
+  output-decimal-marker = {,}, % Define a vírgula como separador decimal na saída
+  group-separator = {.}, % Define o ponto como separador de milhares
+  group-minimum-digits = 4, % Define o número mínimo de dígitos para usar o separador de milhares
+  per-mode = symbol, % Define o formato para unidades por outra unidade (e.g. m/s)
+  detect-all % Detecta o modo matemático ou texto para formatar as unidades de acordo
+}
 
-% Aumentando a altura das linhas nas tabelas
-\renewcommand{\arraystretch}{1.2}
 
 %---------------------------------------------------------%
-
+% Aumentando a altura das linhas nas tabelas
+\renewcommand{\arraystretch}{1.2}
 % espaçamento entre linhas
 \renewcommand{\baselinestretch}{1.05} 
-
+%---------------------------------------------------------%
 
 % ----------------------------------------------------
-% Criação do logo do IFSC
+% Definição de cores 
 % ----------------------------------------------------
-
 \definecolor{verdeifsc}{RGB}{50,160,65}
 \definecolor{vermelhoifsc}{RGB}{200,25,30}
+\definecolor{azul}{HTML}{7da6cb}
+\definecolor{amarelo}{HTML}{f0b400}
+\definecolor{amareloinfo}{HTML}{FEE886}
+\definecolor{vermelhoinfo}{HTML}{e44131}
+\definecolor{verdeinfo}{HTML}{31a250}
+\definecolor{azulinfo}{HTML}{4080ec}
 
+\definecolor{notecolor}{RGB}{9,105,218}
+\definecolor{tipcolor}{RGB}{26,127,25}
+\definecolor{importantcolor}{RGB}{130,80,223}
+\definecolor{warningcolor}{RGB}{253,165,15}
+\definecolor{cautioncolor}{RGB}{207,34,46}
+
+
+
+% ----------------------------------------------------
+% Criação do logo do IFSC com TikZ
+% ----------------------------------------------------
 \tikzmath{%
   real \dimensao, \canto, \diametro, \dist, \col, \lin;%
   \dimensao   = 1;%
@@ -125,7 +131,7 @@
   \lin = 6;%
   \col = 2.2;%
 }
-
+% Definindo os estilos para os nós do logo
 \tikzset{squarednode/.style={rectangle, fill=#1, minimum size=\dimensao cm,rounded corners=\canto cm}}%
 \tikzset{roundnode/.style={circle, fill=#1, minimum size=\diametro cm}}%
 
@@ -164,31 +170,10 @@
 % \usebox\ifsclogopreto
 
 
-
-% ---------------------------
-% Cores
-% ---------------------------
-
-\definecolor{coolblack}{rgb}{0.0, 0.18, 0.39}
-\definecolor{darkcerulean}{rgb}{0.03, 0.27, 0.49}
-\definecolor{darkpastelblue}{rgb}{0.47, 0.62, 0.8}
-\definecolor{indigo}{rgb}{0.0, 0.25, 0.42}
-\definecolor{azul}{HTML}{7da6cb}
-\definecolor{amarelo}{HTML}{f0b400}
-
-\definecolor{amareloinfo}{HTML}{FEE886}
-\definecolor{vermelhoinfo}{HTML}{e44131}
-\definecolor{verdeinfo}{HTML}{31a250}
-\definecolor{azulinfo}{HTML}{4080ec}
-\definecolor[named]{cinzaescuro}{HTML}{595959}
-
-
-\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
-
 % Definindo o espaço entre caption e a tabela
-\captionsetup[table]{skip=10pt}
-\captionsetup[figure]{skip=10pt}
-\captionsetup[lstlisting]{skip=10pt}
+% \captionsetup[table]{skip=10pt}
+% \captionsetup[figure]{skip=10pt}
+% \captionsetup[lstlisting]{skip=10pt}
 
 % Novos tipos de colunas alinhado: à direita, centralizado ou esquerda e que permita definir a largura
 
@@ -202,20 +187,12 @@
 \renewcommand*\lstlistingname{Listagem}
 
 
-
 % Para ficar visível os Overfull hbox
 \overfullrule=2cm
 
-\sisetup{
-  input-ignore={.},
-  input-decimal-markers={,},
-  output-decimal-marker = {,},
-  group-separator={.},
-  group-minimum-digits=4,
-}
-
 % para corrigir um bug na margem lateral esquerda do subtitle
 \tikzset{mdfsubtitlebackground/.style={draw=none,fill=\mdf@subtitlebackgroundcolor}}
+
 
 %---------------------------------------------------------%
 % Comandos
@@ -243,81 +220,6 @@
 }
 
 
-
-% Ambiente para manter histórico das revisões
-\def\numeroRevisao{0.0.0}
-
-\newenvironment{historico}[1][chapter]{%
-\newcommand{\revisao}[3]{%
-  \ifthenelse{\equal{\numeroRevisao}{0.0.0}}{%
-    \gdef \numeroRevisao{\string##1}% Update version number
-  }%
-  \string##1 & ##2 & ##3\\%
-}%
-\ifthenelse{\equal{\string #1}{\string chapter}}
-    {\chapter*{Histórico de revisões}}%
-    {\section*{Histórico de revisões}}%
-
-\begin{center}%
-  \begin{tabular*}{\linewidth}{@{}rp{2cm}p{.75\linewidth}@{}}\toprule%
-    Revisão & Data & Descrição\\\midrule%
-}{%
-\bottomrule%
-\end{tabular*}%    
-\end{center}%
-}%
-
-
-
-
-%---------------------------------------------------------%
-% Listas
-%---------------------------------------------------------%
-
-\newlist{lista}{enumerate}{10} 
-\setlist[lista,1]{resume,label*=\arabic*.}
-\setlist[lista]{label*=\arabic*.}
-
-% Macro para traduzir o contador de forma a deixar em ordinal número < 10 e cardinal quando >=10
-\def\traduzir#1{
-\ifx @#1%
-\else
-\ifnum\number#1<10
-\number#1º%
-\else
-\number#1%
-\fi
-\fi
-}
-\def\ordcard#1{\expandafter\@ordcard\csname c@#1\endcsname}
-\def\@ordcard#1{\traduzir{#1}}
-\AddEnumerateCounter{\ordcard}{\@ordcard}{999}
-
-
-
-% Novas listas enumerate para artigo, paragrafo, inciso e alinea
-
-\newlist{artigo}{enumerate}{5}
-% \setlist[artigo]{resume,labelindent=\parindent, itemindent=0px, align=left, label=\textbf{Art. \arabic*º}, ref=art. \arabic*º}
-
-\setlist[artigo,1]{resume,labelindent=\parindent, itemindent=0px, align=left, label=\textbf{Art. \ordcard*}, ref=art. \ordcard*}
-\setlist[artigo,2]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\textbf{Parágrafo único -}, ref=parágrafo único}
-\setlist[artigo,3]{start=1,labelindent=\parindent, topsep=0pt,align=left,itemindent=0px, label=\Roman*.,ref=\Roman*}
-\setlist[artigo,4]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px,align=left, label=\alph*),ref=\alph*}
-\setlist[artigo,5]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\arabic*.}
-
-\newlist{paragrafo}{enumerate}{4}
-\setlist[paragrafo,1]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\textbf{§\ordcard*}, ref=§\ordcard*}
-\setlist[paragrafo,2]{start=1,labelindent=\parindent, topsep=0pt,align=left,itemindent=0px, label=\Roman*.,ref=\Roman*}
-\setlist[paragrafo,3]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px,align=left, label=\alph*),ref=\alph*}
-\setlist[paragrafo,4]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\arabic*.}
-
-\newlist{inciso}{enumerate}{3}
-\setlist[inciso,1]{start=1,labelindent=\parindent, topsep=0pt,align=left, itemindent=0px,label=\Roman*.,ref=\Roman*}
-\setlist[inciso,2]{start=1,labelindent=\parindent,topsep=0pt, align=left,itemindent=0px, label=\alph*),ref=\alph*}
-\setlist[inciso,3]{start=1,labelindent=\parindent,topsep=0pt, itemindent=0px, align=left, label=\arabic*.}
-
-
 % ---------------------------------------
 % todo list (check list) Optional commands: \cmark and \xmark
 % https://tex.stackexchange.com/a/313337
@@ -335,16 +237,6 @@
 \newtcbox{\dest}[1][red]{on line,
 arc=0pt,outer arc=0pt,colback=#1!10!white,colframe=#1!50!black, boxsep=0pt,left=1pt,right=1pt,top=2pt,bottom=2pt, boxrule=0pt,bottomrule=0pt,toprule=0pt}
 \newtcbox{\destx}[1][red]{on line, arc=7pt,colback=#1!10!white,colframe=#1!50!black, before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=6pt,right=6pt,top=2pt,bottom=2pt}
-
-% \newtcolorbox{informacao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.987\linewidth,colback=gray!5,colframe=gray,%
-% overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\huge \faCircleInfo}}}; }}
-
-% \newtcolorbox{atencao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.987\linewidth,colback=gray!5,colframe=gray,%
-% overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\huge \faCircleExclamation}}}; }}
-
-% \newtcolorbox{cuidado}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.987\linewidth,colback=gray!5,colframe=gray,%
-% overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolor{amarelo}{{\huge \faTriangleExclamation}}}; }}
-
 
 \newtcolorbox[auto counter,number within=section]{caixainfo}[4][]{
 colback=#2,colframe=#2,coltitle=#3,fonttitle=\bfseries\sffamily,
@@ -365,26 +257,32 @@ at ([xshift=0mm]interior.base west) {\Huge  #4};}
 % at ([xshift=-6mm]interior.base west) {\Huge  #4};}
 }
 
-\newenvironmentx{informacao}[4][1=,2=verdeinfo!30,3=black!90,4=\faCircleInfo]
-{\begin{caixainfo}[title=#1]{#2}{#3}{#4}
-\parskip=0.3\baselineskip \advance\parskip by 0pt plus 1pt
-\parindent=0pt
-}{\end{caixainfo}}
+\newenvironmentx{informacao}[4][1=,2=verdeinfo!30,3=black!90,4=\faCircleInfo]{
+  \begin{caixainfo}[title=#1]{#2}{#3}{#4}
+  \parskip=0.3\baselineskip \advance\parskip by 0pt plus 1pt
+  \parindent=0pt
+}{
+  \end{caixainfo}
+}
 
-\newenvironmentx{informacaoazul}[4][1=,2=azulinfo!30,3=black!90,4=\faCircleInfo]
-{\begin{caixainfo}[title=#1]{#2}{#3}{#4}
-\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
-\parindent=0pt
-}{\end{caixainfo}}
+\newenvironmentx{informacaoazul}[4][1=,2=azulinfo!30,3=black!90,4=\faCircleInfo]{
+  \begin{caixainfo}[title=#1]{#2}{#3}{#4}
+  \parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+  \parindent=0pt
+}{
+  \end{caixainfo}
+}
 
-\newenvironmentx{atencao}[4][1=,2=amareloinfo!30,3=black!90,4=\faTriangleExclamation]
-{\begin{caixainfo}[title=#1]{#2}{#3}{#4}
-\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
-\parindent=0pt
-}{\end{caixainfo}}
+\newenvironmentx{atencao}[4][1=,2=amareloinfo!30,3=black!90,4=\faTriangleExclamation]{
+  \begin{caixainfo}[title=#1]{#2}{#3}{#4}
+  \parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+  \parindent=0pt
+}{
+  \end{caixainfo}
+}
 
-\newenvironmentx{cuidado}[4][1=,2=vermelhoinfo!30,3=black!90,4=\faCircleExclamation]
-{\begin{caixainfo}[title=#1]{#2}{#3}{#4}
+\newenvironmentx{cuidado}[4][1=,2=vermelhoinfo!30,3=black!90,4=\faCircleExclamation]{
+  \begin{caixainfo}[title=#1]{#2}{#3}{#4}
 \parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
 \parindent=0pt
 }{\end{caixainfo}}
@@ -392,51 +290,62 @@ at ([xshift=0mm]interior.base west) {\Huge  #4};}
 % -------------------------------------------------%
 % Ambientes inspirados nos estilos de alertas do Markdown do GitHub
 % -------------------------------------------------%
-\definecolor{notecolor}{RGB}{9,105,218}
-\definecolor{tipcolor}{RGB}{26,127,25}
-\definecolor{importantcolor}{RGB}{130,80,223}
-\definecolor{warningcolor}{RGB}{253,165,15}
-\definecolor{cautioncolor}{RGB}{207,34,46}
 
 \tcbset{alertmarkdown/.style={%
-arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityback=0,opacitybacktitle=0,opacityframe=0}}
+  arc=0mm, % arredondamento dos cantos
+  boxrule=0mm, % espessura da borda
+  leftrule=1mm, % espessura da barra lateral
+  left=2mm, % espaçamento entre a barra lateral e o conteúdo
+  top=1mm, % espaçamento superior
+  parbox=false, % para evitar que o conteúdo seja colocado dentro de uma caixa de parágrafo
+  enhanced, % para permitir o uso de recursos avançados do tcolorbox
+  opacityback=0, % transparência do fundo
+  opacitybacktitle=0, % transparência do título
+  opacityframe=0 % transparência da borda
+  }
+}
 
 \newtcolorbox{ghmarkdown}[3][]{alertmarkdown,borderline west={3pt}{0pt}{#3},coltitle=#3,title={#2~~\textbf{#1}}}
 
-% \newtcolorbox{note}{alertmarkdown,borderline west={3pt}{0pt}{notecolor},coltitle=notecolor,title={\faCircleInfo~~\textbf{Nota}}}
-\newenvironmentx{note}[3][1=Nota,2=\faCircleInfo,3=notecolor]
-{\begin{ghmarkdown}[#1]{#2}{#3}
-\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
-\parindent=0pt
-}{\end{ghmarkdown}}
+\newenvironmentx{note}[3][1=Nota,2=\faCircleInfo,3=notecolor]{
+  \begin{ghmarkdown}[#1]{#2}{#3}
+  \parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+  \parindent=0pt
+}{
+  \end{ghmarkdown}
+}
 
-% \newtcolorbox{tip}{alertmarkdown,borderline west={3pt}{0pt}{tipcolor},coltitle=tipcolor,title={\faLightbulb[regular]~~\textbf{Dica}}}
-\newenvironmentx{tip}[3][1=Dica,2={\faLightbulb[regular]},3=tipcolor]
-{\begin{ghmarkdown}[#1]{#2}{#3}
-\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
-\parindent=0pt
-}{\end{ghmarkdown}}
+\newenvironmentx{tip}[3][1=Dica,2={\faLightbulb[regular]},3=tipcolor]{
+  \begin{ghmarkdown}[#1]{#2}{#3}
+  \parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+  \parindent=0pt
+}{
+  \end{ghmarkdown}
+}
 
-% \newtcolorbox{important}{alertmarkdown,borderline west={3pt}{0pt}{importantcolor},coltitle=importantcolor,title={\faExclamation~~\textbf{Importante}}}
-\newenvironmentx{important}[3][1=Importante,2={\faExclamation},3=importantcolor]
-{\begin{ghmarkdown}[#1]{#2}{#3}
-\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
-\parindent=0pt
-}{\end{ghmarkdown}}
+\newenvironmentx{important}[3][1=Importante,2={\faExclamation},3=importantcolor]{
+  \begin{ghmarkdown}[#1]{#2}{#3}
+  \parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+  \parindent=0pt
+}{
+  \end{ghmarkdown}
+}
 
-% \newtcolorbox{warning}{alertmarkdown,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faTriangleExclamation~~\textbf{Atenção}}}
-\newenvironmentx{warning}[3][1=Atenção,2={\faTriangleExclamation},3=warningcolor]
-{\begin{ghmarkdown}[#1]{#2}{#3}
-\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
-\parindent=0pt
-}{\end{ghmarkdown}}
+\newenvironmentx{warning}[3][1=Atenção,2={\faTriangleExclamation},3=warningcolor]{
+  \begin{ghmarkdown}[#1]{#2}{#3}
+  \parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+  \parindent=0pt
+}{
+  \end{ghmarkdown}
+}
 
-% \newtcolorbox{caution}{alertmarkdown,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faCircleExclamation~~\textbf{Cuidado}}}
-\newenvironmentx{caution}[3][1=Cuidado,2={\faCircleExclamation},3=cautioncolor]
-{\begin{ghmarkdown}[#1]{#2}{#3}
-\parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
-\parindent=0pt
-}{\end{ghmarkdown}}
+\newenvironmentx{caution}[3][1=Cuidado,2={\faCircleExclamation},3=cautioncolor]{
+  \begin{ghmarkdown}[#1]{#2}{#3}
+  \parskip=0.3\baselineskip \advance\parskip by 0pt plus 2pt
+  \parindent=0pt
+}{
+  \end{ghmarkdown}
+}
 % -------------------------------------------------%
 
 

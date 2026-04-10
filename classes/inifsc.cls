@@ -3,7 +3,7 @@
 
 % https://en.wikibooks.org/wiki/LaTeX/List_Structures#Easylist_package
 
-\ProvidesClass{inifsc}[2019/05/15 version 1.01 Instrucao Normativa] 
+\ProvidesClass{inifsc}[2026/04/10 v2.0 Instrucao Normativa] 
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: initial code part
@@ -18,8 +18,50 @@
 \ProcessOptions \relax
 \LoadClass{memoir}
 
-\usepackage{newunicodechar}
-\newunicodechar{º}{\textordmasculine}
+% -------------------------------------------------%
+% Configurações para compatibilidade com diferentes engines de compilação
+% -------------------------------------------------%
+\RequirePackage{iftex}
+\ifPDFTeX
+  % -------- pdfLaTeX --------
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[brazilian]{babel}  
+  \RequirePackage{inconsolata}
+  \RequirePackage{inter}
+  \else
+  % -------- XeLaTeX ou LuaLaTeX --------
+  \RequirePackage{fontspec}
+  \RequirePackage{unicode-math}
+  \RequirePackage{newunicodechar}
+  \newunicodechar{º}{\textordmasculine}
+  \newunicodechar{ª}{\textordfeminine}
+
+  \RequirePackage[brazilian]{babel}    
+  % \RequirePackage{polyglossia}
+  % \setmainlanguage{brazil}
+
+  % -------------------------------------------------%
+  % Escolha de fontes
+  % -------------------------------------------------%
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase,Renderer=HarfBuzz}
+
+  \IfFontExistsTF{Inconsolata}{
+    \setmonofont{Inconsolata}
+  }{}
+
+  \IfFontExistsTF{Inter}{
+    \setmainfont[
+      SmallCapsFont = *,
+    ]{Inter}
+  }{
+    \setmainfont{TeX Gyre Heros}
+  }
+  % \IfFontExistsTF{Fira Math}{
+  %     \setmathfont{Fira Math}[Scale=MatchLowercase]
+  % }{}
+\fi
+% -------------------------------------------------%
 
 % --- Class structure:
 
@@ -70,8 +112,6 @@
 \fi %
 }
 
-% Codificação de caracteres
-\RequirePackage[utf8]{inputenc}
 
 \RequirePackage{enumitem}
 
@@ -184,10 +224,10 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Set Helvetica Font in Text in LaTeX %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand{\familydefault}{\sfdefault}
-\RequirePackage[scaled=1]{helvet}
-\RequirePackage[helvet]{sfmath}
-\RequirePackage[T1]{fontenc}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Set Helvetica Font in Text in LaTeX %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \renewcommand{\familydefault}{\sfdefault}
+% \RequirePackage[scaled=1]{helvet}
+% \RequirePackage[helvet]{sfmath}
+% \RequirePackage[T1]{fontenc}

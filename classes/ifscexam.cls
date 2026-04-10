@@ -4,7 +4,7 @@
 % 2015-2025 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % ------------------------------------------------------------%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ifscexam}[2022/06/03 version 1.01 IFSC exam] 
+\ProvidesClass{ifscexam}[2022/06/03 v1.01 IFSC exam] 
 
 % This class is based on class "exam"
 \PassOptionsToClass{\CurrentOption}{exam}

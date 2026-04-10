@@ -2,7 +2,7 @@
 % 2019-05-03 Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % Esse documento está fortemente baseado no modelo desenvolvido no artigo Minutes in Less That Hours: Using LaTeX Resources de Jimm Hefferon
 
-\ProvidesClass{ifscata}[2026/02/11 version 1.11 Ata de Reuniao do IFSC] 
+\ProvidesClass{ifscata}[2026/04/10 v1.12 Ata de Reuniao do IFSC] 
 \NeedsTeXFormat{LaTeX2e}
 
 % --- Class structure: initial code part
@@ -103,8 +103,6 @@
 \LoadClass{article}
 
 
-% Codificação de caracteres
-\RequirePackage[utf8]{inputenc}
 
 
 % --- Class structure: main code part
