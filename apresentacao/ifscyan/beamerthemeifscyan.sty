@@ -13,7 +13,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{etoolbox} % \BeforeBeginEnvironment
 \RequirePackage{appendixnumberbeamer} % Don't number appendix frames.
-\RequirePackage{fontawesome5}
+\RequirePackage{fontawesome6}
 \RequirePackage[skins]{tcolorbox}
 \RequirePackage{ccicons}
 \RequirePackage{caption}
@@ -36,29 +36,49 @@
 % -------------------------------------------------%
 % Escolha de fontes
 % -------------------------------------------------%
-
-% Se o usuario estiver usando o LuaLaTeX ou o XeLaTeX, use o fontspec para carregar as fontes do sistema. 
-\iftutex
-  \RequirePackage{fontspec}
-  \defaultfontfeatures{Scale=MatchLowercase}
-
-  \IfFontExistsTF{Inconsolata}{
-    \setmonofont[
-      UprightFont = * Regular,
-      BoldFont = * Bold,
-      ItalicFont = * Regular,
-      BoldItalicFont = * Bold,
-      Scale=MatchLowercase,
-      Ligatures=NoCommon
-    ]{Inconsolata}
-  }{}
-
-\else
+\ifPDFTeX
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
-  \RequirePackage[sfdefault]{roboto}
+  \RequirePackage{textcomp}
+  \RequirePackage{gensymb}
+
+\else
+% Se o usuario estiver usando o LuaLaTeX ou o XeLaTeX, use o fontspec para carregar as fontes do sistema. 
+  \RequirePackage{fontspec}
+  \RequirePackage{unicode-math}
+  \usefonttheme{professionalfonts}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase,Renderer=HarfBuzz}
+  
+  \IfFontExistsTF{Inconsolata}{
+    \setmonofont[
+      % UprightFont    = * Regular,
+      % BoldFont       = * Bold,
+      ItalicFont     = * Regular,
+      BoldItalicFont = * Bold,
+      Scale          = 0.85, %MatchLowercase,
+      Ligatures      = NoCommon,
+      RawFeature     = {wght=300}, % Força a versão light da Inconsolata, que é mais legível em slides
+    ]{Inconsolata}
+  }{
+    \setmonofont{TeX Gyre Cursor}
+  }
+
+  \IfFontExistsTF{Inter}{
+    \setsansfont[
+      UprightFont = * Light,
+      BoldFont = * Bold,
+      ItalicFont = * Light Italic,
+      BoldItalicFont = * Bold Italic,
+    ]{Inter}
+  }{
+    \setsansfont{TeX Gyre Heros}
+  }
+
+  % \IfFontExistsTF{Fira Math}{
+  %     \setmathfont{Fira Math}[Scale=MatchLowercase]
+  % }{}
+  % \setmathfont{TeX Gyre Termes Math}[Scale=MatchLowercase]
 \fi
-% -------------------------------------------------%
 
 \DeclareRobustCommand{\ttfamily}{\fontencoding{T1}\fontfamily{lmtt}\selectfont}
 
@@ -71,8 +91,12 @@
 \DeclareStringOption[7 pt]{itemsep}[7 pt]
 \ProcessKeyvalOptions*
 
+\definecolor[named]{vermelho}{HTML}{e44131}    % HEX: #E44131
+\definecolor[named]{verde}{HTML}{31a250}       % HEX: #31A250
+\definecolor[named]{azul}{HTML}{4080ec}        % HEX: #4080EC
+\definecolor[named]{cinzaescuro}{HTML}{595959} % HEX: #595959
 
-\usepackage{gensymb}
+
 
 
 \hypersetup{pdffitwindow=false, pdfstartview={FitW},allcolors=.}
@@ -121,35 +145,22 @@
 % ---------------------------------------
 % Baloes de informacao
 % ---------------------------------------
-\newtcbox{\dest}[1][red]{on line,
-arc=0pt,outer arc=0pt,colback=#1!10!white,colframe=#1!50!black, boxsep=0pt,left=1pt,right=1pt,top=2pt,bottom=2pt, boxrule=0pt,bottomrule=1pt,toprule=1pt}
-\newtcbox{\destx}[1][red]{on line, arc=7pt,colback=#1!10!white,colframe=#1!50!black, before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt, boxsep=0pt,left=6pt,right=6pt,top=2pt,bottom=2pt}
-
-% \newtcolorbox{informacao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.98\linewidth,colback=gray!5,colframe=gray,%
-% overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\Large \faCircleInfo}}}; }}
-
-% \newtcolorbox{atencao}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.98\linewidth,colback=gray!5,colframe=gray,%
-% overlay={\node[anchor=north west,outer sep=3pt] at (frame.north west) {\textcolor{azul}{{\Large \faCircleExclamation}}}; }}
-
-% \newtcolorbox{cuidado}{left=1cm, enlarge by=1mm,enhanced,arc=0mm,boxrule=.1pt,width=.98\linewidth,colback=gray!5,colframe=gray,%
-% overlay={\node[anchor=north west,outer sep=1pt] at (frame.north west) {\textcolor{amarelo}{{\Large \faWarning}}}; }}
-
-
-\definecolor{amarelo}{HTML}{FEE886}
-\definecolor{vermelho}{HTML}{e44131}
-\definecolor{verde}{HTML}{31a250}
-\definecolor{azul}{HTML}{4080ec}
-\definecolor{cinzaescuro}{HTML}{595959}
-
-
-\newtcolorbox[auto counter,number within=section]{caixainfo}[3][]{
-enhanced,colback=#1,colframe=#1,fontupper=\color{#2},leftrule=15mm,
-underlay unbroken and first={\node[below,text=#2,anchor=east]
-at ([xshift=0mm]interior.base west) {\Huge  #3};}
+\newtcolorbox[auto counter,number within=section]{caixainfo}[3][]{%
+  enhanced,
+  colback=#1,colframe=#1,
+  fontupper=\color{#2},
+  leftrule=15mm,
+  underlay unbroken and first={%
+    \node[below,text=#2,anchor=east]
+      at ([xshift=0mm]interior.base west) {\huge  #3};
+  }
 }
 
 \newenvironmentx{caixa}[3][1=verde]
-{\setbeamercolor{structure}{fg=#2} \usebeamercolor[fg]{item caixa}
+{
+\usebeamercolor[fg]{item caixa}%
+\setbeamercolor{structure}{bg=bg,fg=white}
+\setbeamercolor{item projected}{fg=black,bg=white} 
 \begin{caixainfo}[#1]{#2}{#3}}{\end{caixainfo}}
 
 \newenvironmentx{informacao}[3][1=verde,2=white,3=\faCircleInfo]
@@ -158,12 +169,13 @@ at ([xshift=0mm]interior.base west) {\Huge  #3};}
 \newenvironmentx{informacaoazul}[3][1=azul,2=white,3=\faCircleInfo]
 {\begin{caixa}[#1]{#2}{#3}}{\end{caixa}}
 
-\newenvironmentx{atencao}[3][1=amarelo,2=cinzaescuro,3=\faTriangleExclamation]
-{\usebeamercolor[fg]{normal text}\begin{caixa}[#1]{#2}{#3}\usebeamercolor[fg]{item caixaclara}
+\newenvironmentx{atencao}[3][1=amarelo,2=black,3=\faTriangleExclamation]
+{\begin{caixa}[#1]{#2}{#3}\usebeamercolor[fg]{item caixaclara}
 }{\end{caixa}}
 
 \newenvironmentx{cuidado}[3][1=vermelho,2=white,3=\faCircleExclamation]
 {\begin{caixa}[#1]{#2}{#3}}{\end{caixa}}
+
 
 % -------------------------------------------------%
 % Ambientes inspirados nos estilos de alertas do Markdown do GitHub
@@ -186,7 +198,6 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
 \newtcolorbox{warning}{alertmarkdown,colback=warningcolor!5!white,colbacktitle=warningcolor!5!white,borderline west={3pt}{0pt}{warningcolor},coltitle=warningcolor,title={\faTriangleExclamation~~\textbf{Atenção}}}
 
 \newtcolorbox{caution}{alertmarkdown,colback=cautioncolor!5!white,colbacktitle=cautioncolor!5!white,borderline west={3pt}{0pt}{cautioncolor},coltitle=cautioncolor,title={\faCircleExclamation~~\textbf{Cuidado}}}
-% -------------------------------------------------%
 
 % Use esse comando para fazer links para sites.
 % Os links ficarão em midnightblue e dentro dos símbolos < e > 
