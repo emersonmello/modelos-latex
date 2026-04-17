@@ -14,8 +14,10 @@
   \RequirePackage[utf8]{inputenc}
   \RequirePackage[T1]{fontenc}
   \RequirePackage[brazilian]{babel}  
-  \RequirePackage{inconsolata}
-  \RequirePackage{inter}
+  \RequirePackage{mathpazo}
+  \RequirePackage{lmodern}
+  \RequirePackage[sfdefault,scale=0.9]{roboto}
+  \RequirePackage{fix-cm}
   \else
   % -------- XeLaTeX ou LuaLaTeX --------
   \RequirePackage{fontspec}
@@ -34,19 +36,26 @@
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase,Renderer=HarfBuzz}
 
   \IfFontExistsTF{Inconsolata}{
-    \setmonofont{Inconsolata}
+    \setmonofont[
+      Scale          = 0.88 %MatchLowercase,
+    ]{Inconsolata}
   }{}
 
-  \IfFontExistsTF{Inter}{
-    \setmainfont[
-      SmallCapsFont = *,
-    ]{Inter}
-  }{
-    \setmainfont{TeX Gyre Heros}
-  }
+  % \IfFontExistsTF{Inter}{
+  %   \setmainfont[
+  %     Scale          = .88,
+  %     SmallCapsFont = *,
+  %   ]{Inter}
+  % }{
+    \setmainfont[Scale=.88]{TeX Gyre Heros}  
+    % \setmainfont[Scale=.88]{TeX Gyre Pagella}  
+  % }
+  
   % \IfFontExistsTF{Fira Math}{
   %     \setmathfont{Fira Math}[Scale=MatchLowercase]
-  % }{}
+  % }{
+    \setmathfont{TeX Gyre Pagella Math}
+  % }
 \fi
 % -------------------------------------------------%
 
@@ -96,7 +105,7 @@
 % Aumentando a altura das linhas nas tabelas
 \renewcommand{\arraystretch}{1.2}
 % espaçamento entre linhas
-\renewcommand{\baselinestretch}{1.05} 
+% \renewcommand{\baselinestretch}{1.05} 
 %---------------------------------------------------------%
 
 % ----------------------------------------------------
@@ -451,4 +460,4 @@ at ([xshift=0mm]interior.base west) {\Huge  #4};}
   \textbf{Resumo} #3\\[2mm]%
 }{%
 \end{usecasemdframed}%
-}%
+}%  

@@ -27,8 +27,10 @@
   \RequirePackage[utf8]{inputenc}
   \RequirePackage[T1]{fontenc}
   \RequirePackage[brazilian]{babel}  
-  \RequirePackage{inconsolata}
-  \RequirePackage{inter}
+  \RequirePackage{mathpazo}
+  \RequirePackage{lmodern}
+  \RequirePackage[sfdefault,scale=0.9]{roboto}
+  \RequirePackage{fix-cm}
   \else
   % -------- XeLaTeX ou LuaLaTeX --------
   \RequirePackage{fontspec}
@@ -47,16 +49,22 @@
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase,Renderer=HarfBuzz}
 
   \IfFontExistsTF{Inconsolata}{
-    \setmonofont{Inconsolata}
+    \setmonofont[
+      Scale          = 0.88 %MatchLowercase,
+    ]{Inconsolata}
   }{}
 
-  \IfFontExistsTF{Inter}{
+  % \IfFontExistsTF{Inter}{
+  %   \setmainfont[
+  %     Scale          = .88,
+  %     SmallCapsFont = *,
+  %   ]{Inter}
+  % }{
     \setmainfont[
-      SmallCapsFont = *,
-    ]{Inter}
-  }{
-    \setmainfont{TeX Gyre Heros}
-  }
+      Scale          = .88
+    ]{TeX Gyre Heros}  
+  % }
+  
   % \IfFontExistsTF{Fira Math}{
   %     \setmathfont{Fira Math}[Scale=MatchLowercase]
   % }{}

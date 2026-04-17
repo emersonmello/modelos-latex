@@ -7,7 +7,7 @@
 \ProvidesClass{ifscarticle}[2022/06/03 version 1.01 IFSC article] 
 
 % espaçamento entre parágrafos
-\setlength{\parskip}{.3em}
+% \setlength{\parskip}{.3em}
 
 %---------------------------------------------------------%
 % Pacotes
