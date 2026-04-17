@@ -1,8 +1,24 @@
-# Variável de ambiente que permitirá ao latexmkrc encontrar arquivos com os estilos (.sty) e classes (.cls) deste repositório
-# ensure_path( 'TEXINPUTS', '../classes//' );
+# ----------------------------------------------------------------- #
+# Define o caminho para os arquivos de classe personalizados
+# ----------------------------------------------------------------- #
+ensure_path( 'TEXINPUTS', '../classes//' );
+# ----------------------------------------------------------------- #
 
-# ---- Descomente as linhas abaixo para usar o lualatex como compilador padrão ---- #
-# $lualatex = 'lualatex -synctex=1 -interaction=nonstopmode -file-line-error %O %S';
-# $pdf_mode = 4;
-# $pdflatex = 'lualatex %O %S';
-# --------------------------------------------------------- #
+# pdflatex é o compilador padrão, mas pode ser alterado para lualatex ou xelatex
+$pdf_mode = 1;
+
+# ----------------------------------------------------------------- #
+# Configurações para compilar usando o LuaLaTeX
+# ----------------------------------------------------------------- #
+#
+# Para usar o LuaLaTeX, descomente as duas linhas abaixo
+#
+#$pdf_mode = 4;
+#$pdflatex = 'lualatex %O %S';
+# ----------------------------------------------------------------- #
+
+# ----------------------------------------------------------------- #
+# Define o diretório de saída dos arquivos gerados pela compilação
+# ----------------------------------------------------------------- #
+$out_dir = 'outlatexdir';
+
