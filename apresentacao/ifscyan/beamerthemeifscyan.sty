@@ -2,7 +2,37 @@
 % This theme is based on BeamerThemeFocus - https://github.com/elauksap/focus-beamertheme
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemeifscyan}[2025/05/27 v2.2 - IFSCyan Beamer theme]
+\ProvidesPackage{beamerthemeifscyan}[2026/04/17 v2.3 - IFSCyan Beamer theme]
+
+% -------------------------------------------------%
+% Escolha de fontes
+% -------------------------------------------------%
+\RequirePackage{iftex}
+\ifPDFTeX
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[utf8]{inputenc}
+  % \RequirePackage{textcomp}
+  % \RequirePackage{gensymb}[no-math]
+  \usefonttheme{professionalfonts}
+
+  \RequirePackage{helvet}
+  \RequirePackage{mathpazo}
+  \RequirePackage{lmodern} 
+  \RequirePackage{fix-cm}
+\else
+% Se o usuario estiver usando o LuaLaTeX ou o XeLaTeX, use o fontspec para carregar as fontes do sistema. 
+  \RequirePackage[no-math]{fontspec}
+  \usefonttheme{professionalfonts}
+  \RequirePackage{newunicodechar}
+  \newunicodechar{º}{\textordmasculine}
+  \newunicodechar{ª}{\textordfeminine}
+
+  % \setmonofont{TeX Gyre Cursor}
+  % \setsansfont{TeX Gyre Heros}
+  % \setmainfont{TeX Gyre Termes}
+  \RequirePackage{unicode-math}
+  \setmathfont{TeX Gyre Termes Math}[Scale=MatchLowercase]
+\fi
 
 % -------------------------------------------------%
 % Pacotes
@@ -33,54 +63,6 @@
 \RequirePackage{kvoptions}
 \RequirePackage{xargs}
 
-% -------------------------------------------------%
-% Escolha de fontes
-% -------------------------------------------------%
-\ifPDFTeX
-  \RequirePackage[T1]{fontenc}
-  \RequirePackage[utf8]{inputenc}
-  \RequirePackage{textcomp}
-  \RequirePackage{gensymb}
-
-\else
-% Se o usuario estiver usando o LuaLaTeX ou o XeLaTeX, use o fontspec para carregar as fontes do sistema. 
-  \RequirePackage{fontspec}
-  \RequirePackage{unicode-math}
-  \usefonttheme{professionalfonts}
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase,Renderer=HarfBuzz}
-  
-  \IfFontExistsTF{Inconsolata}{
-    \setmonofont[
-      % UprightFont    = * Regular,
-      % BoldFont       = * Bold,
-      ItalicFont     = * Regular,
-      BoldItalicFont = * Bold,
-      Scale          = 0.85, %MatchLowercase,
-      Ligatures      = NoCommon,
-      RawFeature     = {wght=300}, % Força a versão light da Inconsolata, que é mais legível em slides
-    ]{Inconsolata}
-  }{
-    \setmonofont{TeX Gyre Cursor}
-  }
-
-  \IfFontExistsTF{Inter}{
-    \setsansfont[
-      UprightFont = * Light,
-      BoldFont = * Bold,
-      ItalicFont = * Light Italic,
-      BoldItalicFont = * Bold Italic,
-    ]{Inter}
-  }{
-    \setsansfont{TeX Gyre Heros}
-  }
-
-  % \IfFontExistsTF{Fira Math}{
-  %     \setmathfont{Fira Math}[Scale=MatchLowercase]
-  % }{}
-  % \setmathfont{TeX Gyre Termes Math}[Scale=MatchLowercase]
-\fi
-
-\DeclareRobustCommand{\ttfamily}{\fontencoding{T1}\fontfamily{lmtt}\selectfont}
 
 
 \DeclareStringOption[0D4F4D]{textbgcolor}[0D4F4D]
@@ -97,18 +79,18 @@
 \definecolor[named]{cinzaescuro}{HTML}{595959} % HEX: #595959
 
 
-
-
 \hypersetup{pdffitwindow=false, pdfstartview={FitW},allcolors=.}
 \addtobeamertemplate{headline}{\hypersetup{linkcolor=.}}{}
 
 \RequirePackage{siunitx}
+% Configuracoes para o pacote siunitx
 \sisetup{
-  input-ignore={.},
-  input-decimal-markers={,},
-  output-decimal-marker = {,},
-  group-separator={.},
-  group-minimum-digits=4,
+  locale = DE, % Configura o pacote para usar a vírgula como separador decimal
+  output-decimal-marker = {,}, % Define a vírgula como separador decimal na saída
+  group-separator = {.}, % Define o ponto como separador de milhares
+  group-minimum-digits = 4, % Define o número mínimo de dígitos para usar o separador de milhares
+  per-mode = symbol, % Define o formato para unidades por outra unidade (e.g. m/s)
+  detect-all % Detecta o modo matemático ou texto para formatar as unidades de acordo
 }
 
 % Novos tipos de colunas alinhado: à direita, centralizado ou esquerda e que permita definir a largura
