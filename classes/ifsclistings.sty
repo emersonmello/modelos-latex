@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ifsclistings}[2026/03/25 v1.0 IFSC Listings Style]
+\ProvidesPackage{ifsclistings}[2026/04/17 v1.1 IFSC Listings Style]
 
 % para resolver o problema dos apostrofos e crases no listings
 \RequirePackage{upquote,listings}
@@ -29,7 +29,7 @@
 % -----------------------%
 \lstdefinestyle{ifsclistings@base}{
     backgroundcolor=\color{ifsclistings@bg},
-    basicstyle=\ttfamily\scriptsize\color{ifsclistings@text},
+    basicstyle=\ttfamily\footnotesize\color{ifsclistings@text},
     keywordstyle=\color{ifsclistings@keyword}\bfseries,
     stringstyle=\color{ifsclistings@string},
     commentstyle=\color{ifsclistings@comment},
@@ -320,4 +320,24 @@
 \lstdefinestyle{sql}{
   language=SQL,
   style=ifsclistings@base
+}
+
+% -----------------------%
+% PROPERTIES FILE key=value
+% -----------------------%
+
+\lstdefinelanguage{Properties}{
+    morecomment=[l]{\#},
+    morecomment=[l]{!},
+    alsoletter={=,:},
+    morekeywords={=,:},
+    commentstyle=\color{ifsclistings@comment},
+    % Use "moredelim" to handle key-value separation visually
+    moredelim=[s][\color{ifsclistings@string}]{=}{\^^M},
+    moredelim=[s][\color{ifsclistings@string}]{:}{\^^M},
+}
+
+\lstdefinestyle{properties}{
+    language=Properties,
+    style=ifsclistings@base
 }

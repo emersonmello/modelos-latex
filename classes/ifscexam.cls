@@ -4,12 +4,11 @@
 % 2015-2025 - Emerson Ribeiro de Mello - mello@ifsc.edu.br
 % ------------------------------------------------------------%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ifscexam}[2022/06/03 v1.01 IFSC exam] 
+\ProvidesClass{ifscexam}[2026/04/17 v1.1 IFSC exam] 
 
 % This class is based on class "exam"
 \PassOptionsToClass{\CurrentOption}{exam}
-\LoadClass[addpoints]{exam}
-
+\LoadClassWithOptions{exam}
 
 \RequirePackage[a4paper,hmargin=2cm,top=2cm,bottom=2cm,headheight=2cm,heightrounded]{geometry}
 
