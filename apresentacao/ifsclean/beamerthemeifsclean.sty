@@ -1,59 +1,34 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemeifsclean}[2026/04/10 v3.0 - IFSC Clean Beamer theme]
-
+\ProvidesPackage{beamerthemeifsclean}[2026/04/17 v3.1 - IFSC Clean Beamer theme]
 \mode<presentation>
-
-% -------------------------------------------------%
-% Pacotes
-% -------------------------------------------------%
-\RequirePackage{xcolor}
-\RequirePackage{xstring}
-\RequirePackage{kvoptions}
-\RequirePackage{pgf}
-\RequirePackage{relsize}
-\RequirePackage{tikz}
-\usetikzlibrary{calc,math,positioning}
-\RequirePackage{graphicx}
-\RequirePackage{etoolbox} % \BeforeBeginEnvironment
-\RequirePackage{appendixnumberbeamer} % Don't number appendix frames.
-\RequirePackage{fontawesome6}
-\RequirePackage[skins]{tcolorbox}
-\RequirePackage{ccicons}
-% \RequirePackage{caption}
-\RequirePackage{booktabs}
-\RequirePackage{siunitx}
-\RequirePackage{array}
-\RequirePackage{multirow}
-\RequirePackage{soul}
-\urlstyle{sf}
-\RequirePackage{xargs}
-\RequirePackage{siunitx}
-\RequirePackage{ragged2e}
-\RequirePackage{newunicodechar}
-\newunicodechar{º}{\textordmasculine}
-\newunicodechar{ª}{\textordfeminine}
-\RequirePackage{iftex}
-
-% Estilo de codigo-fonte para o beamer
-\RequirePackage{ifsclistings-beamer}
-
 
 
 % -------------------------------------------------%
 % Escolha de fontes
 % -------------------------------------------------%
+\RequirePackage{iftex}
 \ifPDFTeX
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
-  \RequirePackage{textcomp}
-  \RequirePackage{gensymb}
+  % \RequirePackage{textcomp}
+  % \RequirePackage{gensymb}
+  \usefonttheme{professionalfonts}
 
+  \RequirePackage{helvet}
+  \RequirePackage{mathpazo}
+  \RequirePackage{lmodern} 
+  \RequirePackage{fix-cm}
 \else
 % Se o usuario estiver usando o LuaLaTeX ou o XeLaTeX, use o fontspec para carregar as fontes do sistema. 
   \RequirePackage{fontspec}
   \RequirePackage{unicode-math}
   \usefonttheme{professionalfonts}
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase,Renderer=HarfBuzz}
+
+  \RequirePackage{newunicodechar}
+  \newunicodechar{º}{\textordmasculine}
+  \newunicodechar{ª}{\textordfeminine}
+
   
   \IfFontExistsTF{Inconsolata}{
     \setmonofont[
@@ -79,14 +54,50 @@
   }{
     \setsansfont{TeX Gyre Heros}
   }
+  \IfFontExistsTF{Literata}{%
+      \setmainfont{Literata}
+  }{
+      \setmainfont{TeX Gyre Termes}
+  }
 
   % \IfFontExistsTF{Fira Math}{
   %     \setmathfont{Fira Math}[Scale=MatchLowercase]
   % }{}
-  % \setmathfont{TeX Gyre Termes Math}[Scale=MatchLowercase]
+  \setmathfont{TeX Gyre Termes Math}[Scale=MatchLowercase]
 \fi
 
 
+% -------------------------------------------------%
+% Pacotes
+% -------------------------------------------------%
+
+% Estilo de codigo-fonte para o beamer
+\RequirePackage{ifsclistings-beamer}
+
+
+\RequirePackage{xcolor}
+\RequirePackage{xstring}
+\RequirePackage{kvoptions}
+\RequirePackage{pgf}
+\RequirePackage{relsize}
+\RequirePackage{tikz}
+\usetikzlibrary{calc,math,positioning}
+\RequirePackage{graphicx}
+\RequirePackage{etoolbox} % \BeforeBeginEnvironment
+\RequirePackage{appendixnumberbeamer} % Don't number appendix frames.
+\RequirePackage{fontawesome6}
+\RequirePackage[skins]{tcolorbox}
+\RequirePackage{ccicons}
+% \RequirePackage{caption}
+\RequirePackage{booktabs}
+\RequirePackage{siunitx}
+\RequirePackage{array}
+\RequirePackage{multirow}
+\RequirePackage{soul}
+\urlstyle{sf}
+\RequirePackage{xargs}
+\RequirePackage{siunitx}
+\RequirePackage{ragged2e}
 
 % -------------------------------------------------%
 % Parametros do tema
@@ -262,7 +273,7 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
 
 \tikzset{fundo/.style={rectangle, fill=black!10!white, minimum size=\dimensao cm,rounded corners=\canto cm, anchor=base, inner sep=0pt }}%
 
-\tikzset{every node/.append style={font=\sffamily}}
+% \tikzset{every node/.append style={font=\sffamily}}
 \tikzset{fontscale/.style = {font=\relsize{#1}}}
 
 \tikzset{%
@@ -292,14 +303,9 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
           %   \node[fundo] (54) [below of=53] {};
 
           \node[anchor=west,xshift=-.18cm,fontscale=3.95,#3] at (\dist*3,5.4) {{\textbf{INSTITUTO FEDERAL}}};
-          \node[anchor=west,xshift=-.15cm,fontscale=2,#3] at (\dist*3,4.74) {{Santa Catarina}};
+          \node[anchor=west,xshift=-.15cm,fontscale=2.2,#3] at (\dist*3,4.74) {{Santa Catarina}};
+          \node[anchor=west,xshift=-.15cm,fontscale=2.2,#3] at (\dist*3,4.09) {{Campus São José}};
 
-          \node[anchor=west,xshift=-.15cm,fontscale=2,#3] at (\dist*3,4.09) {{Campus São José}};
-
-          % \node[anchor=west,xshift=-.18cm, #3] at (\dist*3,5.625) {{\large \textbf{INSTITUTO FEDERAL}}};
-          % \node[anchor=west,xshift=-.15cm, #3] at (\dist*3,5.22) {{\small Santa Catarina}};
-          
-          % \node[anchor=west,xshift=-.15cm, #3] at (\dist*3,4.81) {{\small Campus Sao Jose}};
 
           % \draw[gray,step=.1cm,very thin] grid (0,0) grid (4,6);
           % \draw[blue,very thin] (\dist*3,3) to (\dist*3,6);

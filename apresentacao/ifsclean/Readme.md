@@ -23,6 +23,21 @@ Esse tema permite a personalização das cores do texto e do fundo. Basta inform
 ]{ifsclean}
 ```
 
+## Fontes necessárias para compilar os arquivos .tex
+
+### Com LuaLaTeX
+
+Para usar o compilar LuaLaTeX é necessário ter as seguintes fontes instaladas no sistema:
+
+- [Inter](https://rsms.me/inter/)
+    - Fonte sans-serif usada como padrão no textos e títulos dos slides.
+- [Inconsolata](https://fonts.google.com/specimen/Inconsolata)
+    - Fonte monoespaçada usada para código-fonte e outros elementos que requerem espaçamento fixo.
+- [Literata](https://fonts.google.com/specimen/Literata)
+    - Fonte serifada
+
+Execute o comando `luaotfload-tool --update` no terminal para atualizar a base de fontes do LuaLaTeX e assim ele poderá encontrar as fontes Inter e Inconsolata para compilar os arquivos .tex corretamente. Esse comando costuma demorar um pouco devido ao número de fontes instaladas no sistema. 
+
 
 ## Captura de telas
 
