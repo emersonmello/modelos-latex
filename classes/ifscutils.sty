@@ -16,7 +16,8 @@
   \RequirePackage[brazilian]{babel}  
   \RequirePackage{mathpazo}
   \RequirePackage{lmodern}
-  \RequirePackage[sfdefault,scale=0.9]{roboto}
+  \usepackage[scale=0.88]{tgheros} % Loads TeX Gyre Heros
+  \renewcommand*\familydefault{\sfdefault} % Sets default to Sans Serif
   \RequirePackage{fix-cm}
   \else
   % -------- XeLaTeX ou LuaLaTeX --------
@@ -41,15 +42,15 @@
     ]{Inconsolata}
   }{}
 
-  % \IfFontExistsTF{Inter}{
-  %   \setmainfont[
-  %     Scale          = .88,
-  %     SmallCapsFont = *,
-  %   ]{Inter}
-  % }{
-    \setmainfont[Scale=.88]{TeX Gyre Heros}  
+  \IfFontExistsTF{Inter}{
+    \setmainfont[
+      Scale          = .88,
+      SmallCapsFont = *,
+    ]{Inter}
+  }{
+    \setmainfont[Scale=.9]{TeX Gyre Heros}  
     % \setmainfont[Scale=.88]{TeX Gyre Pagella}  
-  % }
+  }
   
   % \IfFontExistsTF{Fira Math}{
   %     \setmathfont{Fira Math}[Scale=MatchLowercase]

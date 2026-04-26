@@ -4,17 +4,19 @@
 ensure_path( 'TEXINPUTS', '../classes//' );
 # ----------------------------------------------------------------- #
 
-# pdflatex é o compilador padrão, mas pode ser alterado para lualatex ou xelatex
-$pdf_mode = 1;
+# ----------------------------------------------------------------- #
+# Configurações para compilar usando o pdflatex ou LuaLaTeX
+# ----------------------------------------------------------------- #
+$pdflatex = 'pdflatex -synctex=1 -interaction=nonstopmode -file-line-error %O %S';
+$lualatex = 'lualatex -synctex=1 -interaction=nonstopmode -file-line-error %O %S';
 
 # ----------------------------------------------------------------- #
-# Configurações para compilar usando o LuaLaTeX
+# Escolha o modo de compilação desejado (pdflatex ou LuaLaTeX)
 # ----------------------------------------------------------------- #
-#
-# Para usar o LuaLaTeX, descomente as duas linhas abaixo
-#
+# pdflatex é o modo padrão
+$pdf_mode = 1;
+# Para usar o LuaLaTeX, descomente a linha abaixo
 #$pdf_mode = 4;
-#$pdflatex = 'lualatex %O %S';
 # ----------------------------------------------------------------- #
 
 # ----------------------------------------------------------------- #
