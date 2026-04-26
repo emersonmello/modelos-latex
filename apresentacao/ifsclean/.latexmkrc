@@ -9,8 +9,9 @@ $lualatex = 'lualatex -synctex=1 -interaction=nonstopmode -file-line-error %O %S
 # ----------------------------------------------------------------- #
 # pdflatex é o modo padrão
 $pdf_mode = 1;
+#
 # Para usar o LuaLaTeX, descomente a linha abaixo
-#$pdf_mode = 4;
+# $pdf_mode = 4;
 # ----------------------------------------------------------------- #
 
 # ----------------------------------------------------------------- #
