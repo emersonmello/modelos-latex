@@ -34,7 +34,7 @@
     keywordstyle=\color{ifsclistings@keyword}\bfseries,
     stringstyle=\color{ifsclistings@string},
     commentstyle=\color{ifsclistings@comment},
-    escapechar={@*}, % @* \textbf{negrito} *@
+    escapeinside={@*}{*@}, % para colocar comandos latex @* \textbf{negrito} *@
     numbers=none,
     numberstyle=\scriptsize\color{ifsclistings@gray},
     numbersep=10pt,
@@ -62,6 +62,7 @@
     {Ô}{{\^{O}}}1 {î}{{\^{i}}}1 {Î}{{\^{I}}}1 {í}{{\'{i}}}1
     {Í}{{\~{Í}}}1
 }
+
 
 % Definir o estilo base para todos os listings
 \lstset{style=ifsclistings@base}
@@ -149,11 +150,15 @@
 % JSON
 % -----------------------%
 \lstdefinelanguage{json}{
+    commentstyle=\color{ifsclistings@comment}, % style of comment
+    stringstyle=\color{ifsclistings@string}, % style of strings
+    string=[s]{"}{"},
+    comment=[l]{:\ "},
+    morecomment=[l]{:"},
     morestring=[b]",
     sensitive=false,
     morekeywords={true,false,null},
     literate=
-     *{:}{{{\color{ifsclistings@gray}{:}}}}{1}
       {,}{{{\color{ifsclistings@gray}{,}}}}{1}
       {\}}{{{\color{ifsclistings@gray}{\}}}}}{1}
       {[}{{{\color{ifsclistings@gray}{[}}}}{1}
@@ -218,7 +223,7 @@
 % -----------------------%
 % HTML / XML / XSD
 % -----------------------%
-\lstdefinestyle{html5}{
+\lstdefinestyle{html}{
     style=ifsclistings@base,
     language=HTML,
     morekeywords={section,article,header,footer,nav,main}

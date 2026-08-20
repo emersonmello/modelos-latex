@@ -33,8 +33,7 @@
     keywordstyle=\color{ifsclistings@keyword}\bfseries,
     stringstyle=\color{ifsclistings@string},
     commentstyle=\color{ifsclistings@comment},
-    escapechar={@*}, % @* \textbf{negrito} *@
-    numbers=none,
+    escapeinside={@*}{*@}, % para colocar comandos latex @* \textbf{negrito} *@    numbers=none,
     numberstyle=\scriptsize\color{ifsclistings@gray},
     numbersep=10pt,
     frame=single,
@@ -148,11 +147,15 @@
 % JSON
 % -----------------------%
 \lstdefinelanguage{json}{
+    commentstyle=\color{ifsclistings@comment}, % style of comment
+    stringstyle=\color{ifsclistings@string}, % style of strings
+    string=[s]{"}{"},
+    comment=[l]{:\ "},
+    morecomment=[l]{:"},
     morestring=[b]",
     sensitive=false,
     morekeywords={true,false,null},
     literate=
-     *{:}{{{\color{ifsclistings@gray}{:}}}}{1}
       {,}{{{\color{ifsclistings@gray}{,}}}}{1}
       {\}}{{{\color{ifsclistings@gray}{\}}}}}{1}
       {[}{{{\color{ifsclistings@gray}{[}}}}{1}
@@ -190,7 +193,7 @@
     version, services, build, image, container_name,
     ports, volumes, environment, depends_on,
     networks, command, entrypoint, restart,
-    stdin_open, tty, working_dir
+    stdin_open, tty, working_dir, secrets, cap_add, deploy, driver
   },
   emphstyle=\color{ifsclistings@type}\bfseries,
   literate=
@@ -217,7 +220,7 @@
 % -----------------------%
 % HTML / XML / XSD
 % -----------------------%
-\lstdefinestyle{html5}{
+\lstdefinestyle{html}{
     style=ifsclistings@base,
     language=HTML,
     morekeywords={section,article,header,footer,nav,main}
