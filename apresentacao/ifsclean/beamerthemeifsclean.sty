@@ -60,10 +60,11 @@
       \setmainfont{TeX Gyre Termes}
   }
 
-  % \IfFontExistsTF{Fira Math}{
-  %     \setmathfont{Fira Math}[Scale=MatchLowercase]
-  % }{}
-  \setmathfont{TeX Gyre Termes Math}[Scale=MatchLowercase]
+  \IfFontExistsTF{TeX Gyre Termes Math}{
+      \setmathfont{TeX Gyre Termes Math}[Scale=MatchLowercase]
+  }{
+      \setmathfont{Latin Modern Math}[Scale=MatchLowercase]
+  }
 \fi
 
 
@@ -116,6 +117,7 @@
 \DeclareStringOption{titlebackground}
 \DeclareStringOption{titlebackgroundopacity}[0.8]
 \DeclareStringOption{logo}
+\DeclareStringOption[2.5cm]{logowidth}[2.5cm]
 
 \DeclareStringOption[\beamerthemeifsclean@background]{sectionfg}[\beamerthemeifsclean@background]
 \DeclareStringOption[\beamerthemeifsclean@foreground]{sectionbg}[\beamerthemeifsclean@foreground]
@@ -146,7 +148,15 @@
 % Para diminuir o tamanho da fonte do caption da figura
 % \captionsetup[figure]{font=tiny}
 
-\hypersetup{pdffitwindow=false, pdfstartview={FitW},colorlinks=false}
+\hypersetup{
+  pdffitwindow=false,
+  pdfstartview={FitW},
+  colorlinks=true,
+  linkcolor=.,
+  citecolor=.,
+  filecolor=.,
+  urlcolor=azul
+}
 
 % Aumentando a altura das linhas nas tabelas
 \renewcommand{\arraystretch}{1.2}
