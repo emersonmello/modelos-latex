@@ -52,11 +52,11 @@
     % \setmainfont[Scale=.88]{TeX Gyre Pagella}  
   }
   
-  % \IfFontExistsTF{Fira Math}{
-  %     \setmathfont{Fira Math}[Scale=MatchLowercase]
-  % }{
-    \setmathfont{TeX Gyre Pagella Math}
-  % }
+  \IfFontExistsTF{TeX Gyre Pagella Math}{
+      \setmathfont{TeX Gyre Pagella Math}[Scale=MatchLowercase]
+  }{
+      \setmathfont{Latin Modern Math}[Scale=MatchLowercase]
+  }
 \fi
 % -------------------------------------------------%
 
@@ -82,7 +82,7 @@
 \RequirePackage{fontawesome6}
 \RequirePackage{ccicons}
 \RequirePackage{pifont}
-\PassOptionsToPackage{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black}{hyperref}
+\PassOptionsToPackage{hidelinks}{hyperref}
 \RequirePackage{array,booktabs,bookmark,multirow,hyperref}
 
 % Pacote com personalizações para o listings
