@@ -55,25 +55,31 @@
       \node[opacity=\beamerthemeifsclean@titlebackgroundopacity] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{\beamerthemeifsclean@titlebackground}};
   \fi
 
-  \ifx\beamerthemeifsclean@subject\@empty\else
-    \node [anchor=south west, text width=.85\paperwidth,align=left] (assunto) at (0,.2\paperheight){\usebeamerfont{subject}\usebeamercolor[titlefgcolor]{title}\insertsubject\par};
-  \fi
-    
-    \node [anchor=south west, text width=.85\paperwidth,align=left] (titulo) at (0,.075\paperheight){\usebeamerfont{title}\usebeamercolor[titlefgcolor]{title}\inserttitle\par};
-  
-    \node[below=.5em of titulo, text width=.85\paperwidth,align=left] (subtitulo) {\usebeamerfont{subtitle}\usebeamercolor[titlefgcolor]{title}\insertsubtitle\par};
+  % Bloco superior esquerdo: assunto, titulo e subtitulo
+  \node [anchor=north west, text width=.85\paperwidth, align=left] (cabecalho)
+    at ([xshift=.075\paperwidth,yshift=-.12\paperheight]current page.north west)
+    {%
+      \ifx\beamerthemeifsclean@subject\@empty\else
+        {\usebeamerfont{subject}\usebeamercolor[titlefgcolor]{title}\insertsubject\par}\vspace{.5em}%
+      \fi
+      {\usebeamerfont{title}\usebeamercolor[titlefgcolor]{title}\inserttitle\par}\vspace{.5em}%
+      {\usebeamerfont{subtitle}\usebeamercolor[titlefgcolor]{title}\insertsubtitle\par}%
+    };
 
-    \node [below=5em of subtitulo,align=flush right,inner sep=0pt,text width=.85\paperwidth] (autor) {\usebeamercolor[titlefgcolor]{author}\usebeamerfont{author}\insertauthor\par};
-
-    \node [below=1em of autor,align=flush right,inner sep=0pt,text width=.85\paperwidth] (instituto) {\usebeamercolor[titlefgcolor]{author}\usebeamerfont{institute}\insertinstitute\par};
-
-    \node [below=1em of instituto, node distance=2.5em, text width=.85\paperwidth,align=flush right] (data) {\usebeamercolor[titlefgcolor]{date}\usebeamerfont{date}\insertdate\par};
+  % Bloco inferior direito: autor e data
+  \node [anchor=south east, text width=.55\paperwidth, align=right, inner sep=0pt] (metadados)
+    at ([xshift=-.075\paperwidth,yshift=.12\paperheight]current page.south east)
+    {%
+      {\usebeamercolor[titlefgcolor]{author}\usebeamerfont{author}\insertauthor\par}\vspace{.8em}%
+      {\usebeamercolor[titlefgcolor]{author}\usebeamerfont{institute}\insertinstitute\par}\vspace{.8em}%
+      {\usebeamercolor[titlefgcolor]{date}\usebeamerfont{date}\insertdate\par}%
+    };
 
     % Para incluir imagem como LOGO ou o logo gerado com TikZ
     \ifx\beamerthemeifsclean@logo\@empty
-      \node [anchor=south west] (logoifsc) at (0,-5.2) {\usebox\ifsclogotexto};
+      \node [anchor=south west] (logoifsc) at ([xshift=.075\paperwidth,yshift=.08\paperheight]current page.south west) {\usebox\ifsclogotexto};
     \else
-      \node [anchor=south west] (logoifsc) at (0,-5.2) {\includegraphics[width=2.5cm]{\beamerthemeifsclean@logo}};
+      \node [anchor=south west] (logoifsc) at ([xshift=.075\paperwidth,yshift=.08\paperheight]current page.south west) {\includegraphics[width=\beamerthemeifsclean@logowidth]{\beamerthemeifsclean@logo}};
     \fi
 
 \end{tikzpicture}%
