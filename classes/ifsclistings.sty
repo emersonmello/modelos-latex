@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ifsclistings}[2026/04/17 v1.1 IFSC Listings Style]
+\ProvidesPackage{ifsclistings}[2026/10/21 v1.2 IFSC Listings Style]
 
 % para resolver o problema dos apostrofos e crases no listings
 \RequirePackage{upquote,listings}
@@ -33,9 +33,10 @@
     keywordstyle=\color{ifsclistings@keyword}\bfseries,
     stringstyle=\color{ifsclistings@string},
     commentstyle=\color{ifsclistings@comment},
-    escapeinside={@*}{*@}, % para colocar comandos latex @* \textbf{negrito} *@    numbers=none,
-    numberstyle=\scriptsize\color{ifsclistings@gray},
+    escapeinside={@*}{*@},
+    numberstyle=\tiny\color{ifsclistings@gray},
     numbersep=10pt,
+    numbers=none,
     frame=single,
     frameround=tttt,
     rulecolor=\color{ifsclistings@frame},
