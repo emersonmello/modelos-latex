@@ -51,7 +51,8 @@ Execute o comando `luaotfload-tool --update` no terminal para atualizar a base d
 
 ## Configuração do latexmk para usar os modelos deste repositório
 
-Espera-se que seja usado o aplicativo [latexmk](https://mgeier.github.io/latexmk.html) para compilar os arquivos .tex. Para tal crie um arquivo de configuração `.latexmkrc` no diretório home do usuário com o seguinte conteúdo:
+Espera-se que seja usado o aplicativo [latexmk](https://mgeier.github.io/latexmk.html) para compilar os arquivos .tex. No diretório de cada modelo já existe um arquivo `latexmkrc`, porém se desejar é possível criar o arquivo `.latexmkrc` no `$HOME` do seu usuário com o seguinte conteúdo:
+
 
 ```perl
 # ----------------------------------------------------------------- #
@@ -59,7 +60,8 @@ Espera-se que seja usado o aplicativo [latexmk](https://mgeier.github.io/latexmk
 # ----------------------------------------------------------------- #
 # Substitua pelo caminho onde clonou o repositório de modelos-latex
 # Exemplo:
-my $latex_classes_dir = '/home/usuario/modelos-latex';
+my $home = $ENV{'HOME'};
+my $latex_classes_dir = "$home/modelos-latex";
 # ----------------------------------------------------------------- #
 
 ensure_path( 'TEXINPUTS', "$latex_classes_dir/classes//" );
@@ -67,8 +69,19 @@ ensure_path( 'TEXINPUTS', "$latex_classes_dir/apresentacao/ifsclean//" );
 ensure_path( 'TEXINPUTS', "$latex_classes_dir/apresentacao/ifscyan//" );
 
 # ----------------------------------------------------------------- #
+# Define o diretório de saída dos arquivos gerados pela compilação
+# ----------------------------------------------------------------- #
+$out_dir = 'outlatexdir';
+
+# Diz ao latexmk para emular a pasta auxiliar, evitando que ele passe 
+# flags inválidas diretamente para o lualatex/pdflatex no Unix
+$emulate_aux = 1;
+$aux_dir = 'outlatexdir';
+
+# ----------------------------------------------------------------- #
 # Configurações para compilar usando o pdflatex ou LuaLaTeX
 # ----------------------------------------------------------------- #
+
 $pdflatex = 'pdflatex -synctex=1 -interaction=nonstopmode -file-line-error %O %S';
 $lualatex = 'lualatex -synctex=1 -interaction=nonstopmode -file-line-error %O %S';
 
@@ -77,15 +90,9 @@ $lualatex = 'lualatex -synctex=1 -interaction=nonstopmode -file-line-error %O %S
 # ----------------------------------------------------------------- #
 # pdflatex é o modo padrão
 $pdf_mode = 1;
-#
 # Para usar o LuaLaTeX, descomente a linha abaixo
 # $pdf_mode = 4;
 # ----------------------------------------------------------------- #
-
-# ----------------------------------------------------------------- #
-# Define o diretório de saída dos arquivos gerados pela compilação
-# ----------------------------------------------------------------- #
-$out_dir = 'outlatexdir';
 ```
 
 ## Licença
