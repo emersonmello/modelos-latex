@@ -73,7 +73,7 @@
 % -------------------------------------------------%
 
 % Estilo de codigo-fonte para o beamer
-\RequirePackage{ifsclistings-beamer}
+\RequirePackage{ifsclean-listings}
 
 
 \RequirePackage{xcolor}
@@ -117,7 +117,7 @@
 \DeclareStringOption{titlebackground}
 \DeclareStringOption{titlebackgroundopacity}[0.8]
 \DeclareStringOption{logo}
-\DeclareStringOption[2.5cm]{logowidth}[2.5cm]
+\DeclareStringOption[3.5cm]{logowidth}[3.5cm]
 
 \DeclareStringOption[\beamerthemeifsclean@background]{sectionfg}[\beamerthemeifsclean@background]
 \DeclareStringOption[\beamerthemeifsclean@foreground]{sectionbg}[\beamerthemeifsclean@foreground]
@@ -351,7 +351,7 @@ arc=0mm,boxrule=0mm,leftrule=1mm,left=2mm,top=1mm,parbox=false,enhanced,opacityb
 % Logo na cor do "titlefgcolor" do tema
 \newsavebox\ifsclogotexto%
 \begin{lrbox}{\ifsclogotexto}
-  \scalebox{.3}{\tikz[node distance=\dist cm] \pic{ifsclogotexto={titlefgcolor}{titlefgcolor}{titlefgcolor}};}%
+  \resizebox{\beamerthemeifsclean@logowidth}{!}{\tikz[node distance=\dist cm] \pic{ifsclogotexto={titlefgcolor}{titlefgcolor}{titlefgcolor}};}%
 \end{lrbox}
 % -------------------------------------------------%
 
