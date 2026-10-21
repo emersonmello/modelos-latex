@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ifsclistings-beamer}[2026/03/25 v1.0 IFSC Listings Style]
+\ProvidesPackage{ifsclean-listings}[2026/09/30 v1.0 IFSClean Listings Style]
 
 \RequirePackage{upquote,listings}
 \RequirePackage{xcolor}
@@ -108,13 +108,32 @@
 % -----------------------%
 % JAVASCRIPT
 % -----------------------%
+\lstdefinelanguage{JSBase}{
+  morekeywords=[1]{break, continue, delete, else, for, function, if, in,
+    new, return, this, typeof, var, void, while, with},
+  morekeywords=[2]{false, null, true, boolean, number, undefined,
+    Array, Boolean, Date, Math, Number, String, Object},
+  morekeywords=[3]{eval, parseInt, parseFloat, escape, unescape},
+  sensitive,
+  morecomment=[s]{/*}{*/},
+  morecomment=[l]//,
+  morecomment=[s]{/**}{*/},
+  morestring=[b]',
+  morestring=[b]"
+}
+
 \lstdefinestyle{javascript}{
     style=ifsclistings@base,
-    language=JavaScript,
-    morekeywords={let,const,async,await,yield},
-    emph={console,log,document,window},
-    emphstyle=\color{ifsclistings@func}
+    language=JSBase,
 }
+
+% \lstdefinestyle{javascript}{
+%     style=ifsclistings@base,
+%     language=JavaScriptLanguage,
+%     morekeywords={let,const,async,await,yield},
+%     emph={console,log,document,window},
+%     emphstyle=\color{ifsclistings@func}
+% }
 
 % -----------------------%
 % C
@@ -345,5 +364,30 @@
 
 \lstdefinestyle{properties}{
     language=Properties,
+    style=ifsclistings@base
+}
+
+% -----------------------%
+% HTTP HEADERS
+% -----------------------%
+\lstdefinelanguage{HTTPlanguage}{% 
+  morekeywords={GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD, HTTP, HTTPS,%
+    200, 201, 204, 400, 401, 403, 404, 500, 502, 503,%
+    100, 101, 102, 103, 300, 301, 302, 303, 304,%
+    305, 306, 307, 308},
+  morekeywords=[2]{
+  Host, User-Agent, Accept, Accept-Language, Accept-Encoding,%
+    Authorization, Content-Type, Content-Length, Connection,%
+    Cache-Control, Set-Cookie, Cookie, Location, Server, Date},
+  sensitive=true,
+  morecomment=[l]{\#},
+  morestring=[b]",
+  morestring=[b]',
+  moredelim=[s][\color{ifsclistings@keyword}]{=}{\&},
+  moredelim=[s][\color{ifsclistings@keyword}]{=}{\^^M}
+}
+
+\lstdefinestyle{http}{
+    language=HTTPlanguage,
     style=ifsclistings@base
 }
